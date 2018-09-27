@@ -1,0 +1,2 @@
+The binaries are compiled with MSVC++ 2010 in Release mode and aren't expected to work good with other compilers or C++ standard libraries.
+It may partially work in Debug mode when there's "#define _ITERATOR_DEBUG_LEVEL 0" before any C(++) standard library imports.

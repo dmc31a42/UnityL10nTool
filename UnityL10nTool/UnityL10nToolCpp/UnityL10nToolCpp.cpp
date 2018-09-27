@@ -254,11 +254,11 @@ bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	return true;
 }
 
-bool UnityL10nToolCpp::LoadFontPlugins() {
-	
-	vector<wstring> PluginList = GetAllFilesFilterWithinAllSubFolder(CurrentDirectory + L"Plugins\\FontPlugins\\", L"*.ULTFontPlugin");
-	for (vector<wstring>::iterator iterator = PluginList.begin();
-		iterator != PluginList.end(); iterator++) {
+vector<wstring> UnityL10nToolCpp::LoadFontPlugins() {
+	vector<wstring> pluginLoadedList;
+	vector<wstring> PluginFileNameList = GetAllFilesFilterWithinAllSubFolder(CurrentDirectory + L"Plugins\\FontPlugins\\", L"*.ULTFontPlugin");
+	for (vector<wstring>::iterator iterator = PluginFileNameList.begin();
+		iterator != PluginFileNameList.end(); iterator++) {
 		HINSTANCE PluginHInstance = LoadLibraryW((CurrentDirectory + L"Plugins\\FontPlugins\\" + *iterator).c_str());
 		GetFontPluginInfoCallback getFontPluginInfoCallback;
 		if (PluginHInstance) {
@@ -275,6 +275,7 @@ bool UnityL10nToolCpp::LoadFontPlugins() {
 					FontPluginMap.insert(pair<wstring, HINSTANCE>(fontPluginInfo->FontPluginName, PluginHInstance));
 					FontPluginInfoMap.insert(pair<wstring, FontPluginInfo*>(fontPluginInfo->FontPluginName, fontPluginInfo));
 					wstring pluginName = fontPluginInfo->FontPluginName;
+					pluginLoadedList.push_back(pluginName);
 					string pluginNameA = WideMultiStringConverter.to_bytes(pluginName);
 					if (projectJson["FontPlugin"].isMember(pluginNameA)) {
 						fontPluginInfo->SetProjectConfigJson(projectJson["FontPlugin"][pluginNameA]);
@@ -297,7 +298,7 @@ bool UnityL10nToolCpp::LoadFontPlugins() {
 			continue;
 		}
 	}
-	return true;
+	return pluginLoadedList;
 }
 
 map<wstring, vector<FontAssetMap>> UnityL10nToolCpp::GetPluginsSupportAssetMap() {

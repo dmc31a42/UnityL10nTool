@@ -50,6 +50,7 @@ public:
 	map<wstring, vector<FontAssetMap>> GetPluginsSupportAssetMap();
 	~UnityL10nToolCpp();
 
+
 protected:
 	bool LoadAssetsFile(string assetsFileName);
 	bool LoadBasicClassDatabase();
@@ -58,6 +59,6 @@ protected:
 	bool LoadMonoClassDatabase(vector<string> AssemblyNames);
 	bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
 	bool LoadUnityL10nToolAPI();
-	bool LoadFontPlugins();
+	vector<wstring> LoadFontPlugins();
 
 };

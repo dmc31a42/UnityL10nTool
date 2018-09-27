@@ -28,7 +28,7 @@
 *.lai
 *.la
 *.a
-*.lib
+#*.lib
 
 # Executables
 #*.exe
@@ -373,3 +373,5 @@ ASALocalRun/
 
 UnityL10nToolDebug/
 UnityL10nToolRelease/
+PluginsDebug/
+PluginsRelease/

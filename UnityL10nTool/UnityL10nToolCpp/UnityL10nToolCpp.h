@@ -46,10 +46,17 @@ class UnityL10nToolCpp
 	Json::Value projectJson;
 
 public:
-	UnityL10nToolCpp(wstring gameFolderPath);	
+	UnityL10nToolCpp(wstring gameFolderPath);
+	bool LoadGlobalgamemanagersFile();
+	bool LoadUnityL10nToolAPI();
+	vector<wstring> LoadFontPlugins();
 	map<wstring, vector<FontAssetMap>> GetPluginsSupportAssetMap();
 	~UnityL10nToolCpp();
 
+	static bool DetermineUnityGameFolder(wstring path);
+	static bool DetermineProjectGamePath(wstring path, wstring GameName, wstring MakerName);
+	static wstring FindUnityGameFolderFromDataFolderName(wstring dataFolderName, wstring GameName, wstring MakerName);
+	static wstring MakeSureBackslashEndOfFolderPath(wstring path);
 
 protected:
 	bool LoadAssetsFile(string assetsFileName);
@@ -58,7 +65,7 @@ protected:
 	void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	bool LoadMonoClassDatabase(vector<string> AssemblyNames);
 	bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
-	bool LoadUnityL10nToolAPI();
-	vector<wstring> LoadFontPlugins();
+	
+	
 
 };

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,11 +24,12 @@ namespace UnityL10nToolCShop
     public partial class MainWindow : Window
     {
         List<string> projectList = new List<string>();
+        //public ObservableCollection<UnityL10nToolProjectInfo> UnityL10nToolProjectInfos { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
-
+            ObservableCollection<UnityL10nToolProjectInfo>  tempUnityL10nToolProjectInfos = new ObservableCollection<UnityL10nToolProjectInfo>();
             // http://infodbbase.tistory.com/105
             if (System.IO.Directory.Exists("Projects"))
             {
@@ -37,9 +40,21 @@ namespace UnityL10nToolCShop
                     FileInfo[] settingFileInfos = directory.GetFiles("setting.json");
                     if(settingFileInfos.Length == 1)
                     {
-                        projectList.Add(directory.Name);
+                        string jsonStr = System.IO.File.ReadAllText(settingFileInfos[0].FullName);
+                        JObject jObject = JObject.Parse(jsonStr);
+                        string GameName = (string)jObject["GameName"];
+                        string MakerName = (string)jObject["MakerName"];
+                        string GamePath = (string)jObject["GamePath"];
+                        string DataFolderName = (string)jObject["DataFolderName"];
+                        tempUnityL10nToolProjectInfos.Add(new UnityL10nToolProjectInfo(
+                            GameName:GameName, 
+                            MakerName:MakerName, 
+                            GamePath:GamePath, 
+                            JSONPath:settingFileInfos[0].FullName,
+                            DataFolderName: DataFolderName));
                     }
                 }
+                ProjectListBox.ItemsSource = tempUnityL10nToolProjectInfos;
             }
 
             if (projectList.Count == 0)
@@ -55,8 +70,20 @@ namespace UnityL10nToolCShop
         {
             // https://stackoverflow.com/questions/11624298/how-to-use-openfiledialog-to-select-a-folder
             // 유니티의 폴더 열기를 구현할 수 있는 방법이 있는것 같음
-            UnityL10nToolCppManaged unityL10NToolCppManaged = ((App)Application.Current).unityL10NToolCppManaged = new UnityL10nToolCppManaged(gameFolderPath.Text);
-            Dictionary<string, List<FontAssetMapCLI>> directory = unityL10NToolCppManaged.GetPluginsSupportAssetMap();
+
+            //UnityL10nToolCppManaged unityL10NToolCppManaged = ((App)Application.Current).unityL10NToolCppManaged = new UnityL10nToolCppManaged(gameFolderPath.Text);
+            //Dictionary<string, List<FontAssetMapCLI>> directory = unityL10NToolCppManaged.GetPluginsSupportAssetMap();
+        }
+
+        private void ProjectListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UnityL10nToolProjectInfo unityL10NToolProjectInfo = (ProjectListBox.SelectedItem as UnityL10nToolProjectInfo);
+            if(unityL10NToolProjectInfo != null)
+            {
+                Window projectConfig = new ProjectConfig(unityL10NToolProjectInfo);
+                projectConfig.Show();
+                Window.GetWindow(this).Close();
+            }
         }
     }
 }

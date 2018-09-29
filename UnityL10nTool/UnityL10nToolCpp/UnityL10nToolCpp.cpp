@@ -8,6 +8,7 @@
 #include "IULTFontPluginInterface.h"
 
 using namespace std;
+
 UnityL10nToolCpp::UnityL10nToolCpp(wstring gameFolderPath)
 {
 	FirstAssetsFileName = "globalgamemanagers";
@@ -25,9 +26,11 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring gameFolderPath)
 
 	string projectJsonStr = readFile2(CurrentDirectory + L"project.json");
 	JsonReader.parse(projectJsonStr, projectJson);
-	LoadAssetsFile(FirstAssetsFileName);
-	LoadUnityL10nToolAPI();
-	LoadFontPlugins();
+	
+}
+
+bool UnityL10nToolCpp::LoadGlobalgamemanagersFile() {
+	return LoadAssetsFile(FirstAssetsFileName);
 }
 
 bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
@@ -315,4 +318,152 @@ map<wstring, vector<FontAssetMap>> UnityL10nToolCpp::GetPluginsSupportAssetMap()
 
 UnityL10nToolCpp::~UnityL10nToolCpp()
 {
+}
+
+bool UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
+{
+	path = MakeSureBackslashEndOfFolderPath(path);
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFileW((path + L"globalgamemanagers").c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+			::FindClose(hFind);
+			return true;
+		}
+	}
+	::FindClose(hFind);
+}
+
+void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)
+{
+	DWORD dwBufferSize = GetLogicalDriveStrings(0, NULL);
+	wchar_t* pDrives = (wchar_t *)malloc(dwBufferSize + 1);
+	wchar_t* pDrivesToDelete = pDrives;
+	if (pDrives != NULL)
+	{
+		GetLogicalDriveStrings(dwBufferSize, pDrives);
+		while (*pDrives)
+		{
+			UINT nDriveType = GetDriveType(pDrives);
+
+			if (DRIVE_FIXED == nDriveType)
+			{
+				strIPAddresses.push_back(wstring(pDrives));
+			}
+			pDrives += lstrlen(pDrives) + 1;
+		}
+
+		free(pDrivesToDelete);
+		pDrivesToDelete = NULL;
+	}
+}
+
+wstring FindUnityGameFolderFromDataFolderNameInternal2(wstring path, wstring GameName, wstring MakerName) {
+	WIN32_FIND_DATA fdAppInfo;
+	HANDLE hFindAppInfo = ::FindFirstFileW((path + L"app.info").c_str(), &fdAppInfo);
+	if (hFindAppInfo != INVALID_HANDLE_VALUE) {
+		string str = readFile2(path + L"app.info");
+		wstring wstr = WideMultiStringConverter.from_bytes(str);
+		int index = wstr.find('\n');
+		if (index != -1) {
+			wstring tempMakerName = wstr.substr(0, index);
+			wstring tempGameName = wstr.substr(index+1, str.length() - index-1);
+			if (GameName == tempGameName && MakerName == tempMakerName) {
+				::FindClose(hFindAppInfo);
+				return path;
+			}
+		}
+	}
+	::FindClose(hFindAppInfo);
+	return L"";
+}
+
+wstring FindUnityGameFolderFromDataFolderNameInternal1(wstring path, wstring DataFolderPath, wstring GameName, wstring MakerName) {
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = ::FindFirstFileW((path + L"*").c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			if (fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+				if ((!lstrcmpW(fd.cFileName, L".")) || (!lstrcmpW(fd.cFileName, L".."))) {
+					continue;
+				}
+				wstring tempPath = FindUnityGameFolderFromDataFolderNameInternal2((path + fd.cFileName + L"\\" + DataFolderPath + L"_Data\\").c_str(), GameName, MakerName);
+				if(!tempPath.empty()){
+					::FindClose(hFind);
+					return tempPath;
+				}
+			}
+		} while (FindNextFileW(hFind, &fd));
+		::FindClose(hFind);
+	}
+	return L"";
+}
+
+bool UnityL10nToolCpp::DetermineProjectGamePath(wstring path, wstring GameName, wstring MakerName) {
+	
+	wstring tempPath = FindUnityGameFolderFromDataFolderNameInternal2(path, GameName, MakerName);
+	return !tempPath.empty() ? true : false;
+}
+
+wstring UnityL10nToolCpp::FindUnityGameFolderFromDataFolderName(wstring dataFolderName, wstring GameName, wstring MakerName)
+{
+	wstring result = L"";
+	wstring steamRelativePath = L"Steam\\steamapps\\common\\";
+	wstring steamRelativePath2 = L"SteamLibrary\\steamapps\\common\\";
+	wstring programFilesx86Path = L"Program Files (x86)\\";
+	wstring programFilesx64Path = L"Program Files\\";
+	vector<wstring> diskDriveNames;
+	GetHardDiskDrivesNames(diskDriveNames);
+	//get_all_files_names_within_folder();
+
+	FindUnityGameFolderFromDataFolderNameInternal2(L".\\", GameName, MakerName);
+	if (!result.empty()) {
+		return result;
+	}
+	FindUnityGameFolderFromDataFolderNameInternal2(L"..\\", GameName, MakerName);
+	if (!result.empty()) {
+		return result;
+	}
+	FindUnityGameFolderFromDataFolderNameInternal2(L"..\\" + dataFolderName + L"_Data\\", GameName, MakerName);
+	if (!result.empty()) {
+		return result;
+	}
+	FindUnityGameFolderFromDataFolderNameInternal1(L"..\\", dataFolderName, GameName, MakerName);
+	if (!result.empty()) {
+		return result;
+	}
+	for (vector<wstring>::iterator iterator = diskDriveNames.begin();
+		iterator != diskDriveNames.end(); iterator++) {
+		result = FindUnityGameFolderFromDataFolderNameInternal1(*iterator + programFilesx86Path + steamRelativePath, dataFolderName, GameName, MakerName);
+		if (!result.empty()) {
+			return result;
+		}
+		result = FindUnityGameFolderFromDataFolderNameInternal1(*iterator + programFilesx64Path + steamRelativePath, dataFolderName, GameName, MakerName);
+		if (!result.empty()) {
+			return result;
+		}
+		result = FindUnityGameFolderFromDataFolderNameInternal1(*iterator + steamRelativePath, dataFolderName, GameName, MakerName);
+		if (!result.empty()) {
+			return result;
+		}
+		result = FindUnityGameFolderFromDataFolderNameInternal1(*iterator + steamRelativePath, dataFolderName, GameName, MakerName);
+		if (!result.empty()) {
+			return result;
+		}
+		result = FindUnityGameFolderFromDataFolderNameInternal1(*iterator + steamRelativePath2, dataFolderName, GameName, MakerName);
+		if (!result.empty()) {
+			return result;
+		}
+	}
+	return L"";
+}
+
+wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
+{
+	if (path.back() != L'\\') {
+		return path + L'\\';
+	}
+	else {
+		return path;
+	}
 }

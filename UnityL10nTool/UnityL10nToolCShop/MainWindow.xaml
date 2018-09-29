@@ -7,8 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="gameFolderPath" Margin="10,216,161,0" TextWrapping="Wrap" Text="TextBox" Height="23" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="707,219,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Label Content="Make new project" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" FontSize="48"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="1" Content="New" HorizontalAlignment="Right"/>
+        <ListBox x:Name="ProjectListBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding}" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch" SelectionChanged="ProjectListBox_SelectionChanged" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid ShowGridLines="true" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Path=GameName}" Margin="6,6,6,3" FontSize="20" />
+                            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=MakerName}" Margin="6,6,6,3" VerticalAlignment="Bottom" />
+                        </Grid>
+                        <Label Grid.Row="1" Grid.Column="0" Content="{Binding Path=GamePath}" Margin="6,3,6,6"/>
+                        <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content=" X " Margin="0,0,6,0" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

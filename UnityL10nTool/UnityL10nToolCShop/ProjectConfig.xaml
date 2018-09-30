@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolCShop"
         mc:Ignorable="d"
-        Title="ProjectConfig" Height="450" Width="800">
-    <Grid>
+        Title="ProjectConfig" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid x:Name="MainGrid">
         
     </Grid>
 </Window>

@@ -27,6 +27,15 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring gameFolderPath)
 	string projectJsonStr = readFile2(CurrentDirectory + L"project.json");
 	JsonReader.parse(projectJsonStr, projectJson);
 	
+	if (CreateDirectory(L".\\temp\\", NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+		// CopyFile(...)
+	}
+	else
+	{
+		// Failed to create directory.
+	}
 }
 
 bool UnityL10nToolCpp::LoadGlobalgamemanagersFile() {
@@ -93,7 +102,6 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger(
 	AssetsFile* globalgamemanagersFile = globalgamemanagersTable->getAssetsFile();
 	int ResourceManagerClassId;
 	int MonoManagerClassId;
-	vector<string> AssemblyNames;
 
 	FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>("globalgamemanagers", 0));
 	FindAssetsNameFromPathIDOfContainerPath.insert(pair<INT32, string>(0, "globalgamemanagers"));
@@ -163,7 +171,7 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger(
 			AssetSearchCount--;
 		}
 	}
-	LoadMonoClassDatabase(AssemblyNames);
+	
 	return true;
 }
 
@@ -179,8 +187,43 @@ void UnityL10nToolCpp::GetClassIdFromAssetFileInfoEx(AssetsFileTable* assetsFile
 	}
 }
 
-bool UnityL10nToolCpp::LoadMonoClassDatabase(vector<string> AssemblyNames) {
-	wstring classDatabaseFileName = L"behaviourdb.dat";
+bool CreateTypeTreeGenerator(wstring TypeTreeGeneratorParams) {
+	STARTUPINFO si;
+	PROCESS_INFORMATION pi;
+
+	ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(si);
+	ZeroMemory(&pi, sizeof(pi));
+
+	// Start the child process. 
+	if (!CreateProcess(
+		L".\\Resource\\TypeTreeGenerator.exe",   // No module name (use command line)
+		(LPWSTR)TypeTreeGeneratorParams.c_str(),        // Command line
+		NULL,           // Process handle not inheritable
+		NULL,           // Thread handle not inheritable
+		FALSE,          // Set handle inheritance to FALSE
+		CREATE_NO_WINDOW,              // No creation flags
+		NULL,           // Use parent's environment block
+		L".\\temp\\",           // Use parent's starting directory 
+		&si,            // Pointer to STARTUPINFO structure
+		&pi)           // Pointer to PROCESS_INFORMATION structure
+		)
+	{
+		printf("CreateProcess failed (%d).\n", GetLastError());
+		return false;
+	}
+
+	// Wait until child process exits.
+	WaitForSingleObject(pi.hProcess, INFINITE);
+
+	// Close process and thread handles. 
+	CloseHandle(pi.hProcess);
+	CloseHandle(pi.hThread);
+	return true;
+}
+
+bool UnityL10nToolCpp::LoadMonoClassDatabase() {
+	wstring classDatabaseFileName = L".\\temp\\behaviourdb.dat";
 	_wremove(classDatabaseFileName.c_str());
 
 	wstring TypeTreeGeneratorParams;
@@ -190,8 +233,10 @@ bool UnityL10nToolCpp::LoadMonoClassDatabase(vector<string> AssemblyNames) {
 		}
 	}
 	//TypeTreeGeneratorParams += " 2>&1 > baseList.txt";
-	CreateProcessCustom(L".\\Resource\\TypeTreeGenerator.exe " + TypeTreeGeneratorParams);
+	//CreateProcessCustom(L".\\Resource\\TypeTreeGenerator.exe " + TypeTreeGeneratorParams);
 	// behaviourdb.dat
+
+	CreateTypeTreeGenerator(TypeTreeGeneratorParams);
 
 	IAssetsReader* classDatabaseReader = Create_AssetsReaderFromFile((classDatabaseFileName).c_str(), true, RWOpenFlags_None);
 	MonoClassDatabaseFile = new ClassDatabaseFile();

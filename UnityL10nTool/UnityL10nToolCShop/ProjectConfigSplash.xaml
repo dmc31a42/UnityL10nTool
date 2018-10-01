@@ -7,13 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#33000000" >
-        <Grid Width="300" Height="100" Background="White">
+        <Grid Width="400" Height="100" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label x:Name="ProgressText1" Grid.Row="0" Content="Progress Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"/>
-            <ProgressBar x:Name="ProgressBar1" Grid.Row="1" Width="100" Height="20" IsIndeterminate="True" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ProgressText1" Grid.Row="0" Text="Progress Text"  Margin="30,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+            <ProgressBar x:Name="ProgressBar1" Grid.Row="1" Width="100" Height="20" IsIndeterminate="True" Margin="30,0" />
+            <TextBlock x:Name="ProgressTextBlock1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="20,10,20,10"/>
         </Grid>
     </Grid>
 </UserControl>

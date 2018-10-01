@@ -27,11 +27,12 @@ namespace UnityL10nToolCShop
         public string ProgressText {
             set
             {
-                ProgressText1.Content = value;
+                ProgressText1.Text = value;
+                ProgressTextBlock1.Text += value + "\r\n";
             }
             get
             {
-                return ProgressText1.Content.ToString();
+                return ProgressText1.Text.ToString();
             }
         }
     }

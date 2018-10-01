@@ -29,11 +29,17 @@ namespace UnityL10nToolCShop
         {
             InitializeComponent();
             this.unityL10NToolProjectInfo = unityL10NToolProjectInfo;
+            GameNameLabel.Content = unityL10NToolProjectInfo.GameName;
+            MakerNameLabel.Content = unityL10NToolProjectInfo.MakerName;
+            GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             projectConfigSplash = new ProjectConfigSplash();
+            projectConfigSplash.SetValue(Grid.RowSpanProperty, 2);
+            projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
+
             MainGrid.Children.Add(projectConfigSplash);
             LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
             LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
@@ -65,12 +71,16 @@ namespace UnityL10nToolCShop
             {
                 // 게임폴더가 비정상일때 (자신의 경로라도 .\로 넘어옴
             }
-            
+            unityL10NToolProjectInfo.GamePath = gamePath;
+
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Initialize UnityL10nTool...");
-            unityL10nToolCppManaged = new UnityL10nToolCppManaged(gamePath);
+            unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.GamePath);
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Assets...");
             unityL10nToolCppManaged.LoadGlobalgamemanagersFile();
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading MonoClassDatabase...");
+            unityL10nToolCppManaged.LoadMonoClassDatabase();
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading UnityL10nToolAPI...");
             unityL10nToolCppManaged.LoadUnityL10nToolAPI();
@@ -90,6 +100,13 @@ namespace UnityL10nToolCShop
         private void LoadUnityL10nTool_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MainGrid.Children.Remove(projectConfigSplash);
+            GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //App.Current.MainWindow.Close();
         }
     }
 }

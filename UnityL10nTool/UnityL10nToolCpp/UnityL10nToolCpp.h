@@ -42,12 +42,13 @@ class UnityL10nToolCpp
 	map<wstring, FontPluginInfo*> FontPluginInfoMap;
 
 	UnityL10nToolAPI _unityL10nToolAPI;
-
+	vector<string> AssemblyNames;
 	Json::Value projectJson;
 
 public:
 	UnityL10nToolCpp(wstring gameFolderPath);
 	bool LoadGlobalgamemanagersFile();
+	bool LoadMonoClassDatabase();
 	bool LoadUnityL10nToolAPI();
 	vector<wstring> LoadFontPlugins();
 	map<wstring, vector<FontAssetMap>> GetPluginsSupportAssetMap();
@@ -63,9 +64,6 @@ protected:
 	bool LoadBasicClassDatabase();
 	bool ProcessResourceAndMonoManger(AssetsFileTable * globalgamemanagersTable, string globalgamemanagersName);
 	void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
-	bool LoadMonoClassDatabase(vector<string> AssemblyNames);
+	
 	bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
-	
-	
-
 };

@@ -7,6 +7,51 @@
         mc:Ignorable="d"
         Title="ProjectConfig" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid x:Name="MainGrid">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" x:Name="GameNameLabel" Content="Game Name" FontSize="16"/>
+            <Label Grid.Column="1" x:Name="MakerNameLabel" Content="Maker Name" VerticalAlignment="Bottom"/>
+            <Label Grid.Column="2" x:Name="GamePathLabel"  VerticalAlignment="Bottom" >
+                <TextBlock x:Name="GamePathTextBlock" TextTrimming="CharacterEllipsis">
+                Game PathVeryLonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+                </TextBlock>
+            </Label>
+        </Grid>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Content="New" VerticalAlignment="Top" Margin="5"/>
+            <Button Content="Save" VerticalAlignment="Top" Margin="5"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TabControl TabStripPlacement="Left">
+                <TabItem Header="Font Asset">
+                    <TabControl>
+                        <TabItem Header="TMP_FontAsset">
+                            
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+                <TabItem Header="TextAsset">
+                    
+                </TabItem>
+                <TabItem Header="Online Resource">
+                    
+                </TabItem>
+                <TabItem Header="Updater">
+                    
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

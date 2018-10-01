@@ -3,8 +3,12 @@
 #include "json/json.h"
 using namespace std;
 
-static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverter; // #include <codecvt>
-static Json::Reader JsonReader;
+// http://faithlife.codes/blog/2008/04/exception_0xc0020001_in_ccli_assembly/ Due to static value 0xc0020001 occur
+#ifndef GENERALPURPOSEFUNCTIONSSTATIC
+#define GENERALPURPOSEFUNCTIONSSTATIC
+std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverter; // #include <codecvt>
+Json::Reader JsonReader;
+#endif // !GENERALPURPOSEFUNCTIONSSTATIC
 
 std::string readFile2(const std::wstring & fileName);
 vector<wstring> GetAllFilesFilterWithinAllSubFolder(wstring directory, wstring filter);

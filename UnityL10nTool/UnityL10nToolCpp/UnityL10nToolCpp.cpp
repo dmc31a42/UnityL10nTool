@@ -363,6 +363,23 @@ map<wstring, vector<FontAssetMap>> UnityL10nToolCpp::GetPluginsSupportAssetMap()
 
 UnityL10nToolCpp::~UnityL10nToolCpp()
 {
+	BasicClassDatabaseFile->~ClassDatabaseFile();
+	BasicClassDatabaseFile = NULL;
+	MonoClassDatabaseFile->~ClassDatabaseFile();
+	MonoClassDatabaseFile = NULL;
+	ResourceManagerFileGlobal->~ResourceManagerFile();
+	ResourceManagerFileGlobal = NULL;
+	for (map<string, AssetsFileTable*>::iterator iterator = FindAssetsFileTablesFromAssetsName.begin();
+		iterator != FindAssetsFileTablesFromAssetsName.end(); iterator++) {
+		iterator->second->~AssetsFileTable();
+	}
+	FindAssetsFileTablesFromAssetsName.clear();
+	for (map<string, AssetsFile*>::iterator iterator = FindAssetsFilesFromAssetsName.begin();
+		iterator != FindAssetsFilesFromAssetsName.end(); iterator++) {
+		iterator->second->~AssetsFile();
+	}
+	FindAssetsFilesFromAssetsName.clear();
+	GlobalgamemanagersAssetsTable = NULL;
 }
 
 bool UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
@@ -377,6 +394,7 @@ bool UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
 		}
 	}
 	::FindClose(hFind);
+	return false;
 }
 
 void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)

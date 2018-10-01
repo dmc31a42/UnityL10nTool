@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace UnityL10nToolCShop
         UnityL10nToolProjectInfo unityL10NToolProjectInfo;
         BackgroundWorker LoadUnityL10nTool_BackgroundWorker;
         ProjectConfigSplash projectConfigSplash;
+        Dictionary<string, List<FontAssetMapCLI>> pluginsSupportAssetMap;
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
         {
@@ -89,7 +91,7 @@ namespace UnityL10nToolCShop
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Plugins Support Asset List...");
-            Dictionary<string, List<FontAssetMapCLI>> pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
+            pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
         }
 
         private void LoadUnityL10nTool_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -101,12 +103,17 @@ namespace UnityL10nToolCShop
         {
             MainGrid.Children.Remove(projectConfigSplash);
             GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
-
+            FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
+            LoadUnityL10nTool_BackgroundWorker.Dispose();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            Console.WriteLine("test1");
+            unityL10nToolCppManaged.Dispose();
+            unityL10nToolCppManaged = null;
             //App.Current.MainWindow.Close();
+            Console.WriteLine("test2");
         }
     }
 }

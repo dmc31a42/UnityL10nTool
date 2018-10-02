@@ -26,6 +26,7 @@ namespace UnityL10nToolCShop
         BackgroundWorker LoadUnityL10nTool_BackgroundWorker;
         ProjectConfigSplash projectConfigSplash;
         Dictionary<string, List<FontAssetMapCLI>> pluginsSupportAssetMap;
+        public FontAssetMapCLI SelectedFontAssetItem;
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
         {

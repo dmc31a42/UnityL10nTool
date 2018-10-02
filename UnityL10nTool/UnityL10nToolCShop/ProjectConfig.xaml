@@ -57,6 +57,11 @@
                 <TabItem Header="Font Asset">
                     <TabControl x:Name="FontAssetTabControl" ItemsSource="{Binding Collection}" >
                         <!--d:DataContext="{StaticResource SampleDataSource}" ItemTemplate="{DynamicResource CollectionItemTemplate}"-->
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Key}" />
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
                         <TabControl.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -67,18 +72,21 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value}">
+                                    <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value}" AutoGenerateColumns="False" >
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName"/>
-                                            <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName"/>
-                                            <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath"/>
+                                            <DataGridTextColumn Binding="{Binding Path=assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding Path=assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                            <DataGridTextColumn Binding="{Binding Path=containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                     <Grid Grid.Row="0" Grid.Column="1">
-                                        
-                                    </Grid>                                    
-                                    <!--<ListBox HorizontalAlignment="Left" Height="300" ItemTemplate="{DynamicResource optionsItemTemplate}" ItemsSource="{Binding Value.options}" VerticalAlignment="Top" Width="200"/>-->
-
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <ListBox Grid.Row="0" ItemsSource="{Binding Path=SelectedItem.options, ElementName=FontAssetMapDataGrid}"></ListBox>
+                                    </Grid>
+                                    
                                 </Grid>
                             </DataTemplate>
                         </TabControl.ContentTemplate>

@@ -1,0 +1,139 @@
+﻿<!--
+      *********    이 파일을 수정하지 마십시오.     *********
+      이 파일은 디자인 도구에서 다시 생성했습니다. 이 파일을
+      변경하면 오류가 발생할 수 있습니다.
+-->
+<SampleDataSource:SampleDataSource xmlns:SampleDataSource="clr-namespace:Expression.Blend.SampleData.SampleDataSource">
+	<SampleDataSource:SampleDataSource.Collection>
+		<SampleDataSource:CollectionItem Key="Class curae">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Nam maecenas" assetName="Class nam maecenas curae" containerPath="Class aenean aliquam">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Maecenas cras duis"/>
+						<SampleDataSource:optionsItem Property1="Class curae praesent"/>
+						<SampleDataSource:optionsItem Property1="Nunc amet aenean"/>
+						<SampleDataSource:optionsItem Property1="Nam aliquam sed"/>
+						<SampleDataSource:optionsItem Property1="Mauris accumsan nullam"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Donec aenean cras mauris">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Class curae aliquam praesent" assetName="Sed donec cras duis" containerPath="Integer quisque">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Donec ante"/>
+						<SampleDataSource:optionsItem Property1="Arcu dis"/>
+						<SampleDataSource:optionsItem Property1="Bibendum dictumst diam etiam"/>
+						<SampleDataSource:optionsItem Property1="Fusce integer"/>
+						<SampleDataSource:optionsItem Property1="Lorem eleifend"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Aliquam etiam maecenas">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Integer sed" assetName="Aenean praesent dis" containerPath="Vivamus cras">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Facilisi aptent est"/>
+						<SampleDataSource:optionsItem Property1="Auctor quisque"/>
+						<SampleDataSource:optionsItem Property1="Vivamus faucibus aliquam"/>
+						<SampleDataSource:optionsItem Property1="Morbi habitant"/>
+						<SampleDataSource:optionsItem Property1="Inceptos aliquet"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Fusce duis">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Dis quisque vivamus" assetName="Accumsan est etiam fusce" containerPath="Nam mauris">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Interdum congue"/>
+						<SampleDataSource:optionsItem Property1="Blandit hac leo"/>
+						<SampleDataSource:optionsItem Property1="Mus commodo nec"/>
+						<SampleDataSource:optionsItem Property1="Lobortis non per cursus"/>
+						<SampleDataSource:optionsItem Property1="Conubia cubilia"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Nullam lorem aptent">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Cras donec" assetName="Lorem nunc morbi amet" containerPath="Aliquam maecenas duis curae">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Sed nascetur dapibus"/>
+						<SampleDataSource:optionsItem Property1="Pharetra egestas dictum placerat"/>
+						<SampleDataSource:optionsItem Property1="Sem eget"/>
+						<SampleDataSource:optionsItem Property1="Euismod lectus"/>
+						<SampleDataSource:optionsItem Property1="Libero pulvinar nulla"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Nam integer sed">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Etiam aliquam est aenean" assetName="Aliquam mauris" containerPath="Nullam nunc praesent donec">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Ligula elit enim proin"/>
+						<SampleDataSource:optionsItem Property1="Erat augue sit eros"/>
+						<SampleDataSource:optionsItem Property1="Nibh nisi nisl dolor"/>
+						<SampleDataSource:optionsItem Property1="Sagittis fames senectus feugiat"/>
+						<SampleDataSource:optionsItem Property1="Felis ipsum sociosqu"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Nunc amet quisque">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Hac fusce lorem duis" assetName="Integer ante" containerPath="Aptent amet etiam">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Suscipit litora"/>
+						<SampleDataSource:optionsItem Property1="Vel nam"/>
+						<SampleDataSource:optionsItem Property1="Luctus nunc"/>
+						<SampleDataSource:optionsItem Property1="Odio torquent"/>
+						<SampleDataSource:optionsItem Property1="Gravida orci ultrices justo"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Morbi vivamus nulla dis">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Nunc aliquet accumsan" assetName="Hac bibendum dictumst quisque" containerPath="Fusce lorem accumsan aliquet">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Magnis sed lacus lorem"/>
+						<SampleDataSource:optionsItem Property1="Mattis iaculis"/>
+						<SampleDataSource:optionsItem Property1="Mauris pede quam"/>
+						<SampleDataSource:optionsItem Property1="Mollis vehicula montes magna"/>
+						<SampleDataSource:optionsItem Property1="Nostra quis"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Praesent proin">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Mauris bibendum" assetName="Leo nulla eleifend" containerPath="Bibendum dictumst auctor sed">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Lacinia ornare dis"/>
+						<SampleDataSource:optionsItem Property1="Massa urna"/>
+						<SampleDataSource:optionsItem Property1="Est laoreet volutpat maecenas"/>
+						<SampleDataSource:optionsItem Property1="Metus cras"/>
+						<SampleDataSource:optionsItem Property1="Natoque duis hac platea"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+		<SampleDataSource:CollectionItem Key="Augue est ante aliquam">
+			<SampleDataSource:CollectionItem.Value>
+				<SampleDataSource:Value assetsName="Blandit amet morbi" assetName="Facilisi arcu" containerPath="Blandit dis">
+					<SampleDataSource:Value.options>
+						<SampleDataSource:optionsItem Property1="Morbi praesent"/>
+						<SampleDataSource:optionsItem Property1="Neque posuere"/>
+						<SampleDataSource:optionsItem Property1="Primis netus rutrum accumsan"/>
+						<SampleDataSource:optionsItem Property1="Nulla leo bibendum"/>
+						<SampleDataSource:optionsItem Property1="Nunc sapien porta"/>
+					</SampleDataSource:Value.options>
+				</SampleDataSource:Value>
+			</SampleDataSource:CollectionItem.Value>
+		</SampleDataSource:CollectionItem>
+	</SampleDataSource:SampleDataSource.Collection>
+</SampleDataSource:SampleDataSource>

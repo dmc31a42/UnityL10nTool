@@ -1,11 +1,32 @@
-﻿<Window x:Class="UnityL10nToolCShop.ProjectConfig"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolCShop"
         mc:Ignorable="d"
+        x:Class="UnityL10nToolCShop.ProjectConfig"
+        
         Title="ProjectConfig" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
+    <!--xmlns:SampleDataSource="clr-namespace:Expression.Blend.SampleData.SampleDataSource"-->
+    <Window.Resources>
+        <!--SampleDataSource:SampleDataSource x:Key="SampleDataSource" d:IsDataSource="True"/-->
+        <DataTemplate x:Key="CollectionItemTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Key}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ValueItemTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding assetsName}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="optionsItemTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Property1}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,9 +45,7 @@
             <Label Grid.Column="0" x:Name="GameNameLabel" Content="Game Name" FontSize="16"/>
             <Label Grid.Column="1" x:Name="MakerNameLabel" Content="Maker Name" VerticalAlignment="Bottom"/>
             <Label Grid.Column="2" x:Name="GamePathLabel"  VerticalAlignment="Bottom" >
-                <TextBlock x:Name="GamePathTextBlock" TextTrimming="CharacterEllipsis">
-                Game PathVeryLonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-                </TextBlock>
+                <TextBlock x:Name="GamePathTextBlock" TextTrimming="CharacterEllipsis"><Run Text="Game PathVeryLonggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"/></TextBlock>
             </Label>
         </Grid>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
@@ -36,30 +55,38 @@
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <TabControl TabStripPlacement="Left">
                 <TabItem Header="Font Asset">
-                    <TabControl x:Name="FontAssetTabControl" ItemsSource="{Binding}">
-                        <TabControl.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Key}"/>
-                            </DataTemplate>
-                        </TabControl.ItemTemplate>
+                    <TabControl x:Name="FontAssetTabControl" ItemsSource="{Binding Collection}" >
+                        <!--d:DataContext="{StaticResource SampleDataSource}" ItemTemplate="{DynamicResource CollectionItemTemplate}"-->
                         <TabControl.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <TextBlock Text="Constant String"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value}">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName"/>
+                                            <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName"/>
+                                            <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="0" Grid.Column="1">
+                                        
+                                    </Grid>                                    
+                                    <!--<ListBox HorizontalAlignment="Left" Height="300" ItemTemplate="{DynamicResource optionsItemTemplate}" ItemsSource="{Binding Value.options}" VerticalAlignment="Top" Width="200"/>-->
+
                                 </Grid>
                             </DataTemplate>
                         </TabControl.ContentTemplate>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="TextAsset">
-                    
-                </TabItem>
-                <TabItem Header="Online Resource">
-                    
-                </TabItem>
-                <TabItem Header="Updater">
-                    
-                </TabItem>
+                <TabItem Header="TextAsset"/>
+                <TabItem Header="Online Resource"/>
+                <TabItem Header="Updater"/>
             </TabControl>
         </Grid>
     </Grid>

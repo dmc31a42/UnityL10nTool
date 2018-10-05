@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+      *********    이 파일을 수정하지 마십시오.     *********
+      이 파일은 디자인 도구에서 다시 생성했습니다. 이 파일을
+      변경하면 오류가 발생할 수 있습니다.
+-->
+<xs:schema xmlns:blend="http://schemas.microsoft.com/expression/blend/2008" xmlns:tns="Expression.Blend.SampleData.FontAssetMapCLIs" targetNamespace="Expression.Blend.SampleData.FontAssetMapCLIs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FontAssetMapCLIs" type="tns:FontAssetMapCLIs" />
+  <xs:complexType name="FontAssetMapCLIs">
+    <xs:sequence>
+      <xs:element name="Collection" type="tns:ItemCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemCollection">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="Item" type="tns:Item" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element name="Value" type="tns:Value" />
+    </xs:sequence>
+    <xs:attribute name="Key" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Value">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="ValueItem" type="tns:ValueItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValueItem">
+    <xs:sequence>
+      <xs:element name="options" type="tns:options1" />
+    </xs:sequence>
+    <xs:attribute name="assetsName" type="xs:string" />
+    <xs:attribute name="assetName" type="xs:string" />
+    <xs:attribute name="containerPath" type="xs:string" />
+    <xs:attribute name="selectedOption" type="xs:string" />
+    <xs:attribute name="useContainerPath" type="xs:boolean" />
+  </xs:complexType>
+  <xs:complexType name="options1">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="optionsItem1" type="tns:optionsItem1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="optionsItem1">
+    <xs:attribute name="test1" type="xs:string" />
+    <xs:attribute name="Property2" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="options">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="optionsItem" type="tns:optionsItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="optionsItem">
+    <xs:sequence>
+      <xs:element name="options" type="tns:options" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

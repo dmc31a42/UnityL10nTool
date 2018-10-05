@@ -1,0 +1,349 @@
+﻿<!--
+      *********    이 파일을 수정하지 마십시오.     *********
+      이 파일은 디자인 도구에서 다시 생성했습니다. 이 파일을
+      변경하면 오류가 발생할 수 있습니다.
+-->
+<FontAssetMapCLIs:FontAssetMapCLIs xmlns:FontAssetMapCLIs="clr-namespace:Expression.Blend.SampleData.FontAssetMapCLIs">
+	<FontAssetMapCLIs:FontAssetMapCLIs.Collection>
+		<FontAssetMapCLIs:Item Key="Nam aenean sed">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Cras nam" assetName="Nam sed dis maecenas" containerPath="Nam sed cras dis" selectedOption="Class aenean nam" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Aliquam aenean class maecenas" Property2="Aenean nam sed"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Praesent integer quisque vivamus" Property2="Class aliquam curae cras"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Duis sed class aenean" assetName="Cras est" containerPath="Aliquam aenean integer mauris" selectedOption="Mauris curae aliquam" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Mauris cras accumsan" Property2="Maecenas duis nunc dis"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nullam bibendum" Property2="Donec etiam"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Maecenas mauris nullam" assetName="Hac praesent" containerPath="Est duis quisque nullam" selectedOption="Integer maecenas praesent" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Aptent duis aliquam" Property2="Praesent amet integer accumsan"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nunc curae auctor" Property2="Ante quisque vivamus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Dis est" assetName="Aliquam duis" containerPath="Nunc amet hac vivamus" selectedOption="Quisque vivamus" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Dictumst eleifend amet donec" Property2="Mauris est bibendum hac"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Congue cursus" Property2="Dictumst arcu"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Curae donec praesent" assetName="Aenean integer nunc" containerPath="Maecenas class aptent" selectedOption="Cras duis" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Etiam fusce facilisi faucibus" Property2="Diam eleifend leo aliquam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Aliquet blandit commodo" Property2="Eget elit"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Dis class cras mauris">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Etiam accumsan" assetName="Accumsan amet quisque" containerPath="Ante auctor aliquam" selectedOption="Donec accumsan nunc etiam" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Dictum nam habitant lorem" Property2="Enim fusce facilisi"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Conubia cubilia ante" Property2="Erat nullam"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Bibendum aliquam" assetName="Bibendum class leo mus" containerPath="Leo arcu congue praesent" selectedOption="Aliquam sed" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Lectus arcu morbi" Property2="Aliquet faucibus aptent lorem"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Libero inceptos ligula" Property2="Morbi nulla blandit mus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Dictumst fusce hac" assetName="Vivamus mauris" containerPath="Diam mus curae" selectedOption="Nullam dis aliquet" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Sed dis est hac" Property2="Commodo nec"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Interdum lobortis diam" Property2="Eros nibh habitant"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nunc leo" assetName="Nullam nec aliquam non" containerPath="Accumsan eget aliquet" selectedOption="Bibendum fusce" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Litora dapibus leo luctus" Property2="Conubia cubilia nisi auctor"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Mus egestas" Property2="Congue cursus nisl"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Integer lorem eleifend" assetName="Per ante sed arcu" containerPath="Cursus donec" selectedOption="Blandit lorem est amet" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Eget magnis" Property2="Inceptos dictum lectus"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Elit nascetur pharetra euismod" Property2="Nunc odio interdum proin"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Maecenas curae aliquam">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Quisque mus" assetName="Curae aliquet diam" containerPath="Dictum blandit nec" selectedOption="Hac aptent commodo dictumst" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Mattis nec" Property2="Lobortis dapibus non per"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Non placerat feugiat" Property2="Nascetur pharetra sed orci"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Vivamus nec" assetName="Sem aptent" containerPath="Lectus libero elit" selectedOption="Auctor leo conubia" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Pulvinar sagittis mauris" Property2="Pede quam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Enim senectus mollis nulla" Property2="Quis sem libero urna"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Morbi aliquam amet" assetName="Donec eget elit etiam" containerPath="Non commodo conubia" selectedOption="Cubilia morbi eleifend" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Montes nostra" Property2="Sit cras vel nam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Sociosqu ornare erat eros" Property2="Egestas duis sed"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nulla non ante aptent" assetName="Blandit auctor congue" containerPath="Etiam fusce" selectedOption="Facilisi ante arcu mus" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Gravida suscipit torquent" Property2="Augue dis euismod feugiat"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Proin per iaculis" Property2="Dolor est"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Auctor proin facilisi" assetName="Cursus dictumst fusce commodo" containerPath="Bibendum per ligula enim" selectedOption="Dapibus nec nulla egestas" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Ultrices augue" Property2="Ligula hac"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nibh vehicula dolor" Property2="Nunc fames"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Nullam duis integer donec">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Arcu augue per" assetName="Eleifend conubia" containerPath="Sed litora lorem dictumst" selectedOption="Proin faucibus" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Platea fames felis primis" Property2="Leo litora mus gravida"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Volutpat nisi" Property2="Felis luctus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Sed faucibus" assetName="Sit cubilia dapibus" containerPath="Cubilia luctus erat" selectedOption="Congue diam habitant" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Ipsum maecenas nisl justo" Property2="Nec amet ante iaculis"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Sed sem nunc" Property2="Ipsum justo placerat"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Diam dolor" assetName="Vel nam" containerPath="Eleifend sem" selectedOption="Cursus inceptos interdum dictum" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Sit lacinia" Property2="Lacus lorem pulvinar"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Odio rutrum praesent sapien" Property2="Sagittis senectus arcu magnis"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Sem fames aliquet sit" assetName="Enim erat dictum lectus" containerPath="Magnis facilisi eros mattis" selectedOption="Euismod lectus" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Laoreet natoque lacus accumsan" Property2="Diam mattis mauris"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Vel bibendum dictumst orci" Property2="Eget magna mollis massa"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Vel nam habitant felis" assetName="Sed dis" containerPath="Sit vel nam sed" selectedOption="Feugiat lobortis" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Eleifend lorem" Property2="Elit montes sociosqu nostra"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nam magna posuere facilisi" Property2="Non suscipit"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Etiam est fusce">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Inceptos sed congue" assetName="Est facilisi faucibus habitant" containerPath="Faucibus habitant" selectedOption="Non libero" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Sed semper" Property2="Torquent per"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Sociis pede faucibus potenti" Property2="Ornare platea primis"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Blandit ipsum" assetName="Lorem egestas euismod morbi" containerPath="Dapibus nibh mauris" selectedOption="Ligula nascetur eget per" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Massa taciti" Property2="Lacinia laoreet ultrices natoque"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Tellus habitant" Property2="Metus morbi posuere"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Interdum commodo conubia" assetName="Hac nulla" containerPath="Nisi egestas" selectedOption="Pharetra gravida" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Inceptos pretium interdum" Property2="Sed sem"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Tempor quam" Property2="Neque enim rutrum sit"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Cursus cubilia" assetName="Feugiat libero" containerPath="Morbi dis euismod" selectedOption="Sed litora sem placerat" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Metus tempus quis" Property2="Sapien vehicula potenti erat"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Morbi tortor" Property2="Semper volutpat pretium eros"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Justo dis lobortis dapibus" assetName="Ligula inceptos" containerPath="Est feugiat gravida iaculis" selectedOption="Luctus pulvinar sagittis augue" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Dis turpis urna" Property2="Rhoncus vel"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Neque netus varius est" Property2="Sodales viverra"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Quisque vivamus">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Eget lacus" assetName="Eros litora" containerPath="Inceptos lacinia" selectedOption="Sit senectus sociosqu suscipit" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Lobortis aenean" Property2="Nibh nisi"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Mauris hac" Property2="Netus sociis"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Elit enim est" assetName="Leo interdum luctus magnis" containerPath="Interdum nulla" selectedOption="Torquent ultrices elit magnis" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Leo nulla mus cras" Property2="Nam nisl maecenas"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nullam nec non rhoncus" Property2="Nunc nulla odio"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Hac dictum leo" assetName="Mus nec nibh non" containerPath="Proin laoreet natoque" selectedOption="Vehicula mattis vel" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Per duis" Property2="Taciti aliquam porta orci"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nunc sed porta" Property2="Pede tellus purus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nascetur egestas mus lorem" assetName="Proin augue" containerPath="Posuere potenti nisl" selectedOption="Volutpat iaculis" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Sem purus" Property2="Risus sed dis"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Sit amet vel aptent" Property2="Est integer praesent quam"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Euismod lectus nec non" assetName="Dolor mattis per" containerPath="Pretium lobortis nascetur rhoncus" selectedOption="Mauris maecenas nam mollis" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Nascetur sodales pharetra nam" Property2="Quis tempor tempus"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Viverra risus velit sed" Property2="Quisque vivamus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Aliquam nunc">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Erat libero eros per" assetName="Lobortis nascetur" containerPath="Pharetra augue" selectedOption="Sed lacinia montes nostra" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Placerat ante aliquam vitae" Property2="Velit accumsan tortor"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Pulvinar dis" Property2="Hac bibendum leo urna"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nibh sed pharetra feugiat" assetName="Gravida sed sem" containerPath="Sodales mollis nunc" selectedOption="Dis dolor est ornare" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Integer quisque arcu vivamus" Property2="Cras vitae"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Class aliquam diam" Property2="Mus nec class"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Sem sit magna gravida" assetName="Nisi iaculis lacinia laoreet" containerPath="Dolor placerat" selectedOption="Praesent enim erat" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Curae auctor donec etiam" Property2="Duis aliquam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Sagittis fusce aliquet" Property2="Curae nunc dictumst"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Ligula massa" assetName="Sit vel" containerPath="Odio viverra hac fames" selectedOption="Fames eros felis laoreet" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Eget senectus congue" Property2="Aliquet amet"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Blandit sociosqu est cursus" Property2="Blandit ante commodo"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Metus vel morbi nisi" assetName="Natoque nisl posuere fames" containerPath="Orci montes" selectedOption="Accumsan ipsum justo" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Lorem elit" Property2="Arcu eleifend"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Enim erat" Property2="Conubia cubilia"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Aliquet praesent lorem">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Nisl neque" assetName="Nunc nam" containerPath="Nostra ornare" selectedOption="Natoque posuere" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Commodo hac suscipit" Property2="Turpis diam eget donec"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Eros morbi nulla torquent" Property2="Etiam varius"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Iaculis placerat" assetName="Sed dis potenti pretium" containerPath="Pulvinar leo" selectedOption="Bibendum dictumst nibh" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Nibh leo" Property2="Non fusce facilisi elit"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Dictum nisi" Property2="Faucibus aenean lorem"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nam pulvinar sagittis lacinia" assetName="Est mauris pharetra felis" containerPath="Pede felis sagittis" selectedOption="Nisi eleifend facilisi potenti" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Mus nisl ultrices" Property2="Per sed enim"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nunc odio" Property2="Sem morbi habitant"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Nunc senectus litora sociosqu" assetName="Hac placerat rhoncus" containerPath="Senectus ipsum aliquam integer" selectedOption="Faucibus habitant hac lacus" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Proin orci" Property2="Mauris dapibus sit nullam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Augue conubia vehicula" Property2="Inceptos erat interdum nulla"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Sed odio laoreet" assetName="Sodales ipsum" containerPath="Platea justo quam quis" selectedOption="Platea leo nisl" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Volutpat cubilia" Property2="Vel aptent auctor egestas"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Maecenas praesent" Property2="Euismod eros nibh congue"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Amet morbi aptent blandit">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Luctus netus" assetName="Pulvinar odio leo" containerPath="Mus lacus" selectedOption="Lorem mus nunc" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Dapibus accumsan" Property2="Lobortis nam sed"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Dolor bibendum" Property2="Feugiat cursus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Natoque suscipit torquent" assetName="Justo orci" containerPath="Lorem primis urna nec" selectedOption="Pretium inceptos magna" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Fames felis" Property2="Proin nascetur"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Lectus nec" Property2="Gravida dis nisi nisl"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Magnis dis mattis mauris" assetName="Lacus mus" containerPath="Magna quisque non massa" selectedOption="Interdum odio lobortis primis" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Libero ligula" Property2="Nunc odio"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Litora pede quam" Property2="Iaculis pharetra lacinia laoreet"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Orci est mollis" assetName="Lorem mollis viverra" containerPath="Metus cras" selectedOption="Nascetur orci" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Non dictumst ipsum" Property2="Placerat est pulvinar"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Luctus justo" Property2="Augue natoque"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Posuere montes nostra pede" assetName="Montes aliquam magna integer" containerPath="Vivamus aliquam" selectedOption="Rutrum pede massa nec" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Per eleifend facilisi" Property2="Orci hac dictum pede"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Lacus egestas euismod feugiat" Property2="Leo posuere"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+		<FontAssetMapCLIs:Item Key="Accumsan commodo nulla ante">
+			<FontAssetMapCLIs:Item.Value>
+				<FontAssetMapCLIs:ValueItem assetsName="Hac ultrices nulla quam" assetName="Massa sagittis senectus metus" containerPath="Per sociosqu" selectedOption="Quam quis urna" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Quis sed gravida" Property2="Dolor lectus quam"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Magnis urna" Property2="Fames quis libero mus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Ornare quis" assetName="Sociosqu quisque pede" containerPath="Sed duis" selectedOption="Metus rhoncus non sapien" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Iaculis lorem sem cras" Property2="Urna sagittis potenti"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Mattis mauris" Property2="Felis cras senectus"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Porta platea" assetName="Morbi neque vivamus" containerPath="Nunc sem sit" selectedOption="Morbi sodales" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Mollis magna lacinia sit" Property2="Duis ipsum pretium"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Laoreet vel montes duis" Property2="Sociosqu ligula nunc"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Purus urna" assetName="Quam aliquam netus" containerPath="Suscipit vel" selectedOption="Cras viverra" useContainerPath="True">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Nostra faucibus" Property2="Justo rhoncus"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Nam sed ornare nunc" Property2="Suscipit torquent sodales"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+				<FontAssetMapCLIs:ValueItem assetsName="Risus vehicula" assetName="Suscipit nostra nec quis" containerPath="Rutrum sapien" selectedOption="Per aliquam pharetra" useContainerPath="False">
+					<FontAssetMapCLIs:ValueItem.options>
+						<FontAssetMapCLIs:optionsItem1 test1="Massa platea primis" Property2="Amet ante nec"/>
+						<FontAssetMapCLIs:optionsItem1 test1="Habitant dis metus est" Property2="Non ultrices vehicula per"/>
+					</FontAssetMapCLIs:ValueItem.options>
+				</FontAssetMapCLIs:ValueItem>
+			</FontAssetMapCLIs:Item.Value>
+		</FontAssetMapCLIs:Item>
+	</FontAssetMapCLIs:FontAssetMapCLIs.Collection>
+</FontAssetMapCLIs:FontAssetMapCLIs>

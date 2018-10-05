@@ -3,31 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UnityL10nToolCShop"
         mc:Ignorable="d"
         x:Class="UnityL10nToolCShop.ProjectConfig"
-        
-        Title="ProjectConfig" Height="450" Width="800" Loaded="Window_Loaded" Closed="Window_Closed">
-    <!--xmlns:SampleDataSource="clr-namespace:Expression.Blend.SampleData.SampleDataSource"-->
+        Title="ProjectConfig" Height="450" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}">
     <Window.Resources>
-        <!--SampleDataSource:SampleDataSource x:Key="SampleDataSource" d:IsDataSource="True"/-->
-        <DataTemplate x:Key="CollectionItemTemplate">
-            <StackPanel>
-                <TextBlock Text="{Binding Key}"/>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="ValueItemTemplate">
-            <StackPanel>
-                <TextBlock Text="{Binding assetsName}"/>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="optionsItemTemplate">
+        <DataTemplate x:Key="ItemTemplate">
             <StackPanel>
                 <TextBlock Text="{Binding Property1}"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" d:DataContext="{Binding Source={StaticResource FontAssetMapCLIs}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
@@ -56,7 +42,6 @@
             <TabControl TabStripPlacement="Left">
                 <TabItem Header="Font Asset">
                     <TabControl x:Name="FontAssetTabControl" ItemsSource="{Binding Collection}" >
-                        <!--d:DataContext="{StaticResource SampleDataSource}" ItemTemplate="{DynamicResource CollectionItemTemplate}"-->
                         <TabControl.ItemTemplate>
                             <DataTemplate>
                                 <Label Content="{Binding Key}" />
@@ -67,26 +52,48 @@
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value}" AutoGenerateColumns="False" >
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Binding="{Binding Path=assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                            <DataGridTextColumn Binding="{Binding Path=assetName}" Header="AssetsName" IsReadOnly="True"/>
-                                            <DataGridTextColumn Binding="{Binding Path=containerPath}" Header="ContainerPath" IsReadOnly="True"/>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                    <Grid Grid.Row="0" Grid.Column="1">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <ListBox Grid.Row="0" ItemsSource="{Binding Path=SelectedItem.options, ElementName=FontAssetMapDataGrid}"></ListBox>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value.News}" AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <StackPanel Grid.Column="1" d:DataContext="{Binding Source={StaticResource FontAssetMapCLIOptionsSample}}"  DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}" >
+                                            <ListBox Grid.Row="0" ItemsSource="{Binding options}" SelectedItem="{Binding selectedOption}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="UseContainerPath"/>
+                                                <CheckBox DataContext="{Binding useContainerPath}"/>
+                                            </StackPanel>
+                                            <Button Content="Add" Click="Button_Click"/>
+                                        </StackPanel>
                                     </Grid>
-                                    
+                                    <Grid Grid.Row="1" Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value.Saved}" AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding selectedOption}" Header="selectedOption" IsReadOnly="True"/>
+                                                <DataGridCheckBoxColumn Binding="{Binding useContainerPath}" Header="UseContainerPath" IsReadOnly="True" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" FlowDirection="RightToLeft">
+                                            <Button Content="xxxx" VerticalAlignment="Top" Margin="5"/>
+                                            <Button Content="xxxx" VerticalAlignment="Top" Margin="5"/>
+                                        </StackPanel>
+                                    </Grid>
                                 </Grid>
                             </DataTemplate>
                         </TabControl.ContentTemplate>

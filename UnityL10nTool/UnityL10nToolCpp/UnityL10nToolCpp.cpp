@@ -349,14 +349,13 @@ vector<wstring> UnityL10nToolCpp::LoadFontPlugins() {
 	return pluginLoadedList;
 }
 
-map<wstring, vector<FontAssetMap>> UnityL10nToolCpp::GetPluginsSupportAssetMap() {
-	map<wstring, vector<FontAssetMap>> supportAssetMaps;
+map<wstring, FontAssetMaps> UnityL10nToolCpp::GetPluginsSupportAssetMap() {
+	map<wstring, FontAssetMaps> supportAssetMaps;
 	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
 		iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
-		vector<FontAssetMap> pluginSupportAssetMap = fontPluginInfo->GetPluginSupportAssetMap();
-		supportAssetMaps[fontPluginInfo->FontPluginName].insert(supportAssetMaps[fontPluginInfo->FontPluginName].end(),
-			pluginSupportAssetMap.begin(), pluginSupportAssetMap.end());
+		FontAssetMaps pluginSupportAssetMaps = fontPluginInfo->GetPluginSupportAssetMap();
+		supportAssetMaps[fontPluginInfo->FontPluginName] = pluginSupportAssetMaps;
 	}
 	return supportAssetMaps;
 }

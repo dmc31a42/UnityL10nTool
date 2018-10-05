@@ -25,7 +25,7 @@ namespace UnityL10nToolCShop
         UnityL10nToolProjectInfo unityL10NToolProjectInfo;
         BackgroundWorker LoadUnityL10nTool_BackgroundWorker;
         ProjectConfigSplash projectConfigSplash;
-        Dictionary<string, List<FontAssetMapCLI>> pluginsSupportAssetMap;
+        Dictionary<string, FontAssetMapsCLI> pluginsSupportAssetMap;
         public FontAssetMapCLI SelectedFontAssetItem;
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
@@ -44,12 +44,54 @@ namespace UnityL10nToolCShop
             projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
 
             MainGrid.Children.Add(projectConfigSplash);
-            LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
-            LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
-            LoadUnityL10nTool_BackgroundWorker.ProgressChanged += LoadUnityL10nTool_ProgressChanged;
-            LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
-            LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
-            LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
+            //LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
+            //LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
+            //LoadUnityL10nTool_BackgroundWorker.ProgressChanged += LoadUnityL10nTool_ProgressChanged;
+            //LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
+            //LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
+            //LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
+            LoadUnityL10nTool_Test();
+        }
+
+        private void LoadUnityL10nTool_Test()
+        {
+            string gamePath = "";
+            // DeterminateUnityGameFolder말고 GameName과 MakerName으로 app.info에 있는 정보를 통해서 본 프로젝트(게임)의 폴더가 맞는가 확인해야함.
+            if (UnityL10nToolCppManaged.DetermineProjectGamePath(
+                unityL10NToolProjectInfo.GamePath,
+                unityL10NToolProjectInfo.GameName,
+                unityL10NToolProjectInfo.MakerName))
+            {
+                gamePath = unityL10NToolProjectInfo.GamePath;
+            }
+            if (gamePath == "")
+            {
+                gamePath = UnityL10nToolCppManaged.FindUnityGameFolderFromDataFolderName(
+                   unityL10NToolProjectInfo.DataFolderName,
+                   unityL10NToolProjectInfo.GameName,
+                   unityL10NToolProjectInfo.MakerName);
+            }
+            if (gamePath == "")
+            {
+                // 게임폴더가 비정상일때 (자신의 경로라도 .\로 넘어옴
+            }
+            unityL10NToolProjectInfo.GamePath = gamePath;
+
+            unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.GamePath);
+
+            unityL10nToolCppManaged.LoadGlobalgamemanagersFile();
+
+            unityL10nToolCppManaged.LoadMonoClassDatabase();
+
+            unityL10nToolCppManaged.LoadUnityL10nToolAPI();
+
+            List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
+
+            pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
+
+            MainGrid.Children.Remove(projectConfigSplash);
+            GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
+            FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
         }
 
         private void LoadUnityL10nTool_DoWork(object sender, DoWorkEventArgs e)
@@ -115,6 +157,15 @@ namespace UnityL10nToolCShop
             unityL10nToolCppManaged = null;
             //App.Current.MainWindow.Close();
             Console.WriteLine("test2");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dataContextTest = ((Button)sender).DataContext;
+            Object test = (123);
+            test = 53.2;
+            Double test2 = (double)test;
+
         }
     }
 }

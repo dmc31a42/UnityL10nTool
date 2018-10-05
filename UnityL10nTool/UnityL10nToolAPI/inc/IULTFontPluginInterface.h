@@ -16,11 +16,12 @@ using namespace std;
 struct UnityL10nToolAPI;
 struct FontPluginInfo;
 struct FontAssetMap;
+struct FontAssetMaps;
 
 typedef bool(_cdecl *GetFontPluginInfoCallback)(UnityL10nToolAPI* unityL10nToolAPI, FontPluginInfo* fontPluginInfo);
 /* Used in Project */
 typedef bool(_cdecl *SetProjectConfigJsonCallback)(Json::Value pluginConfig);
-typedef std::vector<FontAssetMap>(_cdecl *GetPluginSupportAssetMapCallback)();
+typedef FontAssetMaps(_cdecl *GetPluginSupportAssetMapCallback)();
 typedef bool(_cdecl *SetPluginAssetMapCallback)(std::vector<FontAssetMap>);
 typedef Json::Value(_cdecl *GetProjectConfigJsonCallback)();
 typedef Json::Value(_cdecl *GetPacherConfigJsonCallback)();
@@ -31,13 +32,35 @@ typedef bool(_cdecl *SetPacherConfigJsonCallback)(Json::Value patcherConfig);
 typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetPatcherAssetReplacerCallback)();
 typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(wstring FontPluginRelativePath, wstring targetPath);
 
+struct FontAssetMapOption {
+	enum Type
+	{
+		OPTION_TYPE_NONE = 0,
+		OPTION_TYPE_WSTRING = 1,
+		OPTION_TYPE_INT = 2,
+		OPTION_TYPE_DOUBLE = 3,
+		OPTION_TYPE_BOOL = 4
+	};
+	std::wstring OptionName;
+	std::wstring OptionDescription;
+	void* Value;
+	void* ValueAsChild;
+	Type type;
+	Type typeAsChild;
+	std::vector<FontAssetMapOption> nestedOptions;
+};
+
 struct FontAssetMap {
 	std::string assetsName;
 	std::string assetName;
 	std::string containerPath;
-	std::vector<std::wstring> options;
-	std::wstring selectedOption;
 	bool useContainerPath;
+	std::vector<FontAssetMapOption> options;
+};
+
+struct FontAssetMaps {
+	std::vector<FontAssetMap> News;
+	std::vector<FontAssetMap> Saveds;
 };
 
 struct FontPluginInfo {
@@ -138,8 +161,8 @@ inline vector<FontAssetMap> UnityL10nToolAPI::GetFontAssetMapListFromMonoClassNa
 							assetsName,
 							assetName,
 							containerPath,
-							std::vector<std::wstring>(),
-							L"" };
+							false,
+							std::vector<FontAssetMapOption> ()};
 						fontAssetMapList.push_back(tempFontAssetMap);
 					}
 				}

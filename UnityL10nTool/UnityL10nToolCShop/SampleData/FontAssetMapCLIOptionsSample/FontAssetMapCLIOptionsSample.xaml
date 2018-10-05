@@ -1,0 +1,19 @@
+﻿<!--
+      *********    이 파일을 수정하지 마십시오.     *********
+      이 파일은 디자인 도구에서 다시 생성했습니다. 이 파일을
+      변경하면 오류가 발생할 수 있습니다.
+-->
+<FontAssetMapCLIOptionsSample:FontAssetMapCLIOptionsSample xmlns:FontAssetMapCLIOptionsSample="clr-namespace:Expression.Blend.SampleData.FontAssetMapCLIOptionsSample">
+	<FontAssetMapCLIOptionsSample:FontAssetMapCLIOptionsSample.options>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Class aliquam aenean integer"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Nam quisque sed cras"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Vivamus mauris duis"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Aliquam dis"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Aliquet maecenas blandit"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Nullam praesent"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Commodo nunc"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Est curae accumsan bibendum"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Amet ante"/>
+		<FontAssetMapCLIOptionsSample:optionsItem options="Hac conubia"/>
+	</FontAssetMapCLIOptionsSample:FontAssetMapCLIOptionsSample.options>
+</FontAssetMapCLIOptionsSample:FontAssetMapCLIOptionsSample>

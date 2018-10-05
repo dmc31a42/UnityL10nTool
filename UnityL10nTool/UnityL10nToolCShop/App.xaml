@@ -1,9 +1,14 @@
-﻿<Application x:Class="UnityL10nToolCShop.App"
+﻿<Application
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:UnityL10nToolCShop"
+             xmlns:FontAssetMapCLIs="clr-namespace:Expression.Blend.SampleData.FontAssetMapCLIs" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:FontAssetMapCLIOptionsSample="clr-namespace:Expression.Blend.SampleData.FontAssetMapCLIOptionsSample" mc:Ignorable="d" x:Class="UnityL10nToolCShop.App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <FontAssetMapCLIOptionsSample:FontAssetMapCLIOptionsSample x:Key="FontAssetMapCLIOptionsSample" d:IsDataSource="True"/>
+
+        <FontAssetMapCLIs:FontAssetMapCLIs x:Key="FontAssetMapCLIs" d:IsDataSource="True"/>
+
     </Application.Resources>
 </Application>

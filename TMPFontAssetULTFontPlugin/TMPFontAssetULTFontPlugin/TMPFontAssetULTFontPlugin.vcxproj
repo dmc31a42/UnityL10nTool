@@ -137,9 +137,9 @@
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\TMPFontAsset\*" "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\Plugins\FontPlugins\TMPFontAsset\" /Y /E
 xcopy "$(ProjectDir)..\TMPFontAsset\*" "$(ProjectDir)..\TMPFontAssetULTFontPluginRelease\Plugins\FontPlugins\TMPFontAsset\" /Y /E
-xcopy "$(OutDir)TMPFontAssetULTFontPlugin.ULTFontPlugin" "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\Plugins\FontPlugins\"
-xcopy "$(OutDir)TMPFontAssetULTFontPlugin.pdb" "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\Plugins\FontPlugins\"
-xcopy "$(OutDir)TMPFontAssetULTFontPlugin.ULTFontPlugin" "$(ProjectDir)..\TMPFontAssetULTFontPluginRelease\Plugins\FontPlugins\"
+xcopy "$(OutDir)TMPFontAssetULTFontPlugin.ULTFontPlugin" "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\Plugins\FontPlugins\" /Y /E
+xcopy "$(OutDir)TMPFontAssetULTFontPlugin.pdb" "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\Plugins\FontPlugins\" /Y /E
+xcopy "$(OutDir)TMPFontAssetULTFontPlugin.ULTFontPlugin" "$(ProjectDir)..\TMPFontAssetULTFontPluginRelease\Plugins\FontPlugins\" /Y /E
 xcopy "$(ProjectDir)..\TMPFontAssetULTFontPluginDebug\*" "$(ProjectDir)..\..\PluginsDebug\"  /Y /E
 xcopy "$(ProjectDir)..\TMPFontAssetULTFontPluginRelease\*" "$(ProjectDir)..\..\PluginsRelease\"  /Y /E</Command>
     </PostBuildEvent>

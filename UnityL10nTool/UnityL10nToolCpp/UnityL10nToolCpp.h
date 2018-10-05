@@ -51,7 +51,7 @@ public:
 	bool LoadMonoClassDatabase();
 	bool LoadUnityL10nToolAPI();
 	vector<wstring> LoadFontPlugins();
-	map<wstring, vector<FontAssetMap>> GetPluginsSupportAssetMap();
+	map<wstring, FontAssetMaps> GetPluginsSupportAssetMap();
 	~UnityL10nToolCpp();
 
 	static bool DetermineUnityGameFolder(wstring path);

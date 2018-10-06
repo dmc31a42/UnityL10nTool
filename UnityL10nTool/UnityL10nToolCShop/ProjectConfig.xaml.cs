@@ -161,10 +161,12 @@ namespace UnityL10nToolCShop
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var dataContextTest = ((Button)sender).DataContext;
-            Object test = (123);
-            test = 53.2;
-            Double test2 = (double)test;
+            Button button = (Button)sender;
+            FontAssetMapCLI fontAssetMapCLI = (FontAssetMapCLI)(button).DataContext;
+            Grid grid = (Grid)button.Parent;
+            Grid grid2 = (Grid)grid.Parent;
+            FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid2.DataContext;
+            fontAssetMapsCLI.Saveds.Add(fontAssetMapCLI);
 
         }
     }

@@ -40,6 +40,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -54,12 +56,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomProperties.xaml.cs">
+      <DependentUpon>CustomProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleData\FontAssetMapCLIOptionsSample\FontAssetMapCLIOptionsSample.xaml.cs">
       <DependentUpon>FontAssetMapCLIOptionsSample.xaml</DependentUpon>
     </Compile>
     <Compile Include="SampleData\FontAssetMapCLIs\FontAssetMapCLIs.xaml.cs">
       <DependentUpon>FontAssetMapCLIs.xaml</DependentUpon>
     </Compile>
+    <Page Include="CustomProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProjectConfig.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+    xmlns:local="clr-namespace:UnityL10nToolCShop"
+    mc:Ignorable="d"
         x:Class="UnityL10nToolCShop.ProjectConfig"
         Title="ProjectConfig" Height="450" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}">
     <Window.Resources>
@@ -66,21 +67,21 @@
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <StackPanel Grid.Column="1" d:DataContext="{Binding Source={StaticResource FontAssetMapCLIOptionsSample}}"  DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}" >
-                                            <ListBox Grid.Row="0" ItemsSource="{Binding options}" SelectedItem="{Binding selectedOption}" />
-                                            <StackPanel Orientation="Horizontal">
-                                                <Label Content="UseContainerPath"/>
-                                                <CheckBox DataContext="{Binding useContainerPath}"/>
-                                            </StackPanel>
-                                            <Button Content="Add" Click="Button_Click"/>
-                                        </StackPanel>
+                                        <Grid Grid.Column="1" DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <local:CustomProperties Grid.Row="0" d:DataContext="" DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}" />
+                                            <Button Grid.Row="1" Content="Add" Click="Button_Click"/>
+                                        </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saved}" AutoGenerateColumns="False">
+                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>

@@ -91,8 +91,7 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" FlowDirection="RightToLeft">
-                                            <Button Content="xxxx" VerticalAlignment="Top" Margin="5"/>
-                                            <Button Content="xxxx" VerticalAlignment="Top" Margin="5"/>
+                                            <Button Content="Edit" VerticalAlignment="Top" Margin="5" Click="Button_Click_1"/>
                                         </StackPanel>
                                     </Grid>
                                 </Grid>

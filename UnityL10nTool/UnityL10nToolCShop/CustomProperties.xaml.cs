@@ -24,26 +24,29 @@ namespace UnityL10nToolCShop
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            try
+            var fontAssetMapCLITest = DataContext as FontAssetMapCLI;
+            if (fontAssetMapCLITest != null)
             {
-                fontAssetMapCLI = (FontAssetMapCLI)DataContext;
+                fontAssetMapCLI = fontAssetMapCLITest;
                 PropertiesStackPanel.Children.Clear();
                 SetPropertyControl();
-            } finally { }            
+            }
+            else
+            {
+
+            }
         }
-
-
-
+        
         public void SetPropertyControl()
         {
             for (int i = 0; i < fontAssetMapCLI.options.Count; i++)
             {
                 FontAssetMapOptionCLI child = fontAssetMapCLI.options[i];
-                setPropertyControlRecursive(ref child);
+                SetPropertyControlRecursive(ref child);
             }
         }
 
-        public void setPropertyControlRecursive(ref FontAssetMapOptionCLI fontAssetMapOptionCLI)
+        public void SetPropertyControlRecursive(ref FontAssetMapOptionCLI fontAssetMapOptionCLI)
         {
             if (fontAssetMapOptionCLI.type == FontAssetMapOptionCLI.Type.OPTION_TYPE_NONE)
             {
@@ -143,7 +146,7 @@ namespace UnityL10nToolCShop
                             {
                                 FontAssetMapOptionCLI found = fontAssetMapOptionCLI.nestedOptions[findIndex];
                                 comboBox1.SelectedItem = (string)(found).ValueAsChild;
-                                setPropertyControlRecursive(ref found);
+                                SetPropertyControlRecursive(ref found);
                             }
                             else
                             {
@@ -184,7 +187,7 @@ namespace UnityL10nToolCShop
                             {
                                 FontAssetMapOptionCLI found = fontAssetMapOptionCLI.nestedOptions[findIndex];
                                 comboBox2.SelectedItem = (int)(found).ValueAsChild;
-                                setPropertyControlRecursive(ref found);
+                                SetPropertyControlRecursive(ref found);
                             }
                             else
                             {
@@ -224,7 +227,7 @@ namespace UnityL10nToolCShop
                             {
                                 FontAssetMapOptionCLI found = fontAssetMapOptionCLI.nestedOptions[findIndex];
                                 comboBox3.SelectedItem = (int)(found).ValueAsChild;
-                                setPropertyControlRecursive(ref found);
+                                SetPropertyControlRecursive(ref found);
                             }
                             else
                             {
@@ -254,7 +257,7 @@ namespace UnityL10nToolCShop
                             {
                                 FontAssetMapOptionCLI found = fontAssetMapOptionCLI.nestedOptions[findIndex];
                                 checkBox1.IsChecked = (bool)(found).ValueAsChild;
-                                setPropertyControlRecursive(ref found);
+                                SetPropertyControlRecursive(ref found);
                             }
                             else
                             {

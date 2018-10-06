@@ -165,9 +165,16 @@ namespace UnityL10nToolCShop
             FontAssetMapCLI fontAssetMapCLI = (FontAssetMapCLI)(button).DataContext;
             Grid grid = (Grid)button.Parent;
             Grid grid2 = (Grid)grid.Parent;
+            // 카피해서 넣어야함.
             FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid2.DataContext;
+            // 중복 확인.
             fontAssetMapsCLI.Saveds.Add(fontAssetMapCLI);
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Edit하면 command로 SelectedItem을 바꾸고,  Add 버튼을 Edit 버튼으로 바꾸기? 
         }
     }
 }

@@ -135,6 +135,7 @@
     <ProjectReference Include="..\UnityL10nToolCppCLI\UnityL10nToolCppCLI.vcxproj.vcxproj">
       <Project>{d9caf120-0b26-44c9-9804-67fa2a3013a3}</Project>
       <Name>UnityL10nToolCppCLI</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

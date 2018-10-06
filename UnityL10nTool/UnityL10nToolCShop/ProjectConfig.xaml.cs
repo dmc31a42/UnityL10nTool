@@ -44,13 +44,13 @@ namespace UnityL10nToolCShop
             projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
 
             MainGrid.Children.Add(projectConfigSplash);
-            //LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
-            //LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
-            //LoadUnityL10nTool_BackgroundWorker.ProgressChanged += LoadUnityL10nTool_ProgressChanged;
-            //LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
-            //LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
-            //LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
-            LoadUnityL10nTool_Test();
+            LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
+            LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
+            LoadUnityL10nTool_BackgroundWorker.ProgressChanged += LoadUnityL10nTool_ProgressChanged;
+            LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
+            LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
+            LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
+            //LoadUnityL10nTool_Test();
         }
 
         private void LoadUnityL10nTool_Test()

@@ -49,7 +49,7 @@
                         </TabControl.ItemTemplate>
                         <TabControl.ContentTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid DataContext="{Binding Value}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto"/>
@@ -59,7 +59,7 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value.News}" AutoGenerateColumns="False">
+                                        <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
@@ -80,7 +80,7 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Value.Saved}" AutoGenerateColumns="False">
+                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saved}" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>

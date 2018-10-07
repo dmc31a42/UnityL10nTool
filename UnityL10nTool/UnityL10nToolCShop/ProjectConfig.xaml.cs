@@ -79,7 +79,10 @@ namespace UnityL10nToolCShop
             unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.GamePath);
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Assets...");
-            unityL10nToolCppManaged.LoadGlobalgamemanagersFile();
+            unityL10nToolCppManaged.LoadGlobalgamemanagersFile(); 
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Class Information...");
+            unityL10nToolCppManaged.ProcessResourceAndMonoManger(); 
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading MonoClassDatabase...");
             unityL10nToolCppManaged.LoadMonoClassDatabase();

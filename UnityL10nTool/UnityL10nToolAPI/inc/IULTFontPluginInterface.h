@@ -91,7 +91,7 @@ struct UnityL10nToolAPI {
 	const map <string, AssetsFileTable*>* FindAssetsFileTablesFromAssetsName;
 	const map <INT32, UINT32>* FindBasicClassIndexFromClassID;
 	const map <string, UINT32>* FindBasicClassIndexFromClassName;
-	const map<INT64, string>* FindMonoClassNameFromMonoScriptPathId;
+	const map<pair<string, INT64>, string>* FindMonoClassNameFromAssetsNameANDPathId;
 	const map<string, UINT32>* FindMonoClassIndexFromMonoClassName;
 	const map<pair<INT32, INT64>, string>* FindContainerPathFromFileIDPathID;
 	const map<string, pair<INT32, INT64>>* FindFileIDPathIDFromContainerPath;
@@ -114,7 +114,7 @@ struct UnityL10nToolAPI {
 	AssetTypeValueField * GetAssetTypeValueFieldArrayFromJson(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField * assetTypeValueField, Json::Value json);
-	string GetClassNameFromBaseAssetTypeValueField(AssetTypeValueField * baseAssetTypeValueField);
+	string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
 	INT32 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, string assetName);
 };
 
@@ -140,7 +140,7 @@ inline vector<FontAssetMap> UnityL10nToolAPI::GetFontAssetMapListFromMonoClassNa
 				AssetTypeInstance* baseAssetTypeInstance = GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
 				AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance->GetBaseField();
 				if (baseAssetTypeValueField) {
-					string tempMonoClassName = GetClassNameFromBaseAssetTypeValueField(baseAssetTypeValueField);
+					string tempMonoClassName = GetClassNameFromBaseAssetTypeValueField(assetsFileTable, baseAssetTypeValueField);
 					if (tempMonoClassName == monoClassName) {
 						std::string assetName;
 						std::string containerPath;
@@ -184,14 +184,15 @@ inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFileTable* ass
 	}
 }
 
-inline string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(AssetTypeValueField* baseAssetTypeValueField) {
+inline string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField* baseAssetTypeValueField) {
 	if (baseAssetTypeValueField) {
 		string m_Name = baseAssetTypeValueField->Get("m_Name")->GetValue()->AsString();
 		AssetTypeValueField* m_ScriptATVF = baseAssetTypeValueField->Get("m_Script");
 		if (m_ScriptATVF) {
 			int m_FileId = m_ScriptATVF->Get("m_FileID")->GetValue()->AsInt();
 			unsigned __int64 m_PathID = m_ScriptATVF->Get("m_PathID")->GetValue()->AsUInt64();
-			return FindMonoClassNameFromMonoScriptPathId->find(m_PathID)->second;
+			string assetsName = string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
+			return FindMonoClassNameFromAssetsNameANDPathId->find(pair<string, INT64>(assetsName, m_PathID))->second;
 		}
 		else {
 			throw new exception("GetClassNameFromBaseAssetTypeValueField: m_ScriptATVF not exist");
@@ -238,7 +239,7 @@ inline AssetTypeInstance* UnityL10nToolAPI::GetDetailAssetTypeInstanceFromAssetF
 	AssetTypeInstance* baseAssetTypeInstance = GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
 	if (classId == 0x72) {
 		AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance->GetBaseField();
-		string monoScriptFullName = GetClassNameFromBaseAssetTypeValueField(baseAssetTypeValueField);
+		string monoScriptFullName = GetClassNameFromBaseAssetTypeValueField(assetsFileTable, baseAssetTypeValueField);
 		baseAssetTypeInstance->~AssetTypeInstance();
 		AssetTypeTemplateField* baseMonoTypeTemplateField = GetMonoAssetTypeTemplateFieldFromClassName(monoScriptFullName);
 		AssetTypeInstance* baseMonoTypeInstance = new AssetTypeInstance(

@@ -30,7 +30,7 @@ class UnityL10nToolCpp
 	map <string, AssetsFileTable*> FindAssetsFileTablesFromAssetsName;
 	map <INT32, UINT32> FindBasicClassIndexFromClassID;
 	map <string, UINT32> FindBasicClassIndexFromClassName;
-	map<INT64, string> FindMonoClassNameFromMonoScriptPathId;
+	map<pair<string, INT64>, string> FindMonoClassNameFromAssetsNameANDPathId;
 	map<string, UINT32> FindMonoClassIndexFromMonoClassName;
 	map<pair<INT32, INT64>, string> FindContainerPathFromFileIDPathID;
 	map<string, pair<INT32, INT64>> FindFileIDPathIDFromContainerPath;
@@ -48,6 +48,7 @@ class UnityL10nToolCpp
 public:
 	UnityL10nToolCpp(wstring gameFolderPath);
 	bool LoadGlobalgamemanagersFile();
+	bool ProcessResourceAndMonoManger();
 	bool LoadMonoClassDatabase();
 	bool LoadUnityL10nToolAPI();
 	vector<wstring> LoadFontPlugins();
@@ -62,8 +63,9 @@ public:
 protected:
 	bool LoadAssetsFile(string assetsFileName);
 	bool LoadBasicClassDatabase();
-	bool ProcessResourceAndMonoManger(AssetsFileTable * globalgamemanagersTable, string globalgamemanagersName);
+	
 	void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	
-	bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
+	//bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
+	//bool LoadFindMonoClassNameFromMonoScriptPathId();
 };

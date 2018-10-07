@@ -45,7 +45,9 @@ bool UnityL10nToolCpp::LoadGlobalgamemanagersFile() {
 bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 	map<string, AssetsFile*>::iterator iterator = FindAssetsFilesFromAssetsName.find(assetsFileName);
 	if (iterator == FindAssetsFilesFromAssetsName.end()) {
-		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((GameFolderPath + WideMultiStringConverter.from_bytes(assetsFileName)).c_str(), true, RWOpenFlags_None);
+		string assetsFilePath = assetsFileName;
+		ReplaceAll(assetsFilePath, "library/", "resources/");
+		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((GameFolderPath + WideMultiStringConverter.from_bytes(assetsFilePath)).c_str(), true, RWOpenFlags_None);
 		AssetsFile* assetsFile = new AssetsFile(assetsReader);
 		AssetsFileTable* assetsFileTable = new AssetsFileTable(assetsFile);
 		assetsFileTable->GenerateQuickLookupTree();
@@ -58,10 +60,10 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 			size_t lastDotOffset = version.find_last_of('.');
 			versionFirstTwoNumbers = version.substr(0, lastDotOffset);
 			LoadBasicClassDatabase();
-			ProcessResourceAndMonoManger(assetsFileTable, assetsFileName);
+			//ProcessResourceAndMonoManger(assetsFileTable, assetsFileName);
 		}
 		else if (assetsFileName == "globalgamemanagers.assets") {
-			LoadFindMonoClassNameFromMonoScriptPathId(assetsFileTable);
+			//LoadFindMonoClassNameFromMonoScriptPathId(assetsFileTable);
 		}
 		DWORD dependencyCount = assetsFile->dependencies.dependencyCount;
 		if (dependencyCount > 0) {
@@ -97,8 +99,9 @@ bool UnityL10nToolCpp::LoadBasicClassDatabase() {
 	return true;
 }
 
-bool UnityL10nToolCpp::ProcessResourceAndMonoManger(
-	AssetsFileTable* globalgamemanagersTable, string globalgamemanagersName) {
+bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
+	string globalgamemanagersName = "globalgamemanagers";
+	AssetsFileTable* globalgamemanagersTable = FindAssetsFileTablesFromAssetsName[globalgamemanagersName];
 	AssetsFile* globalgamemanagersFile = globalgamemanagersTable->getAssetsFile();
 	int ResourceManagerClassId;
 	int MonoManagerClassId;
@@ -159,6 +162,44 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger(
 				assetFileInfoEx->absolutePos);
 			AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
 			if (baseAssetTypeValueField) {
+				AssetTypeValueField* m_ScriptsArrayATVF =
+					baseAssetTypeValueField->Get("m_Scripts")->Get("Array");
+				if (m_ScriptsArrayATVF) {
+					AssetTypeValueField** m_ScriptsChildrenListATVF = m_ScriptsArrayATVF->GetChildrenList();
+					int classId = 0;
+					UINT16 monoClassId;
+
+					for (DWORD i = 0; i < m_ScriptsArrayATVF->GetChildrenCount(); i++) {
+						INT32 m_FileID = m_ScriptsChildrenListATVF[i]->Get("m_FileID")->GetValue()->AsInt();
+						INT64 m_PathID = m_ScriptsChildrenListATVF[i]->Get("m_PathID")->GetValue()->AsInt64();
+						string assetsName = string(globalgamemanagersFile->dependencies.pDependencies[m_FileID - 1].assetPath);
+						AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[assetsName];
+						AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
+						AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(m_PathID);
+						if (classId == 0) {
+							GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
+						}
+						AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
+						baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID[classId]], (DWORD)0, false);
+						AssetTypeInstance baseAssetTypeInstance(
+							(DWORD)1,
+							&baseAssetTypeTemplateField,
+							assetFileInfoEx->curFileSize,
+							assetsFileTable->getReader(),
+							assetsFile->header.endianness ? true : false,
+							assetFileInfoEx->absolutePos);
+						AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
+						if (baseAssetTypeValueField) {
+							AssetTypeValueField* m_ClassNameATVF = baseAssetTypeValueField->Get("m_ClassName");
+							AssetTypeValueField* m_NamespaceATVF = baseAssetTypeValueField->Get("m_Namespace");
+							if (m_ClassNameATVF && m_NamespaceATVF) {
+								string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
+								FindMonoClassNameFromAssetsNameANDPathId.insert(pair<pair<string, INT64>, string>(pair<string, INT64>(assetsName, assetFileInfoEx->index), monoScriptFullName));
+							}
+						}
+					}
+				}
+
 				AssetTypeValueField* m_AssemblyNamesArrayATVF =
 					baseAssetTypeValueField->Get("m_AssemblyNames")->Get("Array");
 				if (m_AssemblyNamesArrayATVF) {
@@ -249,37 +290,37 @@ bool UnityL10nToolCpp::LoadMonoClassDatabase() {
 	return true;
 }
 
-bool UnityL10nToolCpp::LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable* globalgamemanagersAssetsTable) {
-	AssetsFile* globalgamemanagersAssetsFile = globalgamemanagersAssetsTable->getAssetsFile();
-	int MonoScriptClassId = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName["MonoScript"]].classId;
-	for (unsigned int i = 0; i < globalgamemanagersAssetsTable->assetFileInfoCount; i++) {
-		int classId;
-		UINT16 monoClassId;
-		AssetFileInfoEx* assetFileInfoEx = &globalgamemanagersAssetsTable->pAssetFileInfo[i];
-		GetClassIdFromAssetFileInfoEx(globalgamemanagersAssetsTable, assetFileInfoEx, classId, monoClassId);
-		if (classId == MonoScriptClassId) {
-			AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
-			baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID[classId]], (DWORD)0, false);
-			AssetTypeInstance baseAssetTypeInstance(
-				(DWORD)1,
-				&baseAssetTypeTemplateField,
-				assetFileInfoEx->curFileSize,
-				globalgamemanagersAssetsTable->getReader(),
-				globalgamemanagersAssetsFile->header.endianness ? true : false,
-				assetFileInfoEx->absolutePos);
-			AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
-			if (baseAssetTypeValueField) {
-				AssetTypeValueField* m_ClassNameATVF = baseAssetTypeValueField->Get("m_ClassName");
-				AssetTypeValueField* m_NamespaceATVF = baseAssetTypeValueField->Get("m_Namespace");
-				if (m_ClassNameATVF && m_NamespaceATVF) {
-					string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
-					FindMonoClassNameFromMonoScriptPathId.insert(pair<INT64, string>(assetFileInfoEx->index, monoScriptFullName));
-				}
-			}
-		}
-	}
-	return true;
-}
+//bool UnityL10nToolCpp::LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable* globalgamemanagersAssetsTable) {
+//	AssetsFile* globalgamemanagersAssetsFile = globalgamemanagersAssetsTable->getAssetsFile();
+//	int MonoScriptClassId = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName["MonoScript"]].classId;
+//	for (unsigned int i = 0; i < globalgamemanagersAssetsTable->assetFileInfoCount; i++) {
+//		int classId;
+//		UINT16 monoClassId;
+//		AssetFileInfoEx* assetFileInfoEx = &globalgamemanagersAssetsTable->pAssetFileInfo[i];
+//		GetClassIdFromAssetFileInfoEx(globalgamemanagersAssetsTable, assetFileInfoEx, classId, monoClassId);
+//		if (classId == MonoScriptClassId) {
+//			AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
+//			baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID[classId]], (DWORD)0, false);
+//			AssetTypeInstance baseAssetTypeInstance(
+//				(DWORD)1,
+//				&baseAssetTypeTemplateField,
+//				assetFileInfoEx->curFileSize,
+//				globalgamemanagersAssetsTable->getReader(),
+//				globalgamemanagersAssetsFile->header.endianness ? true : false,
+//				assetFileInfoEx->absolutePos);
+//			AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
+//			if (baseAssetTypeValueField) {
+//				AssetTypeValueField* m_ClassNameATVF = baseAssetTypeValueField->Get("m_ClassName");
+//				AssetTypeValueField* m_NamespaceATVF = baseAssetTypeValueField->Get("m_Namespace");
+//				if (m_ClassNameATVF && m_NamespaceATVF) {
+//					string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
+//					FindMonoClassNameFromAssetsNameANDPathId.insert(pair<INT64, string>(assetFileInfoEx->index, monoScriptFullName));
+//				}
+//			}
+//		}
+//	}
+//	return true;
+//}
 
 bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	_unityL10nToolAPI.version = version;
@@ -293,7 +334,7 @@ bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	_unityL10nToolAPI.FindAssetsFileTablesFromAssetsName = &FindAssetsFileTablesFromAssetsName;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassID = &FindBasicClassIndexFromClassID;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassName = &FindBasicClassIndexFromClassName;
-	_unityL10nToolAPI.FindMonoClassNameFromMonoScriptPathId = &FindMonoClassNameFromMonoScriptPathId;
+	_unityL10nToolAPI.FindMonoClassNameFromAssetsNameANDPathId = &FindMonoClassNameFromAssetsNameANDPathId;
 	_unityL10nToolAPI.FindMonoClassIndexFromMonoClassName = &FindMonoClassIndexFromMonoClassName;
 	_unityL10nToolAPI.FindContainerPathFromFileIDPathID = &FindContainerPathFromFileIDPathID;
 	_unityL10nToolAPI.FindFileIDPathIDFromContainerPath = &FindFileIDPathIDFromContainerPath;

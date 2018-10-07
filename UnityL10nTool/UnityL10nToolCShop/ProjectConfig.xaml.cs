@@ -50,54 +50,11 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
             LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
             LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
-            //LoadUnityL10nTool_Test();
-        }
-
-        private void LoadUnityL10nTool_Test()
-        {
-            string gamePath = "";
-            // DeterminateUnityGameFolder말고 GameName과 MakerName으로 app.info에 있는 정보를 통해서 본 프로젝트(게임)의 폴더가 맞는가 확인해야함.
-            if (UnityL10nToolCppManaged.DetermineProjectGamePath(
-                unityL10NToolProjectInfo.GamePath,
-                unityL10NToolProjectInfo.GameName,
-                unityL10NToolProjectInfo.MakerName))
-            {
-                gamePath = unityL10NToolProjectInfo.GamePath;
-            }
-            if (gamePath == "")
-            {
-                gamePath = UnityL10nToolCppManaged.FindUnityGameFolderFromDataFolderName(
-                   unityL10NToolProjectInfo.DataFolderName,
-                   unityL10NToolProjectInfo.GameName,
-                   unityL10NToolProjectInfo.MakerName);
-            }
-            if (gamePath == "")
-            {
-                // 게임폴더가 비정상일때 (자신의 경로라도 .\로 넘어옴
-            }
-            unityL10NToolProjectInfo.GamePath = gamePath;
-
-            unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.GamePath);
-
-            unityL10nToolCppManaged.LoadGlobalgamemanagersFile();
-
-            unityL10nToolCppManaged.LoadMonoClassDatabase();
-
-            unityL10nToolCppManaged.LoadUnityL10nToolAPI();
-
-            List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
-
-            pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
-
-            MainGrid.Children.Remove(projectConfigSplash);
-            GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
-            FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
         }
 
         private void LoadUnityL10nTool_DoWork(object sender, DoWorkEventArgs e)
         {
             string gamePath = "";
-            // DeterminateUnityGameFolder말고 GameName과 MakerName으로 app.info에 있는 정보를 통해서 본 프로젝트(게임)의 폴더가 맞는가 확인해야함.
             if (UnityL10nToolCppManaged.DetermineProjectGamePath(
                 unityL10NToolProjectInfo.GamePath,
                 unityL10NToolProjectInfo.GameName,
@@ -167,14 +124,77 @@ namespace UnityL10nToolCShop
             Grid grid2 = (Grid)grid.Parent;
             // 카피해서 넣어야함.
             FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid2.DataContext;
-            // 중복 확인.
-            fontAssetMapsCLI.Saveds.Add(fontAssetMapCLI);
+            try
+            {
+                FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
+                    x.assetName == fontAssetMapCLI.assetName &&
+                    x.assetsName == fontAssetMapCLI.assetsName &&
+                    x.containerPath == fontAssetMapCLI.containerPath);
+                fontAssetMapsCLI.Saveds.Remove(found);
+                FontAssetMapCLI clone = fontAssetMapCLI.Clone();
+                fontAssetMapsCLI.Saveds.Add(clone);
 
+            } catch (InvalidOperationException invalidOperationException)
+            {
+                FontAssetMapCLI clone = fontAssetMapCLI.Clone();
+                fontAssetMapsCLI.Saveds.Add(clone);
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // Edit하면 command로 SelectedItem을 바꾸고,  Add 버튼을 Edit 버튼으로 바꾸기? 
+            Button button = (Button)sender;
+            FontAssetMapCLI fontAssetMapCLI = (FontAssetMapCLI)(button).DataContext;
+            StackPanel stackPanel = (StackPanel)button.Parent;
+            Grid grid = (Grid)stackPanel.Parent;
+            FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid.DataContext;
+            Grid templateRootGrid = (Grid)grid.Parent;
+            DataGrid fontAssetMapDataGrid = (DataGrid)templateRootGrid.FindName("FontAssetMapDataGrid");
+            try
+            {
+                FontAssetMapCLI found = fontAssetMapsCLI.News.Single(x =>
+                    x.assetName == fontAssetMapCLI.assetName &&
+                    x.assetsName == fontAssetMapCLI.assetsName &&
+                    x.containerPath == fontAssetMapCLI.containerPath);
+                int index = fontAssetMapsCLI.News.IndexOf(found);
+                fontAssetMapsCLI.News.Remove(found);
+                fontAssetMapsCLI.News.Insert(index, fontAssetMapCLI);
+                fontAssetMapDataGrid.SelectedItem = fontAssetMapCLI;
+                Button button1 = (Button)templateRootGrid.FindName("AddEditButton");
+                button1.Content = "Edit";
+            } catch (Exception exception1)
+            {
+                throw new Exception(fontAssetMapCLI + " Must be found");
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            FontAssetMapCLI fontAssetMapCLI = (FontAssetMapCLI)(button).DataContext;
+            StackPanel stackPanel = (StackPanel)button.Parent;
+            Grid grid = (Grid)stackPanel.Parent;
+            FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid.DataContext;
+            try
+            {
+                FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
+                    x.assetName == fontAssetMapCLI.assetName &&
+                    x.assetsName == fontAssetMapCLI.assetsName &&
+                    x.containerPath == fontAssetMapCLI.containerPath);
+                fontAssetMapsCLI.Saveds.Remove(found);
+            } catch(Exception exception1)
+            {
+                throw new Exception(fontAssetMapCLI + " Must be found");
+            }
+        }
+
+        private void FontAssetMapDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid dataGrid = (DataGrid)sender;
+            Grid grid = (Grid)dataGrid.Parent;
+            Button button = (Button)grid.FindName("AddEditButton");
+            button.Content = "Add";
         }
     }
 }

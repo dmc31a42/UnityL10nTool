@@ -3,30 +3,59 @@
 
 #include <string>
 #include <map>
+#include <fstream>
+
+#include <iostream>
+#include <locale>
+#include <codecvt>
 
 #include "GeneralPurposeFunctions.h"
 #include "IULTFontPluginInterface.h"
 
 using namespace std;
 
-UnityL10nToolCpp::UnityL10nToolCpp(wstring gameFolderPath)
+UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 {
 	FirstAssetsFileName = "globalgamemanagers";
+	ProjectJsonFolderPath = MakeSureBackslashEndOfFolderPath(projectJsonFolderPath);
+	
 	/* gameFolderPath should end by \ */
-	if (gameFolderPath.back() != L'\\') {
+	/*if (gameFolderPath.back() != L'\\') {
 		GameFolderPath = gameFolderPath + L'\\';
 	} else {
 		GameFolderPath = gameFolderPath;
-	}
-
+	}*/
+	
 	wchar_t WcharCurrentDirectory[255] = {};
 	_wgetcwd(WcharCurrentDirectory, 255);
 	CurrentDirectory = WcharCurrentDirectory;
 	CurrentDirectory += L"\\";
 
-	string projectJsonStr = readFile2(CurrentDirectory + L"project.json");
+	UnityL10nToolProjectInfoGlobal.JSONPath = ProjectJsonFolderPath + L"setting.json";
+	string projectJsonStr = readFile2(UnityL10nToolProjectInfoGlobal.JSONPath);
 	JsonReader.parse(projectJsonStr, projectJson);
+	UnityL10nToolProjectInfoGlobal.GameName = WideMultiStringConverter.from_bytes(projectJson["GameName"].asString());
+	UnityL10nToolProjectInfoGlobal.MakerName = WideMultiStringConverter.from_bytes(projectJson["MakerName"].asString());
+	UnityL10nToolProjectInfoGlobal.GamePath = MakeSureBackslashEndOfFolderPath(WideMultiStringConverter.from_bytes(projectJson["GamePath"].asString()));
+	UnityL10nToolProjectInfoGlobal.DataFolderName = WideMultiStringConverter.from_bytes(projectJson["DataFolderName"].asString());
 	
+	if (DetermineProjectGamePath(
+		UnityL10nToolProjectInfoGlobal.GamePath,
+		UnityL10nToolProjectInfoGlobal.GameName,
+		UnityL10nToolProjectInfoGlobal.MakerName)) {
+	}
+	else {
+		wstring tempGamePath = FindUnityGameFolderFromDataFolderName(UnityL10nToolProjectInfoGlobal.DataFolderName, UnityL10nToolProjectInfoGlobal.GameName, UnityL10nToolProjectInfoGlobal.MakerName);
+		if (tempGamePath.empty()) {
+			throw new exception("Cannot Find Game Folder");
+		}
+		else {
+			UnityL10nToolProjectInfoGlobal.GamePath = tempGamePath;
+			projectJson["GamePath"] = WideMultiStringConverter.to_bytes(tempGamePath);
+		}
+	}
+	GameFolderPath = UnityL10nToolProjectInfoGlobal.GamePath;
+
 	if (CreateDirectory(L".\\temp\\", NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
@@ -356,6 +385,7 @@ vector<wstring> UnityL10nToolCpp::LoadFontPlugins() {
 				FontPluginInfo* fontPluginInfo = new FontPluginInfo();
 				wstring relativePluginPath = L"Plugins\\FontPlugins\\" + *iterator;
 				size_t lastBackslash = relativePluginPath.find_last_of('\\');
+				fontPluginInfo->pluginFileName = relativePluginPath.substr(lastBackslash+1, relativePluginPath.size() - lastBackslash-1);
 				fontPluginInfo->relativePluginPath = relativePluginPath.replace(lastBackslash, relativePluginPath.size() - lastBackslash, L"") + L"\\";
 				// It must use actual Json::Value
 				Json::Value tempJson;
@@ -422,8 +452,131 @@ bool UnityL10nToolCpp::GetProjectConfigJsonFromFontPlugin()
 		Json::Value fontAssetPluginProjectConfigJson = fontPluginInfo->GetProjectConfigJson();
 		projectJson["FontPlugin"][WideMultiStringConverter.to_bytes(iterator->first)] = fontAssetPluginProjectConfigJson;
 	}
+	return true;
+}
 
-	return false;
+// https://sockbandit.wordpress.com/2012/05/31/c-read-and-write-utf-8-file-using-standard-libarary/
+bool UnityL10nToolCpp::SaveProjectConfigJson() {
+	std::wofstream wof;
+	wof.clear();
+	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+	wof.open(UnityL10nToolProjectInfoGlobal.JSONPath);
+	wof << WideMultiStringConverter.from_bytes(projectJson.toStyledString());
+	wof.close();
+	return true;
+}
+
+bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
+	if (CreateDirectoryW(buildTargetFolder.c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{} else {}
+	
+	//copyFileCustom(buildTargetFolder)
+	Json::Value patcherJson = GetPacherConfigJson();
+	std::wofstream wof;
+	wof.clear();
+	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+	wof.open(buildTargetFolder + L"setting.json");
+	wof << WideMultiStringConverter.from_bytes(patcherJson.toStyledString());
+	wof.close();
+
+	CopyDirTo(CurrentDirectory + L"PatcherLibs\\", buildTargetFolder + L"");
+	CopyDirTo(CurrentDirectory + L"Resource\\", buildTargetFolder + L"Resource\\");
+	CopyDirTo(CurrentDirectory + L"ClassDatabase\\", buildTargetFolder + L"ClassDatabase\\");
+
+	if (CreateDirectoryW((buildTargetFolder +L"Plugins\\").c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+	}
+	else {}
+	if (CreateDirectoryW((buildTargetFolder + L"Plugins\\FontPlugins\\").c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+	}
+	else {}
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		if (fontPluginInfo->CopyBuildFileToBuildFolder(fontPluginInfo->relativePluginPath, buildTargetFolder + fontPluginInfo->relativePluginPath)) {
+			copyFileCustom((fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str(), (buildTargetFolder + fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str());
+		}
+	}
+	return true;
+}
+
+Json::Value UnityL10nToolCpp::GetPacherConfigJson() {
+	Json::Value patcherConfigJson;
+	patcherConfigJson["GameName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.GameName);
+	patcherConfigJson["MakerName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.MakerName);
+	patcherConfigJson["DataFolderName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.DataFolderName);
+	patcherConfigJson["GamePath"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.GamePath);
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		Json::Value fontAssetPluginPatcherConfigJson = fontPluginInfo->GetPacherConfigJson();
+		patcherConfigJson["FontPlugin"][WideMultiStringConverter.to_bytes(iterator->first)] = fontAssetPluginPatcherConfigJson;
+	}
+	return patcherConfigJson;
+}
+
+bool UnityL10nToolCpp::SetPacherConfigJson()
+{
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		string pluginNameA = WideMultiStringConverter.to_bytes(fontPluginInfo->FontPluginName);
+		if (projectJson["FontPlugin"].isMember(pluginNameA)) {
+			fontPluginInfo->SetPacherConfigJson(projectJson["FontPlugin"][pluginNameA]);
+		}
+		else {
+			fontPluginInfo->SetPacherConfigJson(Json::Value());
+		}
+	}
+	return true;
+}
+
+bool UnityL10nToolCpp::LoadAssetsReplacer()
+{
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		map<string, vector<AssetsReplacer*>> fontPluginAssetsReplacerMap = fontPluginInfo->GetPatcherAssetReplacer();
+		for (map<string, vector<AssetsReplacer*>>::iterator iterator = fontPluginAssetsReplacerMap.begin();
+			iterator != fontPluginAssetsReplacerMap.end(); iterator++) {
+			string key = iterator->first;
+			vector<AssetsReplacer*> assetsReplacers = iterator->second;
+			AssetsReplacersMap[key].insert(AssetsReplacersMap[key].end(), assetsReplacers.begin(), assetsReplacers.end());
+		}
+	}
+	return true;
+}
+
+bool UnityL10nToolCpp::MakeModifiedAssetsFile() {
+	for (map<string, vector<AssetsReplacer*>>::iterator iterator = AssetsReplacersMap.begin();
+		iterator != AssetsReplacersMap.end(); iterator++) {
+		string key = iterator->first;
+		vector<AssetsReplacer*> assetsReplacers = iterator->second;
+		AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[key];
+		if (assetsReplacers.size() > 0) {
+			wstring fullPath = GameFolderPath + WideMultiStringConverter.from_bytes(key);
+			IAssetsWriter* assetsWriter = Create_AssetsWriterToFile((fullPath + L".mod").c_str(), true, true, RWOpenFlags_None);
+			assetsFileTable->getAssetsFile()->Write(assetsWriter, 0, assetsReplacers.data(), assetsReplacers.size(), 0);
+			assetsFileTable->getReader()->Close();
+			assetsWriter->Close();
+			int removeResult = _wremove(fullPath.c_str());
+			int renameResult = _wrename((fullPath + L".mod").c_str(), fullPath.c_str());
+		}
+	}
+	return true;
+}
+
+bool UnityL10nToolCpp::CopyResourceFileToGameFolder() {
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		fontPluginInfo->CopyResourceFileToGameFolder(fontPluginInfo->relativePluginPath,GameFolderPath);
+	}
+	return true;
 }
 
 UnityL10nToolCpp::~UnityL10nToolCpp()

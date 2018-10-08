@@ -171,6 +171,20 @@ xcopy "$(ProjectDir)..\..\PluginsDebug\*" "$(ProjectDir)$(OutDir)" /Y /E
 xcopy "$(ProjectDir)..\..\PluginsDebug\*" "$(ProjectDir)..\..\UnityL10nToolDebug\" /Y /E
 xcopy "$(ProjectDir)..\..\PluginsRelease\*" "$(ProjectDir)..\..\UnityL10nToolRelease\" /Y /E
 
+echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Newtonsoft.Json.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.pdb" /Y
+echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\AssetsTools.dll" /Y /E
+echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.exe" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolPatcherCShop.exe" /Y /E
+echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolPatcherCShop.pdb" /Y /E
+xcopy "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\*" "$(ProjectDir)$(OutDir)PatcherLibs\" /Y /E
+
+echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\Newtonsoft.Json.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\UnityL10nToolCppCLI.dll" /Y
+echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\AssetsTools.dll" /Y /E
+echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.exe" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\UnityL10nToolPatcherCShop.exe" /Y /E
+xcopy "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\*" "$(ProjectDir)$(OutDir)PatcherLibs\" /Y /E
+
 rem For Development
 xcopy "$(ProjectDir)..\ProjectsSample\*" "$(ProjectDir)$(OutDir)Projects\" /Y /E</PostBuildEvent>
   </PropertyGroup>

@@ -1,4 +1,6 @@
 #pragma once
+#include <Windows.h>
+#include <shellapi.h>
 #include <codecvt> // for std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 #include "json/json.h"
 using namespace std;
@@ -17,6 +19,30 @@ bool copyFileCustom(const char *SRC, const char* DEST);
 bool copyFileCustom(const wchar_t *SRC, const wchar_t* DEST);
 std::vector<std::wstring> get_all_files_names_within_folder(std::wstring filter);
 bool CreateProcessCustom(std::wstring commandLine);
+bool CopyDirTo(const wstring& source_folder, const wstring& target_folder);
+
+// https://stackoverflow.com/questions/4725115/on-windows-is-there-an-interface-for-copying-folders/4725137
+inline bool CopyDirTo(const wstring& source_folder, const wstring& target_folder)
+{
+	wstring new_sf = source_folder + L"*";
+	WCHAR sf[MAX_PATH + 1];
+	WCHAR tf[MAX_PATH + 1];
+
+	wcscpy_s(sf, MAX_PATH, new_sf.c_str());
+	wcscpy_s(tf, MAX_PATH, target_folder.c_str());
+
+	sf[lstrlenW(sf) + 1] = 0;
+	tf[lstrlenW(tf) + 1] = 0;
+
+	SHFILEOPSTRUCTW s = { 0 };
+	s.wFunc = FO_COPY;
+	s.pTo = tf;
+	s.pFrom = sf;
+	s.fFlags = FOF_SILENT | FOF_NOCONFIRMMKDIR | FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_NO_UI;
+	int res = SHFileOperationW(&s);
+
+	return res == 0;
+}
 
 // https://stackoverflow.com/questions/116038/what-is-the-best-way-to-read-an-entire-file-into-a-stdstring-in-c#
 inline string readFile2(const wstring &fileName)

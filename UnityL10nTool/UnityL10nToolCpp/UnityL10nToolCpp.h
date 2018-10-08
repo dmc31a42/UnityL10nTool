@@ -13,10 +13,30 @@
 #include "json/json.h"
 using namespace std;
 
+struct UnityL10nToolProjectInfo
+{
+public :
+	wstring GameName;
+	wstring MakerName;
+	wstring GamePath;
+	wstring JSONPath;
+	wstring DataFolderName;
+	/*UnityL10nToolProjectInfo(wstring GameName, wstring MakerName, wstring GamePath, wstring JSONPath, wstring DataFolderName)
+	{
+		this->GameName = GameName;
+		this->MakerName = MakerName;
+		this->GamePath = GamePath;
+		this->JSONPath = JSONPath;
+		this->DataFolderName = DataFolderName;
+	}*/
+};
+
 class UnityL10nToolCpp
 {
+	UnityL10nToolProjectInfo UnityL10nToolProjectInfoGlobal;
 	wstring GameFolderPath;
 	wstring CurrentDirectory;
+	wstring ProjectJsonFolderPath;
 	string FirstAssetsFileName;
 	string version;
 	string versionFirstTwoNumbers;
@@ -44,6 +64,7 @@ class UnityL10nToolCpp
 	UnityL10nToolAPI _unityL10nToolAPI;
 	vector<string> AssemblyNames;
 	Json::Value projectJson;
+	map<string, vector<AssetsReplacer*>> AssetsReplacersMap;
 
 public:
 	UnityL10nToolCpp(wstring gameFolderPath);
@@ -56,6 +77,14 @@ public:
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();
+	bool SaveProjectConfigJson();
+	Json::Value GetPacherConfigJson();
+	bool BuildProject(wstring buildTargetFolder);
+	
+	bool SetPacherConfigJson();
+	bool LoadAssetsReplacer();
+	bool MakeModifiedAssetsFile();
+	bool CopyResourceFileToGameFolder();
 	~UnityL10nToolCpp();
 
 	static bool DetermineUnityGameFolder(wstring path);

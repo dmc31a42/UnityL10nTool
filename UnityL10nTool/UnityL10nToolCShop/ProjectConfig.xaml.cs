@@ -76,7 +76,7 @@ namespace UnityL10nToolCShop
             unityL10NToolProjectInfo.GamePath = gamePath;
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Initialize UnityL10nTool...");
-            unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.GamePath);
+            unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", ""));
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Assets...");
             unityL10nToolCppManaged.LoadGlobalgamemanagersFile(); 
@@ -203,6 +203,13 @@ namespace UnityL10nToolCShop
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             unityL10nToolCppManaged.SetPluginsSupportAssetMap(pluginsSupportAssetMap);
+            unityL10nToolCppManaged.GetProjectConfigJsonFromFontPlugin();
+            unityL10nToolCppManaged.SaveProjectConfigJson();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            unityL10nToolCppManaged.BuildProject(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "Build\\"));
         }
     }
 }

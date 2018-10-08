@@ -66,13 +66,14 @@ struct FontAssetMaps {
 struct FontPluginInfo {
 	wchar_t FontPluginName[64];
 	std::wstring relativePluginPath;
+	std::wstring pluginFileName;
 	SetProjectConfigJsonCallback SetProjectConfigJson;
 	GetPluginSupportAssetMapCallback GetPluginSupportAssetMap;
+	SetPluginSupportAssetMapCallback SetPluginSupportAssetMap;
 	GetProjectConfigJsonCallback GetProjectConfigJson;
 	GetPacherConfigJsonCallback GetPacherConfigJson;
 	CopyBuildFileToBuildFolderCallback CopyBuildFileToBuildFolder;
 
-	SetPluginSupportAssetMapCallback SetPluginSupportAssetMap;
 	SetPacherConfigJsonCallback SetPacherConfigJson;
 	GetPatcherAssetReplacerCallback GetPatcherAssetReplacer;
 	CopyResourceFileToGameFolderCallback CopyResourceFileToGameFolder;
@@ -115,7 +116,7 @@ struct UnityL10nToolAPI {
 	bool ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
-	INT32 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, string assetName);
+	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, string assetName);
 };
 
 
@@ -203,14 +204,31 @@ inline string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(AssetsFi
 	}
 }
 
-inline INT32 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFileTable, string assetName) {
+inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFileTable, string assetName) {
 	char readName[100];
 	AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
 	for (unsigned int i = 0; i < assetsFileTable->assetFileInfoCount; i++) {
 		AssetFileInfoEx *assetFileInfoEx = &assetsFileTable->pAssetFileInfo[i];
-		assetFileInfoEx->ReadName(assetsFile, readName);
-		if (assetName == readName) {
-			return i;
+		int classId;
+		UINT16 monoClassId;
+		GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
+		if (classId == 0x72) {
+			AssetTypeInstance* assetTypeValueField = GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
+			AssetTypeValueField* pbase = assetTypeValueField->GetBaseField();
+			if (pbase) {
+				string m_Name = pbase->Get("m_Name")->GetValue()->AsString();
+				if (assetName == m_Name) {
+					assetTypeValueField->~AssetTypeInstance();
+					return i;
+				}
+			}
+			assetTypeValueField->~AssetTypeInstance();
+		}
+		else {
+			assetFileInfoEx->ReadName(assetsFile, readName);
+			if (assetName == readName) {
+				return i;
+			}
 		}
 	}
 	return -1;

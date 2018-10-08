@@ -37,7 +37,7 @@
         </Grid>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
             <Button Content="New" VerticalAlignment="Top" Margin="5"/>
-            <Button Content="Save" VerticalAlignment="Top" Margin="5"/>
+            <Button Content="Save" VerticalAlignment="Top" Margin="5" Click="Button_Click_3"/>
         </StackPanel>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <TabControl TabStripPlacement="Left">

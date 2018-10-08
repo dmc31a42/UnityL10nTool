@@ -199,5 +199,10 @@ namespace UnityL10nToolCShop
             Button button = (Button)grid.FindName("AddEditButton");
             button.Content = "Add";
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            unityL10nToolCppManaged.SetPluginsSupportAssetMap(pluginsSupportAssetMap);
+        }
     }
 }

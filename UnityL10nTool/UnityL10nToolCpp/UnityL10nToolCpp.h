@@ -53,6 +53,9 @@ public:
 	bool LoadUnityL10nToolAPI();
 	vector<wstring> LoadFontPlugins();
 	map<wstring, FontAssetMaps> GetPluginsSupportAssetMap();
+
+	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
+	bool GetProjectConfigJsonFromFontPlugin();
 	~UnityL10nToolCpp();
 
 	static bool DetermineUnityGameFolder(wstring path);

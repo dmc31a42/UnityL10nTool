@@ -401,6 +401,31 @@ map<wstring, FontAssetMaps> UnityL10nToolCpp::GetPluginsSupportAssetMap() {
 	return supportAssetMaps;
 }
 
+bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
+{
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		bool result = fontPluginInfo->SetPluginSupportAssetMap(pluginSupportAssetMaps[iterator->first]);
+		if (result == false) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UnityL10nToolCpp::GetProjectConfigJsonFromFontPlugin()
+{
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
+		iterator != FontPluginInfoMap.end(); iterator++) {
+		FontPluginInfo* fontPluginInfo = iterator->second;
+		Json::Value fontAssetPluginProjectConfigJson = fontPluginInfo->GetProjectConfigJson();
+		projectJson["FontPlugin"][WideMultiStringConverter.to_bytes(iterator->first)] = fontAssetPluginProjectConfigJson;
+	}
+
+	return false;
+}
+
 UnityL10nToolCpp::~UnityL10nToolCpp()
 {
 	BasicClassDatabaseFile->~ClassDatabaseFile();

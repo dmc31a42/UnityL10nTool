@@ -22,7 +22,7 @@ typedef bool(_cdecl *GetFontPluginInfoCallback)(UnityL10nToolAPI* unityL10nToolA
 /* Used in Project */
 typedef bool(_cdecl *SetProjectConfigJsonCallback)(Json::Value pluginConfig);
 typedef FontAssetMaps(_cdecl *GetPluginSupportAssetMapCallback)();
-typedef bool(_cdecl *SetPluginAssetMapCallback)(std::vector<FontAssetMap>);
+typedef bool(_cdecl *SetPluginSupportAssetMapCallback)(FontAssetMaps supportAssetMaps);
 typedef Json::Value(_cdecl *GetProjectConfigJsonCallback)();
 typedef Json::Value(_cdecl *GetPacherConfigJsonCallback)();
 typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetProjectAssetReplacerCallback)();
@@ -68,11 +68,11 @@ struct FontPluginInfo {
 	std::wstring relativePluginPath;
 	SetProjectConfigJsonCallback SetProjectConfigJson;
 	GetPluginSupportAssetMapCallback GetPluginSupportAssetMap;
-	SetPluginAssetMapCallback SetPluginAssetMap;
 	GetProjectConfigJsonCallback GetProjectConfigJson;
 	GetPacherConfigJsonCallback GetPacherConfigJson;
 	CopyBuildFileToBuildFolderCallback CopyBuildFileToBuildFolder;
 
+	SetPluginSupportAssetMapCallback SetPluginSupportAssetMap;
 	SetPacherConfigJsonCallback SetPacherConfigJson;
 	GetPatcherAssetReplacerCallback GetPatcherAssetReplacer;
 	CopyResourceFileToGameFolderCallback CopyResourceFileToGameFolder;

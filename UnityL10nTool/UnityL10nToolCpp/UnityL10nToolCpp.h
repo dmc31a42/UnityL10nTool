@@ -8,7 +8,9 @@
 #include "AssetsTools/ResourceManagerFile.h"
 #include "AssetsTools/AssetTypeClass.h"
 
+#include "UnityL10nToolAPI.h"
 #include "IULTFontPluginInterface.h"
+#include "IULTTextPluginInterface.h"
 #include "GeneralPurposeFunctions.h"
 #include "json/json.h"
 using namespace std;
@@ -74,6 +76,26 @@ public:
 	bool LoadUnityL10nToolAPI();
 	vector<wstring> LoadFontPlugins();
 	map<wstring, FontAssetMaps> GetPluginsSupportAssetMap();
+#pragma region TextAssetPluginProject
+	vector<TextAssetMap> GetTextAssetMaps();
+	vector<wstring> GetTextPluginNameInteractWithAssetList();
+	vector<wstring> GetTextPluginNameInteractWithFileTextList();
+	vector<wstring> GetTextPluginNameInteractWithMonoAssetList();
+	TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
+	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
+	wstring GetUpdateFileText(TextAssetMap textAssetMap);
+	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, wstring fileText);
+	wstring GetTranslatedText(TextAssetMap textAssetMap);
+#pragma endregion
+
+#pragma region MonoTextAssetPluginProject
+#pragma endregion
+
+#pragma region TextAssetPluginPatcher
+#pragma endregion
+
+#pragma region MonoTextAssetPluginPatcher
+#pragma endregion
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();

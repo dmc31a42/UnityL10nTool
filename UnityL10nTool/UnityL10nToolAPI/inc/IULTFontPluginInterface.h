@@ -9,6 +9,7 @@
 #include "AssetsTools/ResourceManagerFile.h"
 #include "AssetsTools/AssetTypeClass.h"
 
+#include "UnityL10nToolAPI.h"
 #include "GeneralPurposeFunctions.h"
 #include "IULTPluginCommonInterface.h"
 

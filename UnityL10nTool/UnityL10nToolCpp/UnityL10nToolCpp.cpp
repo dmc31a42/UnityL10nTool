@@ -10,6 +10,7 @@
 #include <codecvt>
 
 #include "GeneralPurposeFunctions.h"
+#include "IULTPluginCommonInterface.h"
 #include "IULTFontPluginInterface.h"
 
 using namespace std;

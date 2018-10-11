@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="InteractWithTextAssetProperties.xaml.cs">
+      <DependentUpon>InteractWithTextAssetProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomProperties.xaml.cs">
       <DependentUpon>CustomProperties.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,10 @@
     <Compile Include="SampleData\FontAssetMapCLIs\FontAssetMapCLIs.xaml.cs">
       <DependentUpon>FontAssetMapCLIs.xaml</DependentUpon>
     </Compile>
+    <Page Include="InteractWithTextAssetProperties.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

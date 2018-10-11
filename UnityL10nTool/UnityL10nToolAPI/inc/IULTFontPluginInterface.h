@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 #include "json/json.h"
+#include <string>
+#include <vector>
 
 #include "AssetsTools/AssetsFileReader.h"
 #include "AssetsTools/AssetsFileFormat.h"
@@ -9,7 +11,6 @@
 #include "AssetsTools/ResourceManagerFile.h"
 #include "AssetsTools/AssetTypeClass.h"
 
-#include "UnityL10nToolAPI.h"
 #include "GeneralPurposeFunctions.h"
 #include "IULTPluginCommonInterface.h"
 
@@ -33,30 +34,12 @@ typedef bool(_cdecl *SetPacherConfigJsonCallback)(Json::Value patcherConfig);
 typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetPatcherAssetReplacerCallback)();
 typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(wstring FontPluginRelativePath, wstring targetPath);
 
-struct FontAssetMapOption {
-	enum Type
-	{
-		OPTION_TYPE_NONE = 0,
-		OPTION_TYPE_WSTRING = 1,
-		OPTION_TYPE_INT = 2,
-		OPTION_TYPE_DOUBLE = 3,
-		OPTION_TYPE_BOOL = 4
-	};
-	std::wstring OptionName;
-	std::wstring OptionDescription;
-	void* Value;
-	void* ValueAsChild;
-	Type type;
-	Type typeAsChild;
-	std::vector<FontAssetMapOption> nestedOptions;
-};
-
 struct FontAssetMap {
 	std::string assetsName;
 	std::string assetName;
 	std::string containerPath;
 	bool useContainerPath;
-	std::vector<FontAssetMapOption> options;
+	std::vector<AssetMapOption> options;
 };
 
 struct FontAssetMaps {
@@ -122,7 +105,7 @@ inline vector<FontAssetMap> GetFontAssetMapListFromMonoClassName(UnityL10nToolAP
 							assetName,
 							containerPath,
 							false,
-							std::vector<FontAssetMapOption>() };
+							std::vector<AssetMapOption>() };
 						fontAssetMapList.push_back(tempFontAssetMap);
 					}
 				}

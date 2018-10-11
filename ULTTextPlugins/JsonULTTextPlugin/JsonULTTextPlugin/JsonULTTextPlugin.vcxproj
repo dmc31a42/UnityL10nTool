@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{FA438AA7-F4AC-49B0-B041-8913BFA17BAA}</ProjectGuid>
+    <ProjectGuid>{DA62AB9D-A2F7-4DE4-B007-2F5768C92122}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TMPFontAssetULTFontPlugin</RootNamespace>
+    <RootNamespace>JsonULTTextPlugin</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,15 +72,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetExt>.ULTFontPlugin</TargetExt>
-    <IncludePath>..\..\UnityL10nTool\UABE_API\inc;..\..\UnityL10nTool\UnityL10nToolAPI\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\UnityL10nTool\UABE_API\bin32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\UnityL10nTool\UABE_API\inc;..\..\..\UnityL10nTool\UnityL10nToolAPI\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\UnityL10nTool\UABE_API\bin32;$(LibraryPath)</LibraryPath>
+    <TargetExt>.ULTTextPlugin</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -91,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;TMPFONTASSETULTFONTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;JSONULTTEXTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -106,7 +108,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;TMPFONTASSETULTFONTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;JSONULTTEXTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -123,7 +125,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;TMPFONTASSETULTFONTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;JSONULTTEXTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -135,13 +137,11 @@
       <ModuleDefinitionFile>resource.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)..\TMPFontAsset\*" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\TMPFontAsset\" /Y /E
-xcopy "$(ProjectDir)..\TMPFontAsset\*" "$(ProjectDir)..\$(SolutionName)Release\Plugins\FontPlugins\TMPFontAsset\" /Y /E
-xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\" /Y /E
-xcopy "$(OutDir)$(TargetName).pdb" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\" /Y /E
-xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Release\Plugins\FontPlugins\" /Y /E
-xcopy "$(ProjectDir)..\$(SolutionName)Debug\*" "$(ProjectDir)..\..\PluginsDebug\"  /Y /E
-xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\PluginsRelease\"  /Y /E</Command>
+      <Command>xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\TextPlugins\" /Y /E
+xcopy "$(OutDir)$(TargetName).pdb" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\TextPlugins\" /Y /E
+xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Release\Plugins\TextPlugins\" /Y /E
+xcopy "$(ProjectDir)..\$(SolutionName)Debug\*" "$(ProjectDir)..\..\..\PluginsDebug\"  /Y /E
+xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\..\PluginsRelease\"  /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,7 +152,7 @@ xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\PluginsRele
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;TMPFONTASSETULTFONTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;JSONULTTEXTPLUGIN_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -171,13 +171,13 @@ xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\PluginsRele
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
+    <ClCompile Include="JsonULTTextPlugin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TMPFontAssetULTFontPlugin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resource.def" />

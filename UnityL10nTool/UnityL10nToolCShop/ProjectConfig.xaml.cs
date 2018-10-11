@@ -19,8 +19,72 @@ namespace UnityL10nToolCShop
     /// <summary>
     /// ProjectConfig.xaml에 대한 상호 작용 논리
     /// </summary>
+    /// 
+    public class TextAssetTabControlContext
+    {
+        public class InteractWithTextAssetContext :INotifyPropertyChanged
+        {
+            public ObservableCollection<TextAssetMapCLI> News { get; set; }
+            public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            private TextAssetMapCLI _SelectedItem;
+            public TextAssetMapCLI SelectedItem {
+                get
+                {
+                    return _SelectedItem;
+                }
+                set
+                {
+                    _SelectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+            public InteractWithTextAssetContext()
+            {
+                News = new ObservableCollection<TextAssetMapCLI>();
+                Saveds = new ObservableCollection<TextAssetMapCLI>();
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            // Create the OnPropertyChanged method to raise the event protected 
+            void OnPropertyChanged(string name) {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        public class InteractWithMonoTextAssetContext
+        {
+            public ObservableCollection<TextAssetMapCLI> News { get; set; }
+            public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            public InteractWithMonoTextAssetContext()
+            {
+                News = new ObservableCollection<TextAssetMapCLI>();
+                Saveds = new ObservableCollection<TextAssetMapCLI>();
+            }
+        }
+        public class InteractWithFileTextContext
+        {
+            public ObservableCollection<TextAssetMapCLI> News { get; set; }
+            public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            public InteractWithFileTextContext()
+            {
+                News = new ObservableCollection<TextAssetMapCLI>();
+                Saveds = new ObservableCollection<TextAssetMapCLI>();
+            }
+        }
+        public InteractWithTextAssetContext InteractWithTextAsset { get; set; }
+        public InteractWithMonoTextAssetContext InteractWithMonoTextAsset { get; set; }
+        public InteractWithFileTextContext InteractWithFileText { get; set; }
+        public TextAssetTabControlContext()
+        {
+            InteractWithTextAsset = new InteractWithTextAssetContext();
+            InteractWithMonoTextAsset = new InteractWithMonoTextAssetContext();
+            InteractWithFileText = new InteractWithFileTextContext();
+        }
+    }
+
     public partial class ProjectConfig : Window
     {
+        
+        public TextAssetTabControlContext textAssetTabControlContext;
         UnityL10nToolCppManaged unityL10nToolCppManaged;
         UnityL10nToolProjectInfo unityL10NToolProjectInfo;
         BackgroundWorker LoadUnityL10nTool_BackgroundWorker;
@@ -93,8 +157,19 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins...");
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Plugins Support Asset List...");
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins Support Asset List...");
             pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
+            List<TextAssetMapCLI> textAssetMapCLIs = unityL10nToolCppManaged.GetTextAssetMaps();
+            TextAssetTabControlContext textAssetTabControlContextLocal = new TextAssetTabControlContext();
+            textAssetMapCLIs.ForEach(x => textAssetTabControlContextLocal.InteractWithTextAsset.News.Add(x));
+            textAssetTabControlContext = textAssetTabControlContextLocal;
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
+            bool resultload = unityL10nToolCppManaged.LoadTextPlugins();
+            List<string> interactWithAssetNames = unityL10nToolCppManaged.GetInteractWithAssetPluginNames();
+            List<string> interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
         }
 
         private void LoadUnityL10nTool_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -107,6 +182,7 @@ namespace UnityL10nToolCShop
             MainGrid.Children.Remove(projectConfigSplash);
             GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
             FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
+            TextAssetTabControl.DataContext = textAssetTabControlContext;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
         }
 
@@ -210,6 +286,16 @@ namespace UnityL10nToolCShop
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             unityL10nToolCppManaged.BuildProject(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "Build\\"));
+        }
+
+        private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+
         }
     }
 }

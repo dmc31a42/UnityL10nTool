@@ -101,7 +101,55 @@
                         </TabControl.ContentTemplate>
                     </TabControl>
                 </TabItem>
-                <TabItem Header="TextAsset"/>
+                <TabItem Header="TextAsset">
+                    <Grid x:Name="TextAssetTabControl" DataContext="{Binding}">
+                        <TabControl>
+                            <TabItem Header="InteractWithTextAsset" >
+                                <Grid DataContext="{Binding InteractWithTextAsset}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem}" AutoGenerateColumns="False" SelectedCellsChanged="InteractWithTextAssetDataGridNews_SelectedCellsChanged">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" >
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <local:InteractWithTextAssetPropertyies Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=SelectedItem}" DataContextChanged="CustomProperties_DataContextChanged"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                    </Grid>
+                                </Grid>
+
+                            </TabItem>
+                            <TabItem Header="InteractWithMonoTextAsset">
+
+                            </TabItem>
+                            <TabItem Header="InteractWithFileText">
+
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </TabItem>
                 <TabItem Header="Online Resource"/>
                 <TabItem Header="Updater"/>
             </TabControl>

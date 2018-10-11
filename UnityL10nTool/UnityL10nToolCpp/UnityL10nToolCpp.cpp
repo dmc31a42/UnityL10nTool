@@ -432,6 +432,106 @@ map<wstring, FontAssetMaps> UnityL10nToolCpp::GetPluginsSupportAssetMap() {
 	return supportAssetMaps;
 }
 
+bool UnityL10nToolCpp::LoadTextPlugins()
+{
+	vector<wstring> PluginFileNameList = GetAllFilesFilterWithinAllSubFolder(CurrentDirectory + L"Plugins\\TextPlugins\\", L"*.ULTTextPlugin");
+	for (vector<wstring>::iterator iterator = PluginFileNameList.begin();
+		iterator != PluginFileNameList.end(); iterator++) {
+		HINSTANCE PluginHInstance = LoadLibraryW((CurrentDirectory + L"Plugins\\TextPlugins\\" + *iterator).c_str());
+		GetTextPluginInfoCallback getTextPluginInfoCallback;
+		if (PluginHInstance) {
+			getTextPluginInfoCallback = (GetTextPluginInfoCallback)GetProcAddress(PluginHInstance, "GetTextPluginInfo");
+			if (getTextPluginInfoCallback) {
+				TextPluginInfo* textPluginInfo = new TextPluginInfo();
+				bool result = getTextPluginInfoCallback(textPluginInfo);
+				if (result) {
+					if (textPluginInfo->GetOriginalMapFromText && textPluginInfo->GetTranslatedTextFromMap) {
+						TextPluginInfoInteractWithAssetMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
+					} else if (textPluginInfo->GetUpdateFileTextFromMap && textPluginInfo->GetTranslatedMapFromFileText) {
+						TextPluginInfoInteractWithFileTextMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
+					}
+					else {
+						FreeLibrary(PluginHInstance);
+						continue;
+					}
+					TextplugInMap.insert(pair<wstring, HINSTANCE>(textPluginInfo->TextPluginName, PluginHInstance));
+				}
+				else {
+					FreeLibrary(PluginHInstance);
+				}
+			}
+			else {
+				FreeLibrary(PluginHInstance);
+			}
+		} else { 
+			FreeLibrary(PluginHInstance); 
+		}
+	}
+	return true;
+	
+}
+
+vector<wstring> UnityL10nToolCpp::GetInteractWithAssetPluginNames()
+{
+	vector<wstring> results;
+	for (map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.begin();
+		iterator != TextPluginInfoInteractWithAssetMap.end(); iterator++) {
+		results.push_back(iterator->first);
+	}
+	return results;
+}
+
+vector<wstring> UnityL10nToolCpp::GetInteractWithFileTextPluginNames()
+{
+	vector<wstring> results;
+	for (map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.begin();
+		iterator != TextPluginInfoInteractWithFileTextMap.end(); iterator++) {
+		results.push_back(iterator->first);
+	}
+	return results;
+}
+
+vector<TextAssetMap> UnityL10nToolCpp::GetTextAssetMaps()
+{
+	vector<TextAssetMap> TextAssetMaps;
+	string className = "TextAsset";
+	ClassDatabaseType textAssetCDT = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName[className]];
+	int TextAssetClassId = textAssetCDT.classId;
+	for (map<string, AssetsFileTable*>::iterator itrAssetsFileTable = FindAssetsFileTablesFromAssetsName.begin();
+		itrAssetsFileTable != FindAssetsFileTablesFromAssetsName.end(); itrAssetsFileTable++) {
+		AssetsFileTable* assetsFileTable = itrAssetsFileTable->second;
+		AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
+		wstring assetsName = WideMultiStringConverter.from_bytes(itrAssetsFileTable->first);
+		INT32 FileID = distance(AssetsFileNames.begin(), find(AssetsFileNames.begin(), AssetsFileNames.end(), string(itrAssetsFileTable->first)));
+		if (FileID != AssetsFileNames.size()) {
+			for (unsigned int i = 0; i < assetsFileTable->assetFileInfoCount; i++) {
+				AssetFileInfoEx* assetFileInfoEx = &assetsFileTable->pAssetFileInfo[i];
+				int classId = 0;
+				UINT16 monoClassId = 0;
+				GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
+				if (classId == TextAssetClassId) {
+					wstring assetName = _unityL10nToolAPI.GetAssetNameW(assetsFile, assetFileInfoEx);
+					INT64 PathID = assetFileInfoEx->index;
+					wstring containerPath;
+					map<string, INT32>::const_iterator FileIDIterator = FindPathIDOfContainerPathFromAssetsName.find(itrAssetsFileTable->first);
+					if (FileIDIterator != FindPathIDOfContainerPathFromAssetsName.end()) {
+						map<pair<INT32, INT64>, string>::iterator containerPathItr = FindContainerPathFromFileIDPathID.find(pair<INT32, INT64>(FileIDIterator->second, PathID));
+						if (containerPathItr != FindContainerPathFromFileIDPathID.end()) {
+							containerPath = WideMultiStringConverter.from_bytes(containerPathItr->second);
+						}
+					}
+					TextAssetMap textAssetMap;
+					textAssetMap.assetsName = assetsName;
+					textAssetMap.assetName = assetName;
+					textAssetMap.containerPath = containerPath;
+					TextAssetMaps.push_back(textAssetMap);
+				}
+			}
+		}
+	}
+	return TextAssetMaps;
+}
+
 bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
 {
 	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();

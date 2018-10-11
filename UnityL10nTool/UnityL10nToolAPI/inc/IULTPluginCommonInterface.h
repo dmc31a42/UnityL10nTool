@@ -15,6 +15,24 @@
 struct UnityL10nToolAPI;
 struct FontAssetMap;
 
+struct AssetMapOption {
+	enum Type
+	{
+		OPTION_TYPE_NONE = 0,
+		OPTION_TYPE_WSTRING = 1,
+		OPTION_TYPE_INT = 2,
+		OPTION_TYPE_DOUBLE = 3,
+		OPTION_TYPE_BOOL = 4
+	};
+	wstring OptionName;
+	wstring OptionDescription;
+	void* Value;
+	void* ValueAsChild;
+	Type type;
+	Type typeAsChild;
+	vector<AssetMapOption> nestedOptions;
+};
+
 struct UnityL10nToolAPI {
 	string version;
 	string versionFirstTwoNumbers;
@@ -53,6 +71,8 @@ struct UnityL10nToolAPI {
 	bool ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
 	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, string assetName);
+	wstring GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx);
+	wstring GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx);
 };
 
 
@@ -559,4 +579,16 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSON(AssetTypeValueFi
 	else {
 		return ModifyAssetTypeValueFieldFromJSONRecursive(assetTypeValueField, json[json.getMemberNames()[0]]);
 	}
+}
+
+inline wstring UnityL10nToolAPI::GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx * assetFileInfoEx) {
+	return UnityL10nToolAPI::GetAssetNameW(assetsFileTable->getAssetsFile(), assetFileInfoEx);
+}
+
+inline wstring UnityL10nToolAPI::GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx)
+{
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverterLocal;
+	char tempName[100];
+	assetFileInfoEx->ReadName(assetsFile, tempName);
+	return wstring(WideMultiStringConverterLocal.from_bytes(tempName));
 }

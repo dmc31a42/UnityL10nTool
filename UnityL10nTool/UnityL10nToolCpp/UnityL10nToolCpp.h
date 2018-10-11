@@ -8,7 +8,6 @@
 #include "AssetsTools/ResourceManagerFile.h"
 #include "AssetsTools/AssetTypeClass.h"
 
-#include "UnityL10nToolAPI.h"
 #include "IULTFontPluginInterface.h"
 #include "IULTTextPluginInterface.h"
 #include "GeneralPurposeFunctions.h"
@@ -62,6 +61,11 @@ class UnityL10nToolCpp
 	/* FontPlugin */
 	map<wstring, HINSTANCE> FontPluginMap;
 	map<wstring, FontPluginInfo*> FontPluginInfoMap;
+#pragma region TextPlugin member
+	map<wstring, HINSTANCE> TextplugInMap;
+	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithAssetMap;
+	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithFileTextMap;
+#pragma endregion
 
 	UnityL10nToolAPI _unityL10nToolAPI;
 	vector<string> AssemblyNames;
@@ -77,6 +81,9 @@ public:
 	vector<wstring> LoadFontPlugins();
 	map<wstring, FontAssetMaps> GetPluginsSupportAssetMap();
 #pragma region TextAssetPluginProject
+	bool LoadTextPlugins();
+	vector<wstring> GetInteractWithAssetPluginNames();
+	vector<wstring> GetInteractWithFileTextPluginNames();
 	vector<TextAssetMap> GetTextAssetMaps();
 	vector<wstring> GetTextPluginNameInteractWithAssetList();
 	vector<wstring> GetTextPluginNameInteractWithFileTextList();
@@ -89,12 +96,17 @@ public:
 #pragma endregion
 
 #pragma region MonoTextAssetPluginProject
+	vector<TextAssetMap> GetMonoTextAssetMaps();
 #pragma endregion
 
 #pragma region TextAssetPluginPatcher
+	bool GetTranslatedTextAssetsFromFile();
+	bool GetTranslatedMaps();
+	bool GetAssetReplacerFromTextAssets();
 #pragma endregion
 
 #pragma region MonoTextAssetPluginPatcher
+	bool GetAssetReplacerFromMonoTexts();
 #pragma endregion
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
@@ -113,6 +125,9 @@ public:
 	static bool DetermineProjectGamePath(wstring path, wstring GameName, wstring MakerName);
 	static wstring FindUnityGameFolderFromDataFolderName(wstring dataFolderName, wstring GameName, wstring MakerName);
 	static wstring MakeSureBackslashEndOfFolderPath(wstring path);
+
+	static wstring GetAssetNameW(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
+	static wstring GetAssetNameW(AssetsFile * assetsFile, AssetFileInfoEx * assetFileInfoEx);
 
 protected:
 	bool LoadAssetsFile(string assetsFileName);

@@ -13,10 +13,10 @@ namespace UnityL10nToolCShop
     /// <summary>
     /// CustomProperties.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class CustomProperties : UserControl
+    public partial class InteractWithTextAssetPropertyies : UserControl
     {
-        FontAssetMapCLI fontAssetMapCLI;
-        public CustomProperties()
+        TextAssetMapCLI textAssetMapCLI;
+        public InteractWithTextAssetPropertyies()
         {
             InitializeComponent();
             DataContextChanged += CustomProperties_DataContextChanged;
@@ -24,9 +24,9 @@ namespace UnityL10nToolCShop
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is FontAssetMapCLI fontAssetMapCLITest)
+            if (DataContext is TextAssetMapCLI textAssetMapCLITest)
             {
-                fontAssetMapCLI = fontAssetMapCLITest;
+                textAssetMapCLI = textAssetMapCLITest;
                 PropertiesStackPanel.Children.Clear();
                 SetPropertyControl();
             }
@@ -38,15 +38,15 @@ namespace UnityL10nToolCShop
         
         public void SetPropertyControl()
         {
-            SetPropertyControlStatic("Assets Name", fontAssetMapCLI.assetsName);
-            SetPropertyControlStatic("Asset Name", fontAssetMapCLI.assetName);
-            SetPropertyControlStatic("Container Path", fontAssetMapCLI.containerPath);
-            SetPropertyControlStatic("Use Container Path", fontAssetMapCLI.useContainerPath);
-            for (int i = 0; i < fontAssetMapCLI.options.Count; i++)
-            {
-                AssetMapOptionCLI child = fontAssetMapCLI.options[i];
-                SetPropertyControlRecursive(ref child);
-            }
+            SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
+            SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
+            SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
+            SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
+            //for (int i = 0; i < textAssetMapCLI.languagePairDics.Count; i++)
+            //{
+            //    AssetMapOptionCLI child = textAssetMapCLI.options[i];
+            //    SetPropertyControlRecursive(ref child);
+            //}
         }
 
         public void SetPropertyControlStatic(string key, object value)

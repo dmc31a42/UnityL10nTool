@@ -371,7 +371,5 @@ ASALocalRun/
 
 # End of https://www.gitignore.io/api/c++,visualstudio
 
-UnityL10nToolDebug/
-UnityL10nToolRelease/
-PluginsDebug/
-PluginsRelease/
+*Debug/
+*Release/

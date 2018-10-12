@@ -107,8 +107,9 @@
                             <TabItem Header="InteractWithTextAsset" >
                                 <Grid DataContext="{Binding InteractWithTextAsset}">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -130,9 +131,31 @@
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <local:InteractWithTextAssetPropertyies Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=SelectedItem}" DataContextChanged="CustomProperties_DataContextChanged"/>
+                                        <Grid Grid.Column="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedItem}">
+                                                <Label Content="Plugin:"/>
+                                                <ComboBox x:Name="InteractWithAssetCombobox" SelectedItem="{Binding InteractWithAssetPluginName}" DataContextChanged="InteractWithAssetCombobox_DataContextChanged" SelectionChanged="InteractWithAssetCombobox_SelectionChanged"/>
+                                            </StackPanel>
+                                            <local:InteractWithTextAssetPropertyies Grid.Row="1" DataContext="{Binding Path=SelectedItem}" DataContextChanged="CustomProperties_DataContextChanged"/>
+                                        </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1">
+                                        <StackPanel Orientation="Horizontal" DataContext="{Binding Path=SelectedItem}">
+                                            <Label Content="Assets Name: " />
+                                            <Label Content="{Binding assetsName}"/>
+                                            <Label Content=", Asset Name: "/>
+                                            <Label Content="{Binding assetName}"/>
+                                            <Label Content=", Container Path: "/>
+                                            <TextBlock Text="{Binding containerPath}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                            <Label Content=", Use Container Path: "/>
+                                            <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
                                             <ColumnDefinition />

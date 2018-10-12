@@ -38,10 +38,10 @@ namespace UnityL10nToolCShop
         
         public void SetPropertyControl()
         {
-            SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
-            SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
-            SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
-            SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
+            //SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
+            //SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
+            //SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
+            //SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
             //for (int i = 0; i < textAssetMapCLI.languagePairDics.Count; i++)
             //{
             //    AssetMapOptionCLI child = textAssetMapCLI.options[i];

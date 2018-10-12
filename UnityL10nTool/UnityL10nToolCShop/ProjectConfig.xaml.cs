@@ -91,6 +91,8 @@ namespace UnityL10nToolCShop
         ProjectConfigSplash projectConfigSplash;
         Dictionary<string, FontAssetMapsCLI> pluginsSupportAssetMap;
         public FontAssetMapCLI SelectedFontAssetItem;
+        List<string> interactWithAssetNames;
+        List<string> interactWithFileTextNames;
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
         {
@@ -168,8 +170,10 @@ namespace UnityL10nToolCShop
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
             bool resultload = unityL10nToolCppManaged.LoadTextPlugins();
-            List<string> interactWithAssetNames = unityL10nToolCppManaged.GetInteractWithAssetPluginNames();
-            List<string> interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
+            interactWithAssetNames = unityL10nToolCppManaged.GetInteractWithAssetPluginNames();
+            //interactWithAssetNames.Insert(0, null);
+            interactWithAssetNames.Insert(0, "");
+            interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
         }
 
         private void LoadUnityL10nTool_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -183,6 +187,7 @@ namespace UnityL10nToolCShop
             GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
             FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
             TextAssetTabControl.DataContext = textAssetTabControlContext;
+            InteractWithAssetCombobox.ItemsSource = interactWithAssetNames;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
         }
 
@@ -295,7 +300,30 @@ namespace UnityL10nToolCShop
 
         private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            if(sender is DataGrid dataGrid)
+            {
+                if(dataGrid.SelectedItem is TextAssetMapCLI textAssetMapCLI)
+                {
+                    unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                }
+            }
+        }
 
+        // deprecated
+        private void InteractWithAssetCombobox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
+        }
+
+        private void InteractWithAssetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                if (comboBox.DataContext is TextAssetMapCLI textAssetMapCLI)
+                {
+                    unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                }
+            }
         }
     }
 }

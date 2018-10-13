@@ -15,19 +15,27 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" x:Name="PropertiesStackPanel">
+        <ComboBox x:Name="LanguagePairDicsCombobox" Grid.Row="0" ItemsSource="{Binding languagePairDics}" DisplayMemberPath="Key" SelectedItem="{Binding LanguagePairDicCLIPair}"/>
+        <Grid Grid.Row="1" DataContext="{Binding SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" DataContextChanged="Grid_DataContextChanged">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" x:Name="PropertiesStackPanel">
 
-        </StackPanel>
-
-        <!-- Help area -->
-        <Border Style="{StaticResource InnerBorder}" Grid.Row="1" DataContext="{Binding Parameters}">
-            <StackPanel x:Name="HelpStackPanel" HorizontalAlignment="Stretch" Margin="2">
-                <TextBlock FontWeight="Bold" Text="{Binding OptionName}" />
-                <TextBlock Text="{Binding OptionDescription}" TextWrapping="Wrap" />
             </StackPanel>
-        </Border>
+
+            <!-- Help area -->
+            <Border Style="{StaticResource InnerBorder}" Grid.Row="1" DataContext="{Binding Parameters}">
+                <StackPanel x:Name="HelpStackPanel" HorizontalAlignment="Stretch" Margin="2">
+                    <TextBlock FontWeight="Bold" Text="{Binding OptionName}" />
+                    <TextBlock Text="{Binding OptionDescription}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </Grid>
+        
     </Grid>
 </UserControl>

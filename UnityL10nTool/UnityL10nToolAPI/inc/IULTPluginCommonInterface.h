@@ -125,7 +125,7 @@ inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFil
 				string m_Name = pbase->Get("m_Name")->GetValue()->AsString();
 				if (assetName == m_Name) {
 					assetTypeValueField->~AssetTypeInstance();
-					return i;
+					return assetFileInfoEx->index;
 				}
 			}
 			assetTypeValueField->~AssetTypeInstance();
@@ -133,7 +133,7 @@ inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFil
 		else {
 			assetFileInfoEx->ReadName(assetsFile, readName);
 			if (assetName == readName) {
-				return i;
+				return assetFileInfoEx->index;
 			}
 		}
 	}

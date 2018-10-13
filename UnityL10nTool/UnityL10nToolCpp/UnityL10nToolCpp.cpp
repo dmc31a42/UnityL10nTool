@@ -851,74 +851,79 @@ wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
 	}
 }
 
-TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAssetMap)
-{
-	if (textAssetMap.InteractWithAssetPluginName != L"") {
-		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
-		if (iterator != TextPluginInfoInteractWithAssetMap.end()) {
-			AssetsFileTable* assetsFileTable;
-			INT64 PathID;
-			if (textAssetMap.useContainerPath) {
-				map<string, pair<INT32, INT64>>::iterator FileIDPathIDiterator 
-					= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter.to_bytes(textAssetMap.containerPath));
-				if (FileIDPathIDiterator != FindFileIDPathIDFromContainerPath.end()) {
-					INT32 FileIDOfContainerPath = FileIDPathIDiterator->second.first;
-					PathID = FileIDPathIDiterator->second.second;
-					map<INT32, string>::iterator assetsNameIterator
-						= FindAssetsNameFromPathIDOfContainerPath.find(FileIDOfContainerPath);
-					if (assetsNameIterator != FindAssetsNameFromPathIDOfContainerPath.end()) {
-						string assetsName = assetsNameIterator->second;
-						map<string, AssetsFileTable*>::iterator assetsFileTableIterator
-							= FindAssetsFileTablesFromAssetsName.find(assetsName);
-						if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
-							assetsFileTable = assetsFileTableIterator->second;
-						}
-						else {
-							throw new exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
-						}
-					}
-					else {
-						throw new exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
-					}
-				}
-				else {
-					throw new exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
-				}
-			}
-			else {
+wstring UnityL10nToolCpp::GetOriginalText(TextAssetMap textAssetMap) {
+	AssetsFileTable* assetsFileTable;
+	INT64 PathID;
+	if (textAssetMap.useContainerPath) {
+		map<string, pair<INT32, INT64>>::iterator FileIDPathIDiterator
+			= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter.to_bytes(textAssetMap.containerPath));
+		if (FileIDPathIDiterator != FindFileIDPathIDFromContainerPath.end()) {
+			INT32 FileIDOfContainerPath = FileIDPathIDiterator->second.first;
+			PathID = FileIDPathIDiterator->second.second;
+			map<INT32, string>::iterator assetsNameIterator
+				= FindAssetsNameFromPathIDOfContainerPath.find(FileIDOfContainerPath);
+			if (assetsNameIterator != FindAssetsNameFromPathIDOfContainerPath.end()) {
+				string assetsName = assetsNameIterator->second;
 				map<string, AssetsFileTable*>::iterator assetsFileTableIterator
-					= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter.to_bytes(textAssetMap.assetsName));
+					= FindAssetsFileTablesFromAssetsName.find(assetsName);
 				if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
 					assetsFileTable = assetsFileTableIterator->second;
-					PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter.to_bytes(textAssetMap.assetName));
-					if (PathID == -1) {
-						throw new exception("PathID == -1");
-					}
 				}
 				else {
 					throw new exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
 				}
 			}
-			AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(PathID);
-			if (assetFileInfoEx == NULL) {
-				throw new exception("assetFileInfoEx == NULL");
-			}
-			AssetTypeInstance* assetTypeInstance
-				= _unityL10nToolAPI.GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
-			if (assetTypeInstance == NULL) {
-				throw new exception("assetTypeInstance == NULL");
-			}
-			AssetTypeValueField* pbase =  assetTypeInstance->GetBaseField();
-			if (pbase) {
-				wstring m_Script = WideMultiStringConverter.from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
-				LanguagePairDics result = iterator->second->GetOriginalMapFromText(m_Script, textAssetMap.languagePairDics);
-				textAssetMap.languagePairDics = result;
-				return textAssetMap;
-			}
 			else {
-				throw new exception("pBase == NULL");
+				throw new exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
 			}
-			
+		}
+		else {
+			throw new exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
+		}
+	}
+	else {
+		map<string, AssetsFileTable*>::iterator assetsFileTableIterator
+			= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter.to_bytes(textAssetMap.assetsName));
+		if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
+			assetsFileTable = assetsFileTableIterator->second;
+			PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter.to_bytes(textAssetMap.assetName));
+			if (PathID == -1) {
+				throw new exception("PathID == -1");
+			}
+		}
+		else {
+			throw new exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+		}
+	}
+	AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(PathID);
+	if (assetFileInfoEx == NULL) {
+		throw new exception("assetFileInfoEx == NULL");
+	}
+	AssetTypeInstance* assetTypeInstance
+		= _unityL10nToolAPI.GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
+	if (assetTypeInstance == NULL) {
+		throw new exception("assetTypeInstance == NULL");
+	}
+	AssetTypeValueField* pbase = assetTypeInstance->GetBaseField();
+	if (pbase) {
+		wstring m_Script = WideMultiStringConverter.from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+		return m_Script;
+	}
+	else {
+		throw new exception("pBase == NULL");
+	}
+	throw new exception("UNKNOWN");
+}
+
+TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAssetMap)
+{
+	if (textAssetMap.InteractWithAssetPluginName != L"") {
+		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
+		if (iterator != TextPluginInfoInteractWithAssetMap.end()) {
+			wstring m_Script = GetOriginalText(textAssetMap);
+			LanguagePairDics result = iterator->second->GetOriginalMapFromText(m_Script, textAssetMap.languagePairDics);
+			textAssetMap.languagePairDics = result;
+			return textAssetMap;
 		}
 	}
 	else {

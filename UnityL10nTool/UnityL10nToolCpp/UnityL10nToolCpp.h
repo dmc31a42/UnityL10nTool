@@ -90,6 +90,7 @@ public:
 	vector<wstring> GetTextPluginNameInteractWithMonoAssetList();
 	// deprecated
 	TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
+	wstring GetOriginalText(TextAssetMap textAssetMap);
 	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
 	wstring GetUpdateFileText(TextAssetMap textAssetMap);
 	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, wstring fileText);

@@ -15,7 +15,24 @@ namespace UnityL10nToolCShop
     /// </summary>
     public partial class InteractWithTextAssetPropertyies : UserControl
     {
+        // https://stackoverflow.com/questions/25895011/how-to-add-custom-properties-to-wpf-user-control
+        public KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLIPair
+        {
+            get { return (KeyValuePair<string, LanguagePairDicCLI>)GetValue(LanguagePairDicCLIPairProperty); }
+            set { SetValue(LanguagePairDicCLIPairProperty, value); }
+        }
+        // Using a DependencyProperty as the backing store for Property1.  
+        // This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LanguagePairDicCLIPairProperty
+            = DependencyProperty.Register(
+                  "LanguagePairDicCLIPair",
+                  typeof(KeyValuePair<string, LanguagePairDicCLI>),
+                  typeof(InteractWithTextAssetPropertyies),
+                  new PropertyMetadata(new KeyValuePair<string, LanguagePairDicCLI>("", new LanguagePairDicCLI()))
+              );
         TextAssetMapCLI textAssetMapCLI;
+        public event DependencyPropertyChangedEventHandler OptionChanged;
+        private string KeyOfLanguagePairDicCLI = "";
         public InteractWithTextAssetPropertyies()
         {
             InitializeComponent();
@@ -26,9 +43,31 @@ namespace UnityL10nToolCShop
         {
             if (DataContext is TextAssetMapCLI textAssetMapCLITest)
             {
-                textAssetMapCLI = textAssetMapCLITest;
-                PropertiesStackPanel.Children.Clear();
-                SetPropertyControl();
+                if(textAssetMapCLI != null && textAssetMapCLITest != null && 
+                    textAssetMapCLI.assetName == textAssetMapCLITest.assetName &&
+                    textAssetMapCLI.assetsName == textAssetMapCLITest.assetsName &&
+                    textAssetMapCLI.containerPath == textAssetMapCLITest.containerPath)
+                {
+                    textAssetMapCLI = textAssetMapCLITest;
+                    //if (textAssetMapCLI.languagePairDics.Count != 0)
+                    //{
+                    //    if(textAssetMapCLI.languagePairDics.ContainsKey(KeyOfLanguagePairDicCLI))
+                    //    {
+                    //        LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First(x=>x.Key == KeyOfLanguagePairDicCLI);
+                    //    } else
+                    //    {
+                    //        LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First();
+                    //    }
+                    //}
+                } else
+                {
+                    textAssetMapCLI = textAssetMapCLITest;
+                    //if(textAssetMapCLI.languagePairDics.Count != 0)
+                    //{
+                    //    LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First();
+
+                    //}
+                }
             }
             else
             {
@@ -36,18 +75,14 @@ namespace UnityL10nToolCShop
             }
         }
         
-        public void SetPropertyControl()
-        {
-            //SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
-            //SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
-            //SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
-            //SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
-            //for (int i = 0; i < textAssetMapCLI.languagePairDics.Count; i++)
-            //{
-            //    AssetMapOptionCLI child = textAssetMapCLI.options[i];
-            //    SetPropertyControlRecursive(ref child);
-            //}
-        }
+        //public void SetPropertyControl()
+        //{
+        //    //SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
+        //    //SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
+        //    //SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
+        //    //SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
+            
+        //}
 
         public void SetPropertyControlStatic(string key, object value)
         {
@@ -330,17 +365,14 @@ namespace UnityL10nToolCShop
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            PropertiesStackPanel.Children.Clear();
-            SetPropertyControl();
+            KeyOfLanguagePairDicCLI = LanguagePairDicCLIPair.Key;
+            OptionChanged(this, new DependencyPropertyChangedEventArgs());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //ComboBox comboBox = (ComboBox)sender;
-            //AssetMapOptionCLI fontAssetMapOptionCLI = (AssetMapOptionCLI)comboBox.DataContext;
-            //fontAssetMapOptionCLI.Value = (string)comboBox.SelectedItem;
-            PropertiesStackPanel.Children.Clear();
-            SetPropertyControl();
+            KeyOfLanguagePairDicCLI = LanguagePairDicCLIPair.Key;
+            OptionChanged(this, new DependencyPropertyChangedEventArgs());
         }
 
         // https://twinparadox.tistory.com/404
@@ -361,6 +393,26 @@ namespace UnityL10nToolCShop
             {
                 e.Handled = false;
             }
+        }
+
+        private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(sender is Grid grid)
+            {
+                if(grid.DataContext is LanguagePairDicCLI languagePairDicCLI)
+                {
+                    PropertiesStackPanel.Children.Clear();
+                    //foreach(AssetMapOptionCLI assetMapOptionCLI in languagePairDicCLI.InteractWithFileTextOptions)
+                    //{
+                    //    SetPropertyControlRecursive(ref assetMapOptionCLI);
+                    //}
+                    for (int i = 0; i < languagePairDicCLI.InteractWithAssetOptions.Count; i++)
+                    {
+                        AssetMapOptionCLI child = languagePairDicCLI.InteractWithAssetOptions[i];
+                        SetPropertyControlRecursive(ref child);
+                    }
+                }
+            } 
         }
     }
 }

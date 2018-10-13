@@ -24,10 +24,10 @@ namespace UnityL10nToolCShop
     {
         public class InteractWithTextAssetContext :INotifyPropertyChanged
         {
-            public ObservableCollection<TextAssetMapCLI> News { get; set; }
-            public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
-            private TextAssetMapCLI _SelectedItem;
-            public TextAssetMapCLI SelectedItem {
+            public ObservableCollection<KeyValuePair<string,TextAssetMapCLI>> News { get; set; }
+            public ObservableCollection<KeyValuePair<string,TextAssetMapCLI>> Saveds { get; set; }
+            private KeyValuePair<string, TextAssetMapCLI> _SelectedItem;
+            public KeyValuePair<string, TextAssetMapCLI> SelectedItem {
                 get
                 {
                     return _SelectedItem;
@@ -40,8 +40,8 @@ namespace UnityL10nToolCShop
             }
             public InteractWithTextAssetContext()
             {
-                News = new ObservableCollection<TextAssetMapCLI>();
-                Saveds = new ObservableCollection<TextAssetMapCLI>();
+                News = new ObservableCollection<KeyValuePair<string, TextAssetMapCLI>>();
+                Saveds = new ObservableCollection<KeyValuePair<string, TextAssetMapCLI>>();
             }
 
             public event PropertyChangedEventHandler PropertyChanged;
@@ -165,7 +165,7 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
             List<TextAssetMapCLI> textAssetMapCLIs = unityL10nToolCppManaged.GetTextAssetMaps();
             TextAssetTabControlContext textAssetTabControlContextLocal = new TextAssetTabControlContext();
-            textAssetMapCLIs.ForEach(x => textAssetTabControlContextLocal.InteractWithTextAsset.News.Add(x));
+            textAssetMapCLIs.ForEach(x => textAssetTabControlContextLocal.InteractWithTextAsset.News.Add(new KeyValuePair<string,TextAssetMapCLI>(unityL10nToolCppManaged.GetOriginalText(x), x)));
             textAssetTabControlContext = textAssetTabControlContextLocal;
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
@@ -321,7 +321,39 @@ namespace UnityL10nToolCShop
             {
                 if (comboBox.DataContext is TextAssetMapCLI textAssetMapCLI)
                 {
-                    unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                    TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                    var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
+                    int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
+                    comboBox.SelectionChanged -= InteractWithAssetCombobox_SelectionChanged;
+                    textAssetTabControlContext.InteractWithTextAsset.News[i]
+                        = new KeyValuePair<string, TextAssetMapCLI>(
+                            textAssetTabControlContext.InteractWithTextAsset.News[i].Key
+                            ,updatedTextAssetMapCLI);
+                    textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
+                    comboBox.SelectionChanged += InteractWithAssetCombobox_SelectionChanged;
+                }
+            }
+        }
+
+        private void InteractWithTextAssetPropertyies_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void InteractWithTextAssetPropertyies_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(sender is InteractWithTextAssetPropertyies interactWithTextAssetPropertyies)
+            {
+                if(interactWithTextAssetPropertyies.DataContext is TextAssetMapCLI textAssetMapCLI)
+                {
+                    TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                    var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
+                    int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
+                    textAssetTabControlContext.InteractWithTextAsset.News[i] 
+                        = new KeyValuePair<string, TextAssetMapCLI>(
+                            textAssetTabControlContext.InteractWithTextAsset.News[i].Key
+                            , updatedTextAssetMapCLI);
+                    textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
                 }
             }
         }

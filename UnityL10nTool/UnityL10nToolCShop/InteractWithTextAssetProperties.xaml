@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UnityL10nToolCShop.InteractWithTextAssetPropertyies"
+﻿<UserControl x:Class="UnityL10nToolCShop.InteractWithTextAssetProperties"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,29 +13,21 @@
             <Setter Property="BorderBrush" Value="#B4B0A8" />
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid DataContextChanged="Grid_DataContextChanged">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ComboBox x:Name="LanguagePairDicsCombobox" Grid.Row="0" ItemsSource="{Binding languagePairDics}" DisplayMemberPath="Key" SelectedItem="{Binding LanguagePairDicCLIPair}"/>
-        <Grid Grid.Row="1" DataContext="{Binding SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" DataContextChanged="Grid_DataContextChanged">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" x:Name="PropertiesStackPanel">
+        <StackPanel Grid.Row="0" x:Name="PropertiesStackPanel">
 
+        </StackPanel>
+
+        <!-- Help area -->
+        <Border Style="{StaticResource InnerBorder}" Grid.Row="1" DataContext="{Binding Parameters}">
+            <StackPanel x:Name="HelpStackPanel" HorizontalAlignment="Stretch" Margin="2">
+                <TextBlock FontWeight="Bold" Text="{Binding OptionName}" />
+                <TextBlock Text="{Binding OptionDescription}" TextWrapping="Wrap" />
             </StackPanel>
-
-            <!-- Help area -->
-            <Border Style="{StaticResource InnerBorder}" Grid.Row="1" DataContext="{Binding Parameters}">
-                <StackPanel x:Name="HelpStackPanel" HorizontalAlignment="Stretch" Margin="2">
-                    <TextBlock FontWeight="Bold" Text="{Binding OptionName}" />
-                    <TextBlock Text="{Binding OptionDescription}" TextWrapping="Wrap" />
-                </StackPanel>
-            </Border>
-        </Grid>
-        
+        </Border>
     </Grid>
 </UserControl>

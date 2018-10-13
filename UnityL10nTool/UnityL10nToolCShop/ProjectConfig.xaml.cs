@@ -187,7 +187,7 @@ namespace UnityL10nToolCShop
             GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
             FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
             TextAssetTabControl.DataContext = textAssetTabControlContext;
-            InteractWithAssetCombobox.ItemsSource = interactWithAssetNames;
+            PluginInteractWithAssetNamesCombobox.ItemsSource = interactWithAssetNames;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
         }
 
@@ -298,64 +298,155 @@ namespace UnityL10nToolCShop
 
         }
 
-        private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        //private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        //{
+        //    if(sender is DataGrid dataGrid)
+        //    {
+        //        if(dataGrid.SelectedItem is TextAssetMapCLI textAssetMapCLI)
+        //        {
+        //            unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+        //        }
+        //    }
+        //}
+
+        //// deprecated
+        //private void InteractWithAssetCombobox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+            
+        //}
+
+        //private void InteractWithAssetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (sender is ComboBox comboBox)
+        //    {
+        //        if (comboBox.DataContext is TextAssetMapCLI textAssetMapCLI)
+        //        {
+        //            TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+        //            var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
+        //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
+        //            comboBox.SelectionChanged -= InteractWithAssetCombobox_SelectionChanged;
+        //            textAssetTabControlContext.InteractWithTextAsset.News[i]
+        //                = new KeyValuePair<string, TextAssetMapCLI>(
+        //                    textAssetTabControlContext.InteractWithTextAsset.News[i].Key
+        //                    ,updatedTextAssetMapCLI);
+        //            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
+        //            comboBox.SelectionChanged += InteractWithAssetCombobox_SelectionChanged;
+        //        }
+        //    }
+        //}
+
+        //private void InteractWithTextAssetPropertyies_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+
+        //}
+
+        //private void InteractWithTextAssetPropertyies_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if(sender is InteractWithTextAssetPropertyies interactWithTextAssetPropertyies)
+        //    {
+        //        if(interactWithTextAssetPropertyies.DataContext is TextAssetMapCLI textAssetMapCLI)
+        //        {
+        //            TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+        //            var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
+        //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
+        //            textAssetTabControlContext.InteractWithTextAsset.News[i] 
+        //                = new KeyValuePair<string, TextAssetMapCLI>(
+        //                    textAssetTabControlContext.InteractWithTextAsset.News[i].Key
+        //                    , updatedTextAssetMapCLI);
+        //            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
+        //        }
+        //    }
+        //}
+
+        private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(sender is DataGrid dataGrid)
+            //if (sender is Grid grid)
+            //{
+            //    if (grid.DataContext is KeyValuePair<string, TextAssetMapCLI> textAssetMapCLIPair)
+            //    {
+            //        if(textAssetMapCLIPair.Key != null || textAssetMapCLIPair.Value != null)
+            //        {
+            //            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLIPair.Value);
+            //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(textAssetMapCLIPair);
+            //            textAssetTabControlContext.InteractWithTextAsset.News[i] = new KeyValuePair<string, TextAssetMapCLI>(textAssetMapCLIPair.Key, textAssetMapCLILocal);
+            //        }
+
+            //    }
+            //}
+            if (e.NewValue != null && e.OldValue != null)
             {
-                if(dataGrid.SelectedItem is TextAssetMapCLI textAssetMapCLI)
+                TextAssetMapCLI NewPair = (TextAssetMapCLI)e.NewValue;
+                TextAssetMapCLI OldPair = (TextAssetMapCLI)e.OldValue;
+                if (NewPair != null && OldPair != null &&
+                    NewPair.assetName == OldPair.assetName &&
+                    NewPair.assetsName == OldPair.assetsName &&
+                    NewPair.containerPath == OldPair.containerPath)
                 {
-                    unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                    return;
                 }
+            }
+            else if (e.NewValue != null)
+            {
+                TextAssetMapCLI New = (TextAssetMapCLI)e.NewValue;
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(New);
+                KeyValuePair<string, TextAssetMapCLI> OldPair = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+                int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(OldPair);
+                KeyValuePair<string, TextAssetMapCLI> updated = new KeyValuePair<string, TextAssetMapCLI>(OldPair.Key, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
+                textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
             }
         }
 
-        // deprecated
-        private void InteractWithAssetCombobox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void PluginInteractWithAssetNamesCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if(e.AddedItems.Count != 0 && e.RemovedItems.Count != 0 && (string)e.AddedItems[0] == (string)e.RemovedItems[0])
+            {
+                return;
+            }
+            KeyValuePair<string, TextAssetMapCLI> NewPair = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            if(e.AddedItems.Count != 0)
+            {
+                NewPair.Value.InteractWithAssetPluginName = (string)e.AddedItems[0];
+            }
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(NewPair.Value);
+            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(NewPair);
+            KeyValuePair<string, TextAssetMapCLI>  updated = new KeyValuePair<string, TextAssetMapCLI>(NewPair.Key, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
+            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
         }
 
-        private void InteractWithAssetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LanguagePairDicsCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (sender is ComboBox comboBox)
             {
-                if (comboBox.DataContext is TextAssetMapCLI textAssetMapCLI)
+                if (e.AddedItems.Count == 0 && e.RemovedItems.Count == 1)
                 {
-                    TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
-                    var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
-                    int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
-                    comboBox.SelectionChanged -= InteractWithAssetCombobox_SelectionChanged;
-                    textAssetTabControlContext.InteractWithTextAsset.News[i]
-                        = new KeyValuePair<string, TextAssetMapCLI>(
-                            textAssetTabControlContext.InteractWithTextAsset.News[i].Key
-                            ,updatedTextAssetMapCLI);
-                    textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
-                    comboBox.SelectionChanged += InteractWithAssetCombobox_SelectionChanged;
+                    KeyValuePair<string, LanguagePairDicCLI> prevPair = (KeyValuePair<string, LanguagePairDicCLI>)e.RemovedItems[0];
+                    KeyValuePair<string, TextAssetMapCLI> textAssetMapCLI = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+                    if (textAssetMapCLI.Value.languagePairDics.Count != 0)
+                    {
+                        KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.Value.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
+                        if (found.Key != null && found.Value != null)
+                        {
+                            comboBox.SelectedItem = found;
+                        }
+                        else
+                        {
+                            comboBox.SelectedItem = textAssetMapCLI.Value.languagePairDics.First();
+                        }
+                    }
                 }
             }
         }
 
-        private void InteractWithTextAssetPropertyies_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void interactWithTextAssetProperties_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
-        }
-
-        private void InteractWithTextAssetPropertyies_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if(sender is InteractWithTextAssetPropertyies interactWithTextAssetPropertyies)
-            {
-                if(interactWithTextAssetPropertyies.DataContext is TextAssetMapCLI textAssetMapCLI)
-                {
-                    TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
-                    var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
-                    int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
-                    textAssetTabControlContext.InteractWithTextAsset.News[i] 
-                        = new KeyValuePair<string, TextAssetMapCLI>(
-                            textAssetTabControlContext.InteractWithTextAsset.News[i].Key
-                            , updatedTextAssetMapCLI);
-                    textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
-                }
-            }
+            KeyValuePair<string, TextAssetMapCLI> NewPair = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(NewPair.Value);
+            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(NewPair);
+            KeyValuePair<string, TextAssetMapCLI> updated = new KeyValuePair<string, TextAssetMapCLI>(NewPair.Key, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
+            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
         }
     }
 }

@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:UnityL10nToolCShop"
     mc:Ignorable="d"
         x:Class="UnityL10nToolCShop.ProjectConfig"
-        Title="ProjectConfig" Height="450" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}">
+        Title="ProjectConfig" Height="672" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}">
     <Window.Resources>
         <DataTemplate x:Key="ItemTemplate">
             <StackPanel>
@@ -111,13 +111,17 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="1*"/>
                                     </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem}" AutoGenerateColumns="False" SelectedCellsChanged="InteractWithTextAssetDataGridNews_SelectedCellsChanged">
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem}" AutoGenerateColumns="False" >
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding Value.assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Value.assetName}" Header="AssetsName" IsReadOnly="True"/>
@@ -131,17 +135,6 @@
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <Grid Grid.Column="2">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition />
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedItem.Value}">
-                                                <Label Content="Plugin:"/>
-                                                <ComboBox x:Name="InteractWithAssetCombobox" SelectedItem="{Binding InteractWithAssetPluginName}" DataContextChanged="InteractWithAssetCombobox_DataContextChanged" SelectionChanged="InteractWithAssetCombobox_SelectionChanged"/>
-                                            </StackPanel>
-                                            <local:InteractWithTextAssetPropertyies x:Name="interactWithTextAssetPropertyies" Grid.Row="1" DataContext="{Binding Path=SelectedItem.Value}" OptionChanged="InteractWithTextAssetPropertyies_OptionChanged"/>
-                                        </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1">
                                         <StackPanel Orientation="Horizontal" DataContext="{Binding Path=SelectedItem.Value}">
@@ -164,13 +157,26 @@
                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                  ScrollViewer.CanContentScroll="True"/>
-                                        <DataGrid Grid.Row="0" Grid.Column="1" ItemsSource="{Binding LanguagePairDicCLIPair.Value.Dic, ElementName=interactWithTextAssetPropertyies}" AutoGenerateColumns="False" >
+                                        <DataGrid Grid.Row="0" Grid.Column="1" ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=LanguagePairDicsCombobox}" AutoGenerateColumns="False" >
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding Key}" Header="Key" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Value.Original}" Header="Original" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Path=Value.Translated}" Header="Translated" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
+                                    </Grid>
+                                    <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding SelectedItem.Value}" DataContextChanged="Grid_DataContextChanged" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                            <Label Content="Plugin:"/>
+                                            <ComboBox x:Name="PluginInteractWithAssetNamesCombobox" SelectedItem="{Binding InteractWithAssetPluginName}" SelectionChanged="PluginInteractWithAssetNamesCombobox_SelectionChanged"/>
+                                        </StackPanel>
+                                        <ComboBox x:Name="LanguagePairDicsCombobox" Grid.Row="1" ItemsSource="{Binding languagePairDics}" DisplayMemberPath="Key" SelectionChanged="LanguagePairDicsCombobox_SelectionChanged"/>
+                                        <local:InteractWithTextAssetProperties Grid.Row="2" x:Name="interactWithTextAssetProperties"  DataContext="{Binding Path=SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithTextAssetProperties_OptionChanged"/>
                                     </Grid>
                                 </Grid>
 

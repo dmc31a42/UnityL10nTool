@@ -13,27 +13,26 @@ namespace UnityL10nToolCShop
     /// <summary>
     /// CustomProperties.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class InteractWithTextAssetPropertyies : UserControl
+    public partial class InteractWithTextAssetProperties : UserControl
     {
-        // https://stackoverflow.com/questions/25895011/how-to-add-custom-properties-to-wpf-user-control
-        public KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLIPair
-        {
-            get { return (KeyValuePair<string, LanguagePairDicCLI>)GetValue(LanguagePairDicCLIPairProperty); }
-            set { SetValue(LanguagePairDicCLIPairProperty, value); }
-        }
-        // Using a DependencyProperty as the backing store for Property1.  
-        // This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LanguagePairDicCLIPairProperty
-            = DependencyProperty.Register(
-                  "LanguagePairDicCLIPair",
-                  typeof(KeyValuePair<string, LanguagePairDicCLI>),
-                  typeof(InteractWithTextAssetPropertyies),
-                  new PropertyMetadata(new KeyValuePair<string, LanguagePairDicCLI>("", new LanguagePairDicCLI()))
-              );
-        TextAssetMapCLI textAssetMapCLI;
+        //// https://stackoverflow.com/questions/25895011/how-to-add-custom-properties-to-wpf-user-control
+        //public KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLIPair
+        //{
+        //    get { return (KeyValuePair<string, LanguagePairDicCLI>)GetValue(LanguagePairDicCLIPairProperty); }
+        //    set { SetValue(LanguagePairDicCLIPairProperty, value); }
+        //}
+        //// Using a DependencyProperty as the backing store for Property1.  
+        //// This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty LanguagePairDicCLIPairProperty
+        //    = DependencyProperty.Register(
+        //          "LanguagePairDicCLIPair",
+        //          typeof(KeyValuePair<string, LanguagePairDicCLI>),
+        //          typeof(InteractWithTextAssetPropertyies),
+        //          new PropertyMetadata(new KeyValuePair<string, LanguagePairDicCLI>("", new LanguagePairDicCLI()))
+        //      );
+        LanguagePairDicCLI LanguagePairDicCLIGlobal;
         public event DependencyPropertyChangedEventHandler OptionChanged;
-        private string KeyOfLanguagePairDicCLI = "";
-        public InteractWithTextAssetPropertyies()
+        public InteractWithTextAssetProperties()
         {
             InitializeComponent();
             DataContextChanged += CustomProperties_DataContextChanged;
@@ -41,48 +40,15 @@ namespace UnityL10nToolCShop
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is TextAssetMapCLI textAssetMapCLITest)
+            if (DataContext is LanguagePairDicCLI languagePairDicCLI)
             {
-                if(textAssetMapCLI != null && textAssetMapCLITest != null && 
-                    textAssetMapCLI.assetName == textAssetMapCLITest.assetName &&
-                    textAssetMapCLI.assetsName == textAssetMapCLITest.assetsName &&
-                    textAssetMapCLI.containerPath == textAssetMapCLITest.containerPath)
-                {
-                    textAssetMapCLI = textAssetMapCLITest;
-                    //if (textAssetMapCLI.languagePairDics.Count != 0)
-                    //{
-                    //    if(textAssetMapCLI.languagePairDics.ContainsKey(KeyOfLanguagePairDicCLI))
-                    //    {
-                    //        LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First(x=>x.Key == KeyOfLanguagePairDicCLI);
-                    //    } else
-                    //    {
-                    //        LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First();
-                    //    }
-                    //}
-                } else
-                {
-                    textAssetMapCLI = textAssetMapCLITest;
-                    //if(textAssetMapCLI.languagePairDics.Count != 0)
-                    //{
-                    //    LanguagePairDicCLIPair = textAssetMapCLI.languagePairDics.First();
-
-                    //}
-                }
+                LanguagePairDicCLIGlobal = languagePairDicCLI;
             }
             else
             {
 
             }
         }
-        
-        //public void SetPropertyControl()
-        //{
-        //    //SetPropertyControlStatic("Assets Name", textAssetMapCLI.assetsName);
-        //    //SetPropertyControlStatic("Asset Name", textAssetMapCLI.assetName);
-        //    //SetPropertyControlStatic("Container Path", textAssetMapCLI.containerPath);
-        //    //SetPropertyControlStatic("Use Container Path", textAssetMapCLI.useContainerPath);
-            
-        //}
 
         public void SetPropertyControlStatic(string key, object value)
         {
@@ -365,13 +331,11 @@ namespace UnityL10nToolCShop
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            KeyOfLanguagePairDicCLI = LanguagePairDicCLIPair.Key;
             OptionChanged(this, new DependencyPropertyChangedEventArgs());
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            KeyOfLanguagePairDicCLI = LanguagePairDicCLIPair.Key;
             OptionChanged(this, new DependencyPropertyChangedEventArgs());
         }
 

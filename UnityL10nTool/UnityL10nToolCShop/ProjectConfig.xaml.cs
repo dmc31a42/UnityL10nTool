@@ -448,5 +448,42 @@ namespace UnityL10nToolCShop
             textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
             textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
         }
+
+        private void LanguagePairDicsNew_Click(object sender, RoutedEventArgs e)
+        {
+            KeyValuePair<string, TextAssetMapCLI> selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.Value.languagePairDics;
+            AddNewDics(languagePairDics, languagePairDics.Count);
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem.Value);
+            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
+            KeyValuePair<string, TextAssetMapCLI> updated = new KeyValuePair<string, TextAssetMapCLI>(selectedItem.Key, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
+            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
+        }
+
+        private void AddNewDics(Dictionary<string, LanguagePairDicCLI> languagePairDics, int key)
+        {
+            if (languagePairDics.ContainsKey(key.ToString()))
+            {
+                AddNewDics(languagePairDics, key + 1);
+            } else
+            {
+                languagePairDics[key.ToString()] = new LanguagePairDicCLI();
+            }
+        }
+
+        private void LanguagePairDicsRemove_Click(object sender, RoutedEventArgs e)
+        {
+            KeyValuePair<string, TextAssetMapCLI> selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.Value.languagePairDics;
+
+            KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLISelected = (KeyValuePair<string, LanguagePairDicCLI>)LanguagePairDicsCombobox.SelectedItem;
+            languagePairDics.Remove(LanguagePairDicCLISelected.Key);
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem.Value);
+            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
+            KeyValuePair<string, TextAssetMapCLI> updated = new KeyValuePair<string, TextAssetMapCLI>(selectedItem.Key, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithTextAsset.News[i] = updated;
+            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = updated;
+        }
     }
 }

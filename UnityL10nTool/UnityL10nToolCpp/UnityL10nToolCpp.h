@@ -62,6 +62,7 @@ class UnityL10nToolCpp
 	map<wstring, HINSTANCE> FontPluginMap;
 	map<wstring, FontPluginInfo*> FontPluginInfoMap;
 #pragma region TextPlugin member
+	TextAssetMaps TextAssetMapsGlobal;
 	map<wstring, HINSTANCE> TextplugInMap;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithAssetMap;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithFileTextMap;
@@ -84,13 +85,13 @@ public:
 	bool LoadTextPlugins();
 	vector<wstring> GetInteractWithAssetPluginNames();
 	vector<wstring> GetInteractWithFileTextPluginNames();
-	vector<TextAssetMap> GetTextAssetMaps();
-	vector<wstring> GetTextPluginNameInteractWithAssetList();
-	vector<wstring> GetTextPluginNameInteractWithFileTextList();
-	vector<wstring> GetTextPluginNameInteractWithMonoAssetList();
+	TextAssetMaps GetTextAssetMaps();
+	//vector<wstring> GetTextPluginNameInteractWithAssetList();
+	//vector<wstring> GetTextPluginNameInteractWithFileTextList();
+	//vector<wstring> GetTextPluginNameInteractWithMonoAssetList();
 	// deprecated
-	TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
-	wstring GetOriginalText(TextAssetMap textAssetMap);
+	//TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
+	//wstring GetOriginalText(TextAssetMap textAssetMap);
 	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
 	wstring GetUpdateFileText(TextAssetMap textAssetMap);
 	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, wstring fileText);
@@ -113,6 +114,7 @@ public:
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();
+	bool SetTextPluginConfigToJsonValue();
 	bool SaveProjectConfigJson();
 	Json::Value GetPacherConfigJson();
 	bool BuildProject(wstring buildTargetFolder);

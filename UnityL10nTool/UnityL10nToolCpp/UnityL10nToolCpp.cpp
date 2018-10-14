@@ -491,9 +491,9 @@ vector<wstring> UnityL10nToolCpp::GetInteractWithFileTextPluginNames()
 	return results;
 }
 
-vector<TextAssetMap> UnityL10nToolCpp::GetTextAssetMaps()
+TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 {
-	vector<TextAssetMap> TextAssetMaps;
+	vector<TextAssetMap> textAssetMaps;
 	string className = "TextAsset";
 	ClassDatabaseType textAssetCDT = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName[className]];
 	int TextAssetClassId = textAssetCDT.classId;
@@ -520,17 +520,65 @@ vector<TextAssetMap> UnityL10nToolCpp::GetTextAssetMaps()
 							containerPath = WideMultiStringConverter.from_bytes(containerPathItr->second);
 						}
 					}
+					AssetTypeInstance* assetTypeInstance
+						= _unityL10nToolAPI.GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
+					AssetTypeValueField* pbase = assetTypeInstance->GetBaseField();
+					wstring m_Script;
+					if (pbase) {
+						m_Script = WideMultiStringConverter.from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+					}
 					TextAssetMap textAssetMap;
 					textAssetMap.assetsName = assetsName;
 					textAssetMap.assetName = assetName;
 					textAssetMap.containerPath = containerPath;
 					textAssetMap.useContainerPath = false;
-					TextAssetMaps.push_back(textAssetMap);
+					textAssetMap.OriginalText = m_Script;
+					textAssetMaps.push_back(textAssetMap);
 				}
 			}
 		}
 	}
-	return TextAssetMaps;
+	GetPacherConfigJson();
+	if (projectJson.isMember("TextPlugin")) {
+		Json::Value TextAssetMapsJson = projectJson["TextPlugin"];
+		map<string, vector<TextAssetMap>*> textAssetMapsPtr;
+		if (TextAssetMapsJson.isMember("InteractWithFileTextNews")) {
+			textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("InteractWithFileTextNews"), &(TextAssetMapsGlobal.InteractWithAssetNews)));
+		}
+		if (TextAssetMapsJson.isMember("Done")) {
+			textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("Done"), &(TextAssetMapsGlobal.Done)));
+		}
+		for (map<string, vector<TextAssetMap>*>::iterator iterator = textAssetMapsPtr.begin();
+			iterator != textAssetMapsPtr.end(); iterator++) {
+			// 여기다 아래의 코드
+		}
+		if (TextAssetMapsJson.isArray()) {
+			for (Json::ArrayIndex i = 0; i < TextAssetMapsJson.size(); i++) {
+				Json::Value TextAssetMapJson = TextAssetMapsJson[i];
+				if (TextAssetMapJson.isMember("assetsName") && TextAssetMapJson.isMember("assetName") && TextAssetMapJson.isMember("containerPath")) {
+					wstring assetsName = WideMultiStringConverter.from_bytes(TextAssetMapJson["assetsName"].asString());
+					wstring assetName = WideMultiStringConverter.from_bytes(TextAssetMapJson["assetName"].asString());
+					wstring containerPath = WideMultiStringConverter.from_bytes(TextAssetMapJson["containerPath"].asString());
+					// https://stackoverflow.com/questions/4645705/vector-erase-iterator
+					for (vector<TextAssetMap>::iterator iterator = textAssetMaps.begin();
+						iterator != textAssetMaps.end(); iterator++) {
+						if (assetsName == iterator->assetsName &&
+							assetName == iterator->assetName &&
+							containerPath == iterator->containerPath) {
+							TextAssetMap loadedTextAssetMap = GetTextAssetMapsInteranl_LoadFromJson(*iterator, TextAssetMapJson);
+						}
+					}
+				}
+				
+			}
+			
+		}
+	}
+	return textAssetMaps;
+}
+
+TextAssetMap GetTextAssetMapsInteranl_LoadFromJson(TextAssetMap textAssetMap, Json::Value textAssetMapJson) {
+
 }
 
 bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
@@ -556,6 +604,20 @@ bool UnityL10nToolCpp::GetProjectConfigJsonFromFontPlugin()
 	}
 	return true;
 }
+
+Json::Value SetTextPluginConfigToJsonValueInternal(TextAssetMap) {
+	Json::Value result;
+
+}
+
+bool UnityL10nToolCpp::SetTextPluginConfigToJsonValue() {
+	for (vector<TextAssetMap>::iterator iterator = TextAssetMaps.begin();
+		iterator != TextAssetMaps.end(); iterator++) {
+
+	}
+}
+
+
 
 // https://sockbandit.wordpress.com/2012/05/31/c-read-and-write-utf-8-file-using-standard-libarary/
 bool UnityL10nToolCpp::SaveProjectConfigJson() {
@@ -923,6 +985,15 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 			wstring m_Script = GetOriginalText(textAssetMap);
 			LanguagePairDics result = iterator->second->GetOriginalMapFromText(m_Script, textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
+			for (vector<TextAssetMap>::iterator iterator = TextAssetMaps.begin();
+				iterator != TextAssetMaps.end(); iterator++) {
+				if (iterator->assetName == textAssetMap.assetName &&
+					iterator->assetsName == textAssetMap.assetsName &&
+					iterator->containerPath == textAssetMap.containerPath) {
+					*iterator = textAssetMap;
+					break;
+				}
+			}
 			return textAssetMap;
 		}
 	}

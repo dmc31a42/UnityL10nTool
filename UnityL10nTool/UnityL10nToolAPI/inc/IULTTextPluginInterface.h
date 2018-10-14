@@ -14,6 +14,7 @@ struct LanguagePair {
 Otherwise set key to "" (empty wstring) */
 struct LanguagePairDic {
 	map<wstring, LanguagePair> Dic;
+	map<wstring, wstring> TranslatedText;
 	vector<AssetMapOption> InteractWithAssetOptions;
 	vector<AssetMapOption> InteractWithFileTextOptions;
 };
@@ -27,7 +28,14 @@ struct TextAssetMap {
 	wstring InteractWithFileTextPluginName;
 	wstring InteractWithMonoAssetPluginName;
 	bool useContainerPath;
+	wstring OriginalText;
 	LanguagePairDics languagePairDics;
+};
+
+struct TextAssetMaps {
+	vector<TextAssetMap> InteractWithAssetNews;
+	vector<TextAssetMap> InteractWithFileTextNews;
+	vector<TextAssetMap> Done;
 };
 
 struct TextPluginInfo;

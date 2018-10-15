@@ -31,6 +31,172 @@ struct AssetMapOption {
 	Type type;
 	Type typeAsChild;
 	vector<AssetMapOption> nestedOptions;
+	Json::Value ToJson() {
+		Json::Value result;
+		Json::Value null_value;
+		result["OptionName"] = WideMultiStringConverter.to_bytes(this->OptionName);
+		result["OptionDescription"] = WideMultiStringConverter.to_bytes(this->OptionDescription);
+		switch (this->type) {
+		case OPTION_TYPE_NONE:
+			result["type"] = "NONE";
+			result["Value"] = null_value;
+			break;
+		case OPTION_TYPE_WSTRING:
+			result["type"] = "WSTRING";
+			if (this->Value) {
+				result["Value"] = WideMultiStringConverter.to_bytes(*(wstring*)this->Value);
+			}
+			else {
+				result["Value"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_INT:
+			result["type"] = "INT";
+			if (this->Value) {
+				result["Value"] = *(int*)this->Value;
+			}
+			else {
+				result["Value"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_DOUBLE:
+			result["type"] = "DOUBLE";
+			if (this->Value) {
+				result["Value"] = *(double*)this->Value;
+			}
+			else {
+				result["Value"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_BOOL:
+			result["type"] = "BOOL";
+			if (this->Value) {
+				result["Value"] = *(bool*)this->Value;
+			}
+			else {
+				result["Value"] = null_value;
+			}
+			break;
+		}
+		switch (this->typeAsChild) {
+		case OPTION_TYPE_NONE:
+			result["typeAsChild"] = "NONE";
+			result["ValueAsChild"] = null_value;
+			break;
+		case OPTION_TYPE_WSTRING:
+			result["typeAsChild"] = "WSTRING";
+			if (this->Value) {
+				result["ValueAsChild"] = WideMultiStringConverter.to_bytes(*(wstring*)this->ValueAsChild);
+			}
+			else {
+				result["ValueAsChild"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_INT:
+			result["typeAsChild"] = "INT";
+			if (this->Value) {
+				result["ValueAsChild"] = *(int*)this->ValueAsChild;
+			}
+			else {
+				result["ValueAsChild"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_DOUBLE:
+			result["typeAsChild"] = "DOUBLE";
+			if (this->Value) {
+				result["ValueAsChild"] = *(double*)this->ValueAsChild;
+			}
+			else {
+				result["ValueAsChild"] = null_value;
+			}
+			break;
+		case OPTION_TYPE_BOOL:
+			result["typeAsChild"] = "BOOL";
+			if (this->Value) {
+				result["ValueAsChild"] = *(bool*)this->ValueAsChild;
+			}
+			else {
+				result["ValueAsChild"] = null_value;
+			}
+			break;
+		}
+		for (vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin();
+			iterator != this->nestedOptions.end(); iterator) {
+			result["nestedOptions"].append(iterator->ToJson());
+		}
+		return result;
+	}
+	AssetMapOption() {}
+	AssetMapOption(Json::Value json) {
+		this->OptionName = WideMultiStringConverter.from_bytes(json["OptionName"].asString());
+		this->OptionDescription = WideMultiStringConverter.from_bytes(json["OptionDescription"].asString());
+		string tempType = json["type"].asString();
+		if (tempType == "NONE") {
+			this->type = OPTION_TYPE_NONE;
+		}
+		else if (tempType == "WSTRING") {
+			this->type = OPTION_TYPE_WSTRING;
+			if (!json["Value"].isNull()) {
+				this->Value = new wstring(WideMultiStringConverter.from_bytes(json["Value"].asString()));
+			}
+		}
+		else if (tempType == "INT") {
+			this->type = OPTION_TYPE_INT;
+			if (!json["Value"].isNull()) {
+				this->Value = new int(json["Value"].asInt());
+			}
+		}
+		else if (tempType == "DOUBLE") {
+			this->type = OPTION_TYPE_DOUBLE;
+			if (!json["Value"].isNull()) {
+				this->Value = new double(json["Value"].asDouble());
+			}
+		}
+		else if (tempType == "BOOL") {
+			this->type = OPTION_TYPE_BOOL;
+			if (!json["Value"].isNull()) {
+				this->Value = new bool(json["Value"].asBool());
+			}
+		}
+		else {
+			throw new exception(("Unknown Type" + tempType).c_str());
+		}
+		string tempTypeAsChild = json["typeAsChild"].asString();
+		if (tempTypeAsChild == "NONE") {
+			this->typeAsChild = OPTION_TYPE_NONE;
+		}
+		else if (tempTypeAsChild == "WSTRING") {
+			this->typeAsChild = OPTION_TYPE_WSTRING;
+			if (!json["ValueAsChild"].isNull()) {
+				this->ValueAsChild = new wstring(WideMultiStringConverter.from_bytes(json["ValueAsChild"].asString()));
+			}
+		}
+		else if (tempTypeAsChild == "INT") {
+			this->typeAsChild = OPTION_TYPE_INT;
+			if (!json["ValueAsChild"].isNull()) {
+				this->ValueAsChild = new int(json["ValueAsChild"].asInt());
+			}
+		}
+		else if (tempTypeAsChild == "DOUBLE") {
+			this->typeAsChild = OPTION_TYPE_DOUBLE;
+			if (!json["ValueAsChild"].isNull()) {
+				this->ValueAsChild = new double(json["ValueAsChild"].asDouble());
+			}
+		}
+		else if (tempTypeAsChild == "BOOL") {
+			this->typeAsChild = OPTION_TYPE_BOOL;
+			if (!json["ValueAsChild"].isNull()) {
+				this->ValueAsChild = new bool(json["ValueAsChild"].asBool());
+			}
+		}
+		else {
+			throw new exception(("Unknown Type" + tempType).c_str());
+		}
+		Json::Value nestedOptionsJson = json["nestedOptions"];
+		for (Json::ArrayIndex i = 0; i < nestedOptionsJson.size(); i++) {
+			this->nestedOptions.push_back(AssetMapOption(nestedOptionsJson[i]));
+		}
+	}
 };
 
 struct UnityL10nToolAPI {

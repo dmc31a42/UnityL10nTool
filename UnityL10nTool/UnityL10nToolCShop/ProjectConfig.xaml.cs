@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -208,12 +209,12 @@ namespace UnityL10nToolCShop
             pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
+            bool resultload = unityL10nToolCppManaged.LoadTextPlugins();
             TextAssetMapsCLI textAssetMapsCLILocal = unityL10nToolCppManaged.GetTextAssetMaps();
             TextAssetTabControlContext textAssetTabControlContextLocal = new TextAssetTabControlContext(textAssetMapsCLILocal);
             textAssetTabControlContext = textAssetTabControlContextLocal;
 
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
-            bool resultload = unityL10nToolCppManaged.LoadTextPlugins();
             interactWithAssetNames = unityL10nToolCppManaged.GetInteractWithAssetPluginNames();
             //interactWithAssetNames.Insert(0, null);
             interactWithAssetNames.Insert(0, "");
@@ -329,6 +330,7 @@ namespace UnityL10nToolCShop
         {
             unityL10nToolCppManaged.SetPluginsSupportAssetMap(pluginsSupportAssetMap);
             unityL10nToolCppManaged.GetProjectConfigJsonFromFontPlugin();
+            unityL10nToolCppManaged.SetTextPluginConfigToJsonValue();
             unityL10nToolCppManaged.SaveProjectConfigJson();
         }
 
@@ -429,16 +431,95 @@ namespace UnityL10nToolCShop
                     return;
                 }
             }
-            else if (e.NewValue != null)
+            if (e.NewValue != null)
             {
                 TextAssetMapCLI newTAM = (TextAssetMapCLI)e.NewValue;
+                if (!textAssetTabControlContext.InteractWithTextAsset.News.Contains(newTAM))
+                {
+                    return;
+                }
                 TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(newTAM);
                 TextAssetMapCLI oldTAM = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
                 int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(oldTAM);
-                textAssetTabControlContext.InteractWithTextAsset.News[i] = textAssetMapCLILocal;
+                // https://stackoverflow.com/questions/9829969/comboboxs-selecteditem-is-unexpectedly-set-to-null-before-actual-value
+                textAssetTabControlContext.InteractWithTextAsset.News.Insert(i, textAssetMapCLILocal);
                 textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithTextAsset.News.RemoveAt(i + 1);
+                //InteractWithTextAssetDataGridNews.SelectedIndex = i;
+                //SelectRowByIndex(InteractWithTextAssetDataGridNews, i);
             }
         }
+
+#region SelectRowByIndex https://social.technet.microsoft.com/wiki/contents/articles/21202.wpf-programmatically-selecting-and-focusing-a-row-or-cell-in-a-datagrid.aspx
+        public static void SelectRowByIndex(DataGrid dataGrid, int rowIndex)
+        {
+            if (!dataGrid.SelectionUnit.Equals(DataGridSelectionUnit.FullRow))
+                throw new ArgumentException("The SelectionUnit of the DataGrid must be set to FullRow.");
+
+            if (rowIndex < 0 || rowIndex > (dataGrid.Items.Count - 1))
+                throw new ArgumentException(string.Format("{0} is an invalid row index.", rowIndex));
+
+            //dataGrid.SelectedItems.Clear();
+            ///* set the SelectedItem property */
+            //object item = dataGrid.Items[rowIndex]; // = Product X
+            //dataGrid.SelectedItem = item;
+
+            DataGridRow row = dataGrid.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            if (row != null)
+            {
+                DataGridCell cell = GetCell(dataGrid, row, 0);
+                if (cell != null)
+                    cell.Focus();
+            }
+            //TODO: Retrieve and focus a DataGridCell object
+        }
+
+        public static DataGridCell GetCell(DataGrid dataGrid, DataGridRow rowContainer, int column)
+        {
+            if (rowContainer != null)
+            {
+                DataGridCellsPresenter presenter = FindVisualChild<DataGridCellsPresenter>(rowContainer);
+                if (presenter == null)
+                {
+                    /* if the row has been virtualized away, call its ApplyTemplate() method
+                     * to build its visual tree in order for the DataGridCellsPresenter
+                     * and the DataGridCells to be created */
+                    rowContainer.ApplyTemplate();
+                    presenter = FindVisualChild<DataGridCellsPresenter>(rowContainer);
+                }
+                if (presenter != null)
+                {
+                    DataGridCell cell = presenter.ItemContainerGenerator.ContainerFromIndex(column) as DataGridCell;
+                    if (cell == null)
+                    {
+                        /* bring the column into view
+                         * in case it has been virtualized away */
+                        dataGrid.ScrollIntoView(rowContainer, dataGrid.Columns[column]);
+                        cell = presenter.ItemContainerGenerator.ContainerFromIndex(column) as DataGridCell;
+                    }
+                    return cell;
+                }
+            }
+            return null;
+        }
+
+        public static T FindVisualChild<T>(DependencyObject obj) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is T)
+                    return (T)child;
+                else
+                {
+                    T childOfChild = FindVisualChild<T>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+        #endregion
 
         private void PluginInteractWithAssetNamesCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -447,14 +528,21 @@ namespace UnityL10nToolCShop
                 return;
             }
             TextAssetMapCLI newTAM = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            if (!textAssetTabControlContext.InteractWithTextAsset.News.Contains(newTAM))
+            {
+                return;
+            }
             if(e.AddedItems.Count != 0)
             {
                 newTAM.InteractWithAssetPluginName = (string)e.AddedItems[0];
             }
             TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(newTAM);
             int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(newTAM);
-            textAssetTabControlContext.InteractWithTextAsset.News[i] = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithTextAsset.News.Insert(i, textAssetMapCLILocal);
             textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithTextAsset.News.RemoveAt(i + 1);
+            //InteractWithTextAssetDataGridNews.SelectedIndex = i;
+            //SelectRowByIndex(InteractWithTextAssetDataGridNews, i);
         }
 
         private void LanguagePairDicsCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -486,19 +574,24 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI NewPair = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
             TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(NewPair);
             int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(NewPair);
-            textAssetTabControlContext.InteractWithTextAsset.News[i] = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithTextAsset.News.Insert(i, textAssetMapCLILocal);
             textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithTextAsset.News.RemoveAt(i + 1);
         }
 
         private void LanguagePairDicsNew_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
-            Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
-            AddNewDics(languagePairDics, languagePairDics.Count);
-            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem);
-            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
-            textAssetTabControlContext.InteractWithTextAsset.News[i] = textAssetMapCLILocal;
-            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+            if(selectedItem != null)
+            {
+                Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
+                AddNewDics(languagePairDics, languagePairDics.Count);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem);
+                int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
+                textAssetTabControlContext.InteractWithTextAsset.News.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithTextAsset.News.RemoveAt(i + 1);
+            }
         }
 
         private void AddNewDics(Dictionary<string, LanguagePairDicCLI> languagePairDics, int key)
@@ -515,13 +608,71 @@ namespace UnityL10nToolCShop
         private void LanguagePairDicsRemove_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
-            Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
-            KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLISelected = (KeyValuePair<string, LanguagePairDicCLI>)LanguagePairDicsCombobox.SelectedItem;
-            languagePairDics.Remove(LanguagePairDicCLISelected.Key);
-            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem);
-            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
-            textAssetTabControlContext.InteractWithTextAsset.News[i] = textAssetMapCLILocal;
-            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+            if(selectedItem != null)
+            {
+                Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
+                KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLISelected = (KeyValuePair<string, LanguagePairDicCLI>)LanguagePairDicsCombobox.SelectedItem;
+                languagePairDics.Remove(LanguagePairDicCLISelected.Key);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem);
+                int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(selectedItem);
+                textAssetTabControlContext.InteractWithTextAsset.News.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithTextAsset.News.RemoveAt(i + 1);
+            }
+        }
+
+        private void AddToInteractWithFileAssetEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(sender is Button button)
+            {
+                if((string)button.Content == "Add")
+                {
+                    TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+                    if(unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithFileText)){
+                        textAssetTabControlContext.InteractWithTextAsset.Saveds.Add(selectedItem);
+                        textAssetTabControlContext.InteractWithTextAsset.News.Remove(selectedItem);
+                        textAssetTabControlContext.InteractWithTextAsset.SelectedItem = null;
+                    }
+                    
+                }
+                else
+                {
+                    TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+                    if(unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
+                    {
+                        textAssetTabControlContext.InteractWithTextAsset.News.Add(selectedItem);
+                        textAssetTabControlContext.InteractWithTextAsset.Saveds.Remove(selectedItem);
+                        textAssetTabControlContext.InteractWithTextAsset.SelectedItem = selectedItem;
+                    }
+                }
+            }
+        }
+
+        private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            AddToInteractWithFileAssetEditButton.Content = "Add";
+        }
+
+        private void InteractWithTextAssetDataGridSaveds_Selected(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void InteractWithTextAssetDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (InteractWithTextAssetDataGridSaveds.SelectedItem is TextAssetMapCLI textAssetMapCLI)
+            {
+                int i = textAssetTabControlContext.InteractWithTextAsset.Saveds.IndexOf(textAssetMapCLI);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
+                textAssetTabControlContext.InteractWithTextAsset.Saveds.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithTextAsset.Saveds.RemoveAt(i + 1);
+                AddToInteractWithFileAssetEditButton.Content = "Edit";
+                if(textAssetMapCLI.languagePairDics.Count!=0 )
+                {
+                    LanguagePairDicsCombobox.SelectedIndex = 0;
+                }
+            }
         }
     }
 }

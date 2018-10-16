@@ -6,8 +6,14 @@
 using namespace std;
 
 // http://faithlife.codes/blog/2008/04/exception_0xc0020001_in_ccli_assembly/ Due to static value 0xc0020001 occur
-extern std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverter; // #include <codecvt>
-extern Json::Reader JsonReader;
+#ifndef UnityL10nToolCppCLIDEFINE
+#define UnityL10nToolCppCLIDEFINE
+std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter = new std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>(); // #include <codecvt>
+Json::Reader* JsonReader = new Json::Reader();
+#else
+extern std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter;
+extern Json::Reader* JsonReader;
+#endif // !UnityL10nToolCppCLIDEFINE
 
 std::string readFile2(const std::wstring & fileName);
 vector<wstring> GetAllFilesFilterWithinAllSubFolder(wstring directory, wstring filter);

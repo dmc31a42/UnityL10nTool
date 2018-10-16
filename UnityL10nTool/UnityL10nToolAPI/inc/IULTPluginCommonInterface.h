@@ -1,4 +1,5 @@
 #pragma once
+using namespace std;
 #include <map>
 #include <algorithm>
 #include "json/json.h"
@@ -16,6 +17,7 @@ struct UnityL10nToolAPI;
 struct FontAssetMap;
 
 struct AssetMapOption {
+public:
 	enum Type
 	{
 		OPTION_TYPE_NONE = 0,
@@ -34,8 +36,8 @@ struct AssetMapOption {
 	Json::Value ToJson() {
 		Json::Value result;
 		Json::Value null_value;
-		result["OptionName"] = WideMultiStringConverter.to_bytes(this->OptionName);
-		result["OptionDescription"] = WideMultiStringConverter.to_bytes(this->OptionDescription);
+		result["OptionName"] = WideMultiStringConverter->to_bytes(this->OptionName);
+		result["OptionDescription"] = WideMultiStringConverter->to_bytes(this->OptionDescription);
 		switch (this->type) {
 		case OPTION_TYPE_NONE:
 			result["type"] = "NONE";
@@ -44,7 +46,7 @@ struct AssetMapOption {
 		case OPTION_TYPE_WSTRING:
 			result["type"] = "WSTRING";
 			if (this->Value) {
-				result["Value"] = WideMultiStringConverter.to_bytes(*(wstring*)this->Value);
+				result["Value"] = WideMultiStringConverter->to_bytes(*(wstring*)this->Value);
 			}
 			else {
 				result["Value"] = null_value;
@@ -85,8 +87,8 @@ struct AssetMapOption {
 			break;
 		case OPTION_TYPE_WSTRING:
 			result["typeAsChild"] = "WSTRING";
-			if (this->Value) {
-				result["ValueAsChild"] = WideMultiStringConverter.to_bytes(*(wstring*)this->ValueAsChild);
+			if (this->ValueAsChild) {
+				result["ValueAsChild"] = WideMultiStringConverter->to_bytes(*(wstring*)this->ValueAsChild);
 			}
 			else {
 				result["ValueAsChild"] = null_value;
@@ -94,7 +96,7 @@ struct AssetMapOption {
 			break;
 		case OPTION_TYPE_INT:
 			result["typeAsChild"] = "INT";
-			if (this->Value) {
+			if (this->ValueAsChild) {
 				result["ValueAsChild"] = *(int*)this->ValueAsChild;
 			}
 			else {
@@ -103,7 +105,7 @@ struct AssetMapOption {
 			break;
 		case OPTION_TYPE_DOUBLE:
 			result["typeAsChild"] = "DOUBLE";
-			if (this->Value) {
+			if (this->ValueAsChild) {
 				result["ValueAsChild"] = *(double*)this->ValueAsChild;
 			}
 			else {
@@ -112,7 +114,7 @@ struct AssetMapOption {
 			break;
 		case OPTION_TYPE_BOOL:
 			result["typeAsChild"] = "BOOL";
-			if (this->Value) {
+			if (this->ValueAsChild) {
 				result["ValueAsChild"] = *(bool*)this->ValueAsChild;
 			}
 			else {
@@ -121,17 +123,20 @@ struct AssetMapOption {
 			break;
 		}
 		for (vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin();
-			iterator != this->nestedOptions.end(); iterator) {
-			result["nestedOptions"].append(iterator->ToJson());
+			iterator != this->nestedOptions.end(); iterator++) {
+			//if (!(iterator->Value == NULL && iterator->ValueAsChild == NULL)) {
+			if (!(iterator->Value == NULL)) {
+				result["nestedOptions"].append(iterator->ToJson());
+			}
 		}
 		return result;
 	}
 	AssetMapOption() {}
-	AssetMapOption(wstring OptionName, wstring OptionDescription, void* Value, void* ValueAsChild, Type type, Type typeAsChild)
-		:OptionName(OptionName), OptionDescription(OptionDescription), Value(Value), ValueAsChild(ValueAsChild), type(type), typeAsChild(typeAsChild) {}
+	AssetMapOption(wstring OptionName, wstring OptionDescription, void* Value, void* ValueAsChild, Type type, Type typeAsChild, vector<AssetMapOption> nestedOptions)
+		:OptionName(OptionName), OptionDescription(OptionDescription), Value(Value), ValueAsChild(ValueAsChild), type(type), typeAsChild(typeAsChild), nestedOptions(nestedOptions) {}
 	AssetMapOption(Json::Value json) {
-		this->OptionName = WideMultiStringConverter.from_bytes(json["OptionName"].asString());
-		this->OptionDescription = WideMultiStringConverter.from_bytes(json["OptionDescription"].asString());
+		this->OptionName = WideMultiStringConverter->from_bytes(json["OptionName"].asString());
+		this->OptionDescription = WideMultiStringConverter->from_bytes(json["OptionDescription"].asString());
 		string tempType = json["type"].asString();
 		if (tempType == "NONE") {
 			this->type = OPTION_TYPE_NONE;
@@ -139,7 +144,7 @@ struct AssetMapOption {
 		else if (tempType == "WSTRING") {
 			this->type = OPTION_TYPE_WSTRING;
 			if (!json["Value"].isNull()) {
-				this->Value = new wstring(WideMultiStringConverter.from_bytes(json["Value"].asString()));
+				this->Value = new wstring(WideMultiStringConverter->from_bytes(json["Value"].asString()));
 			}
 		}
 		else if (tempType == "INT") {
@@ -170,7 +175,7 @@ struct AssetMapOption {
 		else if (tempTypeAsChild == "WSTRING") {
 			this->typeAsChild = OPTION_TYPE_WSTRING;
 			if (!json["ValueAsChild"].isNull()) {
-				this->ValueAsChild = new wstring(WideMultiStringConverter.from_bytes(json["ValueAsChild"].asString()));
+				this->ValueAsChild = new wstring(WideMultiStringConverter->from_bytes(json["ValueAsChild"].asString()));
 			}
 		}
 		else if (tempTypeAsChild == "INT") {

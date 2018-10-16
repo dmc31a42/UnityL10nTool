@@ -121,14 +121,14 @@
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}" SelectedCellsChanged="InteractWithTextAssetDataGridNews_SelectedCellsChanged">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding Value.assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding Value.assetName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding Value.containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <DataGrid x:Name="InteractWithTextAssetDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" >
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" GotFocus="InteractWithTextAssetDataGridSaveds_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
@@ -137,7 +137,7 @@
                                         </DataGrid>
                                     </Grid>
                                     <Grid Grid.Row="1">
-                                        <StackPanel Orientation="Horizontal" DataContext="{Binding Path=SelectedItem.Value}">
+                                        <StackPanel Orientation="Horizontal" DataContext="{Binding Path=SelectedItem}">
                                             <Label Content="Assets Name: " />
                                             <Label Content="{Binding assetsName}"/>
                                             <Label Content=", Asset Name: "/>
@@ -154,7 +154,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBox Grid.Column="0" Text="{Binding Key, Mode=OneWay}" IsReadOnly="True" 
+                                        <TextBox Grid.Column="0" Text="{Binding OriginalText, Mode=OneWay}" IsReadOnly="True" 
                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                  ScrollViewer.CanContentScroll="True"/>
@@ -171,11 +171,12 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>
-                                    <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding SelectedItem.Value}" DataContextChanged="Grid_DataContextChanged" >
+                                    <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding SelectedItem}" DataContextChanged="Grid_DataContextChanged" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition />
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                                             <Label Content="Plugin:"/>
@@ -192,6 +193,7 @@
                                             <Button x:Name="LanguagePairDicsRemove" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemove_Click"/>
                                         </Grid>
                                         <local:InteractWithTextAssetProperties Grid.Row="2" x:Name="interactWithTextAssetProperties"  DataContext="{Binding Path=SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithTextAssetProperties_OptionChanged"/>
+                                        <Button Grid.Row="4" x:Name="AddToInteractWithFileAssetEditButton" Content="Add" Click="AddToInteractWithFileAssetEditButton_Click"/>
                                     </Grid>
                                 </Grid>
 

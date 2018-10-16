@@ -64,6 +64,7 @@ class UnityL10nToolCpp
 #pragma region TextPlugin member
 	TextAssetMaps TextAssetMapsGlobal;
 	map<wstring, HINSTANCE> TextplugInMap;
+	vector<wstring> TextPluginNames;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithAssetMap;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithFileTextMap;
 #pragma endregion
@@ -86,6 +87,7 @@ public:
 	vector<wstring> GetInteractWithAssetPluginNames();
 	vector<wstring> GetInteractWithFileTextPluginNames();
 	TextAssetMaps GetTextAssetMaps();
+	bool SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap::ToWhere toWhere);
 	//vector<wstring> GetTextPluginNameInteractWithAssetList();
 	//vector<wstring> GetTextPluginNameInteractWithFileTextList();
 	//vector<wstring> GetTextPluginNameInteractWithMonoAssetList();

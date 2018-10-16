@@ -15,8 +15,8 @@
 
 using namespace std;
 
-std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverter = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>();
-Json::Reader JsonReader = Json::Reader();
+//WideMultiStringConverter = &(std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>());
+//JsonReader = &(Json::Reader());
 
 UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 {
@@ -39,11 +39,11 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 
 	UnityL10nToolProjectInfoGlobal.JSONPath = ProjectJsonFolderPath + L"setting.json";
 	string projectJsonStr = readFile2(UnityL10nToolProjectInfoGlobal.JSONPath);
-	JsonReader.parse(projectJsonStr, projectJson);
-	UnityL10nToolProjectInfoGlobal.GameName = WideMultiStringConverter.from_bytes(projectJson["GameName"].asString());
-	UnityL10nToolProjectInfoGlobal.MakerName = WideMultiStringConverter.from_bytes(projectJson["MakerName"].asString());
-	UnityL10nToolProjectInfoGlobal.GamePath = MakeSureBackslashEndOfFolderPath(WideMultiStringConverter.from_bytes(projectJson["GamePath"].asString()));
-	UnityL10nToolProjectInfoGlobal.DataFolderName = WideMultiStringConverter.from_bytes(projectJson["DataFolderName"].asString());
+	JsonReader->parse(projectJsonStr, projectJson);
+	UnityL10nToolProjectInfoGlobal.GameName = WideMultiStringConverter->from_bytes(projectJson["GameName"].asString());
+	UnityL10nToolProjectInfoGlobal.MakerName = WideMultiStringConverter->from_bytes(projectJson["MakerName"].asString());
+	UnityL10nToolProjectInfoGlobal.GamePath = MakeSureBackslashEndOfFolderPath(WideMultiStringConverter->from_bytes(projectJson["GamePath"].asString()));
+	UnityL10nToolProjectInfoGlobal.DataFolderName = WideMultiStringConverter->from_bytes(projectJson["DataFolderName"].asString());
 	
 	if (DetermineProjectGamePath(
 		UnityL10nToolProjectInfoGlobal.GamePath,
@@ -57,7 +57,7 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 		}
 		else {
 			UnityL10nToolProjectInfoGlobal.GamePath = tempGamePath;
-			projectJson["GamePath"] = WideMultiStringConverter.to_bytes(tempGamePath);
+			projectJson["GamePath"] = WideMultiStringConverter->to_bytes(tempGamePath);
 		}
 	}
 	GameFolderPath = UnityL10nToolProjectInfoGlobal.GamePath;
@@ -82,7 +82,7 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 	if (iterator == FindAssetsFilesFromAssetsName.end()) {
 		string assetsFilePath = assetsFileName;
 		ReplaceAll(assetsFilePath, "library/", "resources/");
-		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((GameFolderPath + WideMultiStringConverter.from_bytes(assetsFilePath)).c_str(), true, RWOpenFlags_None);
+		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((GameFolderPath + WideMultiStringConverter->from_bytes(assetsFilePath)).c_str(), true, RWOpenFlags_None);
 		AssetsFile* assetsFile = new AssetsFile(assetsReader);
 		AssetsFileTable* assetsFileTable = new AssetsFileTable(assetsFile);
 		assetsFileTable->GenerateQuickLookupTree();
@@ -118,7 +118,7 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 }
 
 bool UnityL10nToolCpp::LoadBasicClassDatabase() {
-	wstring filter = L"ClassDatabase\\U" + WideMultiStringConverter.from_bytes(versionFirstTwoNumbers) + L".*.dat";
+	wstring filter = L"ClassDatabase\\U" + WideMultiStringConverter->from_bytes(versionFirstTwoNumbers) + L".*.dat";
 	vector<wstring> classDatabasePathList = get_all_files_names_within_folder(filter);
 	wstring classDatabaseFileName = classDatabasePathList[0];
 	IAssetsReader* classDatabaseReader = Create_AssetsReaderFromFile((L"ClassDatabase\\" + classDatabaseFileName).c_str(), true, RWOpenFlags_None);
@@ -161,7 +161,7 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 		if (classId == ResourceManagerClassId) {
 			//assetFileInfoEx.absolutePos
 			ResourceManagerFileGlobal = new ResourceManagerFile();
-			std::ifstream ifsGlobalgamemanagers(GameFolderPath + WideMultiStringConverter.from_bytes(globalgamemanagersName), std::ios::binary | std::ios::ate);
+			std::ifstream ifsGlobalgamemanagers(GameFolderPath + WideMultiStringConverter->from_bytes(globalgamemanagersName), std::ios::binary | std::ios::ate);
 			ifsGlobalgamemanagers.seekg(assetFileInfoEx->absolutePos, std::ios::beg);
 
 			std::vector<char> resourceManagerBuffer(assetFileInfoEx->curFileSize);
@@ -305,7 +305,7 @@ bool UnityL10nToolCpp::LoadMonoClassDatabase() {
 	wstring TypeTreeGeneratorParams;
 	for (vector<string>::iterator iterator = AssemblyNames.begin(); iterator != AssemblyNames.end(); iterator++) {
 		if (!(iterator->empty())) {
-			TypeTreeGeneratorParams += L"-f \"" + GameFolderPath + L"Managed\\" + WideMultiStringConverter.from_bytes(*iterator) + L"\" ";
+			TypeTreeGeneratorParams += L"-f \"" + GameFolderPath + L"Managed\\" + WideMultiStringConverter->from_bytes(*iterator) + L"\" ";
 		}
 	}
 	//TypeTreeGeneratorParams += " 2>&1 > baseList.txt";
@@ -401,7 +401,7 @@ vector<wstring> UnityL10nToolCpp::LoadFontPlugins() {
 					FontPluginInfoMap.insert(pair<wstring, FontPluginInfo*>(fontPluginInfo->FontPluginName, fontPluginInfo));
 					wstring pluginName = fontPluginInfo->FontPluginName;
 					pluginLoadedList.push_back(pluginName);
-					string pluginNameA = WideMultiStringConverter.to_bytes(pluginName);
+					string pluginNameA = WideMultiStringConverter->to_bytes(pluginName);
 					if (projectJson["FontPlugin"].isMember(pluginNameA)) {
 						fontPluginInfo->SetProjectConfigJson(projectJson["FontPlugin"][pluginNameA]);
 					}
@@ -450,7 +450,7 @@ bool UnityL10nToolCpp::LoadTextPlugins()
 				TextPluginInfo* textPluginInfo = new TextPluginInfo();
 				bool result = getTextPluginInfoCallback(textPluginInfo);
 				if (result) {
-					if (textPluginInfo->GetOriginalMapFromText && textPluginInfo->GetTranslatedTextFromMap) {
+					if (textPluginInfo->GetOriginalMapFromText /*&& textPluginInfo->GetTranslatedTextFromMap*/) {
 						TextPluginInfoInteractWithAssetMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
 					} else if (textPluginInfo->GetUpdateFileTextFromMap && textPluginInfo->GetTranslatedMapFromFileText) {
 						TextPluginInfoInteractWithFileTextMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
@@ -459,6 +459,7 @@ bool UnityL10nToolCpp::LoadTextPlugins()
 						FreeLibrary(PluginHInstance);
 						continue;
 					}
+					TextPluginNames.push_back(textPluginInfo->TextPluginName);
 					TextplugInMap.insert(pair<wstring, HINSTANCE>(textPluginInfo->TextPluginName, PluginHInstance));
 				}
 				else {
@@ -498,7 +499,6 @@ vector<wstring> UnityL10nToolCpp::GetInteractWithFileTextPluginNames()
 
 TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 {
-	vector<TextAssetMap> textAssetMaps;
 	string className = "TextAsset";
 	ClassDatabaseType textAssetCDT = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName[className]];
 	int TextAssetClassId = textAssetCDT.classId;
@@ -506,7 +506,7 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 		itrAssetsFileTable != FindAssetsFileTablesFromAssetsName.end(); itrAssetsFileTable++) {
 		AssetsFileTable* assetsFileTable = itrAssetsFileTable->second;
 		AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
-		wstring assetsName = WideMultiStringConverter.from_bytes(itrAssetsFileTable->first);
+		wstring assetsName = WideMultiStringConverter->from_bytes(itrAssetsFileTable->first);
 		INT32 FileID = distance(AssetsFileNames.begin(), find(AssetsFileNames.begin(), AssetsFileNames.end(), string(itrAssetsFileTable->first)));
 		if (FileID != AssetsFileNames.size()) {
 			for (unsigned int i = 0; i < assetsFileTable->assetFileInfoCount; i++) {
@@ -522,7 +522,7 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 					if (FileIDIterator != FindPathIDOfContainerPathFromAssetsName.end()) {
 						map<pair<INT32, INT64>, string>::iterator containerPathItr = FindContainerPathFromFileIDPathID.find(pair<INT32, INT64>(FileIDIterator->second, PathID));
 						if (containerPathItr != FindContainerPathFromFileIDPathID.end()) {
-							containerPath = WideMultiStringConverter.from_bytes(containerPathItr->second);
+							containerPath = WideMultiStringConverter->from_bytes(containerPathItr->second);
 						}
 					}
 					AssetTypeInstance* assetTypeInstance
@@ -530,7 +530,7 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 					AssetTypeValueField* pbase = assetTypeInstance->GetBaseField();
 					wstring m_Script;
 					if (pbase) {
-						m_Script = WideMultiStringConverter.from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+						m_Script = WideMultiStringConverter->from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
 					}
 					TextAssetMap textAssetMap;
 					textAssetMap.assetsName = assetsName;
@@ -538,7 +538,7 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 					textAssetMap.containerPath = containerPath;
 					textAssetMap.useContainerPath = false;
 					textAssetMap.OriginalText = m_Script;
-					textAssetMaps.push_back(textAssetMap);
+					TextAssetMapsGlobal.InteractWithAssetNews.push_back(textAssetMap);
 				}
 			}
 		}
@@ -549,30 +549,108 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 		TextAssetMaps textAssetMapsLocal = TextAssetMaps(TextAssetMapsProjectJson);
 		for (vector<TextAssetMap>::iterator iterator = textAssetMapsLocal.InteractWithFileTextNews.begin();
 			iterator != textAssetMapsLocal.InteractWithFileTextNews.end(); iterator++) {
-			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
-				iterator != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+				iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); textAssetMapItr++) {
 				if (iterator->assetsName == textAssetMapItr->assetsName &&
 					iterator->assetName == textAssetMapItr->assetName &&
 					iterator->containerPath == textAssetMapItr->containerPath) {
-					textAssetMapItr->languagePairDics = iterator->languagePairDics;
-					break;
+					map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithAssetItr = TextPluginInfoInteractWithAssetMap.find(iterator->InteractWithAssetPluginName);
+					if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end()) {
+						iterator->OriginalText = textAssetMapItr->OriginalText;
+						TextAssetMapsGlobal.InteractWithFileTextNews.push_back(*iterator);
+						TextAssetMapsGlobal.InteractWithAssetNews.erase(textAssetMapItr);
+						break;
+					}
+					else {
+						break;
+					}
 				}
 			}
 		}
 		for (vector<TextAssetMap>::iterator iterator = textAssetMapsLocal.Done.begin();
 			iterator != textAssetMapsLocal.Done.end(); iterator++) {
-			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
-				iterator != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+				iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); textAssetMapItr++) {
 				if (iterator->assetsName == textAssetMapItr->assetsName &&
 					iterator->assetName == textAssetMapItr->assetName &&
 					iterator->containerPath == textAssetMapItr->containerPath) {
-					textAssetMapItr->languagePairDics = iterator->languagePairDics;
-					break;
+					vector<wstring>::const_iterator InteractWithAssetPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithAssetPluginName);
+					vector<wstring>::const_iterator InteractWithFileTextPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithFileTextPluginName);
+					map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithAssetItr = TextPluginInfoInteractWithAssetMap.find(iterator->InteractWithAssetPluginName);
+					map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithFileTextItr = TextPluginInfoInteractWithFileTextMap.find(iterator->InteractWithFileTextPluginName);
+					if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end() &&
+						textPluginInfoInteractWithFileTextItr != TextPluginInfoInteractWithFileTextMap.end()) {
+						iterator->OriginalText = textAssetMapItr->OriginalText;
+						TextAssetMapsGlobal.Done.push_back(*iterator);
+						TextAssetMapsGlobal.InteractWithAssetNews.erase(textAssetMapItr);
+						break;
+					}
+					else {
+						break;
+					}
 				}
 			}
 		}
 	}
 	return TextAssetMapsGlobal;
+}
+
+bool UnityL10nToolCpp::SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap::ToWhere toWhere)
+{
+	vector<TextAssetMap>* InteractWithAssetNewsPtr = &(TextAssetMapsGlobal.InteractWithAssetNews);
+	vector<TextAssetMap>* InteractWithFileTextNewsPtr = &(TextAssetMapsGlobal.InteractWithFileTextNews);
+	//vector<TextAssetMap>* InteractWithMonoAssetNewsPtr = &(TextAssetMapsGlobal.InteractWithMonoAssetNews);
+	vector<TextAssetMap>* DonePtr = &(TextAssetMapsGlobal.Done);
+	vector< vector<TextAssetMap>*> vectorPtrs;
+	vector<TextAssetMap>* targetPtrs;
+	switch (toWhere) {
+	case TextAssetMap::ToWhere::ToInteractWithAsset:
+		targetPtrs = InteractWithAssetNewsPtr;
+		//vectorPtrs.push_back(InteractWithAssetNewsPtr);
+		vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+		//vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+		vectorPtrs.push_back(DonePtr);
+		break;
+	case TextAssetMap::ToWhere::ToInteractWithFileText:
+		targetPtrs = InteractWithFileTextNewsPtr;
+		vectorPtrs.push_back(InteractWithAssetNewsPtr);
+		//vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+		//vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+		vectorPtrs.push_back(DonePtr);
+		break;
+	/*case TextAssetMap::ToWhere::ToInteractWithMonoAsset:
+	targetPtrs
+		vectorPtrs.push_back(InteractWithAssetNewsPtr);
+		vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+		vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+		vectorPtrs.push_back(DonePtr);
+		break;*/
+	case TextAssetMap::ToWhere::ToDone:
+		targetPtrs = DonePtr;
+		vectorPtrs.push_back(InteractWithAssetNewsPtr);
+		vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+		//vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+		//vectorPtrs.push_back(DonePtr);
+		break;
+	}
+	for (vector<TextAssetMap>::iterator iterator = targetPtrs->begin();
+		iterator != targetPtrs->end(); iterator++) {
+		if (TextAssetMap::LooseCompare(textAssetMap, *iterator)) {
+			return true;
+		}
+	}
+	for (vector<vector<TextAssetMap>*>::iterator vectorPtr = vectorPtrs.begin();
+		vectorPtr != vectorPtrs.end(); vectorPtr++) {
+		for (vector<TextAssetMap>::iterator textAssetMapPtr = (*vectorPtr)->begin();
+			textAssetMapPtr != (*vectorPtr)->end(); textAssetMapPtr++) {
+			if (TextAssetMap::LooseCompare(textAssetMap, *textAssetMapPtr)) {
+				(*vectorPtr)->erase(textAssetMapPtr);
+				targetPtrs->push_back(textAssetMap);
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
@@ -594,7 +672,7 @@ bool UnityL10nToolCpp::GetProjectConfigJsonFromFontPlugin()
 		iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
 		Json::Value fontAssetPluginProjectConfigJson = fontPluginInfo->GetProjectConfigJson();
-		projectJson["FontPlugin"][WideMultiStringConverter.to_bytes(iterator->first)] = fontAssetPluginProjectConfigJson;
+		projectJson["FontPlugin"][WideMultiStringConverter->to_bytes(iterator->first)] = fontAssetPluginProjectConfigJson;
 	}
 	return true;
 }
@@ -611,7 +689,7 @@ bool UnityL10nToolCpp::SaveProjectConfigJson() {
 	wof.clear();
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 	wof.open(UnityL10nToolProjectInfoGlobal.JSONPath);
-	wof << WideMultiStringConverter.from_bytes(projectJson.toStyledString());
+	wof << WideMultiStringConverter->from_bytes(projectJson.toStyledString());
 	wof.close();
 	return true;
 }
@@ -627,7 +705,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	wof.clear();
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 	wof.open(buildTargetFolder + L"setting.json");
-	wof << WideMultiStringConverter.from_bytes(patcherJson.toStyledString());
+	wof << WideMultiStringConverter->from_bytes(patcherJson.toStyledString());
 	wof.close();
 
 	CopyDirTo(CurrentDirectory + L"PatcherLibs\\", buildTargetFolder + L"");
@@ -656,15 +734,15 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 
 Json::Value UnityL10nToolCpp::GetPacherConfigJson() {
 	Json::Value patcherConfigJson;
-	patcherConfigJson["GameName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.GameName);
-	patcherConfigJson["MakerName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.MakerName);
-	patcherConfigJson["DataFolderName"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.DataFolderName);
-	patcherConfigJson["GamePath"] = WideMultiStringConverter.to_bytes(UnityL10nToolProjectInfoGlobal.GamePath);
+	patcherConfigJson["GameName"] = WideMultiStringConverter->to_bytes(UnityL10nToolProjectInfoGlobal.GameName);
+	patcherConfigJson["MakerName"] = WideMultiStringConverter->to_bytes(UnityL10nToolProjectInfoGlobal.MakerName);
+	patcherConfigJson["DataFolderName"] = WideMultiStringConverter->to_bytes(UnityL10nToolProjectInfoGlobal.DataFolderName);
+	patcherConfigJson["GamePath"] = WideMultiStringConverter->to_bytes(UnityL10nToolProjectInfoGlobal.GamePath);
 	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
 		iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
 		Json::Value fontAssetPluginPatcherConfigJson = fontPluginInfo->GetPacherConfigJson();
-		patcherConfigJson["FontPlugin"][WideMultiStringConverter.to_bytes(iterator->first)] = fontAssetPluginPatcherConfigJson;
+		patcherConfigJson["FontPlugin"][WideMultiStringConverter->to_bytes(iterator->first)] = fontAssetPluginPatcherConfigJson;
 	}
 	return patcherConfigJson;
 }
@@ -674,7 +752,7 @@ bool UnityL10nToolCpp::SetPacherConfigJson()
 	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
 		iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
-		string pluginNameA = WideMultiStringConverter.to_bytes(fontPluginInfo->FontPluginName);
+		string pluginNameA = WideMultiStringConverter->to_bytes(fontPluginInfo->FontPluginName);
 		if (projectJson["FontPlugin"].isMember(pluginNameA)) {
 			fontPluginInfo->SetPacherConfigJson(projectJson["FontPlugin"][pluginNameA]);
 		}
@@ -708,7 +786,7 @@ bool UnityL10nToolCpp::MakeModifiedAssetsFile() {
 		vector<AssetsReplacer*> assetsReplacers = iterator->second;
 		AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[key];
 		if (assetsReplacers.size() > 0) {
-			wstring fullPath = GameFolderPath + WideMultiStringConverter.from_bytes(key);
+			wstring fullPath = GameFolderPath + WideMultiStringConverter->from_bytes(key);
 			IAssetsWriter* assetsWriter = Create_AssetsWriterToFile((fullPath + L".mod").c_str(), true, true, RWOpenFlags_None);
 			assetsFileTable->getAssetsFile()->Write(assetsWriter, 0, assetsReplacers.data(), assetsReplacers.size(), 0);
 			assetsFileTable->getReader()->Close();
@@ -794,7 +872,7 @@ wstring FindUnityGameFolderFromDataFolderNameInternal2(wstring path, wstring Gam
 	HANDLE hFindAppInfo = ::FindFirstFileW((path + L"app.info").c_str(), &fdAppInfo);
 	if (hFindAppInfo != INVALID_HANDLE_VALUE) {
 		string str = readFile2(path + L"app.info");
-		wstring wstr = WideMultiStringConverter.from_bytes(str);
+		wstring wstr = WideMultiStringConverter->from_bytes(str);
 		int index = wstr.find('\n');
 		if (index != -1) {
 			wstring tempMakerName = wstr.substr(0, index);
@@ -904,7 +982,7 @@ wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
 //	INT64 PathID;
 //	if (textAssetMap.useContainerPath) {
 //		map<string, pair<INT32, INT64>>::iterator FileIDPathIDiterator
-//			= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter.to_bytes(textAssetMap.containerPath));
+//			= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter->to_bytes(textAssetMap.containerPath));
 //		if (FileIDPathIDiterator != FindFileIDPathIDFromContainerPath.end()) {
 //			INT32 FileIDOfContainerPath = FileIDPathIDiterator->second.first;
 //			PathID = FileIDPathIDiterator->second.second;
@@ -931,10 +1009,10 @@ wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
 //	}
 //	else {
 //		map<string, AssetsFileTable*>::iterator assetsFileTableIterator
-//			= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter.to_bytes(textAssetMap.assetsName));
+//			= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter->to_bytes(textAssetMap.assetsName));
 //		if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
 //			assetsFileTable = assetsFileTableIterator->second;
-//			PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter.to_bytes(textAssetMap.assetName));
+//			PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter->to_bytes(textAssetMap.assetName));
 //			if (PathID == -1) {
 //				throw new exception("PathID == -1");
 //			}
@@ -954,7 +1032,7 @@ wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
 //	}
 //	AssetTypeValueField* pbase = assetTypeInstance->GetBaseField();
 //	if (pbase) {
-//		wstring m_Script = WideMultiStringConverter.from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+//		wstring m_Script = WideMultiStringConverter->from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
 //		return m_Script;
 //	}
 //	else {

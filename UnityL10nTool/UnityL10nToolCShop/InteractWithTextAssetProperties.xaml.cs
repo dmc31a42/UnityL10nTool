@@ -363,9 +363,9 @@ namespace UnityL10nToolCShop
         {
             if(sender is Grid grid)
             {
-                if(grid.DataContext is LanguagePairDicCLI languagePairDicCLI)
+                PropertiesStackPanel.Children.Clear();
+                if (grid.DataContext is LanguagePairDicCLI languagePairDicCLI)
                 {
-                    PropertiesStackPanel.Children.Clear();
                     //foreach(AssetMapOptionCLI assetMapOptionCLI in languagePairDicCLI.InteractWithFileTextOptions)
                     //{
                     //    SetPropertyControlRecursive(ref assetMapOptionCLI);

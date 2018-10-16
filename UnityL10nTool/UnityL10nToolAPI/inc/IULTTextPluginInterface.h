@@ -1,10 +1,11 @@
 #pragma once
+using namespace std;
 #include <string>
 #include <vector>
 #include <map>
 
 #include "IULTPluginCommonInterface.h"
-using namespace std;
+
 
 struct LanguagePair {
 	wstring Original;
@@ -15,7 +16,7 @@ Otherwise set key to "" (empty wstring) */
 struct LanguagePairDic {
 public:
 	map<wstring, LanguagePair> Dic;
-	map<wstring, wstring> TranslatedText;
+	wstring TranslatedText;
 	vector<AssetMapOption> InteractWithAssetOptions;
 	vector<AssetMapOption> InteractWithFileTextOptions;
 	Json::Value ToJSON() {
@@ -49,6 +50,12 @@ public:
 typedef map<wstring, LanguagePairDic> LanguagePairDics;
 
 struct TextAssetMap {
+	enum ToWhere {
+		ToInteractWithAsset = 1,
+		ToInteractWithFileText = 2,
+		ToInteractWithMonoAsset = 3,
+		ToDone = 4,
+	};
 	wstring assetsName;
 	wstring assetName;
 	wstring containerPath;
@@ -60,36 +67,46 @@ struct TextAssetMap {
 	LanguagePairDics languagePairDics;
 	Json::Value ToJSON() {
 		Json::Value result;
-		result["assetsName"] = WideMultiStringConverter.to_bytes(this->assetsName);
-		result["assetName"] = WideMultiStringConverter.to_bytes(this->assetName);
-		result["containerPath"] = WideMultiStringConverter.to_bytes(this->containerPath);
-		result["InteractWithAssetPluginName"] = WideMultiStringConverter.to_bytes(this->InteractWithAssetPluginName);
-		result["InteractWithFileTextPluginName"] = WideMultiStringConverter.to_bytes(this->InteractWithFileTextPluginName);
-		result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter.to_bytes(this->InteractWithMonoAssetPluginName);
+		result["assetsName"] = WideMultiStringConverter->to_bytes(this->assetsName);
+		result["assetName"] = WideMultiStringConverter->to_bytes(this->assetName);
+		result["containerPath"] = WideMultiStringConverter->to_bytes(this->containerPath);
+		result["InteractWithAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithAssetPluginName);
+		result["InteractWithFileTextPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithFileTextPluginName);
+		result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithMonoAssetPluginName);
 		result["useContainerPath"] = this->useContainerPath;
 		for (LanguagePairDics::iterator iterator = this->languagePairDics.begin();
 			iterator != this->languagePairDics.end(); iterator++) {
-			result["languagePairDics"][WideMultiStringConverter.to_bytes(iterator->first)] = iterator->second.ToJSON();
+			result["languagePairDics"][WideMultiStringConverter->to_bytes(iterator->first)] = iterator->second.ToJSON();
 		}
 		return result;
 	}
 	TextAssetMap() {}
 	TextAssetMap(Json::Value json) {
-		this->assetsName = WideMultiStringConverter.from_bytes(json["assetsName"].asString());
-		this->assetName = WideMultiStringConverter.from_bytes(json["assetName"].asString());
-		this->containerPath = WideMultiStringConverter.from_bytes(json["containerPath"].asString());
-		this->InteractWithAssetPluginName = WideMultiStringConverter.from_bytes(json["InteractWithAssetPluginName"].asString());
-		this->InteractWithFileTextPluginName = WideMultiStringConverter.from_bytes(json["InteractWithFileTextPluginName"].asString());
-		this->InteractWithMonoAssetPluginName = WideMultiStringConverter.from_bytes(json["InteractWithMonoAssetPluginName"].asString());
+		this->assetsName = WideMultiStringConverter->from_bytes(json["assetsName"].asString());
+		this->assetName = WideMultiStringConverter->from_bytes(json["assetName"].asString());
+		this->containerPath = WideMultiStringConverter->from_bytes(json["containerPath"].asString());
+		this->InteractWithAssetPluginName = WideMultiStringConverter->from_bytes(json["InteractWithAssetPluginName"].asString());
+		this->InteractWithFileTextPluginName = WideMultiStringConverter->from_bytes(json["InteractWithFileTextPluginName"].asString());
+		this->InteractWithMonoAssetPluginName = WideMultiStringConverter->from_bytes(json["InteractWithMonoAssetPluginName"].asString());
 		this->useContainerPath = json["useContainerPath"].asBool();
 		Json::Value languagePairDicsJson = json["languagePairDics"];
 		vector<string> languagePairDicsJsonKeys = languagePairDicsJson.getMemberNames();
 		for (vector<string>::iterator iterator = languagePairDicsJsonKeys.begin();
 			iterator != languagePairDicsJsonKeys.end(); iterator++) {
 			this->languagePairDics.insert(pair<wstring, LanguagePairDic>(
-				WideMultiStringConverter.from_bytes(*iterator),
+				WideMultiStringConverter->from_bytes(*iterator),
 				LanguagePairDic(languagePairDicsJson[*iterator])
 				));
+		}
+	}
+	static bool LooseCompare(TextAssetMap tam1, TextAssetMap tam2) {
+		if (tam1.assetsName == tam2.assetsName &&
+			tam1.assetName == tam2.assetName &&
+			tam1.containerPath == tam2.containerPath) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 };

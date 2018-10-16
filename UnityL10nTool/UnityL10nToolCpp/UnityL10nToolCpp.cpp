@@ -15,8 +15,13 @@
 
 using namespace std;
 
+std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverter = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>();
+Json::Reader JsonReader = Json::Reader();
+
 UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 {
+	
+
 	FirstAssetsFileName = "globalgamemanagers";
 	ProjectJsonFolderPath = MakeSureBackslashEndOfFolderPath(projectJsonFolderPath);
 	
@@ -491,7 +496,6 @@ vector<wstring> UnityL10nToolCpp::GetInteractWithFileTextPluginNames()
 	return results;
 }
 
-TextAssetMap GetTextAssetMapsInteranl_LoadFromJson(TextAssetMap textAssetMap, Json::Value textAssetMapJson);
 TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 {
 	vector<TextAssetMap> textAssetMaps;
@@ -539,52 +543,36 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 			}
 		}
 	}
-	GetPacherConfigJson();
+	//GetPacherConfigJson();
 	if (projectJson.isMember("TextPlugin")) {
 		Json::Value TextAssetMapsProjectJson = projectJson["TextPlugin"];
-		map<string, vector<TextAssetMap>*> textAssetMapsPtr;
-		if (TextAssetMapsProjectJson.isMember("InteractWithFileTextNews")) {
-			textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("InteractWithFileTextNews"), &(TextAssetMapsGlobal.InteractWithAssetNews)));
-		}
-		if (TextAssetMapsProjectJson.isMember("Done")) {
-			textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("Done"), &(TextAssetMapsGlobal.Done)));
-		}
-		for (map<string, vector<TextAssetMap>*>::iterator iterator = textAssetMapsPtr.begin();
-			iterator != textAssetMapsPtr.end(); iterator++) {
-			Json::Value TextAssetMapsJson = TextAssetMapsProjectJson[iterator->first];
-			if (TextAssetMapsJson.isArray()) {
-				for (Json::ArrayIndex i = 0; i < TextAssetMapsJson.size(); i++) {
-					Json::Value TextAssetMapJson = TextAssetMapsJson[i];
-					if (TextAssetMapJson.isMember("assetsName") && TextAssetMapJson.isMember("assetName") && TextAssetMapJson.isMember("containerPath")) {
-						wstring assetsName = WideMultiStringConverter.from_bytes(TextAssetMapJson["assetsName"].asString());
-						wstring assetName = WideMultiStringConverter.from_bytes(TextAssetMapJson["assetName"].asString());
-						wstring containerPath = WideMultiStringConverter.from_bytes(TextAssetMapJson["containerPath"].asString());
-						// https://stackoverflow.com/questions/4645705/vector-erase-iterator
-						for (vector<TextAssetMap>::iterator textAssetMapIterator = textAssetMaps.begin();
-							textAssetMapIterator != textAssetMaps.end(); textAssetMapIterator++) {
-							if (assetsName == textAssetMapIterator->assetsName &&
-								assetName == textAssetMapIterator->assetName &&
-								containerPath == textAssetMapIterator->containerPath) {
-								TextAssetMap loadedTextAssetMap = GetTextAssetMapsInteranl_LoadFromJson(*textAssetMapIterator, TextAssetMapJson);
-								textAssetMaps.erase(textAssetMapIterator);
-								iterator->second->push_back(loadedTextAssetMap);
-								break;
-							}
-						}
-					}
+		TextAssetMaps textAssetMapsLocal = TextAssetMaps(TextAssetMapsProjectJson);
+		for (vector<TextAssetMap>::iterator iterator = textAssetMapsLocal.InteractWithFileTextNews.begin();
+			iterator != textAssetMapsLocal.InteractWithFileTextNews.end(); iterator++) {
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
+				iterator != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+				if (iterator->assetsName == textAssetMapItr->assetsName &&
+					iterator->assetName == textAssetMapItr->assetName &&
+					iterator->containerPath == textAssetMapItr->containerPath) {
+					textAssetMapItr->languagePairDics = iterator->languagePairDics;
+					break;
 				}
 			}
 		}
-		for (vector<TextAssetMap>::iterator iterator = textAssetMaps.begin();
-			iterator != textAssetMaps.end(); iterator++) {
-			TextAssetMapsGlobal.InteractWithAssetNews.push_back(*iterator);
+		for (vector<TextAssetMap>::iterator iterator = textAssetMapsLocal.Done.begin();
+			iterator != textAssetMapsLocal.Done.end(); iterator++) {
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
+				iterator != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
+				if (iterator->assetsName == textAssetMapItr->assetsName &&
+					iterator->assetName == textAssetMapItr->assetName &&
+					iterator->containerPath == textAssetMapItr->containerPath) {
+					textAssetMapItr->languagePairDics = iterator->languagePairDics;
+					break;
+				}
+			}
 		}
 	}
 	return TextAssetMapsGlobal;
-}
-
-TextAssetMap GetTextAssetMapsInteranl_LoadFromJson(TextAssetMap textAssetMap, Json::Value textAssetMapJson) {
-
 }
 
 bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
@@ -611,45 +599,11 @@ bool UnityL10nToolCpp::GetProjectConfigJsonFromFontPlugin()
 	return true;
 }
 
-Json::Value SetTextPluginConfigToJsonValueInternal(TextAssetMap textAssetMap) {
-	Json::Value result;
-	result["assetsName"] = WideMultiStringConverter.to_bytes(textAssetMap.assetsName);
-	result["assetName"] = WideMultiStringConverter.to_bytes(textAssetMap.assetName);
-	result["containerPath"] = WideMultiStringConverter.to_bytes(textAssetMap.assetName);
-	result["useContainerPath"] = textAssetMap.useContainerPath;
-	result["InteractWithAssetPluginName"] = WideMultiStringConverter.to_bytes(textAssetMap.InteractWithAssetPluginName);
-	result["InteractWithFileTextPluginName"] = WideMultiStringConverter.to_bytes(textAssetMap.InteractWithFileTextPluginName);
-	result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter.to_bytes(textAssetMap.InteractWithMonoAssetPluginName);
-	Json::Value LanguagePairDicsJson;
-	for (LanguagePairDics::iterator iterator = textAssetMap.languagePairDics.begin();
-		iterator != textAssetMap.languagePairDics.end(); iterator++) {
-		for (vector<AssetMapOption>::iterator assetMapOptionItr = iterator->second.InteractWithAssetOptions.begin();
-			assetMapOptionItr != iterator->second.InteractWithAssetOptions.end(); assetMapOptionItr++) {
-			Json::Value InteractWithAssetOptionsJson;
-
-			//LanguagePairDicsJson[WideMultiStringConverter.to_bytes(iterator->first)]
-		}
-	}
-}
-
 bool UnityL10nToolCpp::SetTextPluginConfigToJsonValue() {
 	
-	map<string, vector<TextAssetMap>*> textAssetMapsPtr;
-	textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("InteractWithFileTextNews"), &(TextAssetMapsGlobal.InteractWithAssetNews)));
-	textAssetMapsPtr.insert(pair<string, vector<TextAssetMap>*>(string("Done"), &(TextAssetMapsGlobal.Done)));
-	for (map<string, vector<TextAssetMap>*>::iterator iterator = textAssetMapsPtr.begin();
-		iterator != textAssetMapsPtr.end(); iterator++) {
-		Json::Value tempJson;
-		for (vector<TextAssetMap>::iterator textAssetMapIterator = iterator->second->begin();
-			textAssetMapIterator != iterator->second->end(); textAssetMapIterator++) {
-			tempJson.append(SetTextPluginConfigToJsonValueInternal(*textAssetMapIterator));
-		}
-		projectJson["TextPlugin"][iterator->first] = tempJson;
-	}
+	projectJson["TextPlugin"] = TextAssetMapsGlobal.ToJSON();
 	return true;
 }
-
-
 
 // https://sockbandit.wordpress.com/2012/05/31/c-read-and-write-utf-8-file-using-standard-libarary/
 bool UnityL10nToolCpp::SaveProjectConfigJson() {

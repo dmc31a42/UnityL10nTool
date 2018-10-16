@@ -127,6 +127,8 @@ struct AssetMapOption {
 		return result;
 	}
 	AssetMapOption() {}
+	AssetMapOption(wstring OptionName, wstring OptionDescription, void* Value, void* ValueAsChild, Type type, Type typeAsChild)
+		:OptionName(OptionName), OptionDescription(OptionDescription), Value(Value), ValueAsChild(ValueAsChild), type(type), typeAsChild(typeAsChild) {}
 	AssetMapOption(Json::Value json) {
 		this->OptionName = WideMultiStringConverter.from_bytes(json["OptionName"].asString());
 		this->OptionDescription = WideMultiStringConverter.from_bytes(json["OptionDescription"].asString());

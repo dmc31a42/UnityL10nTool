@@ -15,22 +15,7 @@ namespace UnityL10nToolCShop
     /// </summary>
     public partial class InteractWithTextAssetProperties : UserControl
     {
-        //// https://stackoverflow.com/questions/25895011/how-to-add-custom-properties-to-wpf-user-control
-        //public KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLIPair
-        //{
-        //    get { return (KeyValuePair<string, LanguagePairDicCLI>)GetValue(LanguagePairDicCLIPairProperty); }
-        //    set { SetValue(LanguagePairDicCLIPairProperty, value); }
-        //}
-        //// Using a DependencyProperty as the backing store for Property1.  
-        //// This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty LanguagePairDicCLIPairProperty
-        //    = DependencyProperty.Register(
-        //          "LanguagePairDicCLIPair",
-        //          typeof(KeyValuePair<string, LanguagePairDicCLI>),
-        //          typeof(InteractWithTextAssetPropertyies),
-        //          new PropertyMetadata(new KeyValuePair<string, LanguagePairDicCLI>("", new LanguagePairDicCLI()))
-        //      );
-
+        // https://stackoverflow.com/questions/25895011/how-to-add-custom-properties-to-wpf-user-control
         public bool IsReadOnly { get; set; }
         public static readonly DependencyProperty IsReadOnlyProperty
             = DependencyProperty.Register(
@@ -49,10 +34,6 @@ namespace UnityL10nToolCShop
         public void Refresh()
         {
             PropertiesStackPanel.Children.Clear();
-            //foreach(AssetMapOptionCLI assetMapOptionCLI in languagePairDicCLI.InteractWithFileTextOptions)
-            //{
-            //    SetPropertyControlRecursive(ref assetMapOptionCLI);
-            //}
             for (int i = 0; i < LanguagePairDicCLIGlobal.InteractWithAssetOptions.Count; i++)
             {
                 AssetMapOptionCLI child = LanguagePairDicCLIGlobal.InteractWithAssetOptions[i];
@@ -397,10 +378,6 @@ namespace UnityL10nToolCShop
                 PropertiesStackPanel.Children.Clear();
                 if (grid.DataContext is LanguagePairDicCLI languagePairDicCLI)
                 {
-                    //foreach(AssetMapOptionCLI assetMapOptionCLI in languagePairDicCLI.InteractWithFileTextOptions)
-                    //{
-                    //    SetPropertyControlRecursive(ref assetMapOptionCLI);
-                    //}
                     for (int i = 0; i < languagePairDicCLI.InteractWithAssetOptions.Count; i++)
                     {
                         AssetMapOptionCLI child = languagePairDicCLI.InteractWithAssetOptions[i];

@@ -66,10 +66,23 @@ namespace UnityL10nToolCShop
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
-        public class InteractWithMonoTextAssetContext
+        public class InteractWithMonoTextAssetContext: INotifyPropertyChanged
         {
             public ObservableCollection<TextAssetMapCLI> News { get; set; }
             public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            private TextAssetMapCLI _SelectedItem;
+            public TextAssetMapCLI SelectedItem
+            {
+                get
+                {
+                    return _SelectedItem;
+                }
+                set
+                {
+                    _SelectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
             public InteractWithMonoTextAssetContext(ObservableCollection<TextAssetMapCLI> News, ObservableCollection<TextAssetMapCLI> Saveds)
             {
                 if(News == null)
@@ -89,11 +102,30 @@ namespace UnityL10nToolCShop
                 }
                 
             }
+            public event PropertyChangedEventHandler PropertyChanged;
+            // Create the OnPropertyChanged method to raise the event protected 
+            void OnPropertyChanged(string name)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
         public class InteractWithFileTextContext
         {
             public ObservableCollection<TextAssetMapCLI> News { get; set; }
             public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            private TextAssetMapCLI _SelectedItem;
+            public TextAssetMapCLI SelectedItem
+            {
+                get
+                {
+                    return _SelectedItem;
+                }
+                set
+                {
+                    _SelectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
             public InteractWithFileTextContext(ObservableCollection<TextAssetMapCLI> News, ObservableCollection<TextAssetMapCLI> Saveds)
             {
                 if (News == null)
@@ -114,6 +146,12 @@ namespace UnityL10nToolCShop
                     this.Saveds = Saveds;
                 }
 
+            }
+            public event PropertyChangedEventHandler PropertyChanged;
+            // Create the OnPropertyChanged method to raise the event protected 
+            void OnPropertyChanged(string name)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
         public InteractWithTextAssetContext InteractWithTextAsset { get; set; }
@@ -343,82 +381,9 @@ namespace UnityL10nToolCShop
         {
 
         }
-
-        //private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        //{
-        //    if(sender is DataGrid dataGrid)
-        //    {
-        //        if(dataGrid.SelectedItem is TextAssetMapCLI textAssetMapCLI)
-        //        {
-        //            unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
-        //        }
-        //    }
-        //}
-
-        //// deprecated
-        //private void InteractWithAssetCombobox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-            
-        //}
-
-        //private void InteractWithAssetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (sender is ComboBox comboBox)
-        //    {
-        //        if (comboBox.DataContext is TextAssetMapCLI textAssetMapCLI)
-        //        {
-        //            TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
-        //            var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
-        //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
-        //            comboBox.SelectionChanged -= InteractWithAssetCombobox_SelectionChanged;
-        //            textAssetTabControlContext.InteractWithTextAsset.News[i]
-        //                = new KeyValuePair<string, TextAssetMapCLI>(
-        //                    textAssetTabControlContext.InteractWithTextAsset.News[i].Key
-        //                    ,updatedTextAssetMapCLI);
-        //            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
-        //            comboBox.SelectionChanged += InteractWithAssetCombobox_SelectionChanged;
-        //        }
-        //    }
-        //}
-
-        //private void InteractWithTextAssetPropertyies_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-
-        //}
-
-        //private void InteractWithTextAssetPropertyies_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if(sender is InteractWithTextAssetPropertyies interactWithTextAssetPropertyies)
-        //    {
-        //        if(interactWithTextAssetPropertyies.DataContext is TextAssetMapCLI textAssetMapCLI)
-        //        {
-        //            TextAssetMapCLI updatedTextAssetMapCLI = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
-        //            var found = textAssetTabControlContext.InteractWithTextAsset.News.First(x => x.Value == textAssetMapCLI);
-        //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(found);
-        //            textAssetTabControlContext.InteractWithTextAsset.News[i] 
-        //                = new KeyValuePair<string, TextAssetMapCLI>(
-        //                    textAssetTabControlContext.InteractWithTextAsset.News[i].Key
-        //                    , updatedTextAssetMapCLI);
-        //            textAssetTabControlContext.InteractWithTextAsset.SelectedItem = textAssetTabControlContext.InteractWithTextAsset.News[i];
-        //        }
-        //    }
-        //}
-
+        
         private void Grid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            //if (sender is Grid grid)
-            //{
-            //    if (grid.DataContext is KeyValuePair<string, TextAssetMapCLI> textAssetMapCLIPair)
-            //    {
-            //        if(textAssetMapCLIPair.Key != null || textAssetMapCLIPair.Value != null)
-            //        {
-            //            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLIPair.Value);
-            //            int i = textAssetTabControlContext.InteractWithTextAsset.News.IndexOf(textAssetMapCLIPair);
-            //            textAssetTabControlContext.InteractWithTextAsset.News[i] = new KeyValuePair<string, TextAssetMapCLI>(textAssetMapCLIPair.Key, textAssetMapCLILocal);
-            //        }
-
-            //    }
-            //}
             if (e.NewValue != null && e.OldValue != null)
             {
                 TextAssetMapCLI NewPair = (TextAssetMapCLI)e.NewValue;
@@ -678,5 +643,178 @@ namespace UnityL10nToolCShop
                 }
             }
         }
+
+        #region InteractWithFileText
+
+        private void InteractWithFileTextDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (InteractWithFileTextDataGridSaveds.SelectedItem is TextAssetMapCLI textAssetMapCLI)
+            {
+                interactWithTextAssetProperties.IsReadOnly = true;
+                int i = textAssetTabControlContext.InteractWithFileText.Saveds.IndexOf(textAssetMapCLI);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(textAssetMapCLI);
+                textAssetTabControlContext.InteractWithFileText.Saveds.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithFileText.Saveds.RemoveAt(i + 1);
+                AddToDoneEditButton.Content = "Edit";
+                if (textAssetMapCLI.languagePairDics.Count != 0)
+                {
+                    LanguagePairDicsCombobox.SelectedIndex = 0;
+                }
+            }
+        }
+
+        private void InteractWithFileTextSelectedItemGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null && e.OldValue != null)
+            {
+                TextAssetMapCLI NewPair = (TextAssetMapCLI)e.NewValue;
+                TextAssetMapCLI OldPair = (TextAssetMapCLI)e.OldValue;
+                if (NewPair != null && OldPair != null &&
+                    NewPair.assetName == OldPair.assetName &&
+                    NewPair.assetsName == OldPair.assetsName &&
+                    NewPair.containerPath == OldPair.containerPath)
+                {
+                    return;
+                }
+            }
+            if (e.NewValue != null)
+            {
+                TextAssetMapCLI newTAM = (TextAssetMapCLI)e.NewValue;
+                if (!textAssetTabControlContext.InteractWithFileText.News.Contains(newTAM))
+                {
+                    return;
+                }
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(newTAM);
+                TextAssetMapCLI oldTAM = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+                int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(oldTAM);
+                // https://stackoverflow.com/questions/9829969/comboboxs-selecteditem-is-unexpectedly-set-to-null-before-actual-value
+                textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+                //InteractWithTextAssetDataGridNews.SelectedIndex = i;
+                //SelectRowByIndex(InteractWithTextAssetDataGridNews, i);
+            }
+        }
+
+        private void PluginInteractWithFileTextNamesCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0 && e.RemovedItems.Count != 0 && (string)e.AddedItems[0] == (string)e.RemovedItems[0])
+            {
+                return;
+            }
+            TextAssetMapCLI newTAM = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+            if (!textAssetTabControlContext.InteractWithFileText.News.Contains(newTAM))
+            {
+                return;
+            }
+            if (e.AddedItems.Count != 0)
+            {
+                newTAM.InteractWithAssetPluginName = (string)e.AddedItems[0];
+            }
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(newTAM);
+            int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(newTAM);
+            textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+            //InteractWithTextAssetDataGridNews.SelectedIndex = i;
+            //SelectRowByIndex(InteractWithTextAssetDataGridNews, i);
+        }
+
+        private void LanguagePairDicsComboboxOfWithFileText_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox)
+            {
+                if (e.AddedItems.Count == 0 && e.RemovedItems.Count == 1)
+                {
+                    KeyValuePair<string, LanguagePairDicCLI> prevPair = (KeyValuePair<string, LanguagePairDicCLI>)e.RemovedItems[0];
+                    TextAssetMapCLI textAssetMapCLI = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+                    if (textAssetMapCLI.languagePairDics.Count != 0)
+                    {
+                        KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
+                        if (found.Key != null && found.Value != null)
+                        {
+                            comboBox.SelectedItem = found;
+                        }
+                        else
+                        {
+                            comboBox.SelectedItem = textAssetMapCLI.languagePairDics.First();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LanguagePairDicsNewOfWithFileText_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+            if (selectedItem != null)
+            {
+                Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
+                AddNewDics(languagePairDics, languagePairDics.Count);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(selectedItem);
+                int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(selectedItem);
+                textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+            }
+        }
+
+        private void LanguagePairDicsRemoveOfWithFileText_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+            if (selectedItem != null)
+            {
+                Dictionary<string, LanguagePairDicCLI> languagePairDics = selectedItem.languagePairDics;
+                KeyValuePair<string, LanguagePairDicCLI> LanguagePairDicCLISelected = (KeyValuePair<string, LanguagePairDicCLI>)LanguagePairDicsCombobox.SelectedItem;
+                languagePairDics.Remove(LanguagePairDicCLISelected.Key);
+                TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(selectedItem);
+                int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(selectedItem);
+                textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
+                textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+                textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+            }
+        }
+
+        private void interactWithFileTextProperties_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            TextAssetMapCLI NewPair = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(NewPair);
+            int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(NewPair);
+            textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
+            textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
+            textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+        }
+
+        private void AddToDoneEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                if ((string)button.Content == "Add")
+                {
+                    TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithFileText))
+                    {
+                        textAssetTabControlContext.InteractWithFileText.Saveds.Add(selectedItem);
+                        textAssetTabControlContext.InteractWithFileText.News.Remove(selectedItem);
+                        textAssetTabControlContext.InteractWithFileText.SelectedItem = null;
+                    }
+
+                }
+                else
+                {
+                    TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
+                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
+                    {
+                        interactWithTextAssetProperties.IsReadOnly = true;
+                        textAssetTabControlContext.InteractWithFileText.News.Add(selectedItem);
+                        textAssetTabControlContext.InteractWithFileText.Saveds.Remove(selectedItem);
+                        textAssetTabControlContext.InteractWithFileText.SelectedItem = selectedItem;
+                        interactWithTextAssetProperties.Refresh();
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

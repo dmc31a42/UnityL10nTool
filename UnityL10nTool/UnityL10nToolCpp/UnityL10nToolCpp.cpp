@@ -1066,3 +1066,24 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 	}
 	throw new exception("UNKNOWN");
 }
+
+TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap)
+{
+	if (textAssetMap.InteractWithFileTextPluginName != L"") {
+		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
+		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
+			LanguagePairDics result = iterator->second->GetUpdateFileTextFromMap(textAssetMap.languagePairDics);
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
+				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+					*textAssetMapItr = textAssetMap;
+					break;
+				}
+			}
+			return textAssetMap;
+		}
+	}
+	else {
+		return textAssetMap;
+	}
+}

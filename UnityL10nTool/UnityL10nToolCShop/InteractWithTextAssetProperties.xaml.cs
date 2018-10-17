@@ -30,12 +30,35 @@ namespace UnityL10nToolCShop
         //          typeof(InteractWithTextAssetPropertyies),
         //          new PropertyMetadata(new KeyValuePair<string, LanguagePairDicCLI>("", new LanguagePairDicCLI()))
         //      );
+
+        public bool IsReadOnly { get; set; }
+        public static readonly DependencyProperty IsReadOnlyProperty
+            = DependencyProperty.Register(
+                "IsReadOnly",
+                typeof(bool),
+                typeof(InteractWithTextAssetProperties),
+                new PropertyMetadata(false));
         LanguagePairDicCLI LanguagePairDicCLIGlobal;
         public event DependencyPropertyChangedEventHandler OptionChanged;
         public InteractWithTextAssetProperties()
         {
             InitializeComponent();
             DataContextChanged += CustomProperties_DataContextChanged;
+        }
+
+        public void Refresh()
+        {
+            PropertiesStackPanel.Children.Clear();
+            //foreach(AssetMapOptionCLI assetMapOptionCLI in languagePairDicCLI.InteractWithFileTextOptions)
+            //{
+            //    SetPropertyControlRecursive(ref assetMapOptionCLI);
+            //}
+            for (int i = 0; i < LanguagePairDicCLIGlobal.InteractWithAssetOptions.Count; i++)
+            {
+                AssetMapOptionCLI child = LanguagePairDicCLIGlobal.InteractWithAssetOptions[i];
+                SetPropertyControlRecursive(ref child);
+            }
+            return;
         }
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -136,6 +159,7 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_STRING:
                         TextBox textBox1 = new TextBox();
                         textBox1.SetBinding(TextBox.TextProperty, binding);
+                        textBox1.IsReadOnly = IsReadOnly;
                         Grid.SetColumn(textBox1, 1);
                         grid.Children.Add(textBox1);
 
@@ -144,6 +168,7 @@ namespace UnityL10nToolCShop
                         TextBox textBox2 = new TextBox();
                         textBox2.PreviewTextInput += TextBoxInteger_PreviewTextInput;
                         textBox2.SetBinding(TextBox.TextProperty, binding);
+                        textBox2.IsReadOnly = IsReadOnly;
                         Grid.SetColumn(textBox2, 1);
                         grid.Children.Add(textBox2);
 
@@ -152,6 +177,7 @@ namespace UnityL10nToolCShop
                         TextBox textBox3 = new TextBox();
                         textBox3.PreviewTextInput += TextBoxDouble_previewTextInput;
                         textBox3.SetBinding(TextBox.TextProperty, binding);
+                        textBox3.IsReadOnly = IsReadOnly;
                         Grid.SetColumn(textBox3, 1);
                         grid.Children.Add(textBox3);
 
@@ -159,6 +185,7 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_BOOL:
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.SetBinding(CheckBox.IsCheckedProperty, binding);
+                        checkBox1.IsEnabled = !IsReadOnly;
                         Grid.SetColumn(checkBox1, 1);
                         grid.Children.Add(checkBox1);
                         break;
@@ -185,6 +212,7 @@ namespace UnityL10nToolCShop
                         }
                         comboBox1.ItemsSource = vs1;
                         comboBox1.SetBinding(ComboBox.SelectedItemProperty, binding);
+                        comboBox1.IsEnabled = !IsReadOnly;
                         grid.Children.Add(comboBox1);
                         if (fontAssetMapOptionCLI.Value != null)
                         {
@@ -215,6 +243,7 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_INT:
                         ComboBox comboBox2 = new ComboBox();
                         comboBox2.SetBinding(ComboBox.SelectedItemProperty, binding);
+                        comboBox2.IsEnabled = !IsReadOnly;
                         Grid.SetColumn(comboBox2, 1);
                         List<int> vs2 = new List<int>();
                         foreach (AssetMapOptionCLI fontAssetMapOptionCLIChild in fontAssetMapOptionCLI.nestedOptions)
@@ -255,6 +284,7 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_DOUBLE:
                         ComboBox comboBox3 = new ComboBox();
                         comboBox3.SetBinding(ComboBox.SelectedItemProperty, binding);
+                        comboBox3.IsEnabled = !IsReadOnly;
                         Grid.SetColumn(comboBox3, 1);
                         List<double> vs3 = new List<double>();
                         foreach (AssetMapOptionCLI fontAssetMapOptionCLIChild in fontAssetMapOptionCLI.nestedOptions)
@@ -295,6 +325,7 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_BOOL:
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.SetBinding(CheckBox.IsCheckedProperty, binding);
+                        checkBox1.IsEnabled = !IsReadOnly;
                         Grid.SetColumn(checkBox1, 1);
                         grid.Children.Add(checkBox1);
                         if (fontAssetMapOptionCLI.Value != null)

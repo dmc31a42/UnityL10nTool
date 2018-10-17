@@ -16,7 +16,8 @@ Otherwise set key to "" (empty wstring) */
 struct LanguagePairDic {
 public:
 	map<wstring, LanguagePair> Dic;
-	wstring TranslatedText;
+	wstring TranslatedFileText;
+	wstring TranslatedFileName;
 	vector<AssetMapOption> InteractWithAssetOptions;
 	vector<AssetMapOption> InteractWithFileTextOptions;
 	Json::Value ToJSON() {
@@ -64,6 +65,8 @@ struct TextAssetMap {
 	wstring InteractWithMonoAssetPluginName;
 	bool useContainerPath;
 	wstring OriginalText;
+	bool IsFileTextMerged;
+	vector<AssetMapOption> InteractWithFileTextMergedOptions;
 	LanguagePairDics languagePairDics;
 	Json::Value ToJSON() {
 		Json::Value result;
@@ -153,8 +156,10 @@ typedef wstring(_cdecl *GetTranslatedTextFromMapCallback)(LanguagePairDics Trans
 
 #pragma region InteractWithFileCallback
 typedef LanguagePairDics(_cdecl *GetFileParserOptionsCallback)(LanguagePairDics UpdateMap);
-typedef wstring(_cdecl *GetUpdateFileTextFromMapCallback)(LanguagePairDics UpdateMap);
-typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextCallback)(wstring TranslatedFileText, LanguagePairDics);
+typedef LanguagePairDics(_cdecl *GetUpdateFileTextFromMapCallback)(LanguagePairDics UpdateMap);
+typedef LanguagePairDics(_cdecl *GetUpdateFileTextMergedFromMapCallback)(LanguagePairDics UpdateMap, vector<AssetMapOption> assetMapOptions);
+typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextCallback)(map<wstring,wstring> TranslatedFileNameText, LanguagePairDics translatedMap);
+typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextMergedCallback)(map<wstring, wstring> TranslatedFileNameText, LanguagePairDics translatedMap, vector<AssetMapOption> assetMapOptions);
 #pragma endregion
 
 struct TextPluginInfo {

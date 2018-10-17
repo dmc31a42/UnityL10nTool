@@ -640,9 +640,11 @@ namespace UnityL10nToolCShop
                     TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
                     if(unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
                     {
+                        interactWithTextAssetProperties.IsReadOnly = true;
                         textAssetTabControlContext.InteractWithTextAsset.News.Add(selectedItem);
                         textAssetTabControlContext.InteractWithTextAsset.Saveds.Remove(selectedItem);
                         textAssetTabControlContext.InteractWithTextAsset.SelectedItem = selectedItem;
+                        interactWithTextAssetProperties.Refresh();
                     }
                 }
             }
@@ -650,6 +652,7 @@ namespace UnityL10nToolCShop
 
         private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            interactWithTextAssetProperties.IsReadOnly = false;
             AddToInteractWithFileAssetEditButton.Content = "Add";
         }
 
@@ -662,6 +665,7 @@ namespace UnityL10nToolCShop
         {
             if (InteractWithTextAssetDataGridSaveds.SelectedItem is TextAssetMapCLI textAssetMapCLI)
             {
+                interactWithTextAssetProperties.IsReadOnly = true;
                 int i = textAssetTabControlContext.InteractWithTextAsset.Saveds.IndexOf(textAssetMapCLI);
                 TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
                 textAssetTabControlContext.InteractWithTextAsset.Saveds.Insert(i, textAssetMapCLILocal);

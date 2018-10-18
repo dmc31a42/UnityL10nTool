@@ -192,7 +192,7 @@
                                             <Button x:Name="LanguagePairDicsNew" Grid.Column="1" Content="New" Click="LanguagePairDicsNew_Click"/>
                                             <Button x:Name="LanguagePairDicsRemove" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemove_Click"/>
                                         </Grid>
-                                        <local:InteractWithTextAssetProperties Grid.Row="2" x:Name="interactWithTextAssetProperties"  DataContext="{Binding Path=SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithTextAssetProperties_OptionChanged"/>
+                                        <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithTextAssetProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithAssetOptions, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithTextAssetProperties_OptionChanged"/>
                                         <Button Grid.Row="4" x:Name="AddToInteractWithFileAssetEditButton" Content="Add" Click="AddToInteractWithFileAssetEditButton_Click"/>
                                     </Grid>
                                 </Grid>
@@ -251,22 +251,22 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <TextBox Grid.Column="0" Text="{Binding OriginalText, Mode=OneWay}" IsReadOnly="True" 
-                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                 ScrollViewer.CanContentScroll="True"/>
-                                        <GridSplitter Grid.Column="1" 
-                                                      VerticalAlignment="Stretch"
-                                                      HorizontalAlignment="Center"
-                                                      ShowsPreview="True"
-                                                      Width="5"/>
-                                        <DataGrid Grid.Row="0" Grid.Column="2" ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=LanguagePairDicsCombobox}" AutoGenerateColumns="False" >
+                                        <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=LanguagePairDicsCombobox}" AutoGenerateColumns="False" >
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding Key}" Header="Key" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Value.Original}" Header="Original" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Path=Value.Translated}" Header="Translated" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
+                                        <GridSplitter Grid.Column="1" 
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Center"
+                                                      ShowsPreview="True"
+                                                      Width="5"/>
+                                        <TextBox Grid.Column="2" Text="{Binding SelectedItem.Value.TranslatedText, ElementName=LanguagePairDicsCombobox, Mode=OneWay}" IsReadOnly="True" 
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ScrollViewer.CanContentScroll="True"/>
                                     </Grid>
                                     <Grid x:Name="InteractWithFileTextSelectedItemGrid" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding SelectedItem}" DataContextChanged="InteractWithFileTextSelectedItemGrid_DataContextChanged" >
                                         <Grid.RowDefinitions>
@@ -277,7 +277,7 @@
                                         </Grid.RowDefinitions>
                                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                                             <Label Content="Plugin:"/>
-                                            <ComboBox x:Name="PluginInteractWithFileTextNamesCombobox" SelectedItem="{Binding InteractWithAssetPluginName}" SelectionChanged="PluginInteractWithFileTextNamesCombobox_SelectionChanged"/>
+                                            <ComboBox x:Name="PluginInteractWithFileTextNamesCombobox" SelectedItem="{Binding InteractWithFileTextPluginName}" SelectionChanged="PluginInteractWithFileTextNamesCombobox_SelectionChanged"/>
                                         </StackPanel>
                                         <Grid Grid.Row="1">
                                             <Grid.ColumnDefinitions>
@@ -286,10 +286,10 @@
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
                                             <ComboBox Grid.Column="0" x:Name="LanguagePairDicsComboboxOfWithFileText" ItemsSource="{Binding languagePairDics}" DisplayMemberPath="Key" SelectionChanged="LanguagePairDicsComboboxOfWithFileText_SelectionChanged" />
-                                            <Button x:Name="LanguagePairDicsNewOfWithFileText" Grid.Column="1" Content="New" Click="LanguagePairDicsNewOfWithFileText_Click"/>
-                                            <Button x:Name="LanguagePairDicsRemoveOfWithFileText" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemoveOfWithFileText_Click"/>
+                                            <!--Button x:Name="LanguagePairDicsNewOfWithFileText" Grid.Column="1" Content="New" Click="LanguagePairDicsNewOfWithFileText_Click"/-->
+                                            <!--Button x:Name="LanguagePairDicsRemoveOfWithFileText" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemoveOfWithFileText_Click"/-->
                                         </Grid>
-                                        <local:InteractWithFileTextProperties Grid.Row="2" x:Name="interactWithFileTextProperties"  DataContext="{Binding Path=SelectedItem.Value, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithFileTextProperties_OptionChanged"/>
+                                        <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithFileTextProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithFileTextOptions, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithFileTextProperties_OptionChanged"/>
                                         <Button Grid.Row="4" x:Name="AddToDoneEditButton" Content="Add" Click="AddToDoneEditButton_Click"/>
                                     </Grid>
                                 </Grid>

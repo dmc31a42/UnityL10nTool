@@ -95,9 +95,9 @@ public:
 	//TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
 	//wstring GetOriginalText(TextAssetMap textAssetMap);
 	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
+	//TextAssetMap GetTranslatedText(TextAssetMap textAssetMap);
 	TextAssetMap GetUpdateFileText(TextAssetMap textAssetMap);
-	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, wstring fileText);
-	TextAssetMap GetTranslatedText(TextAssetMap textAssetMap);
+	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap);
 #pragma endregion
 
 #pragma region MonoTextAssetPluginProject

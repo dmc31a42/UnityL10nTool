@@ -158,7 +158,7 @@ typedef wstring(_cdecl *GetTranslatedTextFromMapCallback)(LanguagePairDics Trans
 typedef LanguagePairDics(_cdecl *GetFileParserOptionsCallback)(LanguagePairDics UpdateMap);
 typedef LanguagePairDics(_cdecl *GetUpdateFileTextFromMapCallback)(LanguagePairDics UpdateMap);
 typedef LanguagePairDics(_cdecl *GetUpdateFileTextMergedFromMapCallback)(LanguagePairDics UpdateMap, vector<AssetMapOption> assetMapOptions);
-typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextCallback)(map<wstring,wstring> TranslatedFileNameText, LanguagePairDics translatedMap);
+typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextCallback)(LanguagePairDics translatedMap);
 typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextMergedCallback)(map<wstring, wstring> TranslatedFileNameText, LanguagePairDics translatedMap, vector<AssetMapOption> assetMapOptions);
 #pragma endregion
 

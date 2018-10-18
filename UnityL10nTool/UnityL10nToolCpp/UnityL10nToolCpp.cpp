@@ -450,12 +450,16 @@ bool UnityL10nToolCpp::LoadTextPlugins()
 				TextPluginInfo* textPluginInfo = new TextPluginInfo();
 				bool result = getTextPluginInfoCallback(textPluginInfo);
 				if (result) {
-					if (textPluginInfo->GetOriginalMapFromText /*&& textPluginInfo->GetTranslatedTextFromMap*/) {
+					bool loadSuccess = false;
+					if (textPluginInfo->GetOriginalMapFromText && textPluginInfo->GetTranslatedTextFromMap) {
 						TextPluginInfoInteractWithAssetMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
-					} else if (textPluginInfo->GetUpdateFileTextFromMap && textPluginInfo->GetTranslatedMapFromFileText) {
+						loadSuccess = true;
+					} 
+					if (textPluginInfo->GetUpdateFileTextFromMap && textPluginInfo->GetTranslatedMapFromFileText) {
 						TextPluginInfoInteractWithFileTextMap.insert(pair<wstring, TextPluginInfo*>(textPluginInfo->TextPluginName, textPluginInfo));
+						loadSuccess = true;
 					}
-					else {
+					if(!loadSuccess){
 						FreeLibrary(PluginHInstance);
 						continue;
 					}
@@ -1081,6 +1085,26 @@ TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap)
 				}
 			}
 			return textAssetMap;
+		}
+	}
+	else {
+		return textAssetMap;
+	}
+}
+
+TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAssetMap)
+{
+	if (textAssetMap.InteractWithFileTextPluginName != L"") {
+		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
+		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
+			LanguagePairDics result = iterator->second->GetTranslatedMapFromFileText(textAssetMap.languagePairDics);
+			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
+				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+					*textAssetMapItr = textAssetMap;
+					return textAssetMap;
+				}
+			}
 		}
 	}
 	else {

@@ -257,6 +257,7 @@ namespace UnityL10nToolCShop
             //interactWithAssetNames.Insert(0, null);
             interactWithAssetNames.Insert(0, "");
             interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
+            interactWithFileTextNames.Insert(0, "");
         }
 
         private void LoadUnityL10nTool_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -271,6 +272,7 @@ namespace UnityL10nToolCShop
             FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
             TextAssetTabControl.DataContext = textAssetTabControlContext;
             PluginInteractWithAssetNamesCombobox.ItemsSource = interactWithAssetNames;
+            PluginInteractWithFileTextNamesCombobox.ItemsSource = interactWithFileTextNames;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
         }
 
@@ -691,7 +693,7 @@ namespace UnityL10nToolCShop
                 // https://stackoverflow.com/questions/9829969/comboboxs-selecteditem-is-unexpectedly-set-to-null-before-actual-value
                 textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
                 textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
-                textAssetTabControlContext.InteractWithFileText.News.RemoveAt(i + 1);
+                textAssetTabControlContext.InteractWithFileText.News.Remove(oldTAM);
                 //InteractWithTextAssetDataGridNews.SelectedIndex = i;
                 //SelectRowByIndex(InteractWithTextAssetDataGridNews, i);
             }

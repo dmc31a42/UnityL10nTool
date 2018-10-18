@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -140,7 +141,8 @@ namespace UnityL10nToolCShop
                     case AssetMapOptionCLI.Type.OPTION_TYPE_STRING:
                         TextBox textBox1 = new TextBox();
                         textBox1.SetBinding(TextBox.TextProperty, binding);
-                        textBox1.IsReadOnly = IsReadOnly;
+                        textBox1.IsEnabled = !IsReadOnly;
+                        textBox1.TextChanged += TextBox_TextChangedAsync;
                         Grid.SetColumn(textBox1, 1);
                         grid.Children.Add(textBox1);
 
@@ -149,7 +151,8 @@ namespace UnityL10nToolCShop
                         TextBox textBox2 = new TextBox();
                         textBox2.PreviewTextInput += TextBoxInteger_PreviewTextInput;
                         textBox2.SetBinding(TextBox.TextProperty, binding);
-                        textBox2.IsReadOnly = IsReadOnly;
+                        textBox2.IsEnabled = !IsReadOnly;
+                        textBox2.TextChanged += TextBox_TextChangedAsync;
                         Grid.SetColumn(textBox2, 1);
                         grid.Children.Add(textBox2);
 
@@ -158,7 +161,8 @@ namespace UnityL10nToolCShop
                         TextBox textBox3 = new TextBox();
                         textBox3.PreviewTextInput += TextBoxDouble_previewTextInput;
                         textBox3.SetBinding(TextBox.TextProperty, binding);
-                        textBox3.IsReadOnly = IsReadOnly;
+                        textBox3.IsEnabled = !IsReadOnly;
+                        textBox3.TextChanged += TextBox_TextChangedAsync;
                         Grid.SetColumn(textBox3, 1);
                         grid.Children.Add(textBox3);
 
@@ -167,6 +171,8 @@ namespace UnityL10nToolCShop
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.SetBinding(CheckBox.IsCheckedProperty, binding);
                         checkBox1.IsEnabled = !IsReadOnly;
+                        checkBox1.Checked += CheckBox_Checked;
+                        checkBox1.Unchecked += CheckBox_Checked;
                         Grid.SetColumn(checkBox1, 1);
                         grid.Children.Add(checkBox1);
                         break;
@@ -331,6 +337,27 @@ namespace UnityL10nToolCShop
                         checkBox1.Checked += CheckBox_Checked;
                         checkBox1.Unchecked += CheckBox_Checked;
                         break;
+                }
+            }
+        }
+
+        private async void TextBox_TextChangedAsync(object sender, TextChangedEventArgs e)
+        {
+            if(sender is TextBox textBox)
+            {
+                if(e.Changes.Count == 1 && e.Changes.First().AddedLength != textBox.Text.Count())
+                {
+                    string startStr = textBox.Text;
+
+                    await Task.Delay(500);
+                    if (startStr == textBox.Text)
+                    {
+                        if(textBox.DataContext is AssetMapOptionCLI assetMapOptionCLI)
+                        {
+                            assetMapOptionCLI.Value = textBox.Text;
+                            OptionChanged(this, new DependencyPropertyChangedEventArgs());
+                        }
+                    }
                 }
             }
         }

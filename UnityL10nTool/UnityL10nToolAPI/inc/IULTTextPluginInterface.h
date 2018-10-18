@@ -47,6 +47,24 @@ public:
 			this->InteractWithFileTextOptions.push_back(AssetMapOption(InteractWithFileTextOptionsJson[i]));
 		}
 	}
+	bool AddDicFromTranslated(LanguagePairDic other) {
+		map<wstring, LanguagePair> tempDic;
+		for (map<wstring, LanguagePair>::iterator iterator = this->Dic.begin();
+			iterator != this->Dic.end(); iterator++) {
+			map<wstring, LanguagePair>::iterator otherDicItr = other.Dic.find(iterator->first);
+			if (otherDicItr != other.Dic.end()) {
+				iterator->second.Translated = otherDicItr->second.Translated;
+			}
+			else {
+				tempDic.insert(pair<wstring, LanguagePair>(otherDicItr->first,otherDicItr->second));
+			}
+		}
+		for (map<wstring, LanguagePair>::iterator iterator = tempDic.begin();
+			iterator != tempDic.end(); iterator++) {
+			this->Dic.insert(pair<wstring, LanguagePair>(iterator->first, iterator->second));
+		}
+		return true;
+	}
 };
 typedef map<wstring, LanguagePairDic> LanguagePairDics;
 
@@ -65,6 +83,7 @@ struct TextAssetMap {
 	wstring InteractWithMonoAssetPluginName;
 	bool useContainerPath;
 	wstring OriginalText;
+	wstring TranslatedText;
 	bool IsFileTextMerged;
 	vector<AssetMapOption> InteractWithFileTextMergedOptions;
 	LanguagePairDics languagePairDics;
@@ -151,7 +170,7 @@ typedef bool(_cdecl *GetTextPluginInfoCallback)(TextPluginInfo* textPluginInfo);
 #pragma region InteractWithAssetCallback
 typedef LanguagePairDics(_cdecl *GetAssetParserOptionsCallback)(wstring OriginalText);
 typedef LanguagePairDics(_cdecl *GetOriginalMapFromTextCallback)(wstring OriginalText, LanguagePairDics languagePairDics);
-typedef wstring(_cdecl *GetTranslatedTextFromMapCallback)(LanguagePairDics TranslatedMap, wstring OriginalText);
+typedef wstring(_cdecl *GetTranslatedTextFromMapCallback)(wstring OriginalText, LanguagePairDics TranslatedMap);
 #pragma endregion
 
 #pragma region InteractWithFileCallback

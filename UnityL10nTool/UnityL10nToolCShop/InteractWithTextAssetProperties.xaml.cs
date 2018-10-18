@@ -141,6 +141,7 @@ namespace UnityL10nToolCShop
                         TextBox textBox1 = new TextBox();
                         textBox1.SetBinding(TextBox.TextProperty, binding);
                         textBox1.IsReadOnly = IsReadOnly;
+                        textBox1.TextChanged += TextBox1_TextChanged;
                         Grid.SetColumn(textBox1, 1);
                         grid.Children.Add(textBox1);
 
@@ -150,6 +151,7 @@ namespace UnityL10nToolCShop
                         textBox2.PreviewTextInput += TextBoxInteger_PreviewTextInput;
                         textBox2.SetBinding(TextBox.TextProperty, binding);
                         textBox2.IsReadOnly = IsReadOnly;
+                        textBox2.TextChanged += TextBox1_TextChanged;
                         Grid.SetColumn(textBox2, 1);
                         grid.Children.Add(textBox2);
 
@@ -159,6 +161,7 @@ namespace UnityL10nToolCShop
                         textBox3.PreviewTextInput += TextBoxDouble_previewTextInput;
                         textBox3.SetBinding(TextBox.TextProperty, binding);
                         textBox3.IsReadOnly = IsReadOnly;
+                        textBox3.TextChanged += TextBox1_TextChanged;
                         Grid.SetColumn(textBox3, 1);
                         grid.Children.Add(textBox3);
 
@@ -167,6 +170,8 @@ namespace UnityL10nToolCShop
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.SetBinding(CheckBox.IsCheckedProperty, binding);
                         checkBox1.IsEnabled = !IsReadOnly;
+                        checkBox1.Checked += CheckBox_Checked;
+                        checkBox1.Unchecked += CheckBox_Checked;
                         Grid.SetColumn(checkBox1, 1);
                         grid.Children.Add(checkBox1);
                         break;
@@ -333,6 +338,11 @@ namespace UnityL10nToolCShop
                         break;
                 }
             }
+        }
+
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OptionChanged(this, new DependencyPropertyChangedEventArgs());
         }
 
         private void Grid_GotFocus(object sender, RoutedEventArgs e)

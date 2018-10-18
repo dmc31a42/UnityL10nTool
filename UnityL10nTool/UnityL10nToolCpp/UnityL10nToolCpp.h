@@ -95,8 +95,10 @@ public:
 	//TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
 	//wstring GetOriginalText(TextAssetMap textAssetMap);
 	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
-	//TextAssetMap GetTranslatedText(TextAssetMap textAssetMap);
+	TextAssetMap GetTranslatedText(TextAssetMap textAssetMap);
 	TextAssetMap GetUpdateFileText(TextAssetMap textAssetMap);
+	//bool SaveUpdateFileToTempFolder(TextAssetMap textAssetMap);
+	//TextAssetMap LoadTranslatedFileTextFromTempFolder(TextAssetMap textAssetMap);
 	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap);
 #pragma endregion
 

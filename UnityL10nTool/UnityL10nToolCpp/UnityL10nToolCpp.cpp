@@ -694,6 +694,7 @@ bool UnityL10nToolCpp::SaveProjectConfigJson() {
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 	wof.open(UnityL10nToolProjectInfoGlobal.JSONPath);
 	wof << WideMultiStringConverter->from_bytes(projectJson.toStyledString());
+	Json::StyledWriter styledWriter;
 	wof.close();
 	return true;
 }
@@ -1071,12 +1072,32 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 	throw new exception("UNKNOWN");
 }
 
+TextAssetMap UnityL10nToolCpp::GetTranslatedText(TextAssetMap textAssetMap)
+{
+	if (textAssetMap.InteractWithAssetPluginName != L"") {
+		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
+		if (iterator != TextPluginInfoInteractWithAssetMap.end()) {
+			wstring result = iterator->second->GetTranslatedTextFromMap(textAssetMap.OriginalText, textAssetMap.languagePairDics);
+			textAssetMap.TranslatedText = result;
+			for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+				iterator != TextAssetMapsGlobal.Done.end(); iterator++) {
+				if (TextAssetMap::LooseCompare(textAssetMap, *iterator)) {
+					*iterator = textAssetMap;
+					break;
+				}
+			}
+			return textAssetMap;
+		}
+	}
+}
+
 TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap)
 {
 	if (textAssetMap.InteractWithFileTextPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
 			LanguagePairDics result = iterator->second->GetUpdateFileTextFromMap(textAssetMap.languagePairDics);
+			textAssetMap.languagePairDics = result;
 			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
 				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
 				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
@@ -1098,11 +1119,18 @@ TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAs
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
 			LanguagePairDics result = iterator->second->GetTranslatedMapFromFileText(textAssetMap.languagePairDics);
+			textAssetMap.languagePairDics = result;
 			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
 				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
 				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
-					*textAssetMapItr = textAssetMap;
-					return textAssetMap;
+					for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
+						lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
+						LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
+						if (lpdResultItr != result.end()) {
+							lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
+						}
+					}
+					return *textAssetMapItr;
 				}
 			}
 		}

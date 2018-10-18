@@ -109,7 +109,7 @@ namespace UnityL10nToolCShop
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
-        public class InteractWithFileTextContext
+        public class InteractWithFileTextContext: INotifyPropertyChanged
         {
             public ObservableCollection<TextAssetMapCLI> News { get; set; }
             public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
@@ -608,6 +608,7 @@ namespace UnityL10nToolCShop
                     if(unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
                     {
                         interactWithTextAssetProperties.IsReadOnly = true;
+                        PluginInteractWithAssetNamesCombobox.IsEnabled = false;
                         textAssetTabControlContext.InteractWithTextAsset.News.Add(selectedItem);
                         textAssetTabControlContext.InteractWithTextAsset.Saveds.Remove(selectedItem);
                         textAssetTabControlContext.InteractWithTextAsset.SelectedItem = selectedItem;
@@ -617,15 +618,11 @@ namespace UnityL10nToolCShop
             }
         }
 
-        private void InteractWithTextAssetDataGridNews_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        private void InteractWithTextAssetDataGridNews_GotFocus(object sender, RoutedEventArgs e)
         {
             interactWithTextAssetProperties.IsReadOnly = false;
+            PluginInteractWithAssetNamesCombobox.IsEnabled = true;
             AddToInteractWithFileAssetEditButton.Content = "Add";
-        }
-
-        private void InteractWithTextAssetDataGridSaveds_Selected(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void InteractWithTextAssetDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)
@@ -633,6 +630,7 @@ namespace UnityL10nToolCShop
             if (InteractWithTextAssetDataGridSaveds.SelectedItem is TextAssetMapCLI textAssetMapCLI)
             {
                 interactWithTextAssetProperties.IsReadOnly = true;
+                PluginInteractWithAssetNamesCombobox.IsEnabled = false;
                 int i = textAssetTabControlContext.InteractWithTextAsset.Saveds.IndexOf(textAssetMapCLI);
                 TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(textAssetMapCLI);
                 textAssetTabControlContext.InteractWithTextAsset.Saveds.Insert(i, textAssetMapCLILocal);
@@ -648,11 +646,19 @@ namespace UnityL10nToolCShop
 
         #region InteractWithFileText
 
+        private void InteractWithFileTextDataGridNews_GotFocus(object sender, RoutedEventArgs e)
+        {
+            interactWithFileTextProperties.IsReadOnly = false;
+            PluginInteractWithFileTextNamesCombobox.IsEnabled = true;
+            AddToDoneEditButton.Content = "Add";
+        }
+
         private void InteractWithFileTextDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)
         {
             if (InteractWithFileTextDataGridSaveds.SelectedItem is TextAssetMapCLI textAssetMapCLI)
             {
-                interactWithTextAssetProperties.IsReadOnly = true;
+                interactWithFileTextProperties.IsReadOnly = true;
+                PluginInteractWithFileTextNamesCombobox.IsEnabled = false;
                 int i = textAssetTabControlContext.InteractWithFileText.Saveds.IndexOf(textAssetMapCLI);
                 TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(textAssetMapCLI);
                 textAssetTabControlContext.InteractWithFileText.Saveds.Insert(i, textAssetMapCLILocal);
@@ -712,7 +718,7 @@ namespace UnityL10nToolCShop
             }
             if (e.AddedItems.Count != 0)
             {
-                newTAM.InteractWithAssetPluginName = (string)e.AddedItems[0];
+                newTAM.InteractWithFileTextPluginName = (string)e.AddedItems[0];
             }
             TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(newTAM);
             int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(newTAM);
@@ -781,7 +787,7 @@ namespace UnityL10nToolCShop
         private void interactWithFileTextProperties_OptionChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             TextAssetMapCLI NewPair = textAssetTabControlContext.InteractWithFileText.SelectedItem;
-            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetOriginalLanguagePairDics(NewPair);
+            TextAssetMapCLI textAssetMapCLILocal = unityL10nToolCppManaged.GetUpdateFileText(NewPair);
             int i = textAssetTabControlContext.InteractWithFileText.News.IndexOf(NewPair);
             textAssetTabControlContext.InteractWithFileText.News.Insert(i, textAssetMapCLILocal);
             textAssetTabControlContext.InteractWithFileText.SelectedItem = textAssetMapCLILocal;
@@ -808,15 +814,19 @@ namespace UnityL10nToolCShop
                     TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
                     if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
                     {
-                        interactWithTextAssetProperties.IsReadOnly = true;
+                        interactWithFileTextProperties.IsReadOnly = true;
+                        PluginInteractWithFileTextNamesCombobox.IsEnabled = false;
                         textAssetTabControlContext.InteractWithFileText.News.Add(selectedItem);
                         textAssetTabControlContext.InteractWithFileText.Saveds.Remove(selectedItem);
                         textAssetTabControlContext.InteractWithFileText.SelectedItem = selectedItem;
-                        interactWithTextAssetProperties.Refresh();
+                        interactWithFileTextProperties.Refresh();
                     }
                 }
             }
         }
+
         #endregion
+
+
     }
 }

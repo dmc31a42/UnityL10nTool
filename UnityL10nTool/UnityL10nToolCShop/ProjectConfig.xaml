@@ -121,7 +121,7 @@
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
+                                        <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}" GotFocus="InteractWithTextAssetDataGridNews_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
@@ -218,7 +218,7 @@
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="InteractWithFileTextDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
+                                        <DataGrid x:Name="InteractWithFileTextDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}" GotFocus="InteractWithFileTextDataGridNews_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
@@ -251,7 +251,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=LanguagePairDicsCombobox}" AutoGenerateColumns="False" >
+                                        <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=LanguagePairDicsComboboxOfWithFileText}" AutoGenerateColumns="False" >
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding Key}" Header="Key" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding Value.Original}" Header="Original" IsReadOnly="True"/>
@@ -263,7 +263,7 @@
                                                       HorizontalAlignment="Center"
                                                       ShowsPreview="True"
                                                       Width="5"/>
-                                        <TextBox Grid.Column="2" Text="{Binding SelectedItem.Value.TranslatedText, ElementName=LanguagePairDicsCombobox, Mode=OneWay}" IsReadOnly="True" 
+                                        <TextBox Grid.Column="2" Text="{Binding SelectedItem.Value.TranslatedFileText, ElementName=LanguagePairDicsComboboxOfWithFileText, Mode=OneWay}" IsReadOnly="True" 
                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                  ScrollViewer.CanContentScroll="True"/>
@@ -289,7 +289,7 @@
                                             <!--Button x:Name="LanguagePairDicsNewOfWithFileText" Grid.Column="1" Content="New" Click="LanguagePairDicsNewOfWithFileText_Click"/-->
                                             <!--Button x:Name="LanguagePairDicsRemoveOfWithFileText" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemoveOfWithFileText_Click"/-->
                                         </Grid>
-                                        <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithFileTextProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithFileTextOptions, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithFileTextProperties_OptionChanged"/>
+                                        <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithFileTextProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithFileTextOptions, ElementName=LanguagePairDicsComboboxOfWithFileText}" OptionChanged="interactWithFileTextProperties_OptionChanged"/>
                                         <Button Grid.Row="4" x:Name="AddToDoneEditButton" Content="Add" Click="AddToDoneEditButton_Click"/>
                                     </Grid>
                                 </Grid>

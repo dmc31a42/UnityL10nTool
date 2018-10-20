@@ -24,6 +24,7 @@ public:
 		Json::Value result;
 		Json::Value InteractWithAssetOptionsJson(Json::arrayValue);
 		Json::Value InteractWithFileTextOptionsJson(Json::arrayValue);
+		result["TranslatedFileName"] = WideMultiStringConverter->to_bytes(TranslatedFileName);
 		for (vector<AssetMapOption>::iterator iterator = this->InteractWithAssetOptions.begin();
 			iterator != this->InteractWithAssetOptions.end(); iterator++) {
 			InteractWithAssetOptionsJson.append(iterator->ToJson());
@@ -38,6 +39,7 @@ public:
 	}
 	LanguagePairDic() {}
 	LanguagePairDic(Json::Value json) {
+		this->TranslatedFileName = WideMultiStringConverter->from_bytes(json["TranslatedFileName"].asString());
 		Json::Value InteractWithAssetOptionsJson = json["InteractWithAssetOptions"];
 		Json::Value InteractWithFileTextOptionsJson = json["InteractWithFileTextOptions"];
 		for (Json::ArrayIndex i = 0; i < InteractWithAssetOptionsJson.size(); i++) {

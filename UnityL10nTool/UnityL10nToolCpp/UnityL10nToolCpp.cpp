@@ -38,6 +38,7 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 	CurrentDirectory += L"\\";
 
 	UnityL10nToolProjectInfoGlobal.JSONPath = ProjectJsonFolderPath + L"setting.json";
+	UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder = ProjectJsonFolderPath;
 	string projectJsonStr = readFile2(UnityL10nToolProjectInfoGlobal.JSONPath);
 	JsonReader->parse(projectJsonStr, projectJson);
 	UnityL10nToolProjectInfoGlobal.GameName = WideMultiStringConverter->from_bytes(projectJson["GameName"].asString());
@@ -75,6 +76,80 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 
 bool UnityL10nToolCpp::LoadGlobalgamemanagersFile() {
 	return LoadAssetsFile(FirstAssetsFileName);
+}
+
+wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
+	folder = MakeSureBackslashEndOfFolderPath(folder);
+	wstring appInfoFileText;
+	wifstream wif(folder + L"app.info");
+	if (wif.good()) {
+		wif.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+		std::wstringstream wss;
+		wss << wif.rdbuf();
+		appInfoFileText = wss.str();
+	}
+	else {
+		vector<wstring> folderList = GetAllFolderName(folder);
+		for (vector<wstring>::iterator iterator = folderList.begin();
+			iterator != folderList.end(); iterator++) {
+			size_t index = iterator->find(L"_Data");
+			if (index != std::wstring::npos) {
+				folder = MakeSureBackslashEndOfFolderPath(folder + *iterator);
+				wifstream wif2(folder + L"app.info");
+				if (wif2.good()) {
+					wif2.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+					std::wstringstream wss;
+					wss << wif2.rdbuf();
+					appInfoFileText = wss.str();
+					break;
+				}
+			}
+		}
+	}
+	if (appInfoFileText == L"") {
+		return L"";
+	}
+	int index = appInfoFileText.find('\n');
+	if (index == std::wstring::npos) {
+		return L"";
+	}
+	wstring tempMakerName = appInfoFileText.substr(0, index);
+	wstring tempGameName = appInfoFileText.substr(index + 1, appInfoFileText.length() - index - 1);
+	int backslashIndex = folder.find_last_of(L"\\", folder.size() - 2);
+	if (backslashIndex == std::wstring::npos) {
+		return L"";
+	}
+	wstring tempGamePath = folder.substr(0, backslashIndex);
+	wstring tempDataFolderName = folder.substr(backslashIndex + 1);
+	tempDataFolderName = ReplaceAll(tempDataFolderName, L"_Data\\", L"");
+	Json::Value json;
+	json["GameName"] = WideMultiStringConverter->to_bytes(tempGameName);
+	json["MakerName"] = WideMultiStringConverter->to_bytes(tempMakerName);
+	json["GamePath"] = WideMultiStringConverter->to_bytes(folder);
+	json["DataFolderName"] = WideMultiStringConverter->to_bytes(tempDataFolderName);
+	wchar_t WcharCurrentDirectory[255] = {};
+	_wgetcwd(WcharCurrentDirectory, 255);
+	wstring tempCurrentDirectory = WcharCurrentDirectory;
+	tempCurrentDirectory += L"\\";
+	if (DirExists(tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\")) {
+		return L"";
+	}
+	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\").c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+		// CopyFile(...)
+	}
+	else
+	{
+		// Failed to create directory.
+	}
+	std::wofstream wof;
+	wof.clear();
+	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+	wof.open(tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\setting.json");
+	wof << WideMultiStringConverter->from_bytes(json.toStyledString());
+	wof.close();
+	return tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\";
 }
 
 bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
@@ -273,7 +348,7 @@ bool CreateTypeTreeGenerator(wstring TypeTreeGeneratorParams) {
 
 	// Start the child process. 
 	if (!CreateProcess(
-		L".\\Resource\\TypeTreeGenerator.exe",   // No module name (use command line)
+		L".\\Libraries\\TypeTreeGenerator.exe",   // No module name (use command line)
 		(LPWSTR)TypeTreeGeneratorParams.c_str(),        // Command line
 		NULL,           // Process handle not inheritable
 		NULL,           // Thread handle not inheritable
@@ -694,7 +769,6 @@ bool UnityL10nToolCpp::SaveProjectConfigJson() {
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 	wof.open(UnityL10nToolProjectInfoGlobal.JSONPath);
 	wof << WideMultiStringConverter->from_bytes(projectJson.toStyledString());
-	Json::StyledWriter styledWriter;
 	wof.close();
 	return true;
 }
@@ -714,7 +788,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	wof.close();
 
 	CopyDirTo(CurrentDirectory + L"PatcherLibs\\", buildTargetFolder + L"");
-	CopyDirTo(CurrentDirectory + L"Resource\\", buildTargetFolder + L"Resource\\");
+	CopyDirTo(CurrentDirectory + L"Libraries\\", buildTargetFolder + L"Libraries\\");
 	CopyDirTo(CurrentDirectory + L"ClassDatabase\\", buildTargetFolder + L"ClassDatabase\\");
 
 	if (CreateDirectoryW((buildTargetFolder +L"Plugins\\").c_str(), NULL) ||
@@ -1046,7 +1120,7 @@ wstring UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(wstring path)
 //	throw new exception("UNKNOWN");
 //}
 
-TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAssetMap)
+TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAssetMap, bool IsFinal = false)
 {
 	if (textAssetMap.InteractWithAssetPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
@@ -1054,13 +1128,22 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 			/*wstring m_Script = GetOriginalText(textAssetMap);*/
 			LanguagePairDics result = iterator->second->GetOriginalMapFromText(textAssetMap.OriginalText, textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
-			for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.InteractWithAssetNews.begin();
-				iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); iterator++) {
-				if (iterator->assetName == textAssetMap.assetName &&
-					iterator->assetsName == textAssetMap.assetsName &&
-					iterator->containerPath == textAssetMap.containerPath) {
-					*iterator = textAssetMap;
-					break;
+			if (IsFinal == false) {
+				for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+					iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); iterator++) {
+					if (TextAssetMap::LooseCompare(textAssetMap, *iterator)) {
+						*iterator = textAssetMap;
+						break;
+					}
+				}
+			}
+			else {
+				for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.Done.begin();
+					iterator != TextAssetMapsGlobal.Done.end(); iterator++) {
+					if (TextAssetMap::LooseCompare(textAssetMap, *iterator)) {
+						*iterator = textAssetMap;
+						break;
+					}
 				}
 			}
 			return textAssetMap;
@@ -1072,39 +1155,50 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 	throw new exception("UNKNOWN");
 }
 
-TextAssetMap UnityL10nToolCpp::GetTranslatedText(TextAssetMap textAssetMap)
+TextAssetMap UnityL10nToolCpp::GetTranslatedText(TextAssetMap textAssetMap, bool IsFinal = false)
 {
 	if (textAssetMap.InteractWithAssetPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
 		if (iterator != TextPluginInfoInteractWithAssetMap.end()) {
 			wstring result = iterator->second->GetTranslatedTextFromMap(textAssetMap.OriginalText, textAssetMap.languagePairDics);
 			textAssetMap.TranslatedText = result;
-			for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+			for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.Done.begin();
 				iterator != TextAssetMapsGlobal.Done.end(); iterator++) {
 				if (TextAssetMap::LooseCompare(textAssetMap, *iterator)) {
 					*iterator = textAssetMap;
 					break;
 				}
-			}
+			}			
 			return textAssetMap;
 		}
 	}
 }
 
-TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap)
+TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap, bool IsFinal = false)
 {
 	if (textAssetMap.InteractWithFileTextPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
 			LanguagePairDics result = iterator->second->GetUpdateFileTextFromMap(textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
-			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
-				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
-				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
-					*textAssetMapItr = textAssetMap;
-					break;
+			if (IsFinal == false) {
+				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
+					textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+						*textAssetMapItr = textAssetMap;
+						break;
+					}
 				}
 			}
+			else {
+				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
+					textAssetMapItr != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
+					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+						*textAssetMapItr = textAssetMap;
+						break;
+					}
+				}
+			}			
 			return textAssetMap;
 		}
 	}
@@ -1113,24 +1207,119 @@ TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap)
 	}
 }
 
-TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAssetMap)
+bool UnityL10nToolCpp::SaveUpdateFileToTempFolder(TextAssetMap textAssetMap)
+{
+	for (LanguagePairDics::iterator iterator = textAssetMap.languagePairDics.begin();
+		iterator != textAssetMap.languagePairDics.end(); iterator++) {
+		std::wofstream wof;
+		wof.clear();
+		wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+		wstring fileName;
+		if (textAssetMap.useContainerPath) {
+			fileName = ReplaceAll(textAssetMap.containerPath, L"\\", L"_") + iterator->second.TranslatedFileName;
+		}
+		else {
+			fileName = textAssetMap.assetsName + L"_" + textAssetMap.assetName + L"_" + iterator->second.TranslatedFileName;
+		}
+		wof.open(CurrentDirectory + L"temp\\" + fileName);
+		wof << iterator->second.TranslatedFileText;
+		wof.close();
+	}
+	return true;
+}
+
+TextAssetMap UnityL10nToolCpp::LoadTranslatedFileTextFromTempAndResourceFolder(TextAssetMap textAssetMap)
+{
+	for (LanguagePairDics::iterator iterator = textAssetMap.languagePairDics.begin();
+		iterator != textAssetMap.languagePairDics.end(); iterator++) {
+		wstring fileName;
+		if (textAssetMap.useContainerPath) {
+			fileName = ReplaceAll(textAssetMap.containerPath, L"\\", L"_") + iterator->second.TranslatedFileName;
+		}
+		else {
+			fileName = textAssetMap.assetsName + L"_" + textAssetMap.assetName + L"_" + iterator->second.TranslatedFileName;
+		}
+		wifstream wif(CurrentDirectory + L"temp\\" + fileName);
+		if (wif.good()) {
+			wif.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+			std::wstringstream wss;
+			wss << wif.rdbuf();
+			iterator->second.TranslatedFileText = wss.str();
+		}
+		else {
+			wifstream wif2(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + fileName);
+			if (wif2.good()) {
+				wif2.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+				std::wstringstream wss2;
+				wss2 << wif2.rdbuf();
+				iterator->second.TranslatedFileText = wss2.str();
+			}
+		}
+		wif.close();
+	}
+	UpdateTextAssetMap(textAssetMap);
+	return textAssetMap;
+}
+
+bool UnityL10nToolCpp::UpdateTextAssetMap(TextAssetMap textAssetMap) {
+	vector<TextAssetMap>* InteractWithAssetNewsPtr = &(TextAssetMapsGlobal.InteractWithAssetNews);
+	vector<TextAssetMap>* InteractWithFileTextNewsPtr = &(TextAssetMapsGlobal.InteractWithFileTextNews);
+	//vector<TextAssetMap>* InteractWithMonoAssetNewsPtr = &(TextAssetMapsGlobal.InteractWithMonoAssetNews);
+	vector<TextAssetMap>* DonePtr = &(TextAssetMapsGlobal.Done);
+	vector<vector<TextAssetMap>*> vectorPtrs;
+	vectorPtrs.push_back(InteractWithAssetNewsPtr);
+	vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+	//vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+	vectorPtrs.push_back(DonePtr);
+	for (vector<vector<TextAssetMap>*>::iterator vectorPtr = vectorPtrs.begin();
+		vectorPtr != vectorPtrs.end(); vectorPtr++) {
+		for (vector<TextAssetMap>::iterator storeVector = (*vectorPtr)->begin();
+			storeVector != (*vectorPtr)->end(); storeVector++) {
+			if (TextAssetMap::LooseCompare(textAssetMap, *storeVector))
+			{
+				*storeVector = textAssetMap;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, bool IsFinal = false)
 {
 	if (textAssetMap.InteractWithFileTextPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
 			LanguagePairDics result = iterator->second->GetTranslatedMapFromFileText(textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
-			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
-				textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
-				if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
-					for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
-						lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
-						LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
-						if (lpdResultItr != result.end()) {
-							lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
+			if(IsFinal == false) {
+				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
+					textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
+					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+						for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
+							lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
+							LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
+							if (lpdResultItr != result.end()) {
+								lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
+							}
 						}
+						return *textAssetMapItr;
 					}
-					return *textAssetMapItr;
+				}
+			}
+			else {
+				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
+					textAssetMapItr != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
+					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
+						for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
+							lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
+							LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
+							if (lpdResultItr != result.end()) {
+								lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
+							}
+						}
+						return *textAssetMapItr;
+					}
 				}
 			}
 		}

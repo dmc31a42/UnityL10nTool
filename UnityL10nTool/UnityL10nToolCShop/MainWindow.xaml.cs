@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -72,6 +73,38 @@ namespace UnityL10nToolCShop
 
             //UnityL10nToolCppManaged unityL10NToolCppManaged = ((App)Application.Current).unityL10NToolCppManaged = new UnityL10nToolCppManaged(gameFolderPath.Text);
             //Dictionary<string, List<FontAssetMapCLI>> directory = unityL10NToolCppManaged.GetPluginsSupportAssetMap();
+            var dialog = new CommonOpenFileDialog
+            {
+                EnsurePathExists = true,
+                EnsureFileExists = false,
+                AllowNonFileSystemItems = false,
+                IsFolderPicker = true,
+                Title = "Select Unity Game Folder"
+            };
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                string dirToProcess = Directory.Exists(dialog.FileName) ? dialog.FileName : System.IO.Path.GetDirectoryName(dialog.FileName);
+                string projectJsonFolder = UnityL10nToolCppCLI.UnityL10nToolCppManaged.NewGameProjectFromFolder(dirToProcess);
+                if(projectJsonFolder != "")
+                {
+                    string jsonStr = System.IO.File.ReadAllText(projectJsonFolder + "setting.json");
+                    JObject jObject = JObject.Parse(jsonStr);
+                    string GameName = (string)jObject["GameName"];
+                    string MakerName = (string)jObject["MakerName"];
+                    string GamePath = (string)jObject["GamePath"];
+                    string DataFolderName = (string)jObject["DataFolderName"];
+                    UnityL10nToolProjectInfo unityL10NToolProjectInfo = new UnityL10nToolProjectInfo(
+                        GameName: GameName,
+                        MakerName: MakerName,
+                        GamePath: GamePath,
+                        JSONPath: projectJsonFolder + "setting.json",
+                        DataFolderName: DataFolderName);
+                    Window projectConfig = new ProjectConfig(unityL10NToolProjectInfo);
+                    projectConfig.Show();
+                    Window.GetWindow(this).Close();
+                }
+            }
         }
 
         private void ProjectListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -22,6 +22,7 @@ public :
 	wstring GamePath;
 	wstring JSONPath;
 	wstring DataFolderName;
+	wstring ProjectRelativeFolder;
 	/*UnityL10nToolProjectInfo(wstring GameName, wstring MakerName, wstring GamePath, wstring JSONPath, wstring DataFolderName)
 	{
 		this->GameName = GameName;
@@ -94,12 +95,13 @@ public:
 	// deprecated
 	//TextAssetMap GetTextAssetOptions(TextAssetMap textAssetMap);
 	//wstring GetOriginalText(TextAssetMap textAssetMap);
-	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap);
-	TextAssetMap GetTranslatedText(TextAssetMap textAssetMap);
-	TextAssetMap GetUpdateFileText(TextAssetMap textAssetMap);
-	//bool SaveUpdateFileToTempFolder(TextAssetMap textAssetMap);
-	//TextAssetMap LoadTranslatedFileTextFromTempFolder(TextAssetMap textAssetMap);
-	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap);
+	TextAssetMap GetOriginalLanguagePairDics(TextAssetMap textAssetMap, bool IsFinal);
+	TextAssetMap GetTranslatedText(TextAssetMap textAssetMap, bool IsFinal);
+	TextAssetMap GetUpdateFileText(TextAssetMap textAssetMap, bool IsFinal);
+	bool SaveUpdateFileToTempFolder(TextAssetMap textAssetMap);
+	TextAssetMap LoadTranslatedFileTextFromTempAndResourceFolder(TextAssetMap textAssetMap);
+	bool UpdateTextAssetMap(TextAssetMap textAssetMap);
+	TextAssetMap GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, bool IsFinal);
 #pragma endregion
 
 #pragma region MonoTextAssetPluginProject
@@ -137,6 +139,7 @@ public:
 	static wstring GetAssetNameW(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	static wstring GetAssetNameW(AssetsFile * assetsFile, AssetFileInfoEx * assetFileInfoEx);
 
+	static wstring NewGameProjectFromFolder(wstring folder);
 protected:
 	bool LoadAssetsFile(string assetsFileName);
 	bool LoadBasicClassDatabase();

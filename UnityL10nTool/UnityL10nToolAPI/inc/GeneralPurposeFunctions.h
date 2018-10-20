@@ -99,6 +99,23 @@ inline vector<wstring> get_all_files_names_within_folder(wstring filter)
 	return names;
 }
 
+inline vector<wstring> GetAllFolderName(wstring directory) {
+	vector<wstring> directories;
+	WIN32_FIND_DATAW fd;
+	HANDLE hFind = ::FindFirstFileW((directory + L"*").c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		do {
+			// read all (real) files in current folder
+			// , delete '!' read other 2 default folder . and ..
+			if ((fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+				directories.push_back(fd.cFileName);
+			}
+		} while (::FindNextFileW(hFind, &fd));
+		::FindClose(hFind);
+	}
+	return directories;
+}
+
 inline vector<wstring> GetAllFilesFilterWithinAllSubFolderRecursive(wstring firstDirectory, wstring subDirectory, wstring filter) {
 	vector<wstring> files;
 	WIN32_FIND_DATAW fd;
@@ -175,4 +192,26 @@ inline std::string ReplaceAll(std::string &str, const std::string& from, const s
 		start_pos += to.length(); // 중복검사를 피하고 from.length() > to.length()인 경우를 위해서
 	}
 	return str;
+}
+
+inline std::wstring ReplaceAll(std::wstring &str, const std::wstring& from, const std::wstring& to) {
+	size_t start_pos = 0; //string처음부터 검사
+	while ((start_pos = str.find(from, start_pos)) != std::wstring::npos)  //from을 찾을 수 없을 때까지
+	{
+		str.replace(start_pos, from.length(), to);
+		start_pos += to.length(); // 중복검사를 피하고 from.length() > to.length()인 경우를 위해서
+	}
+	return str;
+}
+
+inline bool DirExists(const std::wstring& dirName_in)
+{
+	DWORD ftyp = GetFileAttributesW(dirName_in.c_str());
+	if (ftyp == INVALID_FILE_ATTRIBUTES)
+		return false;  //something is wrong with your path!
+
+	if (ftyp & FILE_ATTRIBUTE_DIRECTORY)
+		return true;   // this is a directory!
+
+	return false;    // this is not a directory!
 }

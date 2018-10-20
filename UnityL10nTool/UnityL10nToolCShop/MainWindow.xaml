@@ -16,7 +16,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="1" Content="New" HorizontalAlignment="Right"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="New" HorizontalAlignment="Right" Click="Button_Click"/>
         <ListBox x:Name="ProjectListBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding}" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch" SelectionChanged="ProjectListBox_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -38,7 +38,8 @@
                             <Label Grid.Row="0" Grid.Column="0" Content="{Binding Path=GameName}" Margin="6,6,6,3" FontSize="20" />
                             <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=MakerName}" Margin="6,6,6,3" VerticalAlignment="Bottom" />
                         </Grid>
-                        <Label Grid.Row="1" Grid.Column="0" Content="{Binding Path=GamePath}" Margin="6,3,6,6"/>
+                        <!-- https://stackoverflow.com/questions/9684619/label-doesnt-display-character -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=GamePath}" Margin="6,3,6,6"/>
                         <Button Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content=" X " Margin="0,0,6,0" />
                     </Grid>
                 </DataTemplate>

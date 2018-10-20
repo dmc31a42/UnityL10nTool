@@ -294,6 +294,76 @@
                                     </Grid>
                                 </Grid>
                             </TabItem>
+                            <TabItem Header="Update Process Test">
+                                <Grid DataContext="{Binding Path=Done}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <Button Grid.Row="1" x:Name="UpdateTestGetOriginalDicButton" Content="GetOriginalDic" Margin="5" Click="UpdateTestGetOriginalDicButton_Click"/>
+                                        <Button Grid.Row="2" x:Name="UpdateTestLoadTranslatedFileTextButton" Content="LoadTranslatedFileText" Margin="5" Click="UpdateTestLoadTranslatedFileTextButton_Click"/>
+                                        <Button Grid.Row="3" x:Name="UpdateTestGetTranslatedDicsButton" Content="GetTranslatedDic" Margin="5" Click="UpdateTestGetTranslatedDicsButton_Click"/>
+                                        <Button Grid.Row="4" x:Name="UpdateTestGetUpdatedFileText" Content="GetUpdatedFileText" Margin="5" Click="UpdateTestGetUpdatedFileText_Click"/>
+                                        <Button Grid.Row="5" x:Name="UpdateTestSaveFileTextToTempFolder" Content="SaveFileTextToTempFolder" Margin="5" Click="UpdateTestSaveFileTextToTempFolder_Click"/>
+                                    </Grid>
+                                    <Grid Grid.Column="1" DataContext="{Binding Path=SelectedItem}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Content="OriginalText"/>
+                                        <TextBox Grid.Row="1" Grid.Column="0"  x:Name="UpdateTestOriginalText" Text="{Binding OriginalText, Mode=OneWay}" IsReadOnly="True" 
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ScrollViewer.CanContentScroll="True"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Content="TranslatedText"/>
+                                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="UpdateTestTranslatedText" Text="{Binding TranslatedText, Mode=OneWay}" IsReadOnly="True" 
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ScrollViewer.CanContentScroll="True"/>
+                                        <Label Grid.Row="2" Grid.Column="0" Content="languagePairDics"/>
+                                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="UpdateTestLanguagePairDicsCombobox" ItemsSource="{Binding languagePairDics}" DisplayMemberPath="Key" />
+                                        <Label Grid.Row="3" Grid.Column="0" Content="Dic"/>
+                                        <DataGrid Grid.Row="4" Grid.Column="0" x:Name="UpdateTestDic"  ItemsSource="{Binding SelectedItem.Value.Dic, ElementName=UpdateTestLanguagePairDicsCombobox}" AutoGenerateColumns="False" >
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Key}" Header="Key" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding Value.Original}" Header="Original" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding Path=Value.Translated}" Header="Translated" IsReadOnly="True"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <Label Grid.Row="3" Grid.Column="1" Content="TranslatedFileText"/>
+                                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="UpdateTestTranslatedFileText" Text="{Binding SelectedItem.Value.TranslatedFileText, ElementName=UpdateTestLanguagePairDicsCombobox, Mode=OneWay}" 
+                                                 IsReadOnly="True" 
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                                 ScrollViewer.CanContentScroll="True"/>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
                         </TabControl>
                     </Grid>
                 </TabItem>

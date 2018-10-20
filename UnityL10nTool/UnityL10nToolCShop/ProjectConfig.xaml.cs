@@ -154,14 +154,51 @@ namespace UnityL10nToolCShop
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
             }
         }
+        public class DoneContext : INotifyPropertyChanged
+        {
+            public ObservableCollection<TextAssetMapCLI> Saveds { get; set; }
+            private TextAssetMapCLI _SelectedItem;
+            public TextAssetMapCLI SelectedItem
+            {
+                get
+                {
+                    return _SelectedItem;
+                }
+                set
+                {
+                    _SelectedItem = value;
+                    OnPropertyChanged("SelectedItem");
+                }
+            }
+            public DoneContext(ObservableCollection<TextAssetMapCLI> Saveds)
+            {
+                if (Saveds == null)
+                {
+                    this.Saveds = new ObservableCollection<TextAssetMapCLI>();
+                }
+                else
+                {
+                    this.Saveds = Saveds;
+                }
+
+            }
+            public event PropertyChangedEventHandler PropertyChanged;
+            // Create the OnPropertyChanged method to raise the event protected 
+            void OnPropertyChanged(string name)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
         public InteractWithTextAssetContext InteractWithTextAsset { get; set; }
         public InteractWithMonoTextAssetContext InteractWithMonoTextAsset { get; set; }
         public InteractWithFileTextContext InteractWithFileText { get; set; }
+        public DoneContext Done { get; set; }
         public TextAssetTabControlContext(TextAssetMapsCLI textAssetMapsCLI)
         {
             InteractWithTextAsset = new InteractWithTextAssetContext(textAssetMapsCLI.InteractWithAssetNews, textAssetMapsCLI.InteractWithFileTextNews);
             InteractWithMonoTextAsset = new InteractWithMonoTextAssetContext(null, textAssetMapsCLI.Done);
             InteractWithFileText = new InteractWithFileTextContext(textAssetMapsCLI.InteractWithFileTextNews, textAssetMapsCLI.Done);
+            Done = new DoneContext(textAssetMapsCLI.Done);
         }
     }
 
@@ -801,7 +838,7 @@ namespace UnityL10nToolCShop
                 if ((string)button.Content == "Add")
                 {
                     TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
-                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithFileText))
+                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToDone))
                     {
                         textAssetTabControlContext.InteractWithFileText.Saveds.Add(selectedItem);
                         textAssetTabControlContext.InteractWithFileText.News.Remove(selectedItem);
@@ -812,7 +849,7 @@ namespace UnityL10nToolCShop
                 else
                 {
                     TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithFileText.SelectedItem;
-                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithAsset))
+                    if (unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.ToInteractWithFileText))
                     {
                         interactWithFileTextProperties.IsReadOnly = true;
                         PluginInteractWithFileTextNamesCombobox.IsEnabled = false;
@@ -825,8 +862,53 @@ namespace UnityL10nToolCShop
             }
         }
 
+
         #endregion
 
+        private void UpdateTestGetOriginalDicButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem, true);
+            int i= textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
+            textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
+            textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
+            textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
 
+        private void UpdateTestLoadTranslatedFileTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.LoadTranslatedFileTextFromTempAndResourceFolder(selectedItem);
+            int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
+            textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
+            textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
+            textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
+
+        private void UpdateTestGetTranslatedDicsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedLanguagePairDics(selectedItem, true);
+            int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
+            textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
+            textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
+            textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
+
+        private void UpdateTestGetUpdatedFileText_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetUpdateFileText(selectedItem, true);
+            int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
+            textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
+            textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
+            textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
+
+        private void UpdateTestSaveFileTextToTempFolder_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            bool result = unityL10nToolCppManaged.SaveUpdateFileToTempFolder(selectedItem);
+        }
     }
 }

@@ -37,6 +37,13 @@ namespace UnityL10nToolPatcherCShop
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
             unityL10nToolCppManaged.SetPacherConfigJson();
             unityL10nToolCppManaged.LoadAssetsReplacer();
+
+            unityL10nToolCppManaged.LoadTextPlugins();
+            unityL10nToolCppManaged.GetTextAssetMaps();
+            unityL10nToolCppManaged.GetTranslatedTextAssetsFromFile();
+            unityL10nToolCppManaged.GetAssetReplacerFromTextAssets();
+
+
             unityL10nToolCppManaged.MakeModifiedAssetsFile();
             unityL10nToolCppManaged.CopyResourceFileToGameFolder();
         }

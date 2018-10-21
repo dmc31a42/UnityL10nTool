@@ -1,0 +1,657 @@
+[
+	{
+		"OriginalText" : "Round",
+		"TranslatedText" : "",
+		"key" : "bomber_livery_substitution_round"
+	},
+	{
+		"OriginalText" : "Normal",
+		"TranslatedText" : "",
+		"key" : "bomber_livery_substitution_square"
+	},
+	{
+		"OriginalText" : "Flak Magnet",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_1"
+	},
+	{
+		"OriginalText" : "The Boomerang Bus",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_10"
+	},
+	{
+		"OriginalText" : "Keep Calm",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_11"
+	},
+	{
+		"OriginalText" : "The Corkscrew Club",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_12"
+	},
+	{
+		"OriginalText" : "Daisy Cutter",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_13"
+	},
+	{
+		"OriginalText" : "The Dumpy Dustbin",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_14"
+	},
+	{
+		"OriginalText" : "Fire and Forget",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_15"
+	},
+	{
+		"OriginalText" : "Jalopy Jockeys",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_16"
+	},
+	{
+		"OriginalText" : "The Runner Duck",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_2"
+	},
+	{
+		"OriginalText" : "Thunder Bird",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_3"
+	},
+	{
+		"OriginalText" : "Friday the 13th",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_4"
+	},
+	{
+		"OriginalText" : "Aces High",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_5"
+	},
+	{
+		"OriginalText" : "Star Duster",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_6"
+	},
+	{
+		"OriginalText" : "Wishful Thinkin'",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_7"
+	},
+	{
+		"OriginalText" : "Target for Tonight",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_8"
+	},
+	{
+		"OriginalText" : "Bandit Bait",
+		"TranslatedText" : "",
+		"key" : "bomber_name_default_9"
+	},
+	{
+		"OriginalText" : "",
+		"TranslatedText" : "",
+		"key" : "desc_blank"
+	},
+	{
+		"OriginalText" : "Custom {0}",
+		"TranslatedText" : "",
+		"key" : "desc_custom_livery"
+	},
+	{
+		"OriginalText" : "Custom Wide {0}",
+		"TranslatedText" : "",
+		"key" : "desc_custom_wide"
+	},
+	{
+		"OriginalText" : "If you ditch in the sea, a dinghy will greatly increase your crew's chance of survival.",
+		"TranslatedText" : "",
+		"key" : "desc_dinghy_1"
+	},
+	{
+		"OriginalText" : "The radio operator's station, including the radar, is powered by the electrical system.",
+		"TranslatedText" : "",
+		"key" : "desc_electrics_1"
+	},
+	{
+		"OriginalText" : "Upgraded electrical systems are more reliable, and can take more damage before breaking down.",
+		"TranslatedText" : "",
+		"key" : "desc_electrics_2"
+	},
+	{
+		"OriginalText" : "Armoured Engines can take more damage, but don't increase the aircraft's weight limit as much.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_armoured_1"
+	},
+	{
+		"OriginalText" : "Engine Extinguishers can be installed to put out an engine fire.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_extinguisher_1"
+	},
+	{
+		"OriginalText" : "Upgraded Engine Extinguishers have higher capacity, to allow them to put out more fires.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_extinguisher_2"
+	},
+	{
+		"OriginalText" : "Lightweight Engines are not as durable, but greatly increase the aircraft's maximum weight limit.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_light_1"
+	},
+	{
+		"OriginalText" : "The power of your engines determines the maximum weight limit of the bomber's upgrades.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_standard_1"
+	},
+	{
+		"OriginalText" : "Upgraded engines are better armoured, and also give the aircraft a greater maximum weight limit.",
+		"TranslatedText" : "",
+		"key" : "desc_engine_standard_2"
+	},
+	{
+		"OriginalText" : "Racks for storing parachutes, fire extinguishers and first aid kits.",
+		"TranslatedText" : "",
+		"key" : "desc_equipment_rack_1"
+	},
+	{
+		"OriginalText" : "Upgraded equipment racks allow you to take more items on each mission.",
+		"TranslatedText" : "",
+		"key" : "desc_equipment_rack_2"
+	},
+	{
+		"OriginalText" : "The aircraft's fuel tanks provide fuel to the engines.",
+		"TranslatedText" : "",
+		"key" : "desc_fueltank_1"
+	},
+	{
+		"OriginalText" : "Upgraded fuel tanks are better armoured, so less likely to leak.",
+		"TranslatedText" : "",
+		"key" : "desc_fueltank_2"
+	},
+	{
+		"OriginalText" : "When damaged, self-sealing fuel tanks will only leak for a short duration.",
+		"TranslatedText" : "",
+		"key" : "desc_fueltank_selfseal_1"
+	},
+	{
+		"OriginalText" : "More heavily armoured fuselage will help to keep your crew safe.",
+		"TranslatedText" : "",
+		"key" : "desc_fuselage_armoured"
+	},
+	{
+		"OriginalText" : "Lightweight fuselage isn't particularly well armoured, but it is incredibly light.",
+		"TranslatedText" : "",
+		"key" : "desc_fuselage_lightweight"
+	},
+	{
+		"OriginalText" : "Standard fuselage for your aircraft.",
+		"TranslatedText" : "",
+		"key" : "desc_fuselage_standard"
+	},
+	{
+		"OriginalText" : "A gun turret with 4 guns is twice as effective, but will use up ammo far quicker!",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret4_1"
+	},
+	{
+		"OriginalText" : "A gun turret with 4 guns is twice as effective, and also has an ammo feed!",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret4_1af"
+	},
+	{
+		"OriginalText" : "Gun Turrets can be upgraded to do greater damage to enemy fighters, and to allow for more ammo per belt.",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret_1"
+	},
+	{
+		"OriginalText" : "With an ammo feed, ammo belts are automatically restocked without having to go to the ammo box.",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret_1af"
+	},
+	{
+		"OriginalText" : "Devastatingly powerful, but with a relatively slow rate of fire.",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret_cannon20mm"
+	},
+	{
+		"OriginalText" : "Devastatingly powerful, but with a relatively slow rate of fire. Features a direct ammo feed!",
+		"TranslatedText" : "",
+		"key" : "desc_gun_turret_cannon20mmaf"
+	},
+	{
+		"OriginalText" : "Landing gear, bomb bay doors, and gun turret aiming are all reliant on your hydraulic system.",
+		"TranslatedText" : "",
+		"key" : "desc_hydraulics_1"
+	},
+	{
+		"OriginalText" : "Upgraded hydraulic systems are more reliable, and can take more damage before breaking down.",
+		"TranslatedText" : "",
+		"key" : "desc_hydraulics_2"
+	},
+	{
+		"OriginalText" : "Experimental air-to-air homing missiles.",
+		"TranslatedText" : "",
+		"key" : "desc_missiles_generic"
+	},
+	{
+		"OriginalText" : "The oxygen system supplies oxygen to crew at their stations.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_1"
+	},
+	{
+		"OriginalText" : "Upgraded oxygen systems are more reliable, and can take more damage before breaking down.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_2"
+	},
+	{
+		"OriginalText" : "If you ditch behind enemy lines, a homing pigeon will greatly increase your crew's chance of being found and rescued!",
+		"TranslatedText" : "",
+		"key" : "desc_pigeon_1"
+	},
+	{
+		"OriginalText" : "Upgraded pigeons go through rigorous training to ensure they deliver their message safely.",
+		"TranslatedText" : "",
+		"key" : "desc_pigeon_2"
+	},
+	{
+		"OriginalText" : "Profile Picture",
+		"TranslatedText" : "",
+		"key" : "desc_profile_pic"
+	},
+	{
+		"OriginalText" : "Your radar is used to spot enemy fighters and submarines.",
+		"TranslatedText" : "",
+		"key" : "desc_radar_1"
+	},
+	{
+		"OriginalText" : "Upgraded radars have improved range and sweep frequency.",
+		"TranslatedText" : "",
+		"key" : "desc_radar_2"
+	},
+	{
+		"OriginalText" : "Inflatable Dinghy Mk{0}",
+		"TranslatedText" : "",
+		"key" : "name_dinghy"
+	},
+	{
+		"OriginalText" : "Electrical System Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_electric_mk"
+	},
+	{
+		"OriginalText" : "Armoured Engine Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_engine_armoured_mk"
+	},
+	{
+		"OriginalText" : "Engine Extinguishers Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_engine_extinguish_mk"
+	},
+	{
+		"OriginalText" : "Lightweight Engine Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_engine_light_mk"
+	},
+	{
+		"OriginalText" : "Standard Engine Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_engine_standard_mk"
+	},
+	{
+		"OriginalText" : "{0} Slot Equipment Rack",
+		"TranslatedText" : "",
+		"key" : "name_equipment_rack"
+	},
+	{
+		"OriginalText" : "Self-sealing Fuel Tank Mk{0}",
+		"TranslatedText" : "",
+		"key" : "name_fuel_tank_selfsealing"
+	},
+	{
+		"OriginalText" : "Fuel Tank Mk{0}",
+		"TranslatedText" : "",
+		"key" : "name_fuel_tank_standard"
+	},
+	{
+		"OriginalText" : "Armoured Fuselage Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_fuselage_armoured_mk"
+	},
+	{
+		"OriginalText" : "Lightweight Fuselage Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_fuselage_lightweight_mk"
+	},
+	{
+		"OriginalText" : "Standard Fuselage",
+		"TranslatedText" : "",
+		"key" : "name_fuselage_standard"
+	},
+	{
+		"OriginalText" : "Hydraulics Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_hydraulic_mk"
+	},
+	{
+		"OriginalText" : "Eight-ball",
+		"TranslatedText" : "",
+		"key" : "name_livery_8ball"
+	},
+	{
+		"OriginalText" : "Over the Rainbow",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC01"
+	},
+	{
+		"OriginalText" : "Golden Eagle",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC02"
+	},
+	{
+		"OriginalText" : "Dark Knight Black",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC03"
+	},
+	{
+		"OriginalText" : "Pearl",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC04"
+	},
+	{
+		"OriginalText" : "Neon Disco",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC05"
+	},
+	{
+		"OriginalText" : "Cat Plane",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC06"
+	},
+	{
+		"OriginalText" : "Turtle Shell",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC07"
+	},
+	{
+		"OriginalText" : "Woodland Camo",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC08"
+	},
+	{
+		"OriginalText" : "Checkmate",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC09"
+	},
+	{
+		"OriginalText" : "Plaid",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLC10"
+	},
+	{
+		"OriginalText" : "Misty Camouflage",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLCMP01_01"
+	},
+	{
+		"OriginalText" : "Assembly Ship",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLCMP01_02"
+	},
+	{
+		"OriginalText" : "Air Transport Command",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_DLCMP01_03"
+	},
+	{
+		"OriginalText" : "Gift Wrapped",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_FREE01"
+	},
+	{
+		"OriginalText" : "Festive",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_FREE02"
+	},
+	{
+		"OriginalText" : "Pitch Black",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_black"
+	},
+	{
+		"OriginalText" : "Curve Sea Foam Green",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_curvedigital"
+	},
+	{
+		"OriginalText" : "Classic Camo",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_default"
+	},
+	{
+		"OriginalText" : "Olive Drab",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_olive"
+	},
+	{
+		"OriginalText" : "Percy the Pigeon",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_pigeon"
+	},
+	{
+		"OriginalText" : "Pumpkin Spice",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_pumpkin"
+	},
+	{
+		"OriginalText" : "London Bus Red",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_red"
+	},
+	{
+		"OriginalText" : "Leaping Salmon Pink",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_salmonpink"
+	},
+	{
+		"OriginalText" : "Midnight Blue",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_seablue"
+	},
+	{
+		"OriginalText" : "Tiger Force White",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_white"
+	},
+	{
+		"OriginalText" : "Banana Yellow",
+		"TranslatedText" : "",
+		"key" : "name_livery_base_yellow"
+	},
+	{
+		"OriginalText" : "Cat's Eyes",
+		"TranslatedText" : "",
+		"key" : "name_livery_catseyes01"
+	},
+	{
+		"OriginalText" : "Ace of Spades",
+		"TranslatedText" : "",
+		"key" : "name_livery_engineart_aceofspades"
+	},
+	{
+		"OriginalText" : "Flames",
+		"TranslatedText" : "",
+		"key" : "name_livery_engineart_flames"
+	},
+	{
+		"OriginalText" : "Lightning Bolt",
+		"TranslatedText" : "",
+		"key" : "name_livery_engineart_lightning"
+	},
+	{
+		"OriginalText" : "Screaming Skull",
+		"TranslatedText" : "",
+		"key" : "name_livery_engineart_skull"
+	},
+	{
+		"OriginalText" : "Flying Tiger",
+		"TranslatedText" : "",
+		"key" : "name_livery_engineart_teeth"
+	},
+	{
+		"OriginalText" : "Flying Pig",
+		"TranslatedText" : "",
+		"key" : "name_livery_flyingpig"
+	},
+	{
+		"OriginalText" : "Curve Digital",
+		"TranslatedText" : "",
+		"key" : "name_livery_noseart_curvedigital"
+	},
+	{
+		"OriginalText" : "We love EGX",
+		"TranslatedText" : "",
+		"key" : "name_livery_noseart_egx"
+	},
+	{
+		"OriginalText" : "Runner Duck",
+		"TranslatedText" : "",
+		"key" : "name_livery_noseart_runnerduck"
+	},
+	{
+		"OriginalText" : "test art",
+		"TranslatedText" : "",
+		"key" : "name_livery_noseart_test"
+	},
+	{
+		"OriginalText" : "Placeholder",
+		"TranslatedText" : "",
+		"key" : "name_livery_noseart_thumper"
+	},
+	{
+		"OriginalText" : "Standard",
+		"TranslatedText" : "",
+		"key" : "name_livery_standard_text"
+	},
+	{
+		"OriginalText" : "Black Text",
+		"TranslatedText" : "",
+		"key" : "name_livery_text_black"
+	},
+	{
+		"OriginalText" : "Red Text",
+		"TranslatedText" : "",
+		"key" : "name_livery_text_red"
+	},
+	{
+		"OriginalText" : "White Text",
+		"TranslatedText" : "",
+		"key" : "name_livery_text_white"
+	},
+	{
+		"OriginalText" : "Yellow Text",
+		"TranslatedText" : "",
+		"key" : "name_livery_text_yellow"
+	},
+	{
+		"OriginalText" : "Top Hat",
+		"TranslatedText" : "",
+		"key" : "name_livery_tophat"
+	},
+	{
+		"OriginalText" : "Vampire Bat",
+		"TranslatedText" : "",
+		"key" : "name_livery_vampirebat"
+	},
+	{
+		"OriginalText" : "Ace of Spades",
+		"TranslatedText" : "",
+		"key" : "name_livery_wingart_aceofspades"
+	},
+	{
+		"OriginalText" : "Round",
+		"TranslatedText" : "",
+		"key" : "name_livery_wingart_round1"
+	},
+	{
+		"OriginalText" : "Star",
+		"TranslatedText" : "",
+		"key" : "name_livery_wingart_star1"
+	},
+	{
+		"OriginalText" : "Missiles x{0}",
+		"TranslatedText" : "",
+		"key" : "name_missiles_xmk"
+	},
+	{
+		"OriginalText" : "Oxygen Tank Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_tank_mk"
+	},
+	{
+		"OriginalText" : "Homing Pigeon Mk{0}",
+		"TranslatedText" : "",
+		"key" : "name_pigeon"
+	},
+	{
+		"OriginalText" : "Radar Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_radar_mk"
+	},
+	{
+		"OriginalText" : "20mm Cannon Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_turret_cannon20mm_mk"
+	},
+	{
+		"OriginalText" : "20mm Cannon Mk {0} Ammo Feed",
+		"TranslatedText" : "",
+		"key" : "name_turret_cannon20mmaf_mk"
+	},
+	{
+		"OriginalText" : ".303x4 Mk {0} + Ammo Feed",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard4_ammofeed_mk"
+	},
+	{
+		"OriginalText" : ".303x4 Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard4_mk"
+	},
+	{
+		"OriginalText" : ".50x2 Mk {0} + Ammo Feed",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard50_ammofeed_mk"
+	},
+	{
+		"OriginalText" : ".50x2 Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard50_mk"
+	},
+	{
+		"OriginalText" : ".50x4 Mk {0} + Ammo Feed",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard50x4_ammofeed_mk"
+	},
+	{
+		"OriginalText" : ".50x4 Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard50x4_mk"
+	},
+	{
+		"OriginalText" : ".303x2 Mk {0} + Ammo Feed",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard_ammofeed_mk"
+	},
+	{
+		"OriginalText" : ".303x2 Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_turret_standard_mk"
+	},
+	{
+		"OriginalText" : "Enemy fighters spotted!",
+		"TranslatedText" : "",
+		"key" : "temp"
+	}
+]

@@ -1,0 +1,117 @@
+[
+	{
+		"OriginalText" : "Connect",
+		"TranslatedText" : "",
+		"key" : "console_connect_button"
+	},
+	{
+		"OriginalText" : "Connect to internet to upload high score?",
+		"TranslatedText" : "",
+		"key" : "console_connect_prompt"
+	},
+	{
+		"OriginalText" : "Loading downloadable content...",
+		"TranslatedText" : "",
+		"key" : "consolesystem_loading_dlc"
+	},
+	{
+		"OriginalText" : "Loading downloadable content...",
+		"TranslatedText" : "",
+		"key" : "consolesystem_loading_dlc_switch"
+	},
+	{
+		"OriginalText" : "Avatar",
+		"TranslatedText" : "",
+		"key" : "consolesystem_name_profile_pic_ps4"
+	},
+	{
+		"OriginalText" : "User Icon",
+		"TranslatedText" : "",
+		"key" : "consolesystem_name_profile_pic_switch"
+	},
+	{
+		"OriginalText" : "Gamerpic",
+		"TranslatedText" : "",
+		"key" : "consolesystem_name_profile_pic_xbox"
+	},
+	{
+		"OriginalText" : "Downloadable content has been installed. \nReturn to the main menu to load downloadable content.\nYour progress will be saved.",
+		"TranslatedText" : "",
+		"key" : "consolesystem_new_dlc"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "consolesystem_new_dlc_no"
+	},
+	{
+		"OriginalText" : "Main Menu",
+		"TranslatedText" : "",
+		"key" : "consolesystem_new_dlc_yes"
+	},
+	{
+		"OriginalText" : "Saving...",
+		"TranslatedText" : "",
+		"key" : "consolesystem_saving"
+	},
+	{
+		"OriginalText" : "Change Profile",
+		"TranslatedText" : "",
+		"key" : "consolesystem_xbox_change_profile"
+	},
+	{
+		"OriginalText" : "Profile has changed.\n\nSign in again as {0} to continue playing, or press [B_SL] to return to the main menu.",
+		"TranslatedText" : "",
+		"key" : "consolesystem_xbox_signed_out"
+	},
+	{
+		"OriginalText" : "Current progress will not be saved.\n\nPress [B_SL] to return to the main menu, or [B_CN] to cancel.",
+		"TranslatedText" : "",
+		"key" : "consolesystem_xbox_signed_out_confirm"
+	},
+	{
+		"OriginalText" : "Fetching data",
+		"TranslatedText" : "",
+		"key" : "leaderboard_downloading"
+	},
+	{
+		"OriginalText" : "Leaderboard empty\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_empty"
+	},
+	{
+		"OriginalText" : "You cannot use PlayStation™Network features in this application due to age restrictions.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_age_ps"
+	},
+	{
+		"OriginalText" : "Title is offline or is disconnected.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_connection"
+	},
+	{
+		"OriginalText" : "You have been signed out from PlayStation™Network. Please connect to PlayStation™Network to view Leaderboards.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_connection_ps"
+	},
+	{
+		"OriginalText" : "You must update the application to use network features.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_patch_ps"
+	},
+	{
+		"OriginalText" : "Please sign in to PlayStation™Network to view leaderboards.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_sign_in_ps"
+	},
+	{
+		"OriginalText" : "Leaderboards are currently not available, due to a condition encountered while authorizing the user. Note: this feature requires a Nintendo Account and a network connection to function.",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_switch"
+	},
+	{
+		"OriginalText" : "Failed to get rankings.\r",
+		"TranslatedText" : "",
+		"key" : "leaderboard_failed_unknown"
+	}
+]

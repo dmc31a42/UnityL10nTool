@@ -322,6 +322,7 @@
                                         <Button Grid.Row="3" x:Name="UpdateTestGetTranslatedDicsButton" Content="GetTranslatedDic" Margin="5" Click="UpdateTestGetTranslatedDicsButton_Click"/>
                                         <Button Grid.Row="4" x:Name="UpdateTestGetUpdatedFileText" Content="GetUpdatedFileText" Margin="5" Click="UpdateTestGetUpdatedFileText_Click"/>
                                         <Button Grid.Row="5" x:Name="UpdateTestSaveFileTextToTempFolder" Content="SaveFileTextToTempFolder" Margin="5" Click="UpdateTestSaveFileTextToTempFolder_Click"/>
+                                        <Button Grid.Row="6" x:Name="UpdateTestGetTranslatedText" Content="GetTranslatedText" Margin="5" Click="UpdateTestGetTranslatedText_Click"/>
                                     </Grid>
                                     <Grid Grid.Column="1" DataContext="{Binding Path=SelectedItem}">
                                         <Grid.RowDefinitions>
@@ -363,6 +364,9 @@
                                                  ScrollViewer.CanContentScroll="True"/>
                                     </Grid>
                                 </Grid>
+                            </TabItem>
+                            <TabItem Header="Patch Process Test(X)">
+                                
                             </TabItem>
                         </TabControl>
                     </Grid>

@@ -1,0 +1,767 @@
+[
+	{
+		"OriginalText" : "Airbase",
+		"TranslatedText" : "",
+		"key" : "group_htp_airbase"
+	},
+	{
+		"OriginalText" : "In Mission",
+		"TranslatedText" : "",
+		"key" : "group_htp_inmission"
+	},
+	{
+		"OriginalText" : "Crew Roles",
+		"TranslatedText" : "",
+		"key" : "group_htp_roles"
+	},
+	{
+		"OriginalText" : "Aircraft Systems",
+		"TranslatedText" : "",
+		"key" : "group_htp_systems"
+	},
+	{
+		"OriginalText" : "Successfully completing missions will award you with additional funds and intel.",
+		"TranslatedText" : "",
+		"key" : "htp_airbase_text1"
+	},
+	{
+		"OriginalText" : "Funds: Use to purchase gear for your crew, and upgrade your aircraft.",
+		"TranslatedText" : "",
+		"key" : "htp_airbase_text2"
+	},
+	{
+		"OriginalText" : "Intel: As you gain more intel, you will unlock better gear for your crew & aircraft upgrades.",
+		"TranslatedText" : "",
+		"key" : "htp_airbase_text3"
+	},
+	{
+		"OriginalText" : "Each altitude holds different hazards, choose your altitude wisely!",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text0"
+	},
+	{
+		"OriginalText" : "In range of flak & anti-air guns",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text1"
+	},
+	{
+		"OriginalText" : "Some enemy fighters cannot reach high altitude!",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text10"
+	},
+	{
+		"OriginalText" : "Upgrade your crew's gear to better cope with conditions at mid/high altitude.",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text11"
+	},
+	{
+		"OriginalText" : "Good visibility (photos, navigation, bomb aiming)",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text2"
+	},
+	{
+		"OriginalText" : "Temperature and oxygen normal",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text3"
+	},
+	{
+		"OriginalText" : "Above some flak & all anti-air guns",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text4"
+	},
+	{
+		"OriginalText" : "Medium visibility",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text5"
+	},
+	{
+		"OriginalText" : "Lower temperature, oxygen normal",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text6"
+	},
+	{
+		"OriginalText" : "Out of range of all flak & anti-air guns",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text7"
+	},
+	{
+		"OriginalText" : "Low ground visibility",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text8"
+	},
+	{
+		"OriginalText" : "Low temperature, low oxygen",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_text9"
+	},
+	{
+		"OriginalText" : "Low Altitude",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_title1"
+	},
+	{
+		"OriginalText" : "Mid Altitude",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_title2"
+	},
+	{
+		"OriginalText" : "High Altitude",
+		"TranslatedText" : "",
+		"key" : "htp_altitude_title3"
+	},
+	{
+		"OriginalText" : "Your Bomb Aimer starts in the nose gun turret. Move your Bomb Aimer to the bomb aiming station to use the camera, operate the bomb bay doors, and release bombs.\n\nHighly skilled bombers can see the target more clearly through clouds at higher altitudes.\n",
+		"TranslatedText" : "",
+		"key" : "htp_bombaimer_text1"
+	},
+	{
+		"OriginalText" : "The bomb bay doors rely on the hydraulic system to function.\n\nFlying with the bomb bay doors open increases drag, using more fuel; it may also increase the chance of remaining bombs being shot, which could be disastrous!",
+		"TranslatedText" : "",
+		"key" : "htp_bombaimer_text2"
+	},
+	{
+		"OriginalText" : "Move your bomb aimer (or any member of your crew) to the Bomb Aimer's station.\n\nTo perform the bomb run:",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text1"
+	},
+	{
+		"OriginalText" : "Open the bomb bay doors",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text2"
+	},
+	{
+		"OriginalText" : "Tag the bomb target",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text3"
+	},
+	{
+		"OriginalText" : "Arm some bombs",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text4"
+	},
+	{
+		"OriginalText" : "Release when the target is centered in the bomb sight",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text5"
+	},
+	{
+		"OriginalText" : "The bomb bay doors rely on the hydraulic system to function.\n\nOn missions with multiple targets, arm only the bombs required for each target.",
+		"TranslatedText" : "",
+		"key" : "htp_bombaiming_text6"
+	},
+	{
+		"OriginalText" : "Available missions are displayed on the map. Select a mission to view more details.\n\nMission rewards (Intel and Funds) are shown on the mission board when a mission is selected.",
+		"TranslatedText" : "",
+		"key" : "htp_briefing_text0"
+	},
+	{
+		"OriginalText" : "Critical missions must be completed to progress the campaign.\n\nCompleting certain missions will award extra bonuses, which affect subsequent missions:",
+		"TranslatedText" : "",
+		"key" : "htp_briefing_text1"
+	},
+	{
+		"OriginalText" : "Enemy damage reduced",
+		"TranslatedText" : "",
+		"key" : "htp_briefing_text2"
+	},
+	{
+		"OriginalText" : "Enemy armour reduced",
+		"TranslatedText" : "",
+		"key" : "htp_briefing_text3"
+	},
+	{
+		"OriginalText" : "Enemy flak operation reduced",
+		"TranslatedText" : "",
+		"key" : "htp_briefing_text4"
+	},
+	{
+		"OriginalText" : "Order to Ammo Box",
+		"TranslatedText" : "",
+		"key" : "htp_controlscreen_get_ammo"
+	},
+	{
+		"OriginalText" : "(hold) or Z (toggle): Quick Peek",
+		"TranslatedText" : "",
+		"key" : "htp_controlscreen_quickview"
+	},
+	{
+		"OriginalText" : "Order to medical rest bed",
+		"TranslatedText" : "",
+		"key" : "htp_controlscreen_rest_bed"
+	},
+	{
+		"OriginalText" : "Slow Time",
+		"TranslatedText" : "",
+		"key" : "htp_controlscreen_slowdown"
+	},
+	{
+		"OriginalText" : "Deselect crew member",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_deselect"
+	},
+	{
+		"OriginalText" : "Issue order",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_issue_order"
+	},
+	{
+		"OriginalText" : "Move camera around bomber",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_move_camera"
+	},
+	{
+		"OriginalText" : "Select a crew member",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_select_crew"
+	},
+	{
+		"OriginalText" : "or SPACE: Toggle Tagging mode",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_targetingmode"
+	},
+	{
+		"OriginalText" : "Toggle Targeting Mode",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_targetingmodeconsole"
+	},
+	{
+		"OriginalText" : "Zoom in/out",
+		"TranslatedText" : "",
+		"key" : "htp_controlsscreen_zoom"
+	},
+	{
+		"OriginalText" : "Equip your crew with new gear at the Crew Quarters.",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_1"
+	},
+	{
+		"OriginalText" : "Armour: Resistance to damage taken",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_2"
+	},
+	{
+		"OriginalText" : "Speed: Speed of movement",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_3"
+	},
+	{
+		"OriginalText" : "Thermal: Resistance to low temperatures",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_4"
+	},
+	{
+		"OriginalText" : "Oxygen: Seconds of oxygen (when not at a station, at high altitude)",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_5"
+	},
+	{
+		"OriginalText" : "If your crew land or bail out in the sea or behind enemy lines, survival equipment will increase their chances of being rescued and returning home safely!",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_6"
+	},
+	{
+		"OriginalText" : "Effectiveness of survival on land",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_7"
+	},
+	{
+		"OriginalText" : "Effectiveness of survival at sea",
+		"TranslatedText" : "",
+		"key" : "htp_crewquarters_8"
+	},
+	{
+		"OriginalText" : "View your crew's unlocked abilities and train them with secondary skills in the Crew Training screen.\n\nSecondary skills are unlocked for each member of your crew as they reach higher levels.",
+		"TranslatedText" : "",
+		"key" : "htp_crewtraining_text1"
+	},
+	{
+		"OriginalText" : "Your electrical system provides electricity to the radar and radio operator's station.",
+		"TranslatedText" : "",
+		"key" : "htp_electrics_text1"
+	},
+	{
+		"OriginalText" : "The Lancaster has four engines. You can continue to fly with just one engine, but ascending to higher altitudes will be slower and fuel usage will be less efficient.\n\nYou can send a member of your crew out onto the wings to repair broken down engines. It is recommended to fly steadily while crew are on the wings.",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text1"
+	},
+	{
+		"OriginalText" : "Engines that are on fire can be put out by:",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text2"
+	},
+	{
+		"OriginalText" : "Performing an emergency dive",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text3"
+	},
+	{
+		"OriginalText" : "Activating engine extinguishers (if installed) via the engineer's station",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text4"
+	},
+	{
+		"OriginalText" : "Sending a crew member to the wings with a fire extinguisher\n",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text5"
+	},
+	{
+		"OriginalText" : "If an engine fire is extinguished quickly enough, the engine will remain functional.",
+		"TranslatedText" : "",
+		"key" : "htp_engines_text6"
+	},
+	{
+		"OriginalText" : "Engine Fires",
+		"TranslatedText" : "",
+		"key" : "htp_engines_title1"
+	},
+	{
+		"OriginalText" : "Your flight engineer can repair broken systems faster than the other members of your crew.",
+		"TranslatedText" : "",
+		"key" : "htp_flightengineer_text1"
+	},
+	{
+		"OriginalText" : "Your flight engineer can extinguish engine fires using built-in extinguishers (if installed), and pump fuel between the two fuel tanks.\n\nThe engineer's station displays current fuel usage, and an estimate of how long your fuel will last at this current usage rate.\n\nA skilled flight engineer can also adjust the strength of the fuel mix, allowing you to fly faster (using more fuel) or slower (using less fuel) for a short duration.\n",
+		"TranslatedText" : "",
+		"key" : "htp_flightengineer_text2"
+	},
+	{
+		"OriginalText" : "You have limited fuel per mission, split between two fuel tanks. Fuel tanks can be damaged, causing them to leak. ",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text1"
+	},
+	{
+		"OriginalText" : "In the event of a leaking fuel tank, your flight engineer can pump fuel to the other tank via the engineer's station panel.\n\nA leaking fuel tank can be repaired by sending a member of your crew out onto the wing. Some upgraded fuel tanks are self sealing, so will only leak for a short duration when damaged.\n\nFuel usage will be higher than usual, when:",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text2"
+	},
+	{
+		"OriginalText" : "Ascending to a higher altitude",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text3"
+	},
+	{
+		"OriginalText" : "Performing a manoeuvre",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text4"
+	},
+	{
+		"OriginalText" : "Landing gear down, or bomb bay doors open (due to resulting drag)",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text5"
+	},
+	{
+		"OriginalText" : "Aero surfaces are damaged or destroyed (due to resulting drag) ",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text6"
+	},
+	{
+		"OriginalText" : "During a fuel mix boost",
+		"TranslatedText" : "",
+		"key" : "htp_fueltanks_text7"
+	},
+	{
+		"OriginalText" : "The Lancaster starts with 3 gun turrets- nose, tail and mid-upper. A ventral turret can be installed, beneath the aircraft.\n\nGun turrets are powered by the hydraulic system, so are unable to aim if it is broken.\n\nSkilled gunners have better aim, and will be more efficient with their ammo usage.\n",
+		"TranslatedText" : "",
+		"key" : "htp_gunners_text1"
+	},
+	{
+		"OriginalText" : "Each turret has a limited amount of ammo. When this ammo is depleted, it can be re-stocked from the ammo box found towards the middle of the aircraft.\n \nAny crew member can restock any turret- sometimes it may be easier to send another crew member to restock all the turrets, without your gunners leaving their seats.\n",
+		"TranslatedText" : "",
+		"key" : "htp_gunners_text2"
+	},
+	{
+		"OriginalText" : "Upgrade and customise your bomber at the hangar.\n\nYour bomber has a maximum weight limit for new equipment. To increase this limit, allowing more upgrades to be installed, upgrade your engines.",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text1"
+	},
+	{
+		"OriginalText" : "Effectiveness of survival at sea",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text10"
+	},
+	{
+		"OriginalText" : "Weight",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text2"
+	},
+	{
+		"OriginalText" : "Maximum Weight Limit",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text3"
+	},
+	{
+		"OriginalText" : "Equipment stats:",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text4"
+	},
+	{
+		"OriginalText" : "Armour: Amount of damage that can be taken.",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text5"
+	},
+	{
+		"OriginalText" : "Weight: How much this equipment weighs.",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text6"
+	},
+	{
+		"OriginalText" : "Reliability: The less reliable a system is, the higher the chance that it will break down.",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text7"
+	},
+	{
+		"OriginalText" : "Some equipment can increase your crew's chance of survival in the event of crash landing in enemy territory or ditching in the sea. This will only affect crew who are within range of the bomber once it is down.",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text8"
+	},
+	{
+		"OriginalText" : "Effectiveness of survival on land",
+		"TranslatedText" : "",
+		"key" : "htp_hangar_text9"
+	},
+	{
+		"OriginalText" : "The hydraulic system provides power to:",
+		"TranslatedText" : "",
+		"key" : "htp_hydraulics_text1"
+	},
+	{
+		"OriginalText" : "Landing gear",
+		"TranslatedText" : "",
+		"key" : "htp_hydraulics_text2"
+	},
+	{
+		"OriginalText" : "Bomb bay doors",
+		"TranslatedText" : "",
+		"key" : "htp_hydraulics_text3"
+	},
+	{
+		"OriginalText" : "Gun turret rotation",
+		"TranslatedText" : "",
+		"key" : "htp_hydraulics_text4"
+	},
+	{
+		"OriginalText" : "The hydraulic system can be repaired if broken down.",
+		"TranslatedText" : "",
+		"key" : "htp_hydraulics_text5"
+	},
+	{
+		"OriginalText" : "You can send injured crew to the rest bed to recover health.",
+		"TranslatedText" : "",
+		"key" : "htp_medicalbed_text1"
+	},
+	{
+		"OriginalText" : "Your navigator plots your course to the mission objective, and helps you to spot ground targets.",
+		"TranslatedText" : "",
+		"key" : "htp_navigator_text1"
+	},
+	{
+		"OriginalText" : "Your navigator creates heading markers. Tag these markers to confirm your heading with your pilot.\n\nYour navigator needs visibility of the ground in order to navigate well. Highly skilled navigators will navigate better with low visibility, and can even navigate by the stars.\n\nWith a skilled navigator, you can place a custom waypoint on the map to avoid upcoming hazards. Your navigator will mark hazards on the map as they are spotted, or when your radio op receives reconnaissance information.\n",
+		"TranslatedText" : "",
+		"key" : "htp_navigator_text2"
+	},
+	{
+		"OriginalText" : "Select a category from the left panel for more information.",
+		"TranslatedText" : "",
+		"key" : "htp_overview_main"
+	},
+	{
+		"OriginalText" : "The oxygen system supplies oxygen to your aircraft's stations.\n\nAt high altitude, your crew will use their personal oxygen supplies if:",
+		"TranslatedText" : "",
+		"key" : "htp_oxygen_text1"
+	},
+	{
+		"OriginalText" : "They are not at a station",
+		"TranslatedText" : "",
+		"key" : "htp_oxygen_text2"
+	},
+	{
+		"OriginalText" : "The oxygen system is broken down",
+		"TranslatedText" : "",
+		"key" : "htp_oxygen_text3"
+	},
+	{
+		"OriginalText" : "If your oxygen system is functional, your crew's personal oxygen supplies re-fill when they are at their stations.",
+		"TranslatedText" : "",
+		"key" : "htp_oxygen_text4"
+	},
+	{
+		"OriginalText" : "Recon Photos can be taken at the bomb aiming station.\n\nIt takes a highly skilled bomb aimer to take photos above low altitude, or through cloud- and even then, the chances of getting a good photo are lower in these conditions!",
+		"TranslatedText" : "",
+		"key" : "htp_photos_text1"
+	},
+	{
+		"OriginalText" : "It's important to always have someone in the pilot's seat! \n\nAny of your crew can take over, but a skilled pilot will do the best job.",
+		"TranslatedText" : "",
+		"key" : "htp_pilot_text1"
+	},
+	{
+		"OriginalText" : "Your pilot will follow navigation markers, as you tag them.\n\nYour pilot is in charge of the aircraft's altitude, landing gear and performing evasive manoeuvres.",
+		"TranslatedText" : "",
+		"key" : "htp_pilot_text2"
+	},
+	{
+		"OriginalText" : "If you decide that contuning the mission has become too risky, you can order your crew to plot a course back home with the pilot's 'Abort' order.\n\nThe pilot's “Bail Out” order will instruct your crew to grab parachutes and bail out (while there are sufficient parachutes).\n\nTo land at the airbase, ensure the landing gear is down.",
+		"TranslatedText" : "",
+		"key" : "htp_pilot_text3"
+	},
+	{
+		"OriginalText" : "See More:",
+		"TranslatedText" : "",
+		"key" : "htp_prefix_see_more"
+	},
+	{
+		"OriginalText" : "Your radar system reveals enemy fighters and submarines, making them easier to tag.\n\nThe radar relies on the electrical system to function. A member of your crew must be at the radio operator station for the radar to be visible.\n\nUpgraded radars have a faster sweep, and improved range.\n",
+		"TranslatedText" : "",
+		"key" : "htp_radar_text1"
+	},
+	{
+		"OriginalText" : "Targets can be tagged without the radar, but they will be much more difficult to spot.\n",
+		"TranslatedText" : "",
+		"key" : "htp_radar_text2"
+	},
+	{
+		"OriginalText" : "Your radio op operates the radar, which will make enemy fighters far easier to tag. \n\nAn upgraded radar will increase how often green radar 'blips' are visible. Without the radar, your crew may lose track of tagged fighters if they go out of visible range.",
+		"TranslatedText" : "",
+		"key" : "htp_radioop_text1"
+	},
+	{
+		"OriginalText" : "Your Radar relies on the Electrical System to work.\n\nA skilled radio op can:",
+		"TranslatedText" : "",
+		"key" : "htp_radioop_text2"
+	},
+	{
+		"OriginalText" : "Radio for recon: locations of some known hazards will be added to the map",
+		"TranslatedText" : "",
+		"key" : "htp_radioop_text3"
+	},
+	{
+		"OriginalText" : "Call Spitfires: a group of Spitfire fighters will come to support you for a duration",
+		"TranslatedText" : "",
+		"key" : "htp_radioop_text4"
+	},
+	{
+		"OriginalText" : "Auto Tag: tags any fighters that appear on the radar for a short duration",
+		"TranslatedText" : "",
+		"key" : "htp_radioop_text5"
+	},
+	{
+		"OriginalText" : "Select new recruits for your crew in the recruitment hut.\n\nThe tickboxes on the right hand side of the screen show you which roles are currently filled, and which ones need filling!",
+		"TranslatedText" : "",
+		"key" : "htp_recruitment_text1"
+	},
+	{
+		"OriginalText" : "Toggle tagging mode with 'SPACE' or [M_MC].",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text1"
+	},
+	{
+		"OriginalText" : "Hold [B_LT] to enter tagging mode.",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text1_console"
+	},
+	{
+		"OriginalText" : "Tag navigation points created by your navigator to give your pilot a heading. \n",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text2"
+	},
+	{
+		"OriginalText" : "Tag enemy fighters to instruct your gunners to attack.",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text3"
+	},
+	{
+		"OriginalText" : "Tag bomb targets to start a bomb run.",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text_4"
+	},
+	{
+		"OriginalText" : "Tag the airbase, on returning from a mission, to land.",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text_5"
+	},
+	{
+		"OriginalText" : "The radar provides green radar 'blips' to help you spot fighters to tag, and your navigator provides orange dots to help you spot ground-based targets.\n\nYou can still tag enemy fighters without a radar, but they will be harder to spot (especially at night, or in cloudy weather).",
+		"TranslatedText" : "",
+		"key" : "htp_tagging_text_note"
+	},
+	{
+		"OriginalText" : "When you select a member of your crew currently at a station, you will have access to the station controls!",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text1"
+	},
+	{
+		"OriginalText" : "Any member of your crew can perform any role, but someone skilled in a particular role will perform it better or more efficiently!\n\nExamples:\n",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text2"
+	},
+	{
+		"OriginalText" : "Any of your crew can take the pilot's seat, but they will not fly as well as your pilot.",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text3"
+	},
+	{
+		"OriginalText" : "Any of your crew can repair broken systems, but a trained engineer will repair systems faster.",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text4"
+	},
+	{
+		"OriginalText" : "Any of your crew can be placed in gun turrets, but trained gunners will have better aim.",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text5"
+	},
+	{
+		"OriginalText" : "Additional abilities for each role, available at their stations, unlock as your crew level up!",
+		"TranslatedText" : "",
+		"key" : "htp_yourcrew_text6"
+	},
+	{
+		"OriginalText" : "More Help...",
+		"TranslatedText" : "",
+		"key" : "misc_htp_moreinfo"
+	},
+	{
+		"OriginalText" : "See More:",
+		"TranslatedText" : "",
+		"key" : "misc_htp_seemore"
+	},
+	{
+		"OriginalText" : "[this content has not yet been written]",
+		"TranslatedText" : "",
+		"key" : "misc_htp_wip"
+	},
+	{
+		"OriginalText" : "This \"How To Play\" section is currently incomplete, and very much a work in progress!",
+		"TranslatedText" : "",
+		"key" : "misc_htp_wip_long"
+	},
+	{
+		"OriginalText" : "Funds & Intel",
+		"TranslatedText" : "",
+		"key" : "title_htp_airbase"
+	},
+	{
+		"OriginalText" : "Altitude",
+		"TranslatedText" : "",
+		"key" : "title_htp_altitude"
+	},
+	{
+		"OriginalText" : "Bomb Aimer",
+		"TranslatedText" : "",
+		"key" : "title_htp_bombaimer"
+	},
+	{
+		"OriginalText" : "The Bomb Run",
+		"TranslatedText" : "",
+		"key" : "title_htp_bombrun"
+	},
+	{
+		"OriginalText" : "Briefing",
+		"TranslatedText" : "",
+		"key" : "title_htp_briefing"
+	},
+	{
+		"OriginalText" : "Crew Quarters",
+		"TranslatedText" : "",
+		"key" : "title_htp_crewquarters"
+	},
+	{
+		"OriginalText" : "Crew Training",
+		"TranslatedText" : "",
+		"key" : "title_htp_crewtraining"
+	},
+	{
+		"OriginalText" : "Electrical System",
+		"TranslatedText" : "",
+		"key" : "title_htp_electrics"
+	},
+	{
+		"OriginalText" : "Engineer",
+		"TranslatedText" : "",
+		"key" : "title_htp_engineer"
+	},
+	{
+		"OriginalText" : "Engines & Engine Fires",
+		"TranslatedText" : "",
+		"key" : "title_htp_engines"
+	},
+	{
+		"OriginalText" : "Flight Engineer",
+		"TranslatedText" : "",
+		"key" : "title_htp_flightengineer"
+	},
+	{
+		"OriginalText" : "Fuel Tanks",
+		"TranslatedText" : "",
+		"key" : "title_htp_fueltanks"
+	},
+	{
+		"OriginalText" : "Gunners",
+		"TranslatedText" : "",
+		"key" : "title_htp_gunners"
+	},
+	{
+		"OriginalText" : "Hangar",
+		"TranslatedText" : "",
+		"key" : "title_htp_hangar"
+	},
+	{
+		"OriginalText" : "Hydraulic System",
+		"TranslatedText" : "",
+		"key" : "title_htp_hydraulics"
+	},
+	{
+		"OriginalText" : "Rest Bed",
+		"TranslatedText" : "",
+		"key" : "title_htp_medicalbed"
+	},
+	{
+		"OriginalText" : "Navigator",
+		"TranslatedText" : "",
+		"key" : "title_htp_navigator"
+	},
+	{
+		"OriginalText" : "Overview",
+		"TranslatedText" : "",
+		"key" : "title_htp_overview"
+	},
+	{
+		"OriginalText" : "Oxygen System",
+		"TranslatedText" : "",
+		"key" : "title_htp_oxygen"
+	},
+	{
+		"OriginalText" : "Piloting",
+		"TranslatedText" : "",
+		"key" : "title_htp_pilot"
+	},
+	{
+		"OriginalText" : "Radar",
+		"TranslatedText" : "",
+		"key" : "title_htp_radar"
+	},
+	{
+		"OriginalText" : "Radio Op",
+		"TranslatedText" : "",
+		"key" : "title_htp_radioop"
+	},
+	{
+		"OriginalText" : "Recruitment",
+		"TranslatedText" : "",
+		"key" : "title_htp_recruitment"
+	},
+	{
+		"OriginalText" : "Tagging",
+		"TranslatedText" : "",
+		"key" : "title_htp_tagging"
+	},
+	{
+		"OriginalText" : "Taking Photos",
+		"TranslatedText" : "",
+		"key" : "title_htp_takingphotos"
+	},
+	{
+		"OriginalText" : "Controlling your crew",
+		"TranslatedText" : "",
+		"key" : "title_htp_yourcrew"
+	}
+]

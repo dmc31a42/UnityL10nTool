@@ -1,0 +1,292 @@
+[
+	{
+		"OriginalText" : "Target coming up! Head to MED altitude!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_approachtarget_mid_0"
+	},
+	{
+		"OriginalText" : "The enemy is launching a new type of rocket interceptor!\nPrepare for evasive manoeuvres!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_ba349_warning01"
+	},
+	{
+		"OriginalText" : "Blast! They've destroyed the ship. Return to base for debrief.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_destroyed"
+	},
+	{
+		"OriginalText" : "Stay with the ship, don't allow any U-boats to torpedo it!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_escort"
+	},
+	{
+		"OriginalText" : "Head to the commando ship rendezvous point at Falmouth.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_initial"
+	},
+	{
+		"OriginalText" : "Those other submarines are backing off!\nSave the rest of your bombs for enemy gun emplacements!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_substop"
+	},
+	{
+		"OriginalText" : "Good job! The ship is in position and the crew have fled!\nPrepare for the grand finale!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_success"
+	},
+	{
+		"OriginalText" : "The ship is taking fire from enemy guns along the coast!\nBomb the emplacements before it takes too much damage!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bomb_boat_turrets"
+	},
+	{
+		"OriginalText" : "BOMBS GONE!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_bombrun_bombsaway_0"
+	},
+	{
+		"OriginalText" : "We've got wind of a suspicious site in Belgium, go and snap some recon photos!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_c02_m01_v1announce"
+	},
+	{
+		"OriginalText" : "Top stuff! Return to base!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_bounce_correct"
+	},
+	{
+		"OriginalText" : "We've fitted the bomber with the bouncing bomb to destroy the dam. \nDon't let it get damaged!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_intro"
+	},
+	{
+		"OriginalText" : "OK! Approaching the dam. \nRemember to start the bombing run at a low altitude.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_near_1"
+	},
+	{
+		"OriginalText" : "Drop the bomb when the targeting lights converge, or it won't bounce!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_near_2"
+	},
+	{
+		"OriginalText" : "OK! Tag the target to begin the bomb run. You should start the run at a low altitude.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_test_1"
+	},
+	{
+		"OriginalText" : "As you approach the dam, look for the targeting lights in the bomb aimer's sight!\nRelease the bomb when the targeting lights converge!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_test_2"
+	},
+	{
+		"OriginalText" : "Looks like a successful test to me! Good show!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_test_complete"
+	},
+	{
+		"OriginalText" : "Well, that didn't work... you need to be at low altitude and make sure to only release when the targeting lights converge!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_test_fail"
+	},
+	{
+		"OriginalText" : "We've just lost contact with a Spitfire patrol in the Channel!\nSee if you can locate them, but keep your eyes peeled for the enemy!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dam_test_spot"
+	},
+	{
+		"OriginalText" : "The enemy is scrambling fighters from Krefeld Airfield!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dlcmp01_c01m01_fighters01"
+	},
+	{
+		"OriginalText" : "Crikey! Those are experimental Do335s!\nBe careful, they're armed with 20mm cannon!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dlcmp01_c01m01_fighters02"
+	},
+	{
+		"OriginalText" : "It can get rather chilly in those snowstorms.\nI hope you chaps have wrapped up warm!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_dlcmp01_c01m01_snowstorm01"
+	},
+	{
+		"OriginalText" : "The Airfield is preparing to scramble fighters! Abandon the recon photos and hit that airfield!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_egx_skip_photos"
+	},
+	{
+		"OriginalText" : "Your first objective is to take an intel photo of enemy structure!\nFly to the target location, then use the bomb aimer's camera.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_1"
+	},
+	{
+		"OriginalText" : "Jolly good! Just one more structure to photograph!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_2"
+	},
+	{
+		"OriginalText" : "Top work! Now move on to the main objective.\nBomb the Juvincourt airfield! We're expecting heavy enemy resistance.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_3"
+	},
+	{
+		"OriginalText" : "Approaching Juvincourt Airfield!\nThey're scrambling fighters!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_4"
+	},
+	{
+		"OriginalText" : "Blast! Looks like you didn't hit the airfield...\nReturn to base for debrief!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_6_lose"
+	},
+	{
+		"OriginalText" : "Capital! Enemy airfield destroyed!\nNow return to base!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_gamescom_6_win"
+	},
+	{
+		"OriginalText" : "Ensure you drop the Grand Slam from HIGH altitude while flying level!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_grandslam_neartarget"
+	},
+	{
+		"OriginalText" : "The Grand Slam bomb requires removal of the bay doors, don't let it take too much damage!\r\nRemember, it must be dropped from HIGH altitude!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_grandslam_start"
+	},
+	{
+		"OriginalText" : "Great Scott! That's a guided missile!\nShoot it down!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_homingmissile"
+	},
+	{
+		"OriginalText" : "The enemy officer has fled!\nReturn to base for debriefing.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key04_officerfled"
+	},
+	{
+		"OriginalText" : "Take out the artillery attacking the allied ships!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key05_firstobjectives"
+	},
+	{
+		"OriginalText" : "An enemy airbase is scrambling fighters to the beachhead - go give them hell!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key05_newobjectives"
+	},
+	{
+		"OriginalText" : "The searchlights are down! That flak tower won't give us much more trouble!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key06_flaktower"
+	},
+	{
+		"OriginalText" : "One more power station to go!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key06_onemore"
+	},
+	{
+		"OriginalText" : "Take out the power stations to disable the flak tower's searchlights!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key06_powerfirst"
+	},
+	{
+		"OriginalText" : "They're scrambling fighters from Waldau! Take out the airbase!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key07_scramble_one"
+	},
+	{
+		"OriginalText" : "Brand Breisen are scrambling fighters! Put a stop to them!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key07_scramble_two"
+	},
+	{
+		"OriginalText" : "We're expecting heavy resistance on this mission!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key07_start"
+	},
+	{
+		"OriginalText" : "Dash it! We didn't destroy the bunker. Return to base for debriefing!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key08_failure"
+	},
+	{
+		"OriginalText" : "The Grand Slam bomb has to be dropped from high altitude to do enough damage!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key08_highalt"
+	},
+	{
+		"OriginalText" : "This is the big one! We're expecting heavy resistance!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key08_start"
+	},
+	{
+		"OriginalText" : "We're getting confirmation the bunker has been destroyed!\nReturn to base for debriefing!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_key08_success"
+	},
+	{
+		"OriginalText" : "Reach Alderhorst without drawing too much attention!\nUse your navigator to spot and navigate around enemy radar sites.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_radar_site_intro"
+	},
+	{
+		"OriginalText" : "You've been spotted by a radar site!\nThey're guiding fighters to your location!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_radar_site_spot"
+	},
+	{
+		"OriginalText" : "You've alerted the enemy! The officer is preparing to leave Alderhorst HQ.\nGet there and bomb the site before he does!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_radar_site_spot_second"
+	},
+	{
+		"OriginalText" : "You're in range of a radar site! Navigate away quickly to avoid detection!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_radar_site_spot_warn"
+	},
+	{
+		"OriginalText" : "You're in range of a radar site near the base!\nIf you're detected, the officer might decide to flee the base!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_radar_site_spot_warn_close"
+	},
+	{
+		"OriginalText" : "We've had reports of a fighter that doesn't show up on radar.\nKeep your eyes peeled!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_stealthfighter"
+	},
+	{
+		"OriginalText" : "Remember to drop the supplies from LOW altitude!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_supplies_neartarget"
+	},
+	{
+		"OriginalText" : "Supplies must be dropped from LOW altitude.\nThe container has a parachute - it will drift if dropped too high!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_supplies_start"
+	},
+	{
+		"OriginalText" : "Get a move on chaps!\nThe objective must be completed before we run out of time!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_timed_objective"
+	},
+	{
+		"OriginalText" : "Blast. Too late! Keep on to the primary objective.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_v2_launch_failed"
+	},
+	{
+		"OriginalText" : "The V2 launch is imminent! Get your gunners to shoot it down!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_v2_launch_imminent"
+	},
+	{
+		"OriginalText" : "A V2 is about to launch from Cuxhaven, hurry and stop the blasted thing!\nSave your bombs for the primary objective- try to shoot it down during launch.",
+		"TranslatedText" : "",
+		"key" : "mission_speech_v2_launch_stop"
+	},
+	{
+		"OriginalText" : "Good show, what!\nCarry on to the primary objective as planned!",
+		"TranslatedText" : "",
+		"key" : "mission_speech_v2_launch_success"
+	}
+]

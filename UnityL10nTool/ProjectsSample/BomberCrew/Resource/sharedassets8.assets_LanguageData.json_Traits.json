@@ -1,0 +1,1012 @@
+[
+	{
+		"OriginalText" : "Amateur Astronomer",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_astronomer"
+	},
+	{
+		"OriginalText" : "Amateur Boxer",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_boxer"
+	},
+	{
+		"OriginalText" : "Amateur Chef",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_chef"
+	},
+	{
+		"OriginalText" : "Amateur Climber",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_climber"
+	},
+	{
+		"OriginalText" : "Amateur Fencer",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_fencer"
+	},
+	{
+		"OriginalText" : "Amateur Fly Fisher",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_flyfisher"
+	},
+	{
+		"OriginalText" : "Amateur Gardener",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_gardener"
+	},
+	{
+		"OriginalText" : "Amateur Golfer",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_golfer"
+	},
+	{
+		"OriginalText" : "Amateur Horseback Rider",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_horseback_rider"
+	},
+	{
+		"OriginalText" : "Amateur Hunter",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_hunter"
+	},
+	{
+		"OriginalText" : "Amateur Magician",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_magician"
+	},
+	{
+		"OriginalText" : "Amateur Mechanic",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_mechanic"
+	},
+	{
+		"OriginalText" : "Amateur Photographer",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_photographer"
+	},
+	{
+		"OriginalText" : "Amateur Sailor",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_sailor"
+	},
+	{
+		"OriginalText" : "Amateur Tennis Player",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_tennis_player"
+	},
+	{
+		"OriginalText" : "Amateur Yodeler",
+		"TranslatedText" : "",
+		"key" : "traits_amateur_yodeler"
+	},
+	{
+		"OriginalText" : "Architect",
+		"TranslatedText" : "",
+		"key" : "traits_architect"
+	},
+	{
+		"OriginalText" : "Astronomer",
+		"TranslatedText" : "",
+		"key" : "traits_astronomer"
+	},
+	{
+		"OriginalText" : "Athlete",
+		"TranslatedText" : "",
+		"key" : "traits_athlete"
+	},
+	{
+		"OriginalText" : "Badminton Player",
+		"TranslatedText" : "",
+		"key" : "traits_badminton_player"
+	},
+	{
+		"OriginalText" : "Baker",
+		"TranslatedText" : "",
+		"key" : "traits_baker"
+	},
+	{
+		"OriginalText" : "Barber",
+		"TranslatedText" : "",
+		"key" : "traits_barber"
+	},
+	{
+		"OriginalText" : "Bird Watcher",
+		"TranslatedText" : "",
+		"key" : "traits_bird_watcher"
+	},
+	{
+		"OriginalText" : "Blacksmith",
+		"TranslatedText" : "",
+		"key" : "traits_blacksmith"
+	},
+	{
+		"OriginalText" : "Bog Snorkeler",
+		"TranslatedText" : "",
+		"key" : "traits_bog_snorkeler"
+	},
+	{
+		"OriginalText" : "Brewer",
+		"TranslatedText" : "",
+		"key" : "traits_brewer"
+	},
+	{
+		"OriginalText" : "Brewery Manager",
+		"TranslatedText" : "",
+		"key" : "traits_brewery_manager"
+	},
+	{
+		"OriginalText" : "Bricklayer",
+		"TranslatedText" : "",
+		"key" : "traits_bricklayer"
+	},
+	{
+		"OriginalText" : "Bus Driver",
+		"TranslatedText" : "",
+		"key" : "traits_bus_driver"
+	},
+	{
+		"OriginalText" : "Butcher",
+		"TranslatedText" : "",
+		"key" : "traits_butcher"
+	},
+	{
+		"OriginalText" : "Camera Operator",
+		"TranslatedText" : "",
+		"key" : "traits_camera_operator"
+	},
+	{
+		"OriginalText" : "Canoeist",
+		"TranslatedText" : "",
+		"key" : "traits_canoeist"
+	},
+	{
+		"OriginalText" : "Carpenter",
+		"TranslatedText" : "",
+		"key" : "traits_carpenter"
+	},
+	{
+		"OriginalText" : "Cellist",
+		"TranslatedText" : "",
+		"key" : "traits_cellist"
+	},
+	{
+		"OriginalText" : "Chef",
+		"TranslatedText" : "",
+		"key" : "traits_chef"
+	},
+	{
+		"OriginalText" : "Chess Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_chessenthusiast"
+	},
+	{
+		"OriginalText" : "Chimney Sweep",
+		"TranslatedText" : "",
+		"key" : "traits_chimney_sweep"
+	},
+	{
+		"OriginalText" : "Church Organist",
+		"TranslatedText" : "",
+		"key" : "traits_church_organist"
+	},
+	{
+		"OriginalText" : "Cinema Usher",
+		"TranslatedText" : "",
+		"key" : "traits_cinema_usher"
+	},
+	{
+		"OriginalText" : "Circus Performer",
+		"TranslatedText" : "",
+		"key" : "traits_circus_performer"
+	},
+	{
+		"OriginalText" : "Clay Pigeon Shooter",
+		"TranslatedText" : "",
+		"key" : "traits_clay_pigeon_shooter"
+	},
+	{
+		"OriginalText" : "Cleaner",
+		"TranslatedText" : "",
+		"key" : "traits_cleaner"
+	},
+	{
+		"OriginalText" : "Antiques Collector",
+		"TranslatedText" : "",
+		"key" : "traits_collector_antiques"
+	},
+	{
+		"OriginalText" : "Art Collector",
+		"TranslatedText" : "",
+		"key" : "traits_collector_art"
+	},
+	{
+		"OriginalText" : "Coin Collector",
+		"TranslatedText" : "",
+		"key" : "traits_collector_coin"
+	},
+	{
+		"OriginalText" : "Horse Brass Collector",
+		"TranslatedText" : "",
+		"key" : "traits_collector_horse_brass"
+	},
+	{
+		"OriginalText" : "Insect Collector",
+		"TranslatedText" : "",
+		"key" : "traits_collector_insects"
+	},
+	{
+		"OriginalText" : "Comedian",
+		"TranslatedText" : "",
+		"key" : "traits_comedian"
+	},
+	{
+		"OriginalText" : "Commercial Pilot",
+		"TranslatedText" : "",
+		"key" : "traits_commercial_pilot"
+	},
+	{
+		"OriginalText" : "Confectionist",
+		"TranslatedText" : "",
+		"key" : "traits_confectionist"
+	},
+	{
+		"OriginalText" : "Cook",
+		"TranslatedText" : "",
+		"key" : "traits_cook"
+	},
+	{
+		"OriginalText" : "Rambler",
+		"TranslatedText" : "",
+		"key" : "traits_countrysidewalker"
+	},
+	{
+		"OriginalText" : "Coxswain",
+		"TranslatedText" : "",
+		"key" : "traits_coxswain"
+	},
+	{
+		"OriginalText" : "Cricketer",
+		"TranslatedText" : "",
+		"key" : "traits_cricketer"
+	},
+	{
+		"OriginalText" : "Cross Country Runner",
+		"TranslatedText" : "",
+		"key" : "traits_cross_country_runner"
+	},
+	{
+		"OriginalText" : "Dancing Instructor",
+		"TranslatedText" : "",
+		"key" : "traits_dancing_instructor"
+	},
+	{
+		"OriginalText" : "Deep Sea Fisher",
+		"TranslatedText" : "",
+		"key" : "traits_deep_sea_fisher"
+	},
+	{
+		"OriginalText" : "Diver",
+		"TranslatedText" : "",
+		"key" : "traits_diver"
+	},
+	{
+		"OriginalText" : "Doctor",
+		"TranslatedText" : "",
+		"key" : "traits_doctor"
+	},
+	{
+		"OriginalText" : "Dog Breeder",
+		"TranslatedText" : "",
+		"key" : "traits_dog_breeder"
+	},
+	{
+		"OriginalText" : "Dog Walker",
+		"TranslatedText" : "",
+		"key" : "traits_dogwalker"
+	},
+	{
+		"OriginalText" : "Bus Driver",
+		"TranslatedText" : "",
+		"key" : "traits_driver_bus"
+	},
+	{
+		"OriginalText" : "Delivery Driver",
+		"TranslatedText" : "",
+		"key" : "traits_driver_delivery"
+	},
+	{
+		"OriginalText" : "Racing Driver",
+		"TranslatedText" : "",
+		"key" : "traits_driver_racing"
+	},
+	{
+		"OriginalText" : "Taxi Driver",
+		"TranslatedText" : "",
+		"key" : "traits_driver_taxi"
+	},
+	{
+		"OriginalText" : "Train Driver",
+		"TranslatedText" : "",
+		"key" : "traits_driver_train"
+	},
+	{
+		"OriginalText" : "Electrician",
+		"TranslatedText" : "",
+		"key" : "traits_electrician"
+	},
+	{
+		"OriginalText" : "Archery Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_archery"
+	},
+	{
+		"OriginalText" : "Chemistry Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_chemistry"
+	},
+	{
+		"OriginalText" : "Conker Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_conker"
+	},
+	{
+		"OriginalText" : "Crossword Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_crossword"
+	},
+	{
+		"OriginalText" : "D.I.Y. Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_diy"
+	},
+	{
+		"OriginalText" : "Homebrew Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_homebrew"
+	},
+	{
+		"OriginalText" : "Knitting Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_knitting"
+	},
+	{
+		"OriginalText" : "Microscopy Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_microscopy"
+	},
+	{
+		"OriginalText" : "Model Aircraft Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_model_aircraft"
+	},
+	{
+		"OriginalText" : "Orienteering Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_orienteering"
+	},
+	{
+		"OriginalText" : "Radio Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_radio"
+	},
+	{
+		"OriginalText" : "Topiary Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_enthusiast_topiary"
+	},
+	{
+		"OriginalText" : "Explorer",
+		"TranslatedText" : "",
+		"key" : "traits_explorer"
+	},
+	{
+		"OriginalText" : "Factory Worker",
+		"TranslatedText" : "",
+		"key" : "traits_factory_worker"
+	},
+	{
+		"OriginalText" : "Farmhand",
+		"TranslatedText" : "",
+		"key" : "traits_farm_hand"
+	},
+	{
+		"OriginalText" : "Farmer",
+		"TranslatedText" : "",
+		"key" : "traits_farmer"
+	},
+	{
+		"OriginalText" : "Dairy Farmer",
+		"TranslatedText" : "",
+		"key" : "traits_farmer_dairy"
+	},
+	{
+		"OriginalText" : "Figure Skater",
+		"TranslatedText" : "",
+		"key" : "traits_figure_skater"
+	},
+	{
+		"OriginalText" : "Film Director",
+		"TranslatedText" : "",
+		"key" : "traits_film_director"
+	},
+	{
+		"OriginalText" : "Film Editor",
+		"TranslatedText" : "",
+		"key" : "traits_film_editor"
+	},
+	{
+		"OriginalText" : "Fire Warden",
+		"TranslatedText" : "",
+		"key" : "traits_fire_warden"
+	},
+	{
+		"OriginalText" : "Firefighter",
+		"TranslatedText" : "",
+		"key" : "traits_firefighter"
+	},
+	{
+		"OriginalText" : "Fisherman",
+		"TranslatedText" : "",
+		"key" : "traits_fisherman"
+	},
+	{
+		"OriginalText" : "Fishmonger",
+		"TranslatedText" : "",
+		"key" : "traits_fishmonger"
+	},
+	{
+		"OriginalText" : "Flautist",
+		"TranslatedText" : "",
+		"key" : "traits_flautist"
+	},
+	{
+		"OriginalText" : "Flower Arranger",
+		"TranslatedText" : "",
+		"key" : "traits_flower_arranger"
+	},
+	{
+		"OriginalText" : "Football Coach",
+		"TranslatedText" : "",
+		"key" : "traits_football_coach"
+	},
+	{
+		"OriginalText" : "Footballer",
+		"TranslatedText" : "",
+		"key" : "traits_footballer"
+	},
+	{
+		"OriginalText" : "Forager",
+		"TranslatedText" : "",
+		"key" : "traits_forager"
+	},
+	{
+		"OriginalText" : "Fossil Hunter",
+		"TranslatedText" : "",
+		"key" : "traits_fossil_hunter"
+	},
+	{
+		"OriginalText" : "Ghost Hunter",
+		"TranslatedText" : "",
+		"key" : "traits_ghost_hunter"
+	},
+	{
+		"OriginalText" : "Glazier",
+		"TranslatedText" : "",
+		"key" : "traits_glazier"
+	},
+	{
+		"OriginalText" : "Graphic Designer",
+		"TranslatedText" : "",
+		"key" : "traits_graphic_designer"
+	},
+	{
+		"OriginalText" : "Greengrocer",
+		"TranslatedText" : "",
+		"key" : "traits_greengrocer"
+	},
+	{
+		"OriginalText" : "Groundskeeper",
+		"TranslatedText" : "",
+		"key" : "traits_groundskeeper"
+	},
+	{
+		"OriginalText" : "Hiker",
+		"TranslatedText" : "",
+		"key" : "traits_hiker"
+	},
+	{
+		"OriginalText" : "Hobbyist novel writer",
+		"TranslatedText" : "",
+		"key" : "traits_hobbyist_novel_writer"
+	},
+	{
+		"OriginalText" : "Horse breeder",
+		"TranslatedText" : "",
+		"key" : "traits_horse_breeder"
+	},
+	{
+		"OriginalText" : "Hotel Manager",
+		"TranslatedText" : "",
+		"key" : "traits_hotel_manager"
+	},
+	{
+		"OriginalText" : "Hunter",
+		"TranslatedText" : "",
+		"key" : "traits_hunter"
+	},
+	{
+		"OriginalText" : "Jeweller",
+		"TranslatedText" : "",
+		"key" : "traits_jeweler"
+	},
+	{
+		"OriginalText" : "Jockey",
+		"TranslatedText" : "",
+		"key" : "traits_jockey"
+	},
+	{
+		"OriginalText" : "Journalist",
+		"TranslatedText" : "",
+		"key" : "traits_journalist"
+	},
+	{
+		"OriginalText" : "Juggler",
+		"TranslatedText" : "",
+		"key" : "traits_juggler"
+	},
+	{
+		"OriginalText" : "Keen Bridge Player",
+		"TranslatedText" : "",
+		"key" : "traits_keen_bridge_player"
+	},
+	{
+		"OriginalText" : "Keen Camper",
+		"TranslatedText" : "",
+		"key" : "traits_keen_camper"
+	},
+	{
+		"OriginalText" : "Keen Darts Player",
+		"TranslatedText" : "",
+		"key" : "traits_keen_darts_player"
+	},
+	{
+		"OriginalText" : "Keen Fisherman",
+		"TranslatedText" : "",
+		"key" : "traits_keen_fisherman"
+	},
+	{
+		"OriginalText" : "Keen Rock Climber",
+		"TranslatedText" : "",
+		"key" : "traits_keen_rock_climber"
+	},
+	{
+		"OriginalText" : "Keen Swimmer",
+		"TranslatedText" : "",
+		"key" : "traits_keen_swimmer"
+	},
+	{
+		"OriginalText" : "Keen Whittler",
+		"TranslatedText" : "",
+		"key" : "traits_keen_whittler"
+	},
+	{
+		"OriginalText" : "Labourer",
+		"TranslatedText" : "",
+		"key" : "traits_labourer"
+	},
+	{
+		"OriginalText" : "Leather Worker",
+		"TranslatedText" : "",
+		"key" : "traits_leather_worker"
+	},
+	{
+		"OriginalText" : "Lifeguard",
+		"TranslatedText" : "",
+		"key" : "traits_lifeguard"
+	},
+	{
+		"OriginalText" : "Machinist",
+		"TranslatedText" : "",
+		"key" : "traits_machinist"
+	},
+	{
+		"OriginalText" : "Magician",
+		"TranslatedText" : "",
+		"key" : "traits_magician"
+	},
+	{
+		"OriginalText" : "Bank Manager",
+		"TranslatedText" : "",
+		"key" : "traits_manager_bank"
+	},
+	{
+		"OriginalText" : "Factory Manager",
+		"TranslatedText" : "",
+		"key" : "traits_manager_factory"
+	},
+	{
+		"OriginalText" : "Marathon Runner",
+		"TranslatedText" : "",
+		"key" : "traits_marathon_runner"
+	},
+	{
+		"OriginalText" : "Mechanic",
+		"TranslatedText" : "",
+		"key" : "traits_mechanic"
+	},
+	{
+		"OriginalText" : "Metalworker",
+		"TranslatedText" : "",
+		"key" : "traits_metalworker"
+	},
+	{
+		"OriginalText" : "Meteorologist",
+		"TranslatedText" : "",
+		"key" : "traits_meteorologist"
+	},
+	{
+		"OriginalText" : "Midwife",
+		"TranslatedText" : "",
+		"key" : "traits_midwife"
+	},
+	{
+		"OriginalText" : "Miner",
+		"TranslatedText" : "",
+		"key" : "traits_miner"
+	},
+	{
+		"OriginalText" : "Motorcar Enthusiast",
+		"TranslatedText" : "",
+		"key" : "traits_motorcar_enthusiast"
+	},
+	{
+		"OriginalText" : "Mountaineer",
+		"TranslatedText" : "",
+		"key" : "traits_mountaineer"
+	},
+	{
+		"OriginalText" : "Museum Curator",
+		"TranslatedText" : "",
+		"key" : "traits_museum_curator"
+	},
+	{
+		"OriginalText" : "Musician",
+		"TranslatedText" : "",
+		"key" : "traits_musician"
+	},
+	{
+		"OriginalText" : "None",
+		"TranslatedText" : "",
+		"key" : "traits_none"
+	},
+	{
+		"OriginalText" : "Novelist",
+		"TranslatedText" : "",
+		"key" : "traits_novelist"
+	},
+	{
+		"OriginalText" : "Olympic Rower",
+		"TranslatedText" : "",
+		"key" : "traits_olympic_rower"
+	},
+	{
+		"OriginalText" : "Olympic Runner",
+		"TranslatedText" : "",
+		"key" : "traits_olympic_runner"
+	},
+	{
+		"OriginalText" : "Olympic Shooter",
+		"TranslatedText" : "",
+		"key" : "traits_olympic_shooter"
+	},
+	{
+		"OriginalText" : "Olympic Swimmer",
+		"TranslatedText" : "",
+		"key" : "traits_olympic_swimmer"
+	},
+	{
+		"OriginalText" : "Orchestral Conductor",
+		"TranslatedText" : "",
+		"key" : "traits_orchestral_conductor"
+	},
+	{
+		"OriginalText" : "Painter",
+		"TranslatedText" : "",
+		"key" : "traits_painter"
+	},
+	{
+		"OriginalText" : "Painter and Decorator",
+		"TranslatedText" : "",
+		"key" : "traits_painter_decorator"
+	},
+	{
+		"OriginalText" : "Park Warden",
+		"TranslatedText" : "",
+		"key" : "traits_park_warden"
+	},
+	{
+		"OriginalText" : "Pharmacist",
+		"TranslatedText" : "",
+		"key" : "traits_pharmacist"
+	},
+	{
+		"OriginalText" : "Photographer",
+		"TranslatedText" : "",
+		"key" : "traits_photographer"
+	},
+	{
+		"OriginalText" : "Pianist",
+		"TranslatedText" : "",
+		"key" : "traits_pianist"
+	},
+	{
+		"OriginalText" : "Pigeon Fancier",
+		"TranslatedText" : "",
+		"key" : "traits_pigeon_fancier"
+	},
+	{
+		"OriginalText" : "Plasterer",
+		"TranslatedText" : "",
+		"key" : "traits_plasterer"
+	},
+	{
+		"OriginalText" : "Poacher",
+		"TranslatedText" : "",
+		"key" : "traits_poacher"
+	},
+	{
+		"OriginalText" : "Police Detective",
+		"TranslatedText" : "",
+		"key" : "traits_police_detective"
+	},
+	{
+		"OriginalText" : "Police Officer",
+		"TranslatedText" : "",
+		"key" : "traits_police_officer"
+	},
+	{
+		"OriginalText" : "Postman",
+		"TranslatedText" : "",
+		"key" : "traits_postman"
+	},
+	{
+		"OriginalText" : "Potholer",
+		"TranslatedText" : "",
+		"key" : "traits_potholer"
+	},
+	{
+		"OriginalText" : "Potter",
+		"TranslatedText" : "",
+		"key" : "traits_potter"
+	},
+	{
+		"OriginalText" : "Prison Warden",
+		"TranslatedText" : "",
+		"key" : "traits_prison_warden"
+	},
+	{
+		"OriginalText" : "Projectionist",
+		"TranslatedText" : "",
+		"key" : "traits_projectionist"
+	},
+	{
+		"OriginalText" : "Publican",
+		"TranslatedText" : "",
+		"key" : "traits_publican"
+	},
+	{
+		"OriginalText" : "Radio Presenter",
+		"TranslatedText" : "",
+		"key" : "traits_radio_presenter"
+	},
+	{
+		"OriginalText" : "Radio Repairer",
+		"TranslatedText" : "",
+		"key" : "traits_radio_repairer"
+	},
+	{
+		"OriginalText" : "Rambler",
+		"TranslatedText" : "",
+		"key" : "traits_rambler"
+	},
+	{
+		"OriginalText" : "Roofer",
+		"TranslatedText" : "",
+		"key" : "traits_roofer"
+	},
+	{
+		"OriginalText" : "Scout Troop Leader",
+		"TranslatedText" : "",
+		"key" : "traits_scout_troop_leader"
+	},
+	{
+		"OriginalText" : "Sculptor",
+		"TranslatedText" : "",
+		"key" : "traits_sculptor"
+	},
+	{
+		"OriginalText" : "Secretary",
+		"TranslatedText" : "",
+		"key" : "traits_secretary"
+	},
+	{
+		"OriginalText" : "Shopkeeper",
+		"TranslatedText" : "",
+		"key" : "traits_shopkeeper"
+	},
+	{
+		"OriginalText" : "Ski Instructor",
+		"TranslatedText" : "",
+		"key" : "traits_ski_instructor"
+	},
+	{
+		"OriginalText" : "Skier",
+		"TranslatedText" : "",
+		"key" : "traits_skier"
+	},
+	{
+		"OriginalText" : "Stamp Collector",
+		"TranslatedText" : "",
+		"key" : "traits_stamp_collector"
+	},
+	{
+		"OriginalText" : "Station Master",
+		"TranslatedText" : "",
+		"key" : "traits_station_master"
+	},
+	{
+		"OriginalText" : "Stonemason",
+		"TranslatedText" : "",
+		"key" : "traits_stonemason"
+	},
+	{
+		"OriginalText" : "Street Sweeper",
+		"TranslatedText" : "",
+		"key" : "traits_street_sweeper"
+	},
+	{
+		"OriginalText" : "Chemistry Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_chemistry"
+	},
+	{
+		"OriginalText" : "English Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_english"
+	},
+	{
+		"OriginalText" : "Geography Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_geography"
+	},
+	{
+		"OriginalText" : "History Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_history"
+	},
+	{
+		"OriginalText" : "Mathematics Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_maths"
+	},
+	{
+		"OriginalText" : "Physics Student",
+		"TranslatedText" : "",
+		"key" : "traits_student_physics"
+	},
+	{
+		"OriginalText" : "Surgeon",
+		"TranslatedText" : "",
+		"key" : "traits_surgeon"
+	},
+	{
+		"OriginalText" : "Survival Expert",
+		"TranslatedText" : "",
+		"key" : "traits_survival_expert"
+	},
+	{
+		"OriginalText" : "Swimming Instructor",
+		"TranslatedText" : "",
+		"key" : "traits_swimming_instructor"
+	},
+	{
+		"OriginalText" : "Tailor",
+		"TranslatedText" : "",
+		"key" : "traits_tailor"
+	},
+	{
+		"OriginalText" : "Chemistry Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_chemistry"
+	},
+	{
+		"OriginalText" : "English Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_english"
+	},
+	{
+		"OriginalText" : "Geography Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_geography"
+	},
+	{
+		"OriginalText" : "History Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_history"
+	},
+	{
+		"OriginalText" : "Mathematics Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_mathematics"
+	},
+	{
+		"OriginalText" : "Physics Teacher",
+		"TranslatedText" : "",
+		"key" : "traits_teacher_physics"
+	},
+	{
+		"OriginalText" : "Tennis Coach",
+		"TranslatedText" : "",
+		"key" : "traits_tennis_coach"
+	},
+	{
+		"OriginalText" : "Ticket Inspector",
+		"TranslatedText" : "",
+		"key" : "traits_ticket_inspector"
+	},
+	{
+		"OriginalText" : "Tiddlywinks player",
+		"TranslatedText" : "",
+		"key" : "traits_tiddlywinks_player"
+	},
+	{
+		"OriginalText" : "Train Conductor",
+		"TranslatedText" : "",
+		"key" : "traits_train_conductor"
+	},
+	{
+		"OriginalText" : "Trainspotter",
+		"TranslatedText" : "",
+		"key" : "traits_trainspotter"
+	},
+	{
+		"OriginalText" : "Tree Surgeon",
+		"TranslatedText" : "",
+		"key" : "traits_tree_surgeon"
+	},
+	{
+		"OriginalText" : "Typesetter",
+		"TranslatedText" : "",
+		"key" : "traits_typesetter"
+	},
+	{
+		"OriginalText" : "Unemployed",
+		"TranslatedText" : "",
+		"key" : "traits_unemployed"
+	},
+	{
+		"OriginalText" : "Veterinarian",
+		"TranslatedText" : "",
+		"key" : "traits_veterinarian"
+	},
+	{
+		"OriginalText" : "Weightlifter",
+		"TranslatedText" : "",
+		"key" : "traits_weightlifter"
+	},
+	{
+		"OriginalText" : "Welder",
+		"TranslatedText" : "",
+		"key" : "traits_welder"
+	},
+	{
+		"OriginalText" : "Window Cleaner",
+		"TranslatedText" : "",
+		"key" : "traits_window_cleaner"
+	},
+	{
+		"OriginalText" : "Zoo Keeper",
+		"TranslatedText" : "",
+		"key" : "traits_zoo_keeper"
+	}
+]

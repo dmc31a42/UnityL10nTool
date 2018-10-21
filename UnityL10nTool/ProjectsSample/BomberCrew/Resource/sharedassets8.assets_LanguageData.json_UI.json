@@ -1,0 +1,2167 @@
+[
+	{
+		"OriginalText" : "Beta!",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_beta"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_cancel"
+	},
+	{
+		"OriginalText" : "Order a 3D Printed version of your crew!",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_explanation"
+	},
+	{
+		"OriginalText" : "Upload",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_print"
+	},
+	{
+		"OriginalText" : "Processing may take a few minutes, please wait!",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_processingsmall"
+	},
+	{
+		"OriginalText" : "3D Print Your Crew",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_title"
+	},
+	{
+		"OriginalText" : "Uploading & Processing",
+		"TranslatedText" : "테스트",
+		"key" : "ui_3dprint_uploading"
+	},
+	{
+		"OriginalText" : "Aircraft",
+		"TranslatedText" : "테스트",
+		"key" : "ui_airbase_area_aircraft"
+	},
+	{
+		"OriginalText" : "Briefing",
+		"TranslatedText" : "테스트",
+		"key" : "ui_airbase_area_briefing"
+	},
+	{
+		"OriginalText" : "Crew Gear",
+		"TranslatedText" : "테스트",
+		"key" : "ui_airbase_area_crew"
+	},
+	{
+		"OriginalText" : "Training",
+		"TranslatedText" : "테스트",
+		"key" : "ui_airbase_area_crew_training"
+	},
+	{
+		"OriginalText" : "Overview",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_area_overview"
+	},
+	{
+		"OriginalText" : "Recruit",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_area_recruitment"
+	},
+	{
+		"OriginalText" : "Campaign Map",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_button_campaignmap"
+	},
+	{
+		"OriginalText" : "Enemy Fighter Aces",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_button_enemyfighteraces"
+	},
+	{
+		"OriginalText" : "Menu",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_button_menu"
+	},
+	{
+		"OriginalText" : "Main Campaign Progress",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_campaign_progress_title"
+	},
+	{
+		"OriginalText" : "Recovery Cost: £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_debrief_recovery_cost"
+	},
+	{
+		"OriginalText" : "{0} Bombers Lost",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_bomberslost"
+	},
+	{
+		"OriginalText" : "{0} Crew Lost",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_crewlost"
+	},
+	{
+		"OriginalText" : "{0} Crewmembers Rescued",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_crewrescued"
+	},
+	{
+		"OriginalText" : "{0} Enemy Fighters Destroyed",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_fightersDestroyed"
+	},
+	{
+		"OriginalText" : "£{0} Funds Spent",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_fundsspent"
+	},
+	{
+		"OriginalText" : "{0} Miles Flown",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_milesflown"
+	},
+	{
+		"OriginalText" : "{0} Missions Flown",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_missionsflown"
+	},
+	{
+		"OriginalText" : "{0} Recon Photos Taken",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_reconphotostaken"
+	},
+	{
+		"OriginalText" : "{0} Targets Destroyed",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_stat_targetsdestroyed"
+	},
+	{
+		"OriginalText" : "RAF Woodbridge",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_overview_title"
+	},
+	{
+		"OriginalText" : "Recruit a full crew to start a mission",
+		"TranslatedText" : "",
+		"key" : "ui_airbase_recruitfullcrew"
+	},
+	{
+		"OriginalText" : "This game supports an autosave feature. Please don't turn off your game when you see the autosave icon.",
+		"TranslatedText" : "",
+		"key" : "ui_autosave_warning"
+	},
+	{
+		"OriginalText" : "Abort",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_abortmission"
+	},
+	{
+		"OriginalText" : "High",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_altlhigh"
+	},
+	{
+		"OriginalText" : "Low",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_altlow"
+	},
+	{
+		"OriginalText" : "Med",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_altmed"
+	},
+	{
+		"OriginalText" : "A.P. Ammo",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_ammoarmourpiercing"
+	},
+	{
+		"OriginalText" : "H.E. Ammo",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_ammohighexplosive"
+	},
+	{
+		"OriginalText" : "Incendiary",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_ammoincendiary"
+	},
+	{
+		"OriginalText" : "Auto Tag",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_autotag"
+	},
+	{
+		"OriginalText" : "Bail Out!",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_bailout"
+	},
+	{
+		"OriginalText" : "Close Doors",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_bombbayclose"
+	},
+	{
+		"OriginalText" : "Open Doors",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_bombbayopen"
+	},
+	{
+		"OriginalText" : "Release",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_bombrelease"
+	},
+	{
+		"OriginalText" : "Clear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_clearwaypoints"
+	},
+	{
+		"OriginalText" : "Corkscrew",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_corkscrew"
+	},
+	{
+		"OriginalText" : "Corkscrew+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_corkscrewplus"
+	},
+	{
+		"OriginalText" : "Custom Heading",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_custom_path"
+	},
+	{
+		"OriginalText" : "Deselect All",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_deselectallbombs"
+	},
+	{
+		"OriginalText" : "Emg Dive+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_emergencydive_plus"
+	},
+	{
+		"OriginalText" : "Emg. Dive",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_emgdive"
+	},
+	{
+		"OriginalText" : "Emg. Land",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_emgland"
+	},
+	{
+		"OriginalText" : "Evade Flak",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_evadeflak"
+	},
+	{
+		"OriginalText" : "Engine 1",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_extinguisherengine1"
+	},
+	{
+		"OriginalText" : "Engine 2",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_extinguisherengine2"
+	},
+	{
+		"OriginalText" : "Engine 3",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_extinguisherengine3"
+	},
+	{
+		"OriginalText" : "Engine 4",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_extinguisherengine4"
+	},
+	{
+		"OriginalText" : "Fire Missile",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fire_missile"
+	},
+	{
+		"OriginalText" : "Evade Flak+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_flakevade_plus"
+	},
+	{
+		"OriginalText" : "Correct",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuelcorrect"
+	},
+	{
+		"OriginalText" : "Lean",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuellean"
+	},
+	{
+		"OriginalText" : "Lean+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuellean_plus"
+	},
+	{
+		"OriginalText" : "Rich",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuelrich"
+	},
+	{
+		"OriginalText" : "Boost+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuelrich_plus"
+	},
+	{
+		"OriginalText" : "Boost",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuelrichboost"
+	},
+	{
+		"OriginalText" : "Super Boost",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fuelsuperrich"
+	},
+	{
+		"OriginalText" : "Balance Tanks",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_fueltankbalance"
+	},
+	{
+		"OriginalText" : "Lower Gear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_gearlower"
+	},
+	{
+		"OriginalText" : "Raise Gear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_gearraise"
+	},
+	{
+		"OriginalText" : "Radio for recon",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_get_recon"
+	},
+	{
+		"OriginalText" : "Defensive",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_gundefensivefire"
+	},
+	{
+		"OriginalText" : "Focus",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_gunfocus"
+	},
+	{
+		"OriginalText" : "Reload",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_gunreloadbelt"
+	},
+	{
+		"OriginalText" : "Test Fire",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_guntestfire"
+	},
+	{
+		"OriginalText" : "Leave Bed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_leavebed"
+	},
+	{
+		"OriginalText" : "Leave Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_leavestation"
+	},
+	{
+		"OriginalText" : "Homing Missiles",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_missile_title"
+	},
+	{
+		"OriginalText" : "Navigate By Stars",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_navigate_by_stars"
+	},
+	{
+		"OriginalText" : "Select All",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_selectallbombs"
+	},
+	{
+		"OriginalText" : "Take Off",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_takeoff"
+	},
+	{
+		"OriginalText" : "Take Photo",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_takephoto"
+	},
+	{
+		"OriginalText" : "Mid Alt. Photo",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_takephoto_mid"
+	},
+	{
+		"OriginalText" : "Zoom",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_button_zoommap"
+	},
+	{
+		"OriginalText" : "Fuel Remaining: {0} min",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_engineer_fuel_remaining"
+	},
+	{
+		"OriginalText" : "Tank 1",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_gaugelabel_fueltank1"
+	},
+	{
+		"OriginalText" : "Tank 2",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_gaugelabel_fueltank2"
+	},
+	{
+		"OriginalText" : "Usage Rate",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_gaugelabel_fuelusagerate"
+	},
+	{
+		"OriginalText" : "Ground: ",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_gaugelabel_ground"
+	},
+	{
+		"OriginalText" : "Stars: ",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_gaugelabel_stars"
+	},
+	{
+		"OriginalText" : "Good Photo: {0}%",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_good_photo"
+	},
+	{
+		"OriginalText" : "Ammo Feed Installed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_indicator_ammofeedinstalled"
+	},
+	{
+		"OriginalText" : "Abilities",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_abilities"
+	},
+	{
+		"OriginalText" : "Ammunition",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_ammo"
+	},
+	{
+		"OriginalText" : "Bomb Bay",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_bombbay"
+	},
+	{
+		"OriginalText" : "Bomb Release",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_bombrelease"
+	},
+	{
+		"OriginalText" : "Bomb Selection",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_bombselectorswitches"
+	},
+	{
+		"OriginalText" : "Camera",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_camera"
+	},
+	{
+		"OriginalText" : "Emergency",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_emergency"
+	},
+	{
+		"OriginalText" : "Engine Extinguishers",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_engineextinguishers"
+	},
+	{
+		"OriginalText" : "Fuel Mixture",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_fuelmixture"
+	},
+	{
+		"OriginalText" : "Fuel Transfer Pump",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_fueltransferpump"
+	},
+	{
+		"OriginalText" : "Landing Gear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_landinggear"
+	},
+	{
+		"OriginalText" : "Locked For Tutorial",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_lockedfortutorial"
+	},
+	{
+		"OriginalText" : "Manoeuvres",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_maneuvers"
+	},
+	{
+		"OriginalText" : "Mission",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_mission"
+	},
+	{
+		"OriginalText" : "Next Waypoint",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_nextwaypoint"
+	},
+	{
+		"OriginalText" : "Not Installed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_notinstalled"
+	},
+	{
+		"OriginalText" : "Target Altitude",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_targetaltitude"
+	},
+	{
+		"OriginalText" : "Visibility",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_label_visibility"
+	},
+	{
+		"OriginalText" : "E.T.A: {0}m {1:00}sec",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_navigator_notepad_eta"
+	},
+	{
+		"OriginalText" : "Arrived.",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_navigator_notepad_eta_arrived"
+	},
+	{
+		"OriginalText" : "E.T.A N/A",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_navigator_notepad_etana"
+	},
+	{
+		"OriginalText" : "Calculating E.T.A.",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_navigator_notepad_unknown"
+	},
+	{
+		"OriginalText" : "Call Spitfires",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_spitfires"
+	},
+	{
+		"OriginalText" : "Call Spitfires+",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_spitfires_plus"
+	},
+	{
+		"OriginalText" : "Bomb Aimer's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_bombaimer"
+	},
+	{
+		"OriginalText" : "Engineer's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_engineer"
+	},
+	{
+		"OriginalText" : "Gunner's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_gunner"
+	},
+	{
+		"OriginalText" : "Mid-Upper Gunner's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_gunnermidupper"
+	},
+	{
+		"OriginalText" : "Nose Gunner's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_gunnernose"
+	},
+	{
+		"OriginalText" : "Tail Gunner's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_gunnertail"
+	},
+	{
+		"OriginalText" : "Ventral Gunner's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_gunnerventral"
+	},
+	{
+		"OriginalText" : "Navigator's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_navigator"
+	},
+	{
+		"OriginalText" : "Pilot's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_pilot"
+	},
+	{
+		"OriginalText" : "Radio Operator's Station",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_radioop"
+	},
+	{
+		"OriginalText" : "Rest Bed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_title_restbed"
+	},
+	{
+		"OriginalText" : "Uses Remaining: {0}",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_station_uses_remaining"
+	},
+	{
+		"OriginalText" : "Livery",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrade_livery_type"
+	},
+	{
+		"OriginalText" : "Rename",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrade_rename"
+	},
+	{
+		"OriginalText" : "Aircraft Upgrade",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrade_type"
+	},
+	{
+		"OriginalText" : "Engines",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_engines"
+	},
+	{
+		"OriginalText" : "Fuselage",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_fuselage"
+	},
+	{
+		"OriginalText" : "Gun Turrets",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_gunturrets"
+	},
+	{
+		"OriginalText" : "Livery",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_livery"
+	},
+	{
+		"OriginalText" : "Equipment",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_racks"
+	},
+	{
+		"OriginalText" : "Survival",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_survival"
+	},
+	{
+		"OriginalText" : "Systems",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_category_systems"
+	},
+	{
+		"OriginalText" : "Install: £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_install_cost"
+	},
+	{
+		"OriginalText" : "Install: Refund £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_install_cost_refund"
+	},
+	{
+		"OriginalText" : "Installed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_label_installed"
+	},
+	{
+		"OriginalText" : "Not Installed",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_label_not_installed"
+	},
+	{
+		"OriginalText" : "Customise",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_livery_customiser"
+	},
+	{
+		"OriginalText" : "Dinghy",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_dinghy"
+	},
+	{
+		"OriginalText" : "Electrical",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_electrical"
+	},
+	{
+		"OriginalText" : "Port Outer",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_engine1"
+	},
+	{
+		"OriginalText" : "Port Inner",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_engine2"
+	},
+	{
+		"OriginalText" : "Starboard Inner",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_engine3"
+	},
+	{
+		"OriginalText" : "Starboard Outer",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_engine4"
+	},
+	{
+		"OriginalText" : "Extinguishers",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_extinguisher"
+	},
+	{
+		"OriginalText" : "Fuel Tanks",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuel_tanks"
+	},
+	{
+		"OriginalText" : "Nose",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_1"
+	},
+	{
+		"OriginalText" : "Front",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_2"
+	},
+	{
+		"OriginalText" : "Mid",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_3"
+	},
+	{
+		"OriginalText" : "Main Rear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_4"
+	},
+	{
+		"OriginalText" : "Tail",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_5"
+	},
+	{
+		"OriginalText" : "Wings",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_6"
+	},
+	{
+		"OriginalText" : "Bomb Bay",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_fuselage_section_bay"
+	},
+	{
+		"OriginalText" : "Nose Turret",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_gunturret_nose"
+	},
+	{
+		"OriginalText" : "Tail Turret",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_gunturret_rear"
+	},
+	{
+		"OriginalText" : "Mid-Upper Turret",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_gunturret_upper"
+	},
+	{
+		"OriginalText" : "Ventral Turret",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_gunturret_ventral"
+	},
+	{
+		"OriginalText" : "Hydraulics",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_hydraulics"
+	},
+	{
+		"OriginalText" : "Base Paint",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_livery_base"
+	},
+	{
+		"OriginalText" : "Engine Art",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_livery_engineart"
+	},
+	{
+		"OriginalText" : "Nose Art",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_livery_noseart"
+	},
+	{
+		"OriginalText" : "Waist Text",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_livery_nosetext"
+	},
+	{
+		"OriginalText" : "Wing Art",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_livery_wingart"
+	},
+	{
+		"OriginalText" : "Missiles",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_missiles"
+	},
+	{
+		"OriginalText" : "Oxygen Tank",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_oxygen_tank"
+	},
+	{
+		"OriginalText" : "Pigeon",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_pigeon"
+	},
+	{
+		"OriginalText" : "Rear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_rack1"
+	},
+	{
+		"OriginalText" : "Mid-Rear",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_rack2"
+	},
+	{
+		"OriginalText" : "Mid-Front",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_rack3"
+	},
+	{
+		"OriginalText" : "Front",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_rack4"
+	},
+	{
+		"OriginalText" : "Radar",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_requirements_radar"
+	},
+	{
+		"OriginalText" : "Ammo Per Belt",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_ammo_per_reload"
+	},
+	{
+		"OriginalText" : "Damage Per Second",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_damage_per_second"
+	},
+	{
+		"OriginalText" : "Voltage",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_electricalvoltage"
+	},
+	{
+		"OriginalText" : "Extinguish Capacity",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_extinguish_capacity"
+	},
+	{
+		"OriginalText" : "Extinguish Power",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_extinguish_efficiency"
+	},
+	{
+		"OriginalText" : "Hydraulic Power",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_hydraulic_power"
+	},
+	{
+		"OriginalText" : "Missiles",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_num_missiles"
+	},
+	{
+		"OriginalText" : "Rack Spaces",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_rack_spaces"
+	},
+	{
+		"OriginalText" : "Radar Range",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_radar_range"
+	},
+	{
+		"OriginalText" : "Sweep Time",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_radar_sweep_time"
+	},
+	{
+		"OriginalText" : "Weight Limit Increase",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_stat_weightlimit_raise"
+	},
+	{
+		"OriginalText" : "Survival Equipment:",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_survival_equipment"
+	},
+	{
+		"OriginalText" : "Weight:",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_weight"
+	},
+	{
+		"OriginalText" : "Installing this item would put your bomber over its weight limit.\nUpgrade your engines to allow for a higher weight limit.",
+		"TranslatedText" : "",
+		"key" : "ui_bomber_upgrades_weightlimit"
+	},
+	{
+		"OriginalText" : "Back",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_back"
+	},
+	{
+		"OriginalText" : "Begin Mission",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_begin_mission"
+	},
+	{
+		"OriginalText" : "Enemy Ace in Mission Area",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_chance_of_ace_indicator"
+	},
+	{
+		"OriginalText" : "Completion Reward:",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_completion_reward"
+	},
+	{
+		"OriginalText" : "Safe Return Bonus:",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_completion_safe_return"
+	},
+	{
+		"OriginalText" : "Critical Mission",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_critical_mission_indicator"
+	},
+	{
+		"OriginalText" : "Due to their difficulty level, it is recommended you progress a little further through the main campaign before attempting these add-on missions.\n\nPlay this mission anyway?",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_dlc_difficulty_warning"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_dlc_difficulty_warning_no"
+	},
+	{
+		"OriginalText" : "Add-on Campaign Difficulty",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_dlc_difficulty_warning_title"
+	},
+	{
+		"OriginalText" : "Play Anyway",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_dlc_difficulty_warning_yes"
+	},
+	{
+		"OriginalText" : "Long Duration",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_duration_long"
+	},
+	{
+		"OriginalText" : "Medium Duration",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_duration_medium"
+	},
+	{
+		"OriginalText" : "Short Duration",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_duration_short"
+	},
+	{
+		"OriginalText" : "Duration",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_duration_title"
+	},
+	{
+		"OriginalText" : "High Risk",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_risk_high"
+	},
+	{
+		"OriginalText" : "Low Risk",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_risk_low"
+	},
+	{
+		"OriginalText" : "Medium Risk",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_risk_med"
+	},
+	{
+		"OriginalText" : "Mission Risk:",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_risk_title"
+	},
+	{
+		"OriginalText" : "Very High Risk",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_risk_very_high"
+	},
+	{
+		"OriginalText" : "Mission Success Bonus Perk:",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_mission_success_perk_title"
+	},
+	{
+		"OriginalText" : "Current Perks:",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_perks_current_title"
+	},
+	{
+		"OriginalText" : "Select a mission from the Campaign Map",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_select_mission"
+	},
+	{
+		"OriginalText" : "(Tutorial Mission)",
+		"TranslatedText" : "",
+		"key" : "ui_briefing_tutorialmissionlabel"
+	},
+	{
+		"OriginalText" : "Campaign",
+		"TranslatedText" : "",
+		"key" : "ui_button_campaign"
+	},
+	{
+		"OriginalText" : "Change Livery Text",
+		"TranslatedText" : "",
+		"key" : "ui_change_livery_text"
+	},
+	{
+		"OriginalText" : "Secondary Skill unlocks at level {0}.",
+		"TranslatedText" : "",
+		"key" : "ui_crew_training_unlock_at"
+	},
+	{
+		"OriginalText" : "Crew Gear",
+		"TranslatedText" : "",
+		"key" : "ui_crewman_gear_upgrade_type"
+	},
+	{
+		"OriginalText" : "LVL: {0}",
+		"TranslatedText" : "",
+		"key" : "ui_crewman_panel_level_unlock"
+	},
+	{
+		"OriginalText" : "Boots",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_boots"
+	},
+	{
+		"OriginalText" : "Flight Suit",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_flightsuit"
+	},
+	{
+		"OriginalText" : "Gloves",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_gloves"
+	},
+	{
+		"OriginalText" : "Headgear",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_headgear"
+	},
+	{
+		"OriginalText" : "Oxygen",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_oxygen"
+	},
+	{
+		"OriginalText" : "Full Presets",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_presets"
+	},
+	{
+		"OriginalText" : "Vest",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_category_vest"
+	},
+	{
+		"OriginalText" : "Equip: £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equip_cost"
+	},
+	{
+		"OriginalText" : "Equip: {0} in storage",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equip_inventory"
+	},
+	{
+		"OriginalText" : "Equip: Refund £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equip_refund"
+	},
+	{
+		"OriginalText" : "Equip to all: Refund £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equip_refund_all"
+	},
+	{
+		"OriginalText" : "Equip to All: £{0:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equipall_cost"
+	},
+	{
+		"OriginalText" : "Equipped",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equipped"
+	},
+	{
+		"OriginalText" : "Equipped to All",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_equipped_all"
+	},
+	{
+		"OriginalText" : "No",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_popup_equipall_no"
+	},
+	{
+		"OriginalText" : "Equip all your crew with {0}?",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_popup_equipall_title"
+	},
+	{
+		"OriginalText" : "Yes",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_popup_equipall_yes"
+	},
+	{
+		"OriginalText" : "Armour:",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_stats_armour"
+	},
+	{
+		"OriginalText" : "Oxygen:",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_stats_oxygen"
+	},
+	{
+		"OriginalText" : "Speed:",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_stats_speed"
+	},
+	{
+		"OriginalText" : "Survival:",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_stats_survival"
+	},
+	{
+		"OriginalText" : "Thermal:",
+		"TranslatedText" : "",
+		"key" : "ui_crewquarters_stats_thermal"
+	},
+	{
+		"OriginalText" : "No further training available.",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_no_training"
+	},
+	{
+		"OriginalText" : "Primary Skill:",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_primary_skill"
+	},
+	{
+		"OriginalText" : "Remove",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_remove_training_confirm"
+	},
+	{
+		"OriginalText" : "Re-Train",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_retrain_button"
+	},
+	{
+		"OriginalText" : "Secondary Skill:",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_secondary_skill"
+	},
+	{
+		"OriginalText" : "Select an ability for more information",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_skillinfo_prompt"
+	},
+	{
+		"OriginalText" : "Training",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_title"
+	},
+	{
+		"OriginalText" : "Train",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_button"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_popup_cancel"
+	},
+	{
+		"OriginalText" : "Train",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_popup_confirm"
+	},
+	{
+		"OriginalText" : "Train {0} with secondary skill of {1}?",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_popup_message"
+	},
+	{
+		"OriginalText" : "Secondary Skill Training",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_popup_title"
+	},
+	{
+		"OriginalText" : "Are you sure you want to remove {1} training from {0}?",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_remove_popup_message"
+	},
+	{
+		"OriginalText" : "Remove current training?",
+		"TranslatedText" : "",
+		"key" : "ui_crewtraining_train_remove_popup_title"
+	},
+	{
+		"OriginalText" : "Defeated!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_ace_defeated"
+	},
+	{
+		"OriginalText" : "Escaped!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_ace_escaped"
+	},
+	{
+		"OriginalText" : "Destroyed!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_bomber_destroyed"
+	},
+	{
+		"OriginalText" : "Bomber Lost!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_bomber_lost"
+	},
+	{
+		"OriginalText" : "Recoverable",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_bomber_recoverable"
+	},
+	{
+		"OriginalText" : "Recovered & Repaired",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_bomber_recovered"
+	},
+	{
+		"OriginalText" : "Returned & Repaired!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_bomber_returned"
+	},
+	{
+		"OriginalText" : "For next {0} missions",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_briefing_fornextxmissions"
+	},
+	{
+		"OriginalText" : "Don't Recover",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_button_dont_recover"
+	},
+	{
+		"OriginalText" : "Recover",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_button_recover"
+	},
+	{
+		"OriginalText" : "Continue",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_continue"
+	},
+	{
+		"OriginalText" : "K.I.A.",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crew_kia"
+	},
+	{
+		"OriginalText" : "M.I.A.",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crew_mia"
+	},
+	{
+		"OriginalText" : "Rescued",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crew_rescued"
+	},
+	{
+		"OriginalText" : "Returned",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crew_returned"
+	},
+	{
+		"OriginalText" : "Crew Status:",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crew_status"
+	},
+	{
+		"OriginalText" : "Survival at sea",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_at_sea"
+	},
+	{
+		"OriginalText" : "Away from bomber",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_awayfrom_bomber"
+	},
+	{
+		"OriginalText" : "Hostility:",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_hostility"
+	},
+	{
+		"OriginalText" : "Survival on land",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_on_land"
+	},
+	{
+		"OriginalText" : "VS.",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_vs"
+	},
+	{
+		"OriginalText" : "Near bomber",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_crewman_with_bomber"
+	},
+	{
+		"OriginalText" : "Enemy Ace Defeated",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_defeat_enemy_ace"
+	},
+	{
+		"OriginalText" : "Exit Debrief",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_exit_debrief"
+	},
+	{
+		"OriginalText" : "Mission Failed!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_mission_failed"
+	},
+	{
+		"OriginalText" : "Mission Result:",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_mission_result"
+	},
+	{
+		"OriginalText" : "Mission Success!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_mission_success"
+	},
+	{
+		"OriginalText" : "New Skill",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_new_skill"
+	},
+	{
+		"OriginalText" : "New Skills Summary:",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_new_skills"
+	},
+	{
+		"OriginalText" : "New Unlocks:",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_new_unlocks"
+	},
+	{
+		"OriginalText" : "No 'Slow Time' Bonus",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_no_slowdown_bonus"
+	},
+	{
+		"OriginalText" : "Optional Recon Photos",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_optional_photos_reward"
+	},
+	{
+		"OriginalText" : "Return to Base Bonus",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_return_home_safely_reward"
+	},
+	{
+		"OriginalText" : "Failed!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_subobjective_failed"
+	},
+	{
+		"OriginalText" : "Success!",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_subobjective_success"
+	},
+	{
+		"OriginalText" : "Destroyed",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_target_destroyed"
+	},
+	{
+		"OriginalText" : "Not Destroyed",
+		"TranslatedText" : "",
+		"key" : "ui_debrief_target_not_destroyed"
+	},
+	{
+		"OriginalText" : "Secret Weapons Missions",
+		"TranslatedText" : "",
+		"key" : "ui_dlc_upsell_title_dlcmissionpack01"
+	},
+	{
+		"OriginalText" : "Skin Pack",
+		"TranslatedText" : "",
+		"key" : "ui_dlc_upsell_title_dlcskinpackk01"
+	},
+	{
+		"OriginalText" : "Loadout Presets",
+		"TranslatedText" : "",
+		"key" : "ui_endlessmode_briefing_button_managepresets"
+	},
+	{
+		"OriginalText" : "DLC Not Installed - Go to Store",
+		"TranslatedText" : "",
+		"key" : "ui_endlessmode_popup_choosepack_notinstalled"
+	},
+	{
+		"OriginalText" : "Choose Pack",
+		"TranslatedText" : "",
+		"key" : "ui_endlessmode_popup_choosepack_title"
+	},
+	{
+		"OriginalText" : "Press [B_SL] to start",
+		"TranslatedText" : "",
+		"key" : "ui_engagement_start"
+	},
+	{
+		"OriginalText" : "YES",
+		"TranslatedText" : "",
+		"key" : "ui_example_text"
+	},
+	{
+		"OriginalText" : "Starting Crew",
+		"TranslatedText" : "",
+		"key" : "ui_gamecomplete_first_crew"
+	},
+	{
+		"OriginalText" : "Victory Over Europe",
+		"TranslatedText" : "",
+		"key" : "ui_gamecomplete_title_text"
+	},
+	{
+		"OriginalText" : "Back",
+		"TranslatedText" : "",
+		"key" : "ui_general_back"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_general_cancel"
+	},
+	{
+		"OriginalText" : "Continue",
+		"TranslatedText" : "",
+		"key" : "ui_general_continue"
+	},
+	{
+		"OriginalText" : "Done",
+		"TranslatedText" : "",
+		"key" : "ui_general_done"
+	},
+	{
+		"OriginalText" : "Edit",
+		"TranslatedText" : "",
+		"key" : "ui_general_edit"
+	},
+	{
+		"OriginalText" : "Go!",
+		"TranslatedText" : "",
+		"key" : "ui_general_go"
+	},
+	{
+		"OriginalText" : "Info",
+		"TranslatedText" : "",
+		"key" : "ui_general_information"
+	},
+	{
+		"OriginalText" : "Locked",
+		"TranslatedText" : "",
+		"key" : "ui_general_locked"
+	},
+	{
+		"OriginalText" : "OK",
+		"TranslatedText" : "",
+		"key" : "ui_general_ok"
+	},
+	{
+		"OriginalText" : "XP",
+		"TranslatedText" : "",
+		"key" : "ui_general_xp"
+	},
+	{
+		"OriginalText" : "Ctrl",
+		"TranslatedText" : "",
+		"key" : "ui_hotkey_ctrl"
+	},
+	{
+		"OriginalText" : "Shift",
+		"TranslatedText" : "",
+		"key" : "ui_hotkey_shift"
+	},
+	{
+		"OriginalText" : "Critical Mission",
+		"TranslatedText" : "",
+		"key" : "ui_key_mission_title"
+	},
+	{
+		"OriginalText" : "Don't save",
+		"TranslatedText" : "",
+		"key" : "ui_livery_edit_cancel_discard"
+	},
+	{
+		"OriginalText" : "Save changes to this custom livery art?",
+		"TranslatedText" : "",
+		"key" : "ui_livery_edit_cancel_message"
+	},
+	{
+		"OriginalText" : "Save",
+		"TranslatedText" : "",
+		"key" : "ui_livery_edit_cancel_save"
+	},
+	{
+		"OriginalText" : "Load Game",
+		"TranslatedText" : "",
+		"key" : "ui_load_game"
+	},
+	{
+		"OriginalText" : "Locked during training",
+		"TranslatedText" : "",
+		"key" : "ui_locked_station_panel"
+	},
+	{
+		"OriginalText" : "Memorial",
+		"TranslatedText" : "",
+		"key" : "ui_memorial"
+	},
+	{
+		"OriginalText" : "Change Language",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_change_language"
+	},
+	{
+		"OriginalText" : "Crew Statue",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_crewstatue"
+	},
+	{
+		"OriginalText" : "DLC Available Now",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_dlclist_title"
+	},
+	{
+		"OriginalText" : "DLC Available Now",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_dlclist_title_switch"
+	},
+	{
+		"OriginalText" : "Main Menu",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_mainmenu"
+	},
+	{
+		"OriginalText" : "Respects Paid",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_message_respectspaid"
+	},
+	{
+		"OriginalText" : "Name Wall",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_namewall"
+	},
+	{
+		"OriginalText" : "Next",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_namewall_button_next"
+	},
+	{
+		"OriginalText" : "Previous",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_namewall_button_previous"
+	},
+	{
+		"OriginalText" : "Campaign Menu",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_screen_title_campaignmenu"
+	},
+	{
+		"OriginalText" : "Main Menu",
+		"TranslatedText" : "",
+		"key" : "ui_memorial_screen_title_mainmenu"
+	},
+	{
+		"OriginalText" : "View Controls",
+		"TranslatedText" : "",
+		"key" : "ui_menu_controls_viewcontrols"
+	},
+	{
+		"OriginalText" : "Off",
+		"TranslatedText" : "",
+		"key" : "ui_menu_option_toggle_off"
+	},
+	{
+		"OriginalText" : "On",
+		"TranslatedText" : "",
+		"key" : "ui_menu_option_toggle_on"
+	},
+	{
+		"OriginalText" : "Controls",
+		"TranslatedText" : "",
+		"key" : "ui_menu_section_title_controls"
+	},
+	{
+		"OriginalText" : "Sound",
+		"TranslatedText" : "",
+		"key" : "ui_menu_section_title_sound"
+	},
+	{
+		"OriginalText" : "Wing Commander Biggins:",
+		"TranslatedText" : "",
+		"key" : "ui_mission_command"
+	},
+	{
+		"OriginalText" : "New Game",
+		"TranslatedText" : "",
+		"key" : "ui_new_game"
+	},
+	{
+		"OriginalText" : "NEW GAME\nSkip Tutorial",
+		"TranslatedText" : "",
+		"key" : "ui_new_game_skip"
+	},
+	{
+		"OriginalText" : "New",
+		"TranslatedText" : "",
+		"key" : "ui_new_item"
+	},
+	{
+		"OriginalText" : "Main Menu",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_back_to_main"
+	},
+	{
+		"OriginalText" : "Camera Controls",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_camera_controls"
+	},
+	{
+		"OriginalText" : "Category",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_category_heading"
+	},
+	{
+		"OriginalText" : "Resume",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_close"
+	},
+	{
+		"OriginalText" : "Control Options",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_control_options"
+	},
+	{
+		"OriginalText" : "Controls",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_controls"
+	},
+	{
+		"OriginalText" : "Controller",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_controls_controller"
+	},
+	{
+		"OriginalText" : "Keyboard / Mouse",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_controls_keyboardmouse"
+	},
+	{
+		"OriginalText" : "Crew Controls",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crew_controls"
+	},
+	{
+		"OriginalText" : "Crew Details",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crew_details"
+	},
+	{
+		"OriginalText" : "Bailed Out",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crewstatus_bailedout"
+	},
+	{
+		"OriginalText" : "Dead",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crewstatus_dead"
+	},
+	{
+		"OriginalText" : "Falling",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crewstatus_falling"
+	},
+	{
+		"OriginalText" : "Incapacitated",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_crewstatus_incapacitated"
+	},
+	{
+		"OriginalText" : "Vibration",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_enable_controllervibration"
+	},
+	{
+		"OriginalText" : "HD rumble",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_enable_controllervibration_switch"
+	},
+	{
+		"OriginalText" : "Allow 'Slow Time'",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_enable_slow_down"
+	},
+	{
+		"OriginalText" : "Game",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_game"
+	},
+	{
+		"OriginalText" : "Show Hints",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_hints"
+	},
+	{
+		"OriginalText" : "How To Play",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_how_to_play"
+	},
+	{
+		"OriginalText" : "Mission",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_misison"
+	},
+	{
+		"OriginalText" : "Options",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_options"
+	},
+	{
+		"OriginalText" : "Save and quit to the main menu?",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_confirm"
+	},
+	{
+		"OriginalText" : "Quit to the main menu?\nAny progress in this mission will be lost.",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_confirm_mission"
+	},
+	{
+		"OriginalText" : "Quit Mission",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_mission"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_no"
+	},
+	{
+		"OriginalText" : "Really Quit?",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_title"
+	},
+	{
+		"OriginalText" : "Quit",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_yes"
+	},
+	{
+		"OriginalText" : "Save & Quit",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_quit_yes_save"
+	},
+	{
+		"OriginalText" : "Save Game",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_savew"
+	},
+	{
+		"OriginalText" : "Effects Volume",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_sound_volume_effects"
+	},
+	{
+		"OriginalText" : "Music Volume",
+		"TranslatedText" : "",
+		"key" : "ui_pause_menu_sound_volume_music"
+	},
+	{
+		"OriginalText" : "Enemy Armour Down",
+		"TranslatedText" : "",
+		"key" : "ui_perk_enemy_armour"
+	},
+	{
+		"OriginalText" : "Enemy Damage Down",
+		"TranslatedText" : "",
+		"key" : "ui_perk_enemy_damage"
+	},
+	{
+		"OriginalText" : "Flak Operation Down",
+		"TranslatedText" : "",
+		"key" : "ui_perk_flak_operation"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_cancel"
+	},
+	{
+		"OriginalText" : "No",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_changes_saved_no"
+	},
+	{
+		"OriginalText" : "Discard changes?",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_changes_saved_prompt"
+	},
+	{
+		"OriginalText" : "Yes",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_changes_saved_yes"
+	},
+	{
+		"OriginalText" : "Save",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_save"
+	},
+	{
+		"OriginalText" : "Undo",
+		"TranslatedText" : "",
+		"key" : "ui_pixelarteditor_undo"
+	},
+	{
+		"OriginalText" : "Close",
+		"TranslatedText" : "",
+		"key" : "ui_popup_dlc_button_close"
+	},
+	{
+		"OriginalText" : "Go to store",
+		"TranslatedText" : "",
+		"key" : "ui_popup_dlc_button_gotostore"
+	},
+	{
+		"OriginalText" : "Body",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_body"
+	},
+	{
+		"OriginalText" : "Eyes",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_eyes"
+	},
+	{
+		"OriginalText" : "Facial Hair",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_facialhair"
+	},
+	{
+		"OriginalText" : "Hair Colour",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_haircolour"
+	},
+	{
+		"OriginalText" : "Hair Style",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_hairstyle"
+	},
+	{
+		"OriginalText" : "Mouth",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_mouth"
+	},
+	{
+		"OriginalText" : "Skin",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_label_skincolour"
+	},
+	{
+		"OriginalText" : "Edit Character",
+		"TranslatedText" : "",
+		"key" : "ui_popup_editcharacter_title"
+	},
+	{
+		"OriginalText" : "V",
+		"TranslatedText" : "",
+		"key" : "ui_postfix_voltage"
+	},
+	{
+		"OriginalText" : "Quit Game",
+		"TranslatedText" : "",
+		"key" : "ui_quit_game"
+	},
+	{
+		"OriginalText" : "Age:",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_age_prefix"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_button_cancel"
+	},
+	{
+		"OriginalText" : "Recruit",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_button_recruit"
+	},
+	{
+		"OriginalText" : "Rename",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_button_rename"
+	},
+	{
+		"OriginalText" : "Your crew is full. There is nobody to recruit.",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_crew_full"
+	},
+	{
+		"OriginalText" : "Home Town:",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_hometown_prefix"
+	},
+	{
+		"OriginalText" : "Profession:",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_profession_prefix"
+	},
+	{
+		"OriginalText" : "Recruit",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_recruit"
+	},
+	{
+		"OriginalText" : "Traits:",
+		"TranslatedText" : "",
+		"key" : "ui_recruitment_traits_prefix"
+	},
+	{
+		"OriginalText" : "Rename Bomber",
+		"TranslatedText" : "",
+		"key" : "ui_rename_bomber"
+	},
+	{
+		"OriginalText" : "Rename Character",
+		"TranslatedText" : "",
+		"key" : "ui_rename_crewman_fullname"
+	},
+	{
+		"OriginalText" : "Enter first name",
+		"TranslatedText" : "",
+		"key" : "ui_rename_firstname"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_rename_popup_cancel"
+	},
+	{
+		"OriginalText" : "Confirm",
+		"TranslatedText" : "",
+		"key" : "ui_rename_popup_confirm"
+	},
+	{
+		"OriginalText" : "Enter surname",
+		"TranslatedText" : "",
+		"key" : "ui_rename_secondname"
+	},
+	{
+		"OriginalText" : "Quit To Main Menu",
+		"TranslatedText" : "",
+		"key" : "ui_return_to_menu"
+	},
+	{
+		"OriginalText" : "Empty Slot",
+		"TranslatedText" : "",
+		"key" : "ui_save_empty_slot"
+	},
+	{
+		"OriginalText" : "Save Game",
+		"TranslatedText" : "",
+		"key" : "ui_save_game"
+	},
+	{
+		"OriginalText" : "Back",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_back"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_cancel"
+	},
+	{
+		"OriginalText" : "You've already completed the campaign on this save slot.\nLoading this slot will allow you to play previously completed missions.",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_confirm_continue_prompt"
+	},
+	{
+		"OriginalText" : "There is already a game saved in this slot.\nWould you like to overwrite it?",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_confirm_overwrite_prompt"
+	},
+	{
+		"OriginalText" : "Continue",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_continue"
+	},
+	{
+		"OriginalText" : "Overwrite",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_overwrite"
+	},
+	{
+		"OriginalText" : "Select a slot to load:",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_select_slot_load"
+	},
+	{
+		"OriginalText" : "Select a slot for a new game:",
+		"TranslatedText" : "",
+		"key" : "ui_save_menu_select_slot_new"
+	},
+	{
+		"OriginalText" : "{0} Missions Played, £{1:N0}",
+		"TranslatedText" : "",
+		"key" : "ui_savedata_description"
+	},
+	{
+		"OriginalText" : "Advanced First Aid",
+		"TranslatedText" : "",
+		"key" : "ui_skill_heal_firstaid"
+	},
+	{
+		"OriginalText" : "Heal Minor Injuries",
+		"TranslatedText" : "",
+		"key" : "ui_skill_heal_healing"
+	},
+	{
+		"OriginalText" : "Join our mailing list",
+		"TranslatedText" : "",
+		"key" : "ui_social_mailinglist_join"
+	},
+	{
+		"OriginalText" : "Join our mailing list for all the latest news!",
+		"TranslatedText" : "",
+		"key" : "ui_social_mailinglist_join_details"
+	},
+	{
+		"OriginalText" : "Follow us on Twitter",
+		"TranslatedText" : "",
+		"key" : "ui_social_twitter_followus"
+	},
+	{
+		"OriginalText" : "Camera Drag Sensitivity",
+		"TranslatedText" : "",
+		"key" : "ui_system_camera_sensitivity"
+	},
+	{
+		"OriginalText" : "This save slot was last played with downloadable content installed which is no longer present. \nEquipment or customisations from this downloadable content will be removed if you continue.",
+		"TranslatedText" : "",
+		"key" : "ui_system_dlc_warning"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "ui_system_dlc_warning_cancel"
+	},
+	{
+		"OriginalText" : "Continue",
+		"TranslatedText" : "",
+		"key" : "ui_system_dlc_warning_continue"
+	},
+	{
+		"OriginalText" : "This save slot was last played with downloadable content installed which is no longer present. \nEquipment or customisations from this downloadable content will be removed if you continue.",
+		"TranslatedText" : "",
+		"key" : "ui_system_dlc_warning_switch"
+	},
+	{
+		"OriginalText" : "Invert X Scroll (Zoomed In)",
+		"TranslatedText" : "",
+		"key" : "ui_system_invert_hzoomed"
+	},
+	{
+		"OriginalText" : "Invert Camera Y Axis",
+		"TranslatedText" : "",
+		"key" : "ui_system_invert_look"
+	},
+	{
+		"OriginalText" : "Music",
+		"TranslatedText" : "",
+		"key" : "ui_system_music"
+	},
+	{
+		"OriginalText" : "Tagging Mode Sensitivity",
+		"TranslatedText" : "",
+		"key" : "ui_system_targeting_sensitivity"
+	},
+	{
+		"OriginalText" : "Bomber Name",
+		"TranslatedText" : "",
+		"key" : "ui_textinput_hint_bomber_name"
+	},
+	{
+		"OriginalText" : "Livery Text",
+		"TranslatedText" : "",
+		"key" : "ui_textinput_hint_livery_text"
+	},
+	{
+		"OriginalText" : "None",
+		"TranslatedText" : "",
+		"key" : "ui_upgrades_none"
+	}
+]

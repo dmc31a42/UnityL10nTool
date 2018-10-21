@@ -1,0 +1,92 @@
+[
+	{
+		"OriginalText" : "Choose Mission",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_briefing_choosemission"
+	},
+	{
+		"OriginalText" : "Select",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_briefing_selectmission"
+	},
+	{
+		"OriginalText" : "Prev / Next Crew Member",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_crewgear_prevnextcrew"
+	},
+	{
+		"OriginalText" : "Move Brush",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_liveryeditor_movebrush"
+	},
+	{
+		"OriginalText" : "Paint",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_liveryeditor_paint"
+	},
+	{
+		"OriginalText" : "Toggle Canvas / Tools",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_liveryeditor_togglecanvasbuttons"
+	},
+	{
+		"OriginalText" : "Undo",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_liveryeditor_undo"
+	},
+	{
+		"OriginalText" : "Prev / Next Page",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_memorial_prevnextpage"
+	},
+	{
+		"OriginalText" : "Zoom Camera",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_camerazoom"
+	},
+	{
+		"OriginalText" : "Deselect",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_deselectcrew"
+	},
+	{
+		"OriginalText" : "Interact",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_interact"
+	},
+	{
+		"OriginalText" : "Snap",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_interactselectsnap"
+	},
+	{
+		"OriginalText" : "Move Crew",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_movecrew"
+	},
+	{
+		"OriginalText" : "Select Crew",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_selectcrew"
+	},
+	{
+		"OriginalText" : "Tagging Mode",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_mission_taggingmode"
+	},
+	{
+		"OriginalText" : "Custom Waypoint",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_navigator_customwaypoint"
+	},
+	{
+		"OriginalText" : "Set Heading",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_navigator_setheading"
+	},
+	{
+		"OriginalText" : "Prev / Next Recruit",
+		"TranslatedText" : "",
+		"key" : "controlPrompt_recruit_prevnextrecruit"
+	}
+]

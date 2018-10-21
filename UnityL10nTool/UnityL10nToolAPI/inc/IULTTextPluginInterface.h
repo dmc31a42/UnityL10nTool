@@ -187,6 +187,7 @@ struct TextPluginInfo {
 
 	wchar_t TextPluginName[64];
 
+	wstring TextPluginFileRelativePath;
 #pragma region InteractWithAsset
 	/* Member of InteractWithAsset. temperary deprecated*/
 	GetAssetParserOptionsCallback GetAssetParserOptions;

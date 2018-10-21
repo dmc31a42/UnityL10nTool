@@ -166,10 +166,19 @@
 echo f | xcopy "$(ProjectDir)$(OutDir)$(TargetName).exe" "$(ProjectDir)..\..\UnityL10nToolRelease\UnityL10nTool.exe" /Y
 
 echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\Newtonsoft.Json.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\Newtonsoft.Json.xml" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\Newtonsoft.Json.dll" /Y
 
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\UnityL10nToolCppCLI.dll" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\UnityL10nToolCppCLI.dll" /Y
+
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\Microsoft.WindowsAPICodePack.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\Microsoft.WindowsAPICodePack.xml" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\Microsoft.WindowsAPICodePack.dll" /Y
+
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\Microsoft.WindowsAPICodePack.Shell.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\Microsoft.WindowsAPICodePack.Shell.xml" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\Microsoft.WindowsAPICodePack.Shell.dll" /Y
 
 echo f | xcopy "$(ProjectDir)$(OutDir)$(TargetName).pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\UnityL10nTool.pdb" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\UnityL10nToolCppCLI.pdb" /Y
@@ -194,6 +203,7 @@ xcopy "$(ProjectDir)..\..\PluginsDebug\*" "$(ProjectDir)..\..\UnityL10nToolDebug
 xcopy "$(ProjectDir)..\..\PluginsRelease\*" "$(ProjectDir)..\..\UnityL10nToolRelease\" /Y /E
 
 echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Newtonsoft.Json.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Newtonsoft.Json.xml" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.dll" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.pdb" /Y
 echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\AssetsTools.dll" /Y /E

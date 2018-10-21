@@ -910,5 +910,15 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             bool result = unityL10nToolCppManaged.SaveUpdateFileToTempFolder(selectedItem);
         }
+
+        private void UpdateTestGetTranslatedText_Click(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedText(selectedItem, true);
+            int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
+            textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
+            textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
+            textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
     }
 }

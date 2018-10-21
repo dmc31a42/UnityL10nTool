@@ -1,0 +1,787 @@
+[
+	{
+		"OriginalText" : "",
+		"TranslatedText" : "",
+		"key" : "desc_blank"
+	},
+	{
+		"OriginalText" : "Bulky, electrically heated boots that are good at low temperatures.",
+		"TranslatedText" : "",
+		"key" : "desc_boots_electricallyheated"
+	},
+	{
+		"OriginalText" : "Very basic leather boots.",
+		"TranslatedText" : "",
+		"key" : "desc_boots_leather"
+	},
+	{
+		"OriginalText" : "Leather boots that have been toughened to be more resilient.",
+		"TranslatedText" : "",
+		"key" : "desc_boots_leather_toughened"
+	},
+	{
+		"OriginalText" : "Lighter shoes allowing for faster movement.",
+		"TranslatedText" : "",
+		"key" : "desc_boots_plimsolls"
+	},
+	{
+		"OriginalText" : "Insulated boots to help resist the cold.",
+		"TranslatedText" : "",
+		"key" : "desc_boots_thermal"
+	},
+	{
+		"OriginalText" : "A thermally insulated flightsuit.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_thermal_mk1"
+	},
+	{
+		"OriginalText" : "A leather flighsuit with improved insulation.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_thermal_mk2"
+	},
+	{
+		"OriginalText" : "A durable flightsuit insulated with the softest, warmest lamb's wool.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_thermal_mk3"
+	},
+	{
+		"OriginalText" : "A fetching, snug festive jumper.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_winterjumper01"
+	},
+	{
+		"OriginalText" : "A fetching, snug festive jumper.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_winterjumper02"
+	},
+	{
+		"OriginalText" : "A fetching, snug festive jumper.",
+		"TranslatedText" : "",
+		"key" : "desc_flightsuit_winterjumper03"
+	},
+	{
+		"OriginalText" : "Very basic leather gloves.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_leather"
+	},
+	{
+		"OriginalText" : "Large electrically heated gloves that are good at low temperatures.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_mittenselectricallyheated"
+	},
+	{
+		"OriginalText" : "Insulated gloves that are good at lower temperatures.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_thermal"
+	},
+	{
+		"OriginalText" : "Leather gloves that have been toughened to be more resilient.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_toughened"
+	},
+	{
+		"OriginalText" : "Stylish and snug winter mittens",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_winter1"
+	},
+	{
+		"OriginalText" : "Stylish and snug winter mittens",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_winter2"
+	},
+	{
+		"OriginalText" : "Stylish and snug winter mittens",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_winter3"
+	},
+	{
+		"OriginalText" : "Lightweight woollen gloves that provide some insulation.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_woolen"
+	},
+	{
+		"OriginalText" : "Fingerless gloves that allow for greater mobility.",
+		"TranslatedText" : "",
+		"key" : "desc_gloves_woolenfingerless"
+	},
+	{
+		"OriginalText" : "An incredibly streamlined blue beret. Stylish!",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_beretblue"
+	},
+	{
+		"OriginalText" : "A basic pilot's cap.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_cappilot"
+	},
+	{
+		"OriginalText" : "Basic radio operator's headphones.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_headphones"
+	},
+	{
+		"OriginalText" : "A reasonably well armoured flak helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_helmetflakmk1"
+	},
+	{
+		"OriginalText" : "A bulky, but heavily armoured flak helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_helmetflakmk2"
+	},
+	{
+		"OriginalText" : "A toughened defensive helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_helmetmk1"
+	},
+	{
+		"OriginalText" : "A bulkier, even tougher helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_helmetmk2"
+	},
+	{
+		"OriginalText" : "A basic leather flying helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_leather_flying"
+	},
+	{
+		"OriginalText" : "An improved leather flying helmet, with goggles.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_leather_flyinggoggles"
+	},
+	{
+		"OriginalText" : "An improved pilot's cap with goggles.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_pilotscap_goggles"
+	},
+	{
+		"OriginalText" : "A strong all-rounder, pilot's cap with goggles and headphones.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_pilotscap_goggles_phones"
+	},
+	{
+		"OriginalText" : "A basic service cap. Lightweight, helping with mobility.",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_servicecap"
+	},
+	{
+		"OriginalText" : "A cosy winter hat",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_winterhat1"
+	},
+	{
+		"OriginalText" : "A cosy winter hat",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_winterhat2"
+	},
+	{
+		"OriginalText" : "A cosy winter hat",
+		"TranslatedText" : "",
+		"key" : "desc_headgear_winterhat3"
+	},
+	{
+		"OriginalText" : "Advanced oxygen supply which has a large capacity, but is also lightweight.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_advanced"
+	},
+	{
+		"OriginalText" : "Provides oxygen (when away from station) for a long duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_large"
+	},
+	{
+		"OriginalText" : "Armoured and bulkier, provides oxygen (when away from station) for a long duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_large_toughened"
+	},
+	{
+		"OriginalText" : "Provides oxygen (when away from station) for a medium duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_medium"
+	},
+	{
+		"OriginalText" : "Armoured and bulkier, provides oxygen (when away from station) for a medium duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_medium_toughened"
+	},
+	{
+		"OriginalText" : "Provides oxygen (when away from station) for a short duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_small"
+	},
+	{
+		"OriginalText" : "Armoured and bulkier, provides oxygen (when away from station) for a short duration.",
+		"TranslatedText" : "",
+		"key" : "desc_oxygen_small_toughened"
+	},
+	{
+		"OriginalText" : "A set of improved equipment for a bomb aimer.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_bombaimer_gear"
+	},
+	{
+		"OriginalText" : "A set of equipment geared towards a fast, mobile engineer.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_engineer"
+	},
+	{
+		"OriginalText" : "A set of improved, armoured equipment for a gunner.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_gunner_gear"
+	},
+	{
+		"OriginalText" : "A set of improved equipment for a navigator.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_navigator_gear"
+	},
+	{
+		"OriginalText" : "A set of improved equipment for a pilot.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_pilot_gear"
+	},
+	{
+		"OriginalText" : "A set of improved equipment for a radio operator.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_advanced_radioop_gear"
+	},
+	{
+		"OriginalText" : "A basic, armoured set of equipment.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_basicarmoured"
+	},
+	{
+		"OriginalText" : "A basic set of balanced equipment.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_bombaimer"
+	},
+	{
+		"OriginalText" : "A basic set of equipment geared towards mobility.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_engineer"
+	},
+	{
+		"OriginalText" : "Warm, festive clobber",
+		"TranslatedText" : "",
+		"key" : "desc_preset_festive1"
+	},
+	{
+		"OriginalText" : "Warm, festive clobber",
+		"TranslatedText" : "",
+		"key" : "desc_preset_festive2"
+	},
+	{
+		"OriginalText" : "Warm, festive clobber",
+		"TranslatedText" : "",
+		"key" : "desc_preset_festive3"
+	},
+	{
+		"OriginalText" : "A basic set of equipment for any crew member.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_flightgear"
+	},
+	{
+		"OriginalText" : "A lightweight flak vest and a leather flying helmet.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_flightgear_lite"
+	},
+	{
+		"OriginalText" : "A basic set of equipment for a gunner.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_gunner"
+	},
+	{
+		"OriginalText" : "A highly armoured set of equipment.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_higharmour"
+	},
+	{
+		"OriginalText" : "A set of equipment highly resistant to cold temperatures.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_highthermal"
+	},
+	{
+		"OriginalText" : "A basic set of equipment for a navigator.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_navigator"
+	},
+	{
+		"OriginalText" : "A basic set of equipment for a pilot.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_pilot"
+	},
+	{
+		"OriginalText" : "A basic set of equipment for a radio operator.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_radioop"
+	},
+	{
+		"OriginalText" : "A set of equipment geared towards resistance to cold temperatures.",
+		"TranslatedText" : "",
+		"key" : "desc_preset_thermal"
+	},
+	{
+		"OriginalText" : "A very heavy, well armoured flak vest.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_flakheavy_mk1"
+	},
+	{
+		"OriginalText" : "A well armoured flak vest, with slight improvements to its weight.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_flakheavy_mk2"
+	},
+	{
+		"OriginalText" : "A well armoured flak vest, with further improvements to its weight.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_flakheavy_mk3"
+	},
+	{
+		"OriginalText" : "A basic armoured flak vest.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_flaklight"
+	},
+	{
+		"OriginalText" : "A fairly well armoured flak vest.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_flakmedium"
+	},
+	{
+		"OriginalText" : "A vest equipped with pockets containing survival gear.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_land_mk1"
+	},
+	{
+		"OriginalText" : "A vest equipped with several pockets containing survival gear.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_land_mk2"
+	},
+	{
+		"OriginalText" : "A vest equipped with advanced lightweight survival gear.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_land_mk3"
+	},
+	{
+		"OriginalText" : "A combined lifejacket vest equipped with survival gear.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_landsea_mk1"
+	},
+	{
+		"OriginalText" : "An armoured lifejacket vest equipped with survival gear.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_landsea_toughened"
+	},
+	{
+		"OriginalText" : "A standard lifejacket, to help survive in the sea.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_sea_mk1"
+	},
+	{
+		"OriginalText" : "An improved lifejacket.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_sea_mk2"
+	},
+	{
+		"OriginalText" : "A vastly improved, lightweight lifejacket.",
+		"TranslatedText" : "",
+		"key" : "desc_vest_sea_mk3"
+	},
+	{
+		"OriginalText" : "Basic Boots",
+		"TranslatedText" : "",
+		"key" : "name_basic_boots"
+	},
+	{
+		"OriginalText" : "Basic Gloves",
+		"TranslatedText" : "",
+		"key" : "name_basic_gloves"
+	},
+	{
+		"OriginalText" : "Basic Helmet",
+		"TranslatedText" : "",
+		"key" : "name_basic_helmet"
+	},
+	{
+		"OriginalText" : "Basic Oxygen Supply",
+		"TranslatedText" : "",
+		"key" : "name_basic_oxygen_supply"
+	},
+	{
+		"OriginalText" : "Basic Vest",
+		"TranslatedText" : "",
+		"key" : "name_basic_vest"
+	},
+	{
+		"OriginalText" : "Leather Boots",
+		"TranslatedText" : "",
+		"key" : "name_boots_Leather"
+	},
+	{
+		"OriginalText" : "Electrically Heated Boots",
+		"TranslatedText" : "",
+		"key" : "name_boots_electricallyheated"
+	},
+	{
+		"OriginalText" : "Toughened Leather Boots",
+		"TranslatedText" : "",
+		"key" : "name_boots_leathertoughened"
+	},
+	{
+		"OriginalText" : "Plimsolls",
+		"TranslatedText" : "",
+		"key" : "name_boots_plimsolls"
+	},
+	{
+		"OriginalText" : "Thermal Boots",
+		"TranslatedText" : "",
+		"key" : "name_boots_thermal"
+	},
+	{
+		"OriginalText" : "Flak Helmet",
+		"TranslatedText" : "",
+		"key" : "name_flak_helmet"
+	},
+	{
+		"OriginalText" : "Flak Vest",
+		"TranslatedText" : "",
+		"key" : "name_flak_vest"
+	},
+	{
+		"OriginalText" : "Basic Black",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_basicblack"
+	},
+	{
+		"OriginalText" : "Basic Woodland Camo",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_basiccamowoodland"
+	},
+	{
+		"OriginalText" : "Basic Khaki",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_basickhaki"
+	},
+	{
+		"OriginalText" : "Basic Olive",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_basicolive"
+	},
+	{
+		"OriginalText" : "Basic Royal Blue",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_basicroyalblue"
+	},
+	{
+		"OriginalText" : "Thermal Flightsuit {0}",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_thermalmk"
+	},
+	{
+		"OriginalText" : "Winter Jumper 1",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_winterjumper01"
+	},
+	{
+		"OriginalText" : "Winter Jumper 2",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_winterjumper02"
+	},
+	{
+		"OriginalText" : "Winter Jumper 3",
+		"TranslatedText" : "",
+		"key" : "name_flightsuit_winterjumper03"
+	},
+	{
+		"OriginalText" : "Leather Gloves",
+		"TranslatedText" : "",
+		"key" : "name_gloves_glovesleather"
+	},
+	{
+		"OriginalText" : "Toughened Leather Gloves",
+		"TranslatedText" : "",
+		"key" : "name_gloves_leathertoughened"
+	},
+	{
+		"OriginalText" : "Thermal Mittens",
+		"TranslatedText" : "",
+		"key" : "name_gloves_mittensThermal"
+	},
+	{
+		"OriginalText" : "Electrically Heated Mittens",
+		"TranslatedText" : "",
+		"key" : "name_gloves_mittenselectricallyheated"
+	},
+	{
+		"OriginalText" : "Winter Mittens 1",
+		"TranslatedText" : "",
+		"key" : "name_gloves_winter1"
+	},
+	{
+		"OriginalText" : "Winter Mittens 2",
+		"TranslatedText" : "",
+		"key" : "name_gloves_winter2"
+	},
+	{
+		"OriginalText" : "Winter Mittens 3",
+		"TranslatedText" : "",
+		"key" : "name_gloves_winter3"
+	},
+	{
+		"OriginalText" : "Woollen Gloves",
+		"TranslatedText" : "",
+		"key" : "name_gloves_woolen"
+	},
+	{
+		"OriginalText" : "Fingerless Woollen Gloves",
+		"TranslatedText" : "",
+		"key" : "name_gloves_woolenfingerless"
+	},
+	{
+		"OriginalText" : "Blue Beret",
+		"TranslatedText" : "",
+		"key" : "name_headgear_beretblue"
+	},
+	{
+		"OriginalText" : "Pilot's Cap Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_headgear_cappilot"
+	},
+	{
+		"OriginalText" : "Service Cap",
+		"TranslatedText" : "",
+		"key" : "name_headgear_capservice"
+	},
+	{
+		"OriginalText" : "Headphones",
+		"TranslatedText" : "",
+		"key" : "name_headgear_headphones"
+	},
+	{
+		"OriginalText" : "Flak Helmet Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_headgear_helmetflakmk"
+	},
+	{
+		"OriginalText" : "Leather Flying Helmet Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_headgear_helmetleatherflying"
+	},
+	{
+		"OriginalText" : "Helmet Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_headgear_helmetmk"
+	},
+	{
+		"OriginalText" : "Winter Hat 1",
+		"TranslatedText" : "",
+		"key" : "name_headgear_winterhat1"
+	},
+	{
+		"OriginalText" : "Winter Hat 2",
+		"TranslatedText" : "",
+		"key" : "name_headgear_winterhat2"
+	},
+	{
+		"OriginalText" : "Winter Hat 3",
+		"TranslatedText" : "",
+		"key" : "name_headgear_winterhat3"
+	},
+	{
+		"OriginalText" : "Improved Oxygen Supply",
+		"TranslatedText" : "",
+		"key" : "name_improved_oxygen_supply"
+	},
+	{
+		"OriginalText" : "None",
+		"TranslatedText" : "",
+		"key" : "name_none"
+	},
+	{
+		"OriginalText" : "Advanced O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_advanced"
+	},
+	{
+		"OriginalText" : "Large O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_large"
+	},
+	{
+		"OriginalText" : "Toughened Large O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_largetoughened"
+	},
+	{
+		"OriginalText" : "Medium O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_medium"
+	},
+	{
+		"OriginalText" : "Toughened Medium O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_mediumtoughened"
+	},
+	{
+		"OriginalText" : "Small O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_small"
+	},
+	{
+		"OriginalText" : "Toughened Small O2 Bottle",
+		"TranslatedText" : "",
+		"key" : "name_oxygen_smalltoughened"
+	},
+	{
+		"OriginalText" : "Advanced Bomb Aimer Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_bombaimer_gear"
+	},
+	{
+		"OriginalText" : "Advanced Engineer Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_engineer_gear"
+	},
+	{
+		"OriginalText" : "Advanced Gunner Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_gunner_gear"
+	},
+	{
+		"OriginalText" : "Advanced Navigator Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_navigator_gear"
+	},
+	{
+		"OriginalText" : "Advanced Pilot Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_pilot_gear"
+	},
+	{
+		"OriginalText" : "Advanced Radio Op. Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_advanced_radioop_gear"
+	},
+	{
+		"OriginalText" : "Basic Armoured Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_armoured_gear"
+	},
+	{
+		"OriginalText" : "Basic Bomb Aimer Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_bombaimer_gear"
+	},
+	{
+		"OriginalText" : "Basic Engineer Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_engineer_gear"
+	},
+	{
+		"OriginalText" : "Basic Flight Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_flight_gear"
+	},
+	{
+		"OriginalText" : "Basic Gunner Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_gunner_gear"
+	},
+	{
+		"OriginalText" : "Basic Navigator Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_navigator_gear"
+	},
+	{
+		"OriginalText" : "Basic Pilot Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_pilot_gear"
+	},
+	{
+		"OriginalText" : "Basic Radio Op Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_radioop_gear"
+	},
+	{
+		"OriginalText" : "Basic Thermal Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_basic_thermal_gear"
+	},
+	{
+		"OriginalText" : "Festive 1",
+		"TranslatedText" : "",
+		"key" : "name_preset_festive1"
+	},
+	{
+		"OriginalText" : "Festive 2",
+		"TranslatedText" : "",
+		"key" : "name_preset_festive2"
+	},
+	{
+		"OriginalText" : "Festive 3",
+		"TranslatedText" : "",
+		"key" : "name_preset_festive3"
+	},
+	{
+		"OriginalText" : "High Armour Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_highly_armoured_gear"
+	},
+	{
+		"OriginalText" : "Good Thermal Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_highly_thermal_gear"
+	},
+	{
+		"OriginalText" : "Starter Flight Set",
+		"TranslatedText" : "",
+		"key" : "name_preset_starter_flight_gear"
+	},
+	{
+		"OriginalText" : "Thermal Boots",
+		"TranslatedText" : "",
+		"key" : "name_thermal_boots"
+	},
+	{
+		"OriginalText" : "Thermal Gloves",
+		"TranslatedText" : "",
+		"key" : "name_thermal_gloves"
+	},
+	{
+		"OriginalText" : "Thermal Vest",
+		"TranslatedText" : "",
+		"key" : "name_thermal_vest"
+	},
+	{
+		"OriginalText" : "Heavy Flak Vest Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_vest_flakheavy"
+	},
+	{
+		"OriginalText" : "Light Flak Vest",
+		"TranslatedText" : "",
+		"key" : "name_vest_flaklight"
+	},
+	{
+		"OriginalText" : "Medium Flak Vest",
+		"TranslatedText" : "",
+		"key" : "name_vest_flakmedium"
+	},
+	{
+		"OriginalText" : "Combined Survival Vest Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_vest_survivalcombinedmk"
+	},
+	{
+		"OriginalText" : "Land Survival Vest Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_vest_survivallandmk"
+	},
+	{
+		"OriginalText" : "Sea Survival Vest Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_vest_survivalseamk"
+	},
+	{
+		"OriginalText" : "Toughened Survival Vest Mk {0}",
+		"TranslatedText" : "",
+		"key" : "name_vest_survivaltoughenedmk"
+	}
+]

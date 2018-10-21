@@ -1,0 +1,697 @@
+[
+	{
+		"OriginalText" : "Main Campaign",
+		"TranslatedText" : "",
+		"key" : "campaign_name_base"
+	},
+	{
+		"OriginalText" : "Secret Weapons",
+		"TranslatedText" : "",
+		"key" : "campaign_name_dlcmissionpack01"
+	},
+	{
+		"OriginalText" : "We will be supporting a daring commando raid on the impenetrable U-boat base at Saint-Nazaire. \nThey will ram the base in a ship packed with explosives, before disembarking and detonating the charges - it'll be quite a show!",
+		"TranslatedText" : "",
+		"key" : "mission_c01_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Chariot",
+		"TranslatedText" : "",
+		"key" : "mission_c01_key_title"
+	},
+	{
+		"OriginalText" : "Allied shipping is being harrassed by those U-boats in the North Sea. We've been tasked with hunting down and sinking the blighters!",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m01_briefing"
+	},
+	{
+		"OriginalText" : "Sub Hunt",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m01_title"
+	},
+	{
+		"OriginalText" : "Our reconnaissance has identified one of the enemy's motor factories in Belgium - let's knock it out!",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m02_briefing"
+	},
+	{
+		"OriginalText" : "Motor Factory at Zeebrugge",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m02_title"
+	},
+	{
+		"OriginalText" : "The Todt Battery has been raining down artillery on the English coast. Our current bombs aren't able to penetrate it, but we can starve it of ammunition! Destroy the ammo dumps supplying the guns.",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m03_briefing"
+	},
+	{
+		"OriginalText" : "Todt Battery Ammo Dumps",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m03_title"
+	},
+	{
+		"OriginalText" : "One of our brave Spitfire pilots had a run in over the channel and had to ditch in the drink! Locate the poor fellow and drop survival gear to keep him safe until he's picked up.",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m04_briefing"
+	},
+	{
+		"OriginalText" : "Search and Rescue",
+		"TranslatedText" : "",
+		"key" : "mission_c01_m04_title"
+	},
+	{
+		"OriginalText" : "Tonight we strike at the heart of the enemy's vengeance weapon production. All liquid oxygen plants at the facility must be destroyed, or we'll be going back tomorrow night! This reign of terror must be stopped!",
+		"TranslatedText" : "",
+		"key" : "mission_c02_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Hydra",
+		"TranslatedText" : "",
+		"key" : "mission_c02_key_title"
+	},
+	{
+		"OriginalText" : "Today's target is a tank factory located near Bremen. Put it out of commission!",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m01_briefing"
+	},
+	{
+		"OriginalText" : "Bremen Tank Factory",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m01_title"
+	},
+	{
+		"OriginalText" : "We've discovered a whole host of V1 sites ready to launch at London - don't let those rockets through!",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m02_briefing"
+	},
+	{
+		"OriginalText" : "Doodlebug Blitz",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m02_title"
+	},
+	{
+		"OriginalText" : "A facility construction site has been discovered, it looks like it will launch something much bigger than those V1 rockets! We must destroy the site and prevent its completion!",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m03_briefing"
+	},
+	{
+		"OriginalText" : "La Coupole Construction",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m03_title"
+	},
+	{
+		"OriginalText" : "We've got the location of the enemy's ammo storage in Bruges. Destroying it should significantly affect their supplies!",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m04_briefing"
+	},
+	{
+		"OriginalText" : "Ammo Dump at Bruges",
+		"TranslatedText" : "",
+		"key" : "mission_c02_m04_title"
+	},
+	{
+		"OriginalText" : "We'll be knocking out a dam that supplies an enemy hydroelectric power station. \nTo do this we'll be dropping an experimental bouncing bomb - you'll be flying low and facing enemy AA guns, so give it your best shot!",
+		"TranslatedText" : "",
+		"key" : "mission_c03_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Chastise",
+		"TranslatedText" : "",
+		"key" : "mission_c03_key_title"
+	},
+	{
+		"OriginalText" : "In order to strike deeper into enemy territory, we must put this airfield out of action. Hit the hangars and the surrounding aircraft factories.",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m01_briefing"
+	},
+	{
+		"OriginalText" : "Waldau Army Airfield Raid",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m01_title"
+	},
+	{
+		"OriginalText" : "The production lines churning out flak shells at Dusseldorf must be halted!",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m02_briefing"
+	},
+	{
+		"OriginalText" : "Dusseldorf Flak Shell Factory Raid",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m02_title"
+	},
+	{
+		"OriginalText" : "Enemy patrols are capturing too many of our downed crews. Let's make that harder for them by denying them transport!",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m03_briefing"
+	},
+	{
+		"OriginalText" : "Truck Factory near Paris",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m03_title"
+	},
+	{
+		"OriginalText" : "We're planning a big raid on a hydroelectric dam - this is your chance to get to grips with this new type of bomb before the big day!",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m04_briefing"
+	},
+	{
+		"OriginalText" : "Bouncing Bomb Test Run",
+		"TranslatedText" : "",
+		"key" : "mission_c03_m04_title"
+	},
+	{
+		"OriginalText" : "We've received intelligence that a high-ranking enemy officer is visiting a secret HQ at Alderhorst. \nThe area is scattered with radar sites, avoid them at all costs and take the enemy by surprise!",
+		"TranslatedText" : "",
+		"key" : "mission_c04_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Lelantos",
+		"TranslatedText" : "",
+		"key" : "mission_c04_key_title"
+	},
+	{
+		"OriginalText" : "We've located a radar site that's been guiding enemy fighters on to our bombers - put it out of action!\nAct quickly before it detects you and calls in more fighters.",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m01_briefing"
+	},
+	{
+		"OriginalText" : "Wurzburg Radar Site",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m01_title"
+	},
+	{
+		"OriginalText" : "The French Resistance has requested a weapons drop. They will be awaiting you near the Maginot Line, watch for their signal light and make the drop as close to it as possible.",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m02_briefing"
+	},
+	{
+		"OriginalText" : "Resistance Weapons Drop",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m02_title"
+	},
+	{
+		"OriginalText" : "A significant ammunition storage facility has come to our attention near Frankfurt. Wipe it out!",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m03_briefing"
+	},
+	{
+		"OriginalText" : "Ammo Dump at Frankfurt",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m03_title"
+	},
+	{
+		"OriginalText" : "Time to weaken the enemy's fighter patrols, we're targeting an airfield in northern France.",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m04_briefing"
+	},
+	{
+		"OriginalText" : "Beauvais-Tille Airfield",
+		"TranslatedText" : "",
+		"key" : "mission_c04_m04_title"
+	},
+	{
+		"OriginalText" : "This is the big one! We'll be supporting the invasion force as they take the beaches of Normandy. Use your bombs sparingly and be ready for anything! Good luck!",
+		"TranslatedText" : "",
+		"key" : "mission_c05_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Overlord",
+		"TranslatedText" : "",
+		"key" : "mission_c05_key_title"
+	},
+	{
+		"OriginalText" : "We're hitting the airfield at Juvincourt to weaken the enemy's fighter force before the invasion.",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m01_briefing"
+	},
+	{
+		"OriginalText" : "Raid on Juvincourt Airfield",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m01_title"
+	},
+	{
+		"OriginalText" : "Hit the enemy's stockpile of oil just outside Bremen.",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m02_briefing"
+	},
+	{
+		"OriginalText" : "Oil storage at Bremen",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m02_title"
+	},
+	{
+		"OriginalText" : "The French Resistance are awaiting a drop of TNT, so they can help wreak havoc on the big day!",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m03_briefing"
+	},
+	{
+		"OriginalText" : "TNT drop to Resistance",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m03_title"
+	},
+	{
+		"OriginalText" : "In preparation for the Allied invasion, you are to photograph the enemy's defenses. Avoid detection by radar, but stay above the AA guns. We must retain the element of surprise!",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m04_briefing"
+	},
+	{
+		"OriginalText" : "Landing Beaches Reconnaissance",
+		"TranslatedText" : "",
+		"key" : "mission_c05_m04_title"
+	},
+	{
+		"OriginalText" : "The Flak Tower at Hamburg is putting up fierce resistance! Knock out the surrounding power stations to disable its searchlights.",
+		"TranslatedText" : "",
+		"key" : "mission_c06_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Fortress",
+		"TranslatedText" : "",
+		"key" : "mission_c06_key_title"
+	},
+	{
+		"OriginalText" : "Hit the bunker on the Maginot Line to help our forces break through! You'll be using a Grand Slam bomb - it must be dropped from high altitude to be effective!",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m01_briefing"
+	},
+	{
+		"OriginalText" : "Bunker busting on the Maginot Line",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m01_title"
+	},
+	{
+		"OriginalText" : "Hit the Flak tower at Vienna",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m02_briefing"
+	},
+	{
+		"OriginalText" : "Vienna Flak Tower",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m02_title"
+	},
+	{
+		"OriginalText" : "Hit the Airfield at Göllheim",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m03_briefing"
+	},
+	{
+		"OriginalText" : "Göllheim Airfield",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m03_title"
+	},
+	{
+		"OriginalText" : "The last of the enemy's U-boats are harassing shipping from their base at Bremen - destroy them in their pens!",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m04_briefing"
+	},
+	{
+		"OriginalText" : "Submarine Pens at Bremen",
+		"TranslatedText" : "",
+		"key" : "mission_c06_m04_title"
+	},
+	{
+		"OriginalText" : "In preparation for the final blow to the enemy, we must take out their main defensive airbases. Expect the heaviest resistance!",
+		"TranslatedText" : "",
+		"key" : "mission_c07_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Zeus",
+		"TranslatedText" : "",
+		"key" : "mission_c07_key_title"
+	},
+	{
+		"OriginalText" : "OK Crew, this one is a long haul, but a golden opportunity to cripple the enemy's production of fighters!",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m01_briefing"
+	},
+	{
+		"OriginalText" : "Aircraft Factory at Wiener Neustadt",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m01_title"
+	},
+	{
+		"OriginalText" : "Drop supplies to the cut off population in Gouda.",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m02_briefing"
+	},
+	{
+		"OriginalText" : "Food drop at Gouda",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m02_title"
+	},
+	{
+		"OriginalText" : "Hit the Tank factory at Bremen.",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m03_briefing"
+	},
+	{
+		"OriginalText" : "Tank factory at Bremen",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m03_title"
+	},
+	{
+		"OriginalText" : "Hit the Flak tower in Berlin, you'll need to drop your Grand Slam bomb from high altitude!",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m04_briefing"
+	},
+	{
+		"OriginalText" : "Berlin Flak Tower",
+		"TranslatedText" : "",
+		"key" : "mission_c07_m04_title"
+	},
+	{
+		"OriginalText" : "Our spies have revealed the location of the Fuhrer's bunker! It is located beneath a large square in the west of the city. One good hit with a Grand Slam from high altitude and we can bring this to an abrupt end!",
+		"TranslatedText" : "",
+		"key" : "mission_c08_key_briefing"
+	},
+	{
+		"OriginalText" : "Operation Nemesis",
+		"TranslatedText" : "",
+		"key" : "mission_c08_key_title"
+	},
+	{
+		"OriginalText" : "Destroy the material cache near Hamburg.\nStay out of the Flak Tower's searchlights!",
+		"TranslatedText" : "",
+		"key" : "mission_demo_hamburgflaktower_description"
+	},
+	{
+		"OriginalText" : "Hamburg Material Storage",
+		"TranslatedText" : "",
+		"key" : "mission_demo_hamburgflaktower_title"
+	},
+	{
+		"OriginalText" : "The enemy's advanced aircraft production is almost crippled, time to strike the final blow!\r Command has received rumors of a new type of fighter that is invisible to radar, stay sharp, what!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_key_briefing"
+	},
+	{
+		"OriginalText" : "OPERATION PHANTOM",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_key_title"
+	},
+	{
+		"OriginalText" : "Right-o! To kick off 'Big Week', you'll be making the first strike against the enemy's fighter production.\r We've got wind they're cooking up some experimental aircraft, so time is of the essence!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m01_briefing"
+	},
+	{
+		"OriginalText" : "Düsseldorf Fighter Production",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m01_title"
+	},
+	{
+		"OriginalText" : "The enemy is fighting back with more and more jet powered fighters. Hitting their jet fuel dumps should slow them down! Be careful, these things go off with a bang!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m02_briefing"
+	},
+	{
+		"OriginalText" : "Braunschweig Jet Fuel Dump",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m02_title"
+	},
+	{
+		"OriginalText" : "You are to disrupt the aircraft production at Stuttgart.\r Watch for enemy interceptors scrambling from the nearby Leighton Barracks Airfield!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m03_briefing"
+	},
+	{
+		"OriginalText" : "Stuttgart Aircraft Factories",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m03_title"
+	},
+	{
+		"OriginalText" : "Allied spies have revealed the location of a bunker holding advanced fighter master plans.\r The Grand Slam bomb must be dropped from HIGH altitude, so wrap up warm for the bitter cold!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m04_briefing"
+	},
+	{
+		"OriginalText" : "Fighter Design Depot Bunker",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m04_title"
+	},
+	{
+		"OriginalText" : "There are major aircraft production facilities at Schweinfurt.\r Do as much damage as possible!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m05_briefing"
+	},
+	{
+		"OriginalText" : "Schweinfurt Aircraft Facility",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m05_title"
+	},
+	{
+		"OriginalText" : "We have a forecast of heavy snowstorms moving in over mainland Europe.\r However we must hit our next target immediately. Prepare for a chilly journey home!",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m06_briefing"
+	},
+	{
+		"OriginalText" : "Fighter Factories Near Neustadt",
+		"TranslatedText" : "",
+		"key" : "mission_dlcmp01_c01_m06_title"
+	},
+	{
+		"OriginalText" : "Gunner Training",
+		"TranslatedText" : "",
+		"key" : "mission_first_mission_name"
+	},
+	{
+		"OriginalText" : "Your mission is to take a reconnaissance photograph of the enemy defenses at Normandy, then raid the Airfield at Juvincourt!",
+		"TranslatedText" : "",
+		"key" : "mission_gamescom_briefing"
+	},
+	{
+		"OriginalText" : "Juvincourt Airfield",
+		"TranslatedText" : "",
+		"key" : "mission_gamescom_title"
+	},
+	{
+		"OriginalText" : "Destroy the ammunition factory marked on your map.",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_01_briefing"
+	},
+	{
+		"OriginalText" : "Destroy Factory",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_01_title"
+	},
+	{
+		"OriginalText" : "Enemy submarines have been spotted off the East coast. Search the area and take them out!",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_02_briefing"
+	},
+	{
+		"OriginalText" : "Submarine Hunt",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_02_title"
+	},
+	{
+		"OriginalText" : "Locate and bomb the ball-bearing factory in the province of Groningen. Expect heavy resistance!",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_03_briefing"
+	},
+	{
+		"OriginalText" : "Destroy Ball Bearing Factory",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_03_title"
+	},
+	{
+		"OriginalText" : "Destroy both fuel depots located near Bremen. Divide the bombload between the two targets.",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_04_briefing"
+	},
+	{
+		"OriginalText" : "Destroy Fuel Depots",
+		"TranslatedText" : "",
+		"key" : "mission_ms2_04_title"
+	},
+	{
+		"OriginalText" : "Clear area of enemies",
+		"TranslatedText" : "",
+		"key" : "mission_objective_clear_area"
+	},
+	{
+		"OriginalText" : "Complete within {0}",
+		"TranslatedText" : "",
+		"key" : "mission_objective_complete_before"
+	},
+	{
+		"OriginalText" : "Intercept V2",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_V2_missile"
+	},
+	{
+		"OriginalText" : "Destroy Airbase",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_airbase"
+	},
+	{
+		"OriginalText" : "Destroy Ammo Storage",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_ammo_dump"
+	},
+	{
+		"OriginalText" : "Destroy Bunker",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_bunker"
+	},
+	{
+		"OriginalText" : "Destroy Dam",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_dam"
+	},
+	{
+		"OriginalText" : "Destroy Factory",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_factory"
+	},
+	{
+		"OriginalText" : "Destroy Flak Tower",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_flak_tower"
+	},
+	{
+		"OriginalText" : "Destroy Fuel Storage",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_fuel_dump"
+	},
+	{
+		"OriginalText" : "Destroy V1 Launch Site",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_launchsite_v1"
+	},
+	{
+		"OriginalText" : "Destroy V2 Launch Site",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_launchsite_v2"
+	},
+	{
+		"OriginalText" : "Destroy Power Station",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_power_station"
+	},
+	{
+		"OriginalText" : "Destroy Radar Site",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_radar_site"
+	},
+	{
+		"OriginalText" : "Destroy Submarine",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_submarine"
+	},
+	{
+		"OriginalText" : "Destroy Target",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_target"
+	},
+	{
+		"OriginalText" : "Destroy Training Target",
+		"TranslatedText" : "",
+		"key" : "mission_objective_destroy_training"
+	},
+	{
+		"OriginalText" : "Drop supplies",
+		"TranslatedText" : "",
+		"key" : "mission_objective_drop_supplies"
+	},
+	{
+		"OriginalText" : "Defend ship",
+		"TranslatedText" : "",
+		"key" : "mission_objective_escort_bombboat"
+	},
+	{
+		"OriginalText" : "Join assault",
+		"TranslatedText" : "",
+		"key" : "mission_objective_join_boats"
+	},
+	{
+		"OriginalText" : "Join bomb boat",
+		"TranslatedText" : "",
+		"key" : "mission_objective_meet_bombboat"
+	},
+	{
+		"OriginalText" : "Recon Photos",
+		"TranslatedText" : "",
+		"key" : "mission_objective_photos"
+	},
+	{
+		"OriginalText" : "Return To Base",
+		"TranslatedText" : "",
+		"key" : "mission_objective_return_to_base"
+	},
+	{
+		"OriginalText" : "Spot Spitfires",
+		"TranslatedText" : "",
+		"key" : "mission_objective_spot_spitfires"
+	},
+	{
+		"OriginalText" : "Stop V1s from launching",
+		"TranslatedText" : "",
+		"key" : "mission_objective_stop_rockets"
+	},
+	{
+		"OriginalText" : "Support Assault",
+		"TranslatedText" : "",
+		"key" : "mission_objective_support_assault"
+	},
+	{
+		"OriginalText" : "Take recon photo",
+		"TranslatedText" : "",
+		"key" : "mission_objective_take_photo"
+	},
+	{
+		"OriginalText" : "Bridge",
+		"TranslatedText" : "",
+		"key" : "mission_target_bridge"
+	},
+	{
+		"OriginalText" : "Enemy Airbase",
+		"TranslatedText" : "",
+		"key" : "mission_target_enemyairbase"
+	},
+	{
+		"OriginalText" : "Factory",
+		"TranslatedText" : "",
+		"key" : "mission_target_factory"
+	},
+	{
+		"OriginalText" : "V-1 Launch Site",
+		"TranslatedText" : "",
+		"key" : "mission_target_launchsitev1"
+	},
+	{
+		"OriginalText" : "V-2 Launch Site",
+		"TranslatedText" : "",
+		"key" : "mission_target_launchsitev2"
+	},
+	{
+		"OriginalText" : "Submarine",
+		"TranslatedText" : "",
+		"key" : "mission_target_submarine"
+	},
+	{
+		"OriginalText" : "Training Target",
+		"TranslatedText" : "",
+		"key" : "mission_target_training"
+	},
+	{
+		"OriginalText" : "Let's see how you handle a practice bomb-run. We're looking for pinpoint precision!",
+		"TranslatedText" : "",
+		"key" : "mission_training_bombrun_description"
+	},
+	{
+		"OriginalText" : "Bomb Run Practice",
+		"TranslatedText" : "",
+		"key" : "mission_training_bombrun_title"
+	},
+	{
+		"OriginalText" : "1942",
+		"TranslatedText" : "",
+		"key" : "mission_tutorial_intro_text_1"
+	},
+	{
+		"OriginalText" : "Air Gunner Training Exercise\nSomewhere over the North Sea",
+		"TranslatedText" : "",
+		"key" : "mission_tutorial_intro_text_2"
+	}
+]

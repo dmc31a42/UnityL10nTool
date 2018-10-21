@@ -1,0 +1,777 @@
+[
+	{
+		"OriginalText" : "(Hold)",
+		"TranslatedText" : "",
+		"key" : "controlprompt_mini_tutorial_holdbutton"
+	},
+	{
+		"OriginalText" : "Move Crew:",
+		"TranslatedText" : "",
+		"key" : "controlprompt_mini_tutorial_move1"
+	},
+	{
+		"OriginalText" : "Interact:",
+		"TranslatedText" : "",
+		"key" : "controlprompt_mini_tutorial_move2"
+	},
+	{
+		"OriginalText" : "Select Crew:",
+		"TranslatedText" : "",
+		"key" : "controlprompt_mini_tutorial_select"
+	},
+	{
+		"OriginalText" : "Zoom Camera:",
+		"TranslatedText" : "",
+		"key" : "controlprompt_mini_tutorial_zoom"
+	},
+	{
+		"OriginalText" : "A navigator with the \"Custom Heading\" ability can plot a course that avoids radar sites.",
+		"TranslatedText" : "",
+		"key" : "mission_tutorial_radar_site_intro_info"
+	},
+	{
+		"OriginalText" : "Automatically order the rest of the crew to grab parachutes & bail out.",
+		"TranslatedText" : "",
+		"key" : "skill_description_bailout"
+	},
+	{
+		"OriginalText" : "Call in some friendly Spitfires to help you tackle enemy fighters!",
+		"TranslatedText" : "",
+		"key" : "skill_description_call_spitfires"
+	},
+	{
+		"OriginalText" : "Corkscrew cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_corkscrew_plus"
+	},
+	{
+		"OriginalText" : "Place a custom navigation marker via the navigator's map. Use to avoid hazards.",
+		"TranslatedText" : "",
+		"key" : "skill_description_custom_navigate"
+	},
+	{
+		"OriginalText" : "Perform an emergency dive to put out engine fires, or reach a lower altitude quickly.",
+		"TranslatedText" : "",
+		"key" : "skill_description_emergency_dive"
+	},
+	{
+		"OriginalText" : "Emergency dive cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_emergency_dive_plus"
+	},
+	{
+		"OriginalText" : "Perform an emergency landing anywhere.",
+		"TranslatedText" : "",
+		"key" : "skill_description_emgland"
+	},
+	{
+		"OriginalText" : "Automatically avoid focused flak. Plus reduce the chance of being hit by area flak.",
+		"TranslatedText" : "",
+		"key" : "skill_description_flak_evade"
+	},
+	{
+		"OriginalText" : "Evade Flak cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_flakevade_plus"
+	},
+	{
+		"OriginalText" : "Increased focus when aiming resulting in higher accuracy for a duration.",
+		"TranslatedText" : "",
+		"key" : "skill_description_focus_fire"
+	},
+	{
+		"OriginalText" : "Pump fuel between tanks. Useful if one is leaking.",
+		"TranslatedText" : "",
+		"key" : "skill_description_fuel_tank_balance"
+	},
+	{
+		"OriginalText" : "Radio for location of upcoming hazards. Will be revealed on the navigator's map.",
+		"TranslatedText" : "",
+		"key" : "skill_description_get_recon"
+	},
+	{
+		"OriginalText" : "Effective for a duration. Best against heavy fighters. Does not deplete normal ammo.",
+		"TranslatedText" : "",
+		"key" : "skill_description_gunner_armour_piercing"
+	},
+	{
+		"OriginalText" : "Scatter ammo liberally, causing enemy fighters to keep their distance.",
+		"TranslatedText" : "",
+		"key" : "skill_description_gunner_defensive"
+	},
+	{
+		"OriginalText" : "Quickly heal injuries on other conscious members of your crew.",
+		"TranslatedText" : "",
+		"key" : "skill_description_heal_minor"
+	},
+	{
+		"OriginalText" : "Slowly heal injuries on other conscious members of your crew. No first aid kit required.",
+		"TranslatedText" : "",
+		"key" : "skill_description_heal_minor_slow"
+	},
+	{
+		"OriginalText" : "Effective for a duration. Best against groups of fighters. Does not deplete normal ammo.",
+		"TranslatedText" : "",
+		"key" : "skill_description_high_explosive"
+	},
+	{
+		"OriginalText" : "Effective for a duration. Great against all fighters. Does not deplete normal ammo.",
+		"TranslatedText" : "",
+		"key" : "skill_description_incendiary_ammo"
+	},
+	{
+		"OriginalText" : "Conserve fuel by using a leaner mix.",
+		"TranslatedText" : "",
+		"key" : "skill_description_lean_mix"
+	},
+	{
+		"OriginalText" : "Lean fuel mix cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_leanmix_plus"
+	},
+	{
+		"OriginalText" : "Navigation available at high altitude during night time.",
+		"TranslatedText" : "",
+		"key" : "skill_description_navigate_by_stars"
+	},
+	{
+		"OriginalText" : "A corkscrew can avoid incoming fighter fire if used with good timing.",
+		"TranslatedText" : "",
+		"key" : "skill_description_pilot_corkscrew"
+	},
+	{
+		"OriginalText" : "While active, automatically tags all fighters within radar range.",
+		"TranslatedText" : "",
+		"key" : "skill_description_radioop_autotag"
+	},
+	{
+		"OriginalText" : "Get a boost of speed by using a richer fuel mix.",
+		"TranslatedText" : "",
+		"key" : "skill_description_rich_mix"
+	},
+	{
+		"OriginalText" : "Boost cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_richmix_boost_plus"
+	},
+	{
+		"OriginalText" : "Calling Spitfires cooldown time is reduced.",
+		"TranslatedText" : "",
+		"key" : "skill_description_spitrifres_plus"
+	},
+	{
+		"OriginalText" : "Take a recon photo, for extra intel.",
+		"TranslatedText" : "",
+		"key" : "skill_description_takephoto"
+	},
+	{
+		"OriginalText" : "Recon photos can be taken from mid altitude.",
+		"TranslatedText" : "",
+		"key" : "skill_description_takephoto_mid"
+	},
+	{
+		"OriginalText" : "Destroy training targets",
+		"TranslatedText" : "",
+		"key" : "tutorial_destroy_drogues"
+	},
+	{
+		"OriginalText" : "Select the mission and we'll get on our way!",
+		"TranslatedText" : "",
+		"key" : "tutorial_gamescom_speech_briefing"
+	},
+	{
+		"OriginalText" : "Your crew are already well equipped for this mission.\nYou can customise gear further by clicking on a crew member.",
+		"TranslatedText" : "",
+		"key" : "tutorial_gamescom_speech_crewquarters"
+	},
+	{
+		"OriginalText" : "You can customise the bomber's gear and appearance here. \nIt's already been upgraded adequately for this mission!",
+		"TranslatedText" : "",
+		"key" : "tutorial_gamescom_speech_hangar"
+	},
+	{
+		"OriginalText" : "The hydraulic system has broken down!\nIt must be repaired for the landing gear to be lowered.",
+		"TranslatedText" : "",
+		"key" : "tutorial_hydraulics_out"
+	},
+	{
+		"OriginalText" : "Prepare to land",
+		"TranslatedText" : "",
+		"key" : "tutorial_land_at_base"
+	},
+	{
+		"OriginalText" : "Order your pilot to lower the landing gear, so that you can land at the airbase.",
+		"TranslatedText" : "",
+		"key" : "tutorial_landing_gear_low_alt"
+	},
+	{
+		"OriginalText" : "Select your pilot.",
+		"TranslatedText" : "",
+		"key" : "tutorial_landing_gear_low_alt_select_pilot"
+	},
+	{
+		"OriginalText" : "You must be at a low altitude to land!",
+		"TranslatedText" : "",
+		"key" : "tutorial_landing_low_alt"
+	},
+	{
+		"OriginalText" : "Shortcut:\nWhile holding [B_RT], press [B_BU] to send a gunner to get more ammo.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_shortcut_ammo_reload_controller"
+	},
+	{
+		"OriginalText" : "Shortcut Key: Press 'R' to send a gunner to get more ammo.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_shortcut_ammo_reload_pc"
+	},
+	{
+		"OriginalText" : "Shortcut Key: Press 'F' to send a member of your crew to the medical rest bed.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_shortcut_medical_bay"
+	},
+	{
+		"OriginalText" : "Shortcut:\nWhile holding [B_RT], press [S_LC] to send a member of your crew to the medical rest bed.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_shortcut_medical_bay_controller"
+	},
+	{
+		"OriginalText" : "Hold [B_RB] to manually Slow Time.\nYou will get a small bonus for completing missions without using manual Slow Time.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_slowdown_controller"
+	},
+	{
+		"OriginalText" : "Hold 'Ctrl' to Slow Time.\nYou will get a small bonus for completing missions without using Slow Time.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame1_slowdown_pc"
+	},
+	{
+		"OriginalText" : "When facing a large group of fighters, ensure all gun turrets are occupied!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_all_guns"
+	},
+	{
+		"OriginalText" : "Order someone to grab a first aid kit, then revive downed crew before their timer expires!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_bleedout"
+	},
+	{
+		"OriginalText" : "Be sure to return crew to their stations once they have finished a task.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_crew_idle"
+	},
+	{
+		"OriginalText" : "Any crew member can operate any station at a basic level.\nYou may need to move your crew around if some are lost during a mission.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_dead_any_station"
+	},
+	{
+		"OriginalText" : "The electrical system has failed, so the radar is inactive. Send someone to repair it!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_electrics_out_radar"
+	},
+	{
+		"OriginalText" : "The electrical system is beginning to malfunction. Send someone to repair it!\nUpgrade systems at the airbase for greater reliability.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_electrics_unreliable"
+	},
+	{
+		"OriginalText" : "Any of your crew can repair systems or engines, but a well trained engineer will do it faster!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_engineer_dead"
+	},
+	{
+		"OriginalText" : "Some enemy fighters are incapable of flying at high altitude.\nWhen you need to avoid a fight, use high altitude to stay out of their reach.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_escape_fighters_high"
+	},
+	{
+		"OriginalText" : "You're being attacked by untagged fighters!\nTag them so that your gunners can fight back!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_fighters_untagged"
+	},
+	{
+		"OriginalText" : "An engine is on fire! Engine fires can be put out with an emergency dive, by engine extinguishers, or by sending someone out with an extinguisher.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_fire_engine_hint"
+	},
+	{
+		"OriginalText" : "There's a fire in the bomber!\nSend someone to put it out with an extinguisher.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_fire_hint"
+	},
+	{
+		"OriginalText" : "The Grand Slam bomb must be dropped from high altitude to detonate correctly.\nDropping it from a lower altitude will not do enough damage.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_grandslam"
+	},
+	{
+		"OriginalText" : "The hydraulic system has failed!\nIt operates the landing gear, turrets and bomb bay doors. Send someone to repair it!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_hydraulics_out"
+	},
+	{
+		"OriginalText" : "The hydraulic system is beginning to malfunction. Send someone to repair it!\nUpgrade systems at the airbase for greater reliability.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_hydraulics_unreliable"
+	},
+	{
+		"OriginalText" : "One of your gun turrets is low on ammo.\nYou can send any of your crew to carry ammo from the ammo box to the turret.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_low_ammo"
+	},
+	{
+		"OriginalText" : "You can send injured crew to the rest bed to heal them.\nIf you need to send your pilot, don't forget to order someone else to fly the aircraft!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_low_health"
+	},
+	{
+		"OriginalText" : "Targets spotted by your navigator will be indicated by orange markers.\nYou can still tag nearby targets without a navigator, but they will be harder to spot.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_navigator"
+	},
+	{
+		"OriginalText" : "On some missions, there will be optional recon opportunities.\nUse the bomb aiming station to take photos of these sites for bonus funds and intel!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_optional_recon"
+	},
+	{
+		"OriginalText" : "Some of your crew are being affected by the lack of oxygen at high altitude.\nThe bomber's oxygen system provides oxygen at stations.\nEquip your crew with oxygen masks to allow them to be away from their stations for longer.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_oxygen"
+	},
+	{
+		"OriginalText" : "The oxygen system has stopped working. \nYour crew are no longer supplied with oxygen at their stations.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_oxygen_out"
+	},
+	{
+		"OriginalText" : "The oxygen system is beginning to malfunction. Send someone to repair it!\nUpgrade systems at the airbase for greater reliability!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_oxygen_unreliable"
+	},
+	{
+		"OriginalText" : "If you're going to crash land, it's often better to bail your crew out using parachutes!\nYour crew's chance of survival is based on their survival gear equipped.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_parachute"
+	},
+	{
+		"OriginalText" : "The bomber has no pilot!\nOrder any crew member to the pilot's seat!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_pilot_dead"
+	},
+	{
+		"OriginalText" : "The radar will reveal enemy targets as green blips.\nAn active radar system makes enemies much easier to spot!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_radar_blips"
+	},
+	{
+		"OriginalText" : "Search and Rescue targets can be small and harder to spot.\nLook around carefully to find and tag them!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_search_and_rescue"
+	},
+	{
+		"OriginalText" : "Try using your gunner's \"Focus\" skill to temporarily increase their accuracy!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_skills_gunner_focus"
+	},
+	{
+		"OriginalText" : "Try using your pilot's \"Corkscrew\" manoeuvre to avoid an enemy attack!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_skills_pilot_corkscrew"
+	},
+	{
+		"OriginalText" : "Use your pilot's \"Corkscrew\" manoeuvre to avoid enemy rocket attacks!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_skills_pilot_corkscrew_rocket"
+	},
+	{
+		"OriginalText" : "Don't forget to try out some of your newly unlocked skills!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_skills_reminder_general"
+	},
+	{
+		"OriginalText" : "Some of your crew have swapped stations.\nWhen possible, make sure that your crew are performing the role they are trained in.",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_swapped_roles"
+	},
+	{
+		"OriginalText" : "Some of your crew are being affected by freezing temperatures.\nObserve their health, and descend to a lower altitude if necessary!",
+		"TranslatedText" : "",
+		"key" : "tutorial_maingame_topbar_temperature"
+	},
+	{
+		"OriginalText" : "Photograph activity in sea",
+		"TranslatedText" : "",
+		"key" : "tutorial_objective_photosubmarines"
+	},
+	{
+		"OriginalText" : "Repair Hydraulics",
+		"TranslatedText" : "",
+		"key" : "tutorial_repair_hydraulics"
+	},
+	{
+		"OriginalText" : "Time for some target practice before we send you off into the sights of the enemy.\nEngage and destroy those targets, this should be a piece of cake!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial1_intro1"
+	},
+	{
+		"OriginalText" : "We're receiving reports of enemy fighters in the area!\nReturn to base immediately!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial1_mid1"
+	},
+	{
+		"OriginalText" : "Your radar will reveal the location of nearby enemies.\nKeep an eye on it!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial1_radar"
+	},
+	{
+		"OriginalText" : "Looks like there's a lot of enemy fighters coming your way...\nI'm sending Spitfires to escort you back to base!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial1_spitfires"
+	},
+	{
+		"OriginalText" : "We've set up a dummy target for some bomb run training.\nYour navigator will plot a route to the target!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_intro1"
+	},
+	{
+		"OriginalText" : "Top job! Get back to the airbase safely with the photos!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_sea_end1"
+	},
+	{
+		"OriginalText" : "Command has ordered your crew to investigate reported activity off the coast.",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_sea_intro1"
+	},
+	{
+		"OriginalText" : "Get a photograph of whatever's going on in the sea and return to base!\nWatch out for enemy fighters!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_sea_intro2"
+	},
+	{
+		"OriginalText" : "You missed the target! Let's give that another shot, eh?\nWait until the target is visible in the bomb aimer's view!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_try_again"
+	},
+	{
+		"OriginalText" : "Your bombs have been replaced ready for another attempt!",
+		"TranslatedText" : "",
+		"key" : "tutorial_speech_tutorial2_try_again2"
+	},
+	{
+		"OriginalText" : "Tag training targets",
+		"TranslatedText" : "",
+		"key" : "tutorial_tag_drogues"
+	},
+	{
+		"OriginalText" : "You're approaching the airbase.\nEnter tagging mode, and tag the runway to begin landing!",
+		"TranslatedText" : "",
+		"key" : "tutorial_tag_landing"
+	},
+	{
+		"OriginalText" : "Tag navigation marker",
+		"TranslatedText" : "",
+		"key" : "tutorial_tag_navigation_marker"
+	},
+	{
+		"OriginalText" : "With the bomb aimer selected, arm some bombs.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_arm_bombs"
+	},
+	{
+		"OriginalText" : "Use the bomb aimer's view to see when you are above the target.\nPress 'RELEASE' to drop your armed bombs on the target.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_drop_timing"
+	},
+	{
+		"OriginalText" : "Move your bomb aimer to the bomb aiming station, directly below the nose turret.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_move_bombaimer"
+	},
+	{
+		"OriginalText" : "Move your bomb aimer to the bomb aiming station, directly below the nose turret.\nHold [B_RT] to enter movement mode. Move the cursor with [S_L].\nPress [B_SL] to confirm!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_move_bombaimer_console"
+	},
+	{
+		"OriginalText" : "Ensure your bomb aimer is in the bomb aiming station!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_move_bombaimer_reminder"
+	},
+	{
+		"OriginalText" : "Select your bomb aimer.\nAt the start of missions, the bomb aimer will be in the nose turret.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_move_bombaimer_select"
+	},
+	{
+		"OriginalText" : "Select your Bomb Aimer.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_move_bombaimer_select_short"
+	},
+	{
+		"OriginalText" : "Instruct your bomb aimer to open the bomb bay doors!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_open_bay_doors"
+	},
+	{
+		"OriginalText" : "Tag the bomb target to fly over it.\nIf you don't destroy it on your first attempt- tag it again to retry the bomb-run.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_tag_target"
+	},
+	{
+		"OriginalText" : "Order your pilot to take off to begin the mission.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_takeoff"
+	},
+	{
+		"OriginalText" : "Select your pilot.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_takeoff_select"
+	},
+	{
+		"OriginalText" : "Select your pilot by holding [B_CN] and pressing [D_ANY] or [S_L] until they are selected.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_takeoff_select_console"
+	},
+	{
+		"OriginalText" : "Select your pilot.\nClick directly on your pilot, or on their status panel.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_bombrun_takeoff_select_long"
+	},
+	{
+		"OriginalText" : "Move the camera using [S_R]. When zoomed out, the camera will rotate around the bomber.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_move_controller"
+	},
+	{
+		"OriginalText" : "Hold [M_RC] to move the camera. When zoomed out, the camera will rotate around the bomber.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_move_pc"
+	},
+	{
+		"OriginalText" : "Hold [B_BL] and use [D_UD]/[S_L] to zoom in and out.\nWhen zoomed in, you can see inside the bomber. \nWhen zoomed out you can look around for hazards and targets!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_zoom_controller"
+	},
+	{
+		"OriginalText" : "Hold [B_BL] and use [D_UD]/[S_L] to zoom in and out.\n\nPress [B_BL] on its own to quickly toggle between internal view & external view.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_zoom_controller_2"
+	},
+	{
+		"OriginalText" : "Zoom the camera with [M_MS].\nWhen zoomed in, you can see inside the bomber.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_zoom_pc"
+	},
+	{
+		"OriginalText" : "Zoom the camera with [M_MS].\nWhen zoomed out, you can look around for hazards and targets!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_camera_zoom_pc_2"
+	},
+	{
+		"OriginalText" : "We've been ambushed by enemy fighters!\nTag them to order your gunner to attack.\nUse the radar help you spot them!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_enemyfighters"
+	},
+	{
+		"OriginalText" : "Enemy fighters have appeared on the radar!\nTag them to order your gunners to open fire!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_enemyfighters_gamescom"
+	},
+	{
+		"OriginalText" : "Move your gunner to the best turret for the approaching fighters!\nKeep navigating back to base.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_enemyfighters_move"
+	},
+	{
+		"OriginalText" : "You can avoid flak by climbing to a higher altitude...\n...but it will make taking photos and dropping bombs more tricky!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_flak_gohigher"
+	},
+	{
+		"OriginalText" : "Arm the bombs, so they're ready to drop.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_arm_bombs"
+	},
+	{
+		"OriginalText" : "You're near the mission target!\nSend someone to the bomb aimer's station!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_bomb_near_target"
+	},
+	{
+		"OriginalText" : "Tag the bomb target to fly over it!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_bomb_target"
+	},
+	{
+		"OriginalText" : "Press 'RELEASE' to drop the bombs when you are over the target!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_bomb_target_2"
+	},
+	{
+		"OriginalText" : "The bomb bay doors must be opened before bombs can be released!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_doors_open"
+	},
+	{
+		"OriginalText" : "Your Radio Op can call for Spitfires to help you with enemy fighters!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_radioop_spitfires"
+	},
+	{
+		"OriginalText" : "Tag the photo target to fly over it.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_tag_photo"
+	},
+	{
+		"OriginalText" : "Look in the bomb sight on the bomb aimer's panel.\nPress \"TAKE PHOTO\" to photograph the target when you see it in the sight.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_gamescom_take_photo"
+	},
+	{
+		"OriginalText" : "The hydraulic system is fixed!\nTag the airbase, and lower your landing gear to land!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_hydraulics_fixed"
+	},
+	{
+		"OriginalText" : "Send your gunner to the other turrets.\nHold [B_RT] and move the cursor to a turret with [D_ANY] or [S_L], then press [B_SL] to confirm.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_controller"
+	},
+	{
+		"OriginalText" : "Send your gunner to the nose gun turret.\nHold [B_RT] and move the cursor to a turret with [D_ANY] or [S_L], then press [B_SL] to confirm.\nThe game will slow down while you are holding [B_RT].",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_controller_fg"
+	},
+	{
+		"OriginalText" : "Send your gunner to the rear gun turret.\nHold [B_RT] and move the cursor to a turret with [D_ANY] or [S_L], then press [B_SL] to confirm.\nThe game will slow down while you are holding [B_RT].",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_controller_rg"
+	},
+	{
+		"OriginalText" : "Send your gunner to the upper gun turret.\nHold [B_RT] and move the cursor to a turret with [D_ANY] or [S_L], then press [B_SL] to confirm.\nThe game will slow down while you are holding [B_RT].",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_controller_ug"
+	},
+	{
+		"OriginalText" : "Send your gunner to the other turrets.\n[M_LC] on a turret to order your gunner there.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_pc"
+	},
+	{
+		"OriginalText" : "Send your gunner to the nose gun turret.\n[M_LC] on a turret to order your gunner there.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_pc_fg"
+	},
+	{
+		"OriginalText" : "Send your gunner to the rear gun turret.\n[M_LC] on a turret to order your gunner there.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_pc_rg"
+	},
+	{
+		"OriginalText" : "Send your gunner to the upper gun turret.\n[M_LC] on a turret to order your gunner there.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_issue_command_pc_ug"
+	},
+	{
+		"OriginalText" : "Leaving the landing gear lowered will use up more fuel, and expose them to potential damage!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_landing_gear_expl"
+	},
+	{
+		"OriginalText" : "Order your pilot to raise the landing gear.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_landing_gear_up"
+	},
+	{
+		"OriginalText" : "Airbase tagged, landing gear lowered.\nYour pilot will now land at the airbase!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_landing_wait"
+	},
+	{
+		"OriginalText" : "All targets tagged! Release [B_LT] to leave tagging mode.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_leave_tag_controller"
+	},
+	{
+		"OriginalText" : "All targets tagged! Press 'SPACE' or [M_MC] to leave tagging mode.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_leave_tag_pc"
+	},
+	{
+		"OriginalText" : "You have a new objective.\nYour navigator will create markers on a course towards the new location.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_photo_area"
+	},
+	{
+		"OriginalText" : "Tag a photographable target to fly over it.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_photo_tag"
+	},
+	{
+		"OriginalText" : "Use the bomb aimer's station to take a photo.\nLook in the bomb sight to see when you are above the target.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_photo_take"
+	},
+	{
+		"OriginalText" : "Select your gunner by holding [B_CN] and pressing [D_ANY] or [S_L] until they are selected.\nThe game will slow down while you are selecting.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_select_crew_controller"
+	},
+	{
+		"OriginalText" : "Select your gunner with [M_LC]. Click directly on your gunner, or on their station panel.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_select_crew_pc"
+	},
+	{
+		"OriginalText" : "Select your engineer!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_select_engineer"
+	},
+	{
+		"OriginalText" : "Send your engineer to repair the hydraulic system.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_send_engineer"
+	},
+	{
+		"OriginalText" : "Use tagging mode by holding [B_LT]. Look at a marker in tagging mode to 'tag' it.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_controller"
+	},
+	{
+		"OriginalText" : "While in tagging mode, point at the yellow training targets to tag them.\nGunners will fire at tagged targets.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_drogues"
+	},
+	{
+		"OriginalText" : "Your gunners won't fire on fighters unless they are tagged.\nTag enemy fighters to attack!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_fighters"
+	},
+	{
+		"OriginalText" : "Your navigator will create navigation markers for you.\nTag these navigation markers as they appear to stay on course.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_navigation"
+	},
+	{
+		"OriginalText" : "Don't forget to tag navigation markers and stay on course to the target area!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_navigation_bombrun"
+	},
+	{
+		"OriginalText" : "Don't forget to keep tagging navigation markers, or you may end up off course!",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_navigation_long"
+	},
+	{
+		"OriginalText" : "Press 'SPACE' or [M_MC] to toggle tagging mode.\nLook at a marker in tagging mode to 'tag' it.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tag_pc"
+	},
+	{
+		"OriginalText" : "Any of your crew can repair systems, but your engineer will repair them fastest.\nHigher level engineers will repair even faster.",
+		"TranslatedText" : "",
+		"key" : "tutorial_topbar_tutorial2_any_hydraulics"
+	}
+]

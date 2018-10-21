@@ -1,6 +1,1522 @@
 {
-	"GameName": "Bomber Crew",
-	"MakerName": "Runner Duck",
-	"GamePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\BomberCrew\\BomberCrew_Data\\",
-	"DataFolderName": "BomberCrew"
+	"DataFolderName" : "BomberCrew",
+	"FontPlugin" : 
+	{
+		"TMPFontAsset" : null
+	},
+	"GameName" : "Bomber Crew",
+	"GamePath" : "C:\\Program Files (x86)\\Steam\\steamapps\\common\\BomberCrew\\BomberCrew_Data\\",
+	"MakerName" : "Runner Duck",
+	"TextPlugin" : 
+	{
+		"Done" : 
+		[
+			{
+				"InteractWithAssetPluginName" : "Json",
+				"InteractWithFileTextPluginName" : "Json",
+				"InteractWithMonoAssetPluginName" : "",
+				"assetName" : "LanguageData.json",
+				"assetsName" : "sharedassets8.assets",
+				"containerPath" : "",
+				"languagePairDics" : 
+				{
+					"BombLoads" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "BombLoads",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "BombLoads",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "BombLoads.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "BombLoads.json"
+					},
+					"Bomber Upgrades (NON-UI)" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Bomber Upgrades (NON-UI)",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Bomber Upgrades (NON-UI)",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Bomber Upgrades (NON-UI).json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Bomber Upgrades (NON-UI).json"
+					},
+					"Console System" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Console System",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Console System",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Console System.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Console System.json"
+					},
+					"ControlPrompts" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "ControlPrompts",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "ControlPrompts",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "ControlPrompts.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "ControlPrompts.json"
+					},
+					"Crewman Gear (NON-UI)" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Crewman Gear (NON-UI)",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Crewman Gear (NON-UI)",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Crewman Gear (NON-UI).json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Crewman Gear (NON-UI).json"
+					},
+					"Endless Mode" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Endless Mode",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Endless Mode",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Endless Mode.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Endless Mode.json"
+					},
+					"How To Play" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "How To Play",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "How To Play",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "How To Play.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "How To Play.json"
+					},
+					"MissionSpeech" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "MissionSpeech",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "MissionSpeech",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "MissionSpeech.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "MissionSpeech.json"
+					},
+					"Missions" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Missions",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Missions",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Missions.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Missions.json"
+					},
+					"Ranks" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Ranks",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Ranks",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Ranks.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Ranks.json"
+					},
+					"Skills" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Skills",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Skills",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Skills.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Skills.json"
+					},
+					"Speech" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Speech",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Speech",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									},
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "version",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Speech.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Speech.json"
+					},
+					"Traits" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Traits",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Traits",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Traits.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Traits.json"
+					},
+					"Tutorial" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "Tutorial",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "Tutorial",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "Tutorial.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "Tutorial.json"
+					},
+					"UI" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Array Path: ",
+								"Value" : "UI",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Array)",
+										"ValueAsChild" : "UI",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "key",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Path: ",
+								"Value" : "value",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "",
+										"Value" : "(Set As Key or Value)",
+										"ValueAsChild" : "value",
+										"type" : "WSTRING",
+										"typeAsChild" : "WSTRING"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "UI.json",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set Key Path.",
+								"OptionName" : "Key Path: ",
+								"Value" : "key",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set non-translated text path.",
+								"OptionName" : "Original Text Path: ",
+								"Value" : "OriginalText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Set translated text path.",
+								"OptionName" : "Translated Text Path: ",
+								"Value" : "TranslatedText",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "UI.json"
+					}
+				},
+				"useContainerPath" : false
+			}
+		],
+		"InteractWithFileTextNews" : []
+	}
 }

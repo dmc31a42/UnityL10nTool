@@ -1,0 +1,62 @@
+[
+	{
+		"OriginalText" : "Sergeant",
+		"TranslatedText" : "",
+		"key" : "rank_long_0"
+	},
+	{
+		"OriginalText" : "Flight Sergeant",
+		"TranslatedText" : "",
+		"key" : "rank_long_1"
+	},
+	{
+		"OriginalText" : "Flying Officer",
+		"TranslatedText" : "",
+		"key" : "rank_long_2"
+	},
+	{
+		"OriginalText" : "Pilot Officer",
+		"TranslatedText" : "",
+		"key" : "rank_long_3"
+	},
+	{
+		"OriginalText" : "Warrant Officer",
+		"TranslatedText" : "",
+		"key" : "rank_long_4"
+	},
+	{
+		"OriginalText" : "Flight Lieutenant",
+		"TranslatedText" : "",
+		"key" : "rank_long_5"
+	},
+	{
+		"OriginalText" : "Sgt",
+		"TranslatedText" : "",
+		"key" : "rank_short_0"
+	},
+	{
+		"OriginalText" : "F/Sgt",
+		"TranslatedText" : "",
+		"key" : "rank_short_1"
+	},
+	{
+		"OriginalText" : "F/O",
+		"TranslatedText" : "",
+		"key" : "rank_short_2"
+	},
+	{
+		"OriginalText" : "P/O",
+		"TranslatedText" : "",
+		"key" : "rank_short_3"
+	},
+	{
+		"OriginalText" : "W/O",
+		"TranslatedText" : "",
+		"key" : "rank_short_4"
+	},
+	{
+		"OriginalText" : "F/L",
+		"TranslatedText" : "",
+		"key" : "rank_short_5"
+	}
+]

@@ -1,0 +1,312 @@
+[
+	{
+		"OriginalText" : "Near mine",
+		"TranslatedText" : "",
+		"key" : "endless_mode_button_adjacent_scores"
+	},
+	{
+		"OriginalText" : "All Scores",
+		"TranslatedText" : "",
+		"key" : "endless_mode_button_all_scores"
+	},
+	{
+		"OriginalText" : "Friends Only",
+		"TranslatedText" : "",
+		"key" : "endless_mode_button_friends_scores"
+	},
+	{
+		"OriginalText" : "Top Scores",
+		"TranslatedText" : "",
+		"key" : "endless_mode_button_top_scores"
+	},
+	{
+		"OriginalText" : "Filter:",
+		"TranslatedText" : "",
+		"key" : "endless_mode_filter"
+	},
+	{
+		"OriginalText" : "Change Pack",
+		"TranslatedText" : "",
+		"key" : "endless_mode_hangar_button_changepack"
+	},
+	{
+		"OriginalText" : "Custom Slots",
+		"TranslatedText" : "",
+		"key" : "endless_mode_loadouts_title_customslots"
+	},
+	{
+		"OriginalText" : "Presets",
+		"TranslatedText" : "",
+		"key" : "endless_mode_loadouts_title_presets"
+	},
+	{
+		"OriginalText" : "Area Expanding!",
+		"TranslatedText" : "",
+		"key" : "endless_mode_overlay_areaexpanding"
+	},
+	{
+		"OriginalText" : "Go!",
+		"TranslatedText" : "",
+		"key" : "endless_mode_overlay_go"
+	},
+	{
+		"OriginalText" : "Get Ready...",
+		"TranslatedText" : "",
+		"key" : "endless_mode_overlay_ready"
+	},
+	{
+		"OriginalText" : "Refuel",
+		"TranslatedText" : "",
+		"key" : "endless_mode_pickup_fuelrefill"
+	},
+	{
+		"OriginalText" : "Heal Crew",
+		"TranslatedText" : "",
+		"key" : "endless_mode_pickup_healcrew"
+	},
+	{
+		"OriginalText" : "{0} Points",
+		"TranslatedText" : "",
+		"key" : "endless_mode_pickup_points"
+	},
+	{
+		"OriginalText" : "Bomber Repair",
+		"TranslatedText" : "",
+		"key" : "endless_mode_pickup_repair"
+	},
+	{
+		"OriginalText" : "Crew XP",
+		"TranslatedText" : "",
+		"key" : "endless_mode_pickup_xpupgrade"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_button_cancel"
+	},
+	{
+		"OriginalText" : "Load",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_button_load"
+	},
+	{
+		"OriginalText" : "Save",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_button_save"
+	},
+	{
+		"OriginalText" : "Are you sure you want to load the preset \"{0}\"? \n\nYour current bomber and crew gear loadout will be replaced.",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_confirm"
+	},
+	{
+		"OriginalText" : "Cancel",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_confirm_cancel"
+	},
+	{
+		"OriginalText" : "Delete",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_confirm_delete"
+	},
+	{
+		"OriginalText" : "Load",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_confirm_load"
+	},
+	{
+		"OriginalText" : "Delete the saved custom loadout \"{0}\"?",
+		"TranslatedText" : "",
+		"key" : "endless_mode_presetchange_delete"
+	},
+	{
+		"OriginalText" : "Range:",
+		"TranslatedText" : "",
+		"key" : "endless_mode_range"
+	},
+	{
+		"OriginalText" : "Highly Equipped",
+		"TranslatedText" : "",
+		"key" : "endless_mode_standard_armed_loadout"
+	},
+	{
+		"OriginalText" : "Heavily Armoured",
+		"TranslatedText" : "",
+		"key" : "endless_mode_standard_armoured_loadout"
+	},
+	{
+		"OriginalText" : "Balanced",
+		"TranslatedText" : "",
+		"key" : "endless_mode_standard_default_loadout"
+	},
+	{
+		"OriginalText" : "Time Bonus",
+		"TranslatedText" : "",
+		"key" : "endless_mode_time_bonus"
+	},
+	{
+		"OriginalText" : "Challenge Mode: Secret Weapons",
+		"TranslatedText" : "",
+		"key" : "endless_mode_title_secretweapons"
+	},
+	{
+		"OriginalText" : "Challenge Mode: Standard",
+		"TranslatedText" : "",
+		"key" : "endless_mode_title_standard"
+	},
+	{
+		"OriginalText" : "Wave Complete Bonus",
+		"TranslatedText" : "",
+		"key" : "endless_mode_wave_complete_bonus"
+	},
+	{
+		"OriginalText" : "Leaderboard",
+		"TranslatedText" : "",
+		"key" : "endless_ui_leaderboards"
+	},
+	{
+		"OriginalText" : "Getting Scores...",
+		"TranslatedText" : "",
+		"key" : "endless_ui_leaderboards_gettingscores"
+	},
+	{
+		"OriginalText" : "Highscores",
+		"TranslatedText" : "",
+		"key" : "endless_ui_leaderboards_title"
+	},
+	{
+		"OriginalText" : "Loadouts",
+		"TranslatedText" : "",
+		"key" : "endless_ui_loadoutpresets"
+	},
+	{
+		"OriginalText" : "Load Custom Loadout",
+		"TranslatedText" : "",
+		"key" : "endlessmode_custom_loadout_loadtitle"
+	},
+	{
+		"OriginalText" : "Save Custom Loadout",
+		"TranslatedText" : "",
+		"key" : "endlessmode_custom_loadout_savetitle"
+	},
+	{
+		"OriginalText" : "Your Best Score:",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_briefing_highscorelabel"
+	},
+	{
+		"OriginalText" : "1. Complete Wave Objectives\n\n2. Collect Power-Ups\n\n3. Experiment with Loadouts",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_briefing_instructions"
+	},
+	{
+		"OriginalText" : "Challenge",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_briefing_title"
+	},
+	{
+		"OriginalText" : "Completed Waves:",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_debrief_completedwaves"
+	},
+	{
+		"OriginalText" : "New Record!",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_debrief_newrecord"
+	},
+	{
+		"OriginalText" : "Results",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_debrief_resultstitle"
+	},
+	{
+		"OriginalText" : "Score:",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_debrief_score"
+	},
+	{
+		"OriginalText" : "Game Over",
+		"TranslatedText" : "",
+		"key" : "endlessmode_hangar_debrief_title"
+	},
+	{
+		"OriginalText" : "Challenge Mode",
+		"TranslatedText" : "",
+		"key" : "endlessmode_menu_play"
+	},
+	{
+		"OriginalText" : "Survive",
+		"TranslatedText" : "",
+		"key" : "endlessmode_objective"
+	},
+	{
+		"OriginalText" : "Load Preset Loadout",
+		"TranslatedText" : "",
+		"key" : "endlessmode_preset_loadout_loadtitle"
+	},
+	{
+		"OriginalText" : "Custom Loadout Name",
+		"TranslatedText" : "",
+		"key" : "endlessmode_rename_text_header"
+	},
+	{
+		"OriginalText" : "Endless Mode",
+		"TranslatedText" : "",
+		"key" : "endlessmode_title"
+	},
+	{
+		"OriginalText" : "Complete!",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_complete"
+	},
+	{
+		"OriginalText" : "Failed!",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_failed"
+	},
+	{
+		"OriginalText" : "Wave {0}",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_title"
+	},
+	{
+		"OriginalText" : "Destroy Submarines",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_BombSubmarines"
+	},
+	{
+		"OriginalText" : "Destroy Target",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_BombTargetLand"
+	},
+	{
+		"OriginalText" : "Grand Slam!",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_BombTargetLandGrandSlam"
+	},
+	{
+		"OriginalText" : "Destroy Targets",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_BombTargetLandMulti"
+	},
+	{
+		"OriginalText" : "Timed Target",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_BombTargetTimed"
+	},
+	{
+		"OriginalText" : "Survive Ace Attack",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_EnemyAceWave"
+	},
+	{
+		"OriginalText" : "Defeat Fighters",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_FightersOnly"
+	},
+	{
+		"OriginalText" : "Refuel and Repair",
+		"TranslatedText" : "",
+		"key" : "endlessmode_wave_type_HealAndRefuel"
+	}
+]

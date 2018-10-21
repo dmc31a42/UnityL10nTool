@@ -1,0 +1,42 @@
+[
+	{
+		"OriginalText" : "Bomb Aimer",
+		"TranslatedText" : "",
+		"key" : "skill_bombaimer"
+	},
+	{
+		"OriginalText" : "Engineer",
+		"TranslatedText" : "",
+		"key" : "skill_engineer"
+	},
+	{
+		"OriginalText" : "Fire Fighter",
+		"TranslatedText" : "",
+		"key" : "skill_firefighter"
+	},
+	{
+		"OriginalText" : "First Aid",
+		"TranslatedText" : "",
+		"key" : "skill_firstaid"
+	},
+	{
+		"OriginalText" : "Gunner",
+		"TranslatedText" : "",
+		"key" : "skill_gunner"
+	},
+	{
+		"OriginalText" : "Navigator",
+		"TranslatedText" : "",
+		"key" : "skill_navigator"
+	},
+	{
+		"OriginalText" : "Pilot",
+		"TranslatedText" : "",
+		"key" : "skill_pilot"
+	},
+	{
+		"OriginalText" : "Radio Op",
+		"TranslatedText" : "",
+		"key" : "skill_radioop"
+	}
+]

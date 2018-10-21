@@ -1,0 +1,1302 @@
+[
+	{
+		"OriginalText" : "Nooo! You wait 'til the Fatherland hears of this behaviour!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_defeat"
+	},
+	{
+		"OriginalText" : "Hello little Britishers... Mama is here to rocket you to sleep!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_initial"
+	},
+	{
+		"OriginalText" : "Mama has got to fly, but she'll be back, and you'll be sorry.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_retreat_0"
+	},
+	{
+		"OriginalText" : "Time to go, but Mother's Day is coming!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_retreat_1"
+	},
+	{
+		"OriginalText" : "The Fatherland is hard at work, so Mama will take care of you!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_speech_0"
+	},
+	{
+		"OriginalText" : "I have let you stay up late. But now it's time to put you down.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_speech_1"
+	},
+	{
+		"OriginalText" : "Your flights of fancy are so sweet. But Mama will bring you back to earth...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_speech_2"
+	},
+	{
+		"OriginalText" : "Stop crying and take your medicine!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_speech_3"
+	},
+	{
+		"OriginalText" : "You have made your mother very angry!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_speech_4"
+	},
+	{
+		"OriginalText" : "Ah, here you are, my little ones - are you ready for your medicine?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace10_subsequent"
+	},
+	{
+		"OriginalText" : "Well, this sucks...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_defeat"
+	},
+	{
+		"OriginalText" : "Ah-hah, some new blood! At last, something to get my teeth into...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_initial"
+	},
+	{
+		"OriginalText" : "You know, you're a real pain in the neck - time to fly!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_retreat_0"
+	},
+	{
+		"OriginalText" : "On reflection, it's best if I disappear.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_retreat_1"
+	},
+	{
+		"OriginalText" : "I strike from the shadows! Ha-HAH!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_speech_0"
+	},
+	{
+		"OriginalText" : "You are a pawn, but I - I am the night!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_speech_1"
+	},
+	{
+		"OriginalText" : "It is time to raise the stakes!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_speech_2"
+	},
+	{
+		"OriginalText" : "Listen to the twin MK 108 cannons! What beautiful music they make!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_speech_3"
+	},
+	{
+		"OriginalText" : "I am silent, and I am deadly!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_speech_4"
+	},
+	{
+		"OriginalText" : "Ah-hah-HAH! On the wings of the night, I come to you!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace11_subsequent"
+	},
+	{
+		"OriginalText" : "Mutti was right: nice guys finish last! Farewell, cruel world!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_defeat"
+	},
+	{
+		"OriginalText" : "Halt! I have orders to stop you - by any means!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_initial"
+	},
+	{
+		"OriginalText" : "Bullets are bad for my health! I'm getting out of here!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_retreat_0"
+	},
+	{
+		"OriginalText" : "Help me, Mutti! The big bombers are being nasty to me!\nArgh, my vertigo is kicking in! I need a lie down...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_retreat_1"
+	},
+	{
+		"OriginalText" : "Prepare to learn some manners, brutes!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_speech_0"
+	},
+	{
+		"OriginalText" : "Ach! Stop shooting at me, you vandals!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_speech_1"
+	},
+	{
+		"OriginalText" : "You are forcing my hand! Stop making me shoot you!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_speech_2"
+	},
+	{
+		"OriginalText" : "Fine! You ignore my warnings, now pay the price!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_speech_3"
+	},
+	{
+		"OriginalText" : "I asked you to stop, but would you listen? NO!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_speech_4"
+	},
+	{
+		"OriginalText" : "I went easy on you last time... Not any more!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace1_subsequent"
+	},
+	{
+		"OriginalText" : "For the first time, Gunnar tastes bitter defeat! Damn you!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_defeat"
+	},
+	{
+		"OriginalText" : "Once Gunnar has you in his sights, you fly on borrowed time!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_initial"
+	},
+	{
+		"OriginalText" : "Hmm, you force Gunnar to return to base. Until next time, fools!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_retreat_0"
+	},
+	{
+		"OriginalText" : "A lucky shot, damn your eyes! I depart, but we will duel again!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_retreat_1"
+	},
+	{
+		"OriginalText" : "Bombs for show, cowl-mounted 7.92mm MG17 machine guns for a pro!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_speech_0"
+	},
+	{
+		"OriginalText" : "Your lack of precision is laughable!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_speech_1"
+	},
+	{
+		"OriginalText" : "Time to take you to school... Your final lesson begins now!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_speech_2"
+	},
+	{
+		"OriginalText" : "You call this a fight? Gott in Himmel, are you even trying?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_speech_3"
+	},
+	{
+		"OriginalText" : "Stop waving your rudder and SHOOT me!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_speech_4"
+	},
+	{
+		"OriginalText" : "Some fools never learn... Do not fear, I will end this quickly.\nWell, who is this in my sights again? Prepare for execution!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace2_subsequent"
+	},
+	{
+		"OriginalText" : "Ach! My flame may be extinguished but my legend lives on!\nNOOO!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_defeat"
+	},
+	{
+		"OriginalText" : "Some like it hot... So let's see how you enjoy my inferno!\nPrepare to feel my heat, fools!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_initial"
+	},
+	{
+		"OriginalText" : "My flame still burns! You've not seen the last of me!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_retreat_0"
+	},
+	{
+		"OriginalText" : "Curses! I'm feeling a little put out, but I'll be back!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_retreat_1"
+	},
+	{
+		"OriginalText" : "The only things hotter than me are my guns!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_0"
+	},
+	{
+		"OriginalText" : "How's THIS for a warm-up?\nThings are about to get HEATED!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_1"
+	},
+	{
+		"OriginalText" : "Am I making you hot under the collar?\nLet me fan the flames of your demise!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_2"
+	},
+	{
+		"OriginalText" : "You are but apprentices - and you're fired!\nI will slice through you like a hot knife through butter!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_3"
+	},
+	{
+		"OriginalText" : "Now witness my blaze of glory!\nYour fairytale will soon be over, Cinders!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_4"
+	},
+	{
+		"OriginalText" : "Come gather round my fire, idiots!\nDefeat me? I will make a bonfire of your vanity!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_5"
+	},
+	{
+		"OriginalText" : "Now you understand, fools: I am too hot to handle!\nYou play with fire, you get burned!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_speech_6"
+	},
+	{
+		"OriginalText" : "Prepare to feel the burn once more, scum!\nBack for more? Let me tell you the story of Icarus...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace3_subsequent"
+	},
+	{
+		"OriginalText" : "And so the hunter becomes the hunted! Clever girl...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_defeat"
+	},
+	{
+		"OriginalText" : "Prepare to face the apex predator of the skies!\nFight or flight, you die tonight!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_initial"
+	},
+	{
+		"OriginalText" : "Huh, you nearly impressed me... I will not underestimate you again!\nSo, the sheep repels the wolf... You will not be so lucky next time!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_retreat_0"
+	},
+	{
+		"OriginalText" : "Ha, the cub thinks it is a lion! This hunt is not over - I will return!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_retreat_1"
+	},
+	{
+		"OriginalText" : "Death from above! Death from below! Death from wherever I damn-well go!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_speech_0"
+	},
+	{
+		"OriginalText" : "Cower before me, prey!\nYour heads will take pride of place in my trophy room!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_speech_1"
+	},
+	{
+		"OriginalText" : "This shark tastes blood and closes in for the kill!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_speech_2"
+	},
+	{
+		"OriginalText" : "First blood is mine!\nHa, you are winged! Now to take you to ground!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_speech_3"
+	},
+	{
+		"OriginalText" : "Hunt high, hunt low - none shall escape the deathblow!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_speech_4"
+	},
+	{
+		"OriginalText" : "Your hide may be thick, but your underbelly is soft!\nRun, rabbit, run from my gun, gun, GUN!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace4_subsequent"
+	},
+	{
+		"OriginalText" : "I have tasted my own medicine, and it is divine!\nI go down in a blaze of glory! REMEMBER ME!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_defeat"
+	},
+	{
+		"OriginalText" : "I, Kaspar, will start this party with a BANG!\nThe sky shakes and the earth quakes for - yes! - Kaspar is here!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_initial"
+	},
+	{
+		"OriginalText" : "You have been lucky this time, but luck runs out eventually…\nAch, out of ammo! But I'll return soon - Kaspar leaves no job unfinished!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_retreat_0"
+	},
+	{
+		"OriginalText" : "Kaspar's boom is a bust! But only for now...\nHuh, Kaspar retreats to rethink his big BANG theory...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_retreat_1"
+	},
+	{
+		"OriginalText" : "Do you hear that boom? It's your impending DOOM!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_speech_0"
+	},
+	{
+		"OriginalText" : "Think explosions are bad? Ha - wait until you hit the ground!\nKaspar will rain mainly on your plane - a rain of DEATH!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_speech_1"
+	},
+	{
+		"OriginalText" : "Hail King Kaspar and his benevolent rain - of BULLETS!\nToday's forecast: Cloudy with a chance of exploding bombers! Ha-ha-ha!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_speech_2"
+	},
+	{
+		"OriginalText" : "I plan to give you a BANGING headache!\nThunderbolts and lightning, Kaspar is the flight king!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_speech_3"
+	},
+	{
+		"OriginalText" : "I will light the sky with your flaming remains!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_speech_4"
+	},
+	{
+		"OriginalText" : "You are about to go out with a BANG!\nPrepare to rest in pieces, dolts!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace5_subsequent"
+	},
+	{
+		"OriginalText" : "H-how could a bumbling bomber best my beautiful fighter! THIS IS AN OUTRAGE!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_defeat"
+	},
+	{
+		"OriginalText" : "Ha, I have you in my sights! Consider that an honour!\nI will catch you in my web of fear, lumbering louts!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_initial"
+	},
+	{
+		"OriginalText" : "So, little David's aim was true. This Goliath is no fool: we shall meet again!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_retreat_0"
+	},
+	{
+		"OriginalText" : "I flee to lick my wounds. But I will return, with rage in my heart and fire in my guns.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_retreat_1"
+	},
+	{
+		"OriginalText" : "You have earned my respect, but that does not mean I will spare you in future.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_retreat_2"
+	},
+	{
+		"OriginalText" : "I am QUEEN of the skies, while you are but an insignificant PAWN. Prepare for CHECKMATE!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_speech_0"
+	},
+	{
+		"OriginalText" : "The bigger they are, the harder they hit!\nYou think this a fight, insect? It is an extermination!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_speech_1"
+	},
+	{
+		"OriginalText" : "Quiet, little one: I will make your death as painless as possible!\nIn the sky there is nowhere to hide - I see all!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_speech_2"
+	},
+	{
+		"OriginalText" : "Why struggle so? We both know how this ends for you!\nOne must soften the meat before devouring it! ",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_speech_3"
+	},
+	{
+		"OriginalText" : "I will crush your puny bomber! Do you hear me!?\nMy guns will tear you apart, no matter where you hide!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_speech_4"
+	},
+	{
+		"OriginalText" : "We meet again... No-one makes a fool of me and lives!\nSo I face you again... High command must consider you important!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace6_subsequent"
+	},
+	{
+		"OriginalText" : "Nein, I am done for! I lived fast and died faster!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_defeat"
+	},
+	{
+		"OriginalText" : "Ha, this will be like taking strudel from a stormtrooper!\nYou're about as tough as mouldy sauerkraut!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_initial"
+	},
+	{
+		"OriginalText" : "Heh, not bad, not bad at all... But I will return before you know it!\nYou won this round, but the fight is not over until die grosse Frau sings!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_retreat_0"
+	},
+	{
+		"OriginalText" : "We will meet again... And next time I will send you down!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_retreat_1"
+	},
+	{
+		"OriginalText" : "Why so slow? Did someone coat your wings in treacle?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_0"
+	},
+	{
+		"OriginalText" : "Don't blink or you'll miss me!\nI feel the need... the need to make you BLEED!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_1"
+	},
+	{
+		"OriginalText" : "You can't shoot what you can't see!\nSlow and steady wins last place!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_2"
+	},
+	{
+		"OriginalText" : "This is no time for a Sunday stroll, indolent fools!\nHa - and they say lightning doesn't strike twice!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_3"
+	},
+	{
+		"OriginalText" : "It's like the tortoise and the hare - except this hare has machine guns!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_4"
+	},
+	{
+		"OriginalText" : "Not even your imminent deaths can hurry you up!\nAccelerate, or meet your fate!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_speech_5"
+	},
+	{
+		"OriginalText" : "Ah, it's you! Is it my imagination or are you even slower than before!?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace7_subsequent"
+	},
+	{
+		"OriginalText" : "Aaaiiee! Your fighting spirit is unstoppable! I deem you... worthy...\nNo! NO! This CANNOT be happening! I am the thunder! I am the storm! I am--",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_defeat"
+	},
+	{
+		"OriginalText" : "Hail to the Kaiser! Now witness your own doom!\nFeel the wrath of a thunder god!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_initial"
+	},
+	{
+		"OriginalText" : "At last: a worthy adversary! But this does not end here - I shall return!\nYou buy a moment's peace, but it is merely the calm before the storm!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_retreat_0"
+	},
+	{
+		"OriginalText" : "Now, my most secret move: \"How to keep doomed fools in suspense\"!\nThis is not a victory, just a brief moment of respite before inevitable doom!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_retreat_1"
+	},
+	{
+		"OriginalText" : "History is written by the victors - and you have already been forgotten! Sad!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_0"
+	},
+	{
+		"OriginalText" : "I come with the thunder, I come with the storm!\nI will make you wish you'd never been born!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_1"
+	},
+	{
+		"OriginalText" : "Have you ever faced death before? For here I am!\nFlee before my storm, lest it blows you apart!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_2"
+	},
+	{
+		"OriginalText" : "Die, you fools!\nYou have met your expiry date!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_3"
+	},
+	{
+		"OriginalText" : "For you, it's the most important day of your life. For me? Just another Tuesday!\nThe fury of my storm will never be abated!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_4"
+	},
+	{
+		"OriginalText" : "Give me the fight I crave! Harder! HARDER!\nI am your personal extinction-level event!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_speech_5"
+	},
+	{
+		"OriginalText" : "No retreat, no surrender! You will die this day!\nDeath comes for you, on wings of lightning",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace8_subsequent"
+	},
+	{
+		"OriginalText" : "Fritz: Time for us to double-down...\nFranz: Alas! Two birds with one stone...",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_defeat"
+	},
+	{
+		"OriginalText" : "Fritz: Seems we have company, Franz?\nFranz: Two's company, this is a crowd. Blow them to bits, Fritz!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_initial"
+	},
+	{
+		"OriginalText" : "Franz: I'm doubled-up in pain...\nFritz: You're right, my brother. Time to split.",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_retreat_0"
+	},
+	{
+		"OriginalText" : "Franz: I'm seeing double! Let us fly!\nFritz: Once bitten, twice shy!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_retreat_1"
+	},
+	{
+		"OriginalText" : "Fritz: It takes two to tango...\nFranz: But we're here to Foxtrot, Uniform!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_speech_0"
+	},
+	{
+		"OriginalText" : "Fritz: They say who dares, wins...\nFranz: But who dares twins?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_speech_1"
+	},
+	{
+		"OriginalText" : "Franz: Now it's time to take you off the board...\nFritz: Two can play at this game!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_speech_2"
+	},
+	{
+		"OriginalText" : "Franz: Let's give 'em the old one-two!\nFritz: Time for a double-whammy!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_speech_3"
+	},
+	{
+		"OriginalText" : "Franz: We'll teach you a thing or two!\nFritz: That's right! We'll make you think twice!",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_speech_4"
+	},
+	{
+		"OriginalText" : "Fritz: Our guests return, Franz!\nFranz: What do you say? Double-or-quits, Fritz?",
+		"TranslatedText" : "",
+		"key" : "enemyace_ace9_subsequent"
+	},
+	{
+		"OriginalText" : "Enemy Ace defeated!",
+		"TranslatedText" : "",
+		"key" : "speech_ace_destroyed"
+	},
+	{
+		"OriginalText" : "Enemy Ace escaping!",
+		"TranslatedText" : "",
+		"key" : "speech_ace_escaping"
+	},
+	{
+		"OriginalText" : "Enemy Ace spotted!",
+		"TranslatedText" : "",
+		"key" : "speech_ace_pilot_tagged_0"
+	},
+	{
+		"OriginalText" : "Engaging Enemy Ace!",
+		"TranslatedText" : "",
+		"key" : "speech_ace_pilot_tagged_1"
+	},
+	{
+		"OriginalText" : "Nearby hazard location added to map!",
+		"TranslatedText" : "",
+		"key" : "speech_added_to_map_hazard"
+	},
+	{
+		"OriginalText" : "Recon target added to map!",
+		"TranslatedText" : "",
+		"key" : "speech_added_to_map_photo"
+	},
+	{
+		"OriginalText" : "Optional recon opportunity spotted!",
+		"TranslatedText" : "",
+		"key" : "speech_added_to_map_photo_optional"
+	},
+	{
+		"OriginalText" : "Survivors spotted! Added to map!",
+		"TranslatedText" : "",
+		"key" : "speech_added_to_map_rescue"
+	},
+	{
+		"OriginalText" : "Mission target spotted! Added to map!",
+		"TranslatedText" : "",
+		"key" : "speech_added_to_map_target"
+	},
+	{
+		"OriginalText" : "Approaching {0} now!",
+		"TranslatedText" : "",
+		"key" : "speech_approaching_city_0"
+	},
+	{
+		"OriginalText" : "{0} ahead!",
+		"TranslatedText" : "",
+		"key" : "speech_approaching_city_1"
+	},
+	{
+		"OriginalText" : "Hydraulics out- bomb doors non-operational!",
+		"TranslatedText" : "",
+		"key" : "speech_bay_doors_hydraulics_out"
+	},
+	{
+		"OriginalText" : "Bombing target destroyed!",
+		"TranslatedText" : "",
+		"key" : "speech_bomb_target_destroyed_0"
+	},
+	{
+		"OriginalText" : "Bay doors open!",
+		"TranslatedText" : "",
+		"key" : "speech_bombaimer_doors_1"
+	},
+	{
+		"OriginalText" : "Ready to release bombload!",
+		"TranslatedText" : "",
+		"key" : "speech_bombaimer_doors_2"
+	},
+	{
+		"OriginalText" : "Bomb target confirmed!",
+		"TranslatedText" : "",
+		"key" : "speech_bombaimer_targetconfirmed_0"
+	},
+	{
+		"OriginalText" : "Cancelling abort order! Continuing mission.",
+		"TranslatedText" : "",
+		"key" : "speech_cancel_abort"
+	},
+	{
+		"OriginalText" : "Oxygen supply depleted!",
+		"TranslatedText" : "",
+		"key" : "speech_crew_low_oxygen_0"
+	},
+	{
+		"OriginalText" : "I urgently require oxygen!",
+		"TranslatedText" : "",
+		"key" : "speech_crew_low_oxygen_critical_0"
+	},
+	{
+		"OriginalText" : "Freezing temperatures starting to be a problem!",
+		"TranslatedText" : "",
+		"key" : "speech_crew_temperature_0"
+	},
+	{
+		"OriginalText" : "Entering freezing conditions!",
+		"TranslatedText" : "",
+		"key" : "speech_crew_temperature_1"
+	},
+	{
+		"OriginalText" : "It's getting very cold up here...",
+		"TranslatedText" : "",
+		"key" : "speech_crew_temperature_2"
+	},
+	{
+		"OriginalText" : "I'm starting to notice the cold a lot.",
+		"TranslatedText" : "",
+		"key" : "speech_crew_temperature_3"
+	},
+	{
+		"OriginalText" : "I can't survive the cold much longer!",
+		"TranslatedText" : "",
+		"key" : "speech_crew_temperature_critical_0"
+	},
+	{
+		"OriginalText" : "We've taken a lot of damage!",
+		"TranslatedText" : "",
+		"key" : "speech_critical_damage_reached_0"
+	},
+	{
+		"OriginalText" : "We've taken critical damage!",
+		"TranslatedText" : "",
+		"key" : "speech_critical_damage_reached_1"
+	},
+	{
+		"OriginalText" : "The bomber's barely holding together!",
+		"TranslatedText" : "",
+		"key" : "speech_critical_damage_reached_2"
+	},
+	{
+		"OriginalText" : "Bailing out!",
+		"TranslatedText" : "",
+		"key" : "speech_doing_bail_out_1"
+	},
+	{
+		"OriginalText" : "Bailing!",
+		"TranslatedText" : "",
+		"key" : "speech_doing_bail_out_2"
+	},
+	{
+		"OriginalText" : "Fire extinguisher depleted!",
+		"TranslatedText" : "",
+		"key" : "speech_extinguisher_empty"
+	},
+	{
+		"OriginalText" : "Enemy fighter shot down!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_0"
+	},
+	{
+		"OriginalText" : "Enemy destroyed!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_1"
+	},
+	{
+		"OriginalText" : "Enemy Ace pilot taken down!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_ace_0"
+	},
+	{
+		"OriginalText" : "We've defeated an Enemy Ace!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_ace_1"
+	},
+	{
+		"OriginalText" : "Enemy Ace destroyed!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_ace_2"
+	},
+	{
+		"OriginalText" : "Good shooting, {1}!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_compliment_0"
+	},
+	{
+		"OriginalText" : "Nice shot, {1}!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_compliment_1"
+	},
+	{
+		"OriginalText" : "V1 Rocket Destroyed!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_v1_0"
+	},
+	{
+		"OriginalText" : "V1 Rocket shot down!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_v1_1"
+	},
+	{
+		"OriginalText" : "V2 Rocket Destroyed!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_v2_0"
+	},
+	{
+		"OriginalText" : "V2 Rocket shot down!",
+		"TranslatedText" : "",
+		"key" : "speech_fighter_destroyed_v2_1"
+	},
+	{
+		"OriginalText" : "Enemy fighters spotted on radar!",
+		"TranslatedText" : "",
+		"key" : "speech_fighters_spotted_radar_0"
+	},
+	{
+		"OriginalText" : "Something is burning...",
+		"TranslatedText" : "",
+		"key" : "speech_fire_spotted_0"
+	},
+	{
+		"OriginalText" : "Looks like something might catch fire...",
+		"TranslatedText" : "",
+		"key" : "speech_fire_spotted_1"
+	},
+	{
+		"OriginalText" : "Critical fire in the bomber!",
+		"TranslatedText" : "",
+		"key" : "speech_fire_spotted_large_0"
+	},
+	{
+		"OriginalText" : "Flak ahead below us!",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_below_0"
+	},
+	{
+		"OriginalText" : "Flak below our altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_below_1"
+	},
+	{
+		"OriginalText" : "Flak ahead at low altitude.",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_low_altitude_0"
+	},
+	{
+		"OriginalText" : "Approaching low altitude flak!",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_low_altitude_1"
+	},
+	{
+		"OriginalText" : "Flak ahead at mid altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_mid_altitude_0"
+	},
+	{
+		"OriginalText" : "Approaching mid altitude flak!",
+		"TranslatedText" : "",
+		"key" : "speech_flak_ahead_mid_altitude_1"
+	},
+	{
+		"OriginalText" : "We're low on fuel!",
+		"TranslatedText" : "",
+		"key" : "speech_fuel_critical_low_0"
+	},
+	{
+		"OriginalText" : "We're using up fuel fast!",
+		"TranslatedText" : "",
+		"key" : "speech_fuel_inefficient_0"
+	},
+	{
+		"OriginalText" : "We're out of fuel!",
+		"TranslatedText" : "",
+		"key" : "speech_fuel_out_1"
+	},
+	{
+		"OriginalText" : "A fuel tank is leaking!",
+		"TranslatedText" : "",
+		"key" : "speech_fuel_tank_leak"
+	},
+	{
+		"OriginalText" : "Half our fuel remaining!",
+		"TranslatedText" : "",
+		"key" : "speech_fuel_under_half_0"
+	},
+	{
+		"OriginalText" : "Picked up ammo! Back to station!",
+		"TranslatedText" : "",
+		"key" : "speech_getting_ammo_return_1"
+	},
+	{
+		"OriginalText" : "Got ammo, returning to station!",
+		"TranslatedText" : "",
+		"key" : "speech_getting_ammo_return_2"
+	},
+	{
+		"OriginalText" : "Picked up ammo, waiting for further orders.",
+		"TranslatedText" : "",
+		"key" : "speech_getting_ammo_stay_1"
+	},
+	{
+		"OriginalText" : "Collected ammo, waiting at ammo box.",
+		"TranslatedText" : "",
+		"key" : "speech_getting_ammo_stay_2"
+	},
+	{
+		"OriginalText" : "Targets on radar at sea or ground level!",
+		"TranslatedText" : "",
+		"key" : "speech_ground_targets_spotted_radar"
+	},
+	{
+		"OriginalText" : "Fighter target confirmed!",
+		"TranslatedText" : "",
+		"key" : "speech_gunner_engaging_fighters_0"
+	},
+	{
+		"OriginalText" : "Hydraulics out- unable to aim turrets!",
+		"TranslatedText" : "",
+		"key" : "speech_gunners_hydraulics_out"
+	},
+	{
+		"OriginalText" : "Running low on ammo!",
+		"TranslatedText" : "",
+		"key" : "speech_gunturret_ammo_low_0"
+	},
+	{
+		"OriginalText" : "I'm out of ammo.",
+		"TranslatedText" : "",
+		"key" : "speech_gunturret_ammo_out_0"
+	},
+	{
+		"OriginalText" : "All ammo belts used.",
+		"TranslatedText" : "",
+		"key" : "speech_gunturret_ammo_out_1"
+	},
+	{
+		"OriginalText" : "My gun's ammo feed is stuck!",
+		"TranslatedText" : "",
+		"key" : "speech_gunturret_jammed_0"
+	},
+	{
+		"OriginalText" : "Ammo jammed on my gun!",
+		"TranslatedText" : "",
+		"key" : "speech_gunturret_jammed_1"
+	},
+	{
+		"OriginalText" : "Recovered from injuries!",
+		"TranslatedText" : "",
+		"key" : "speech_heal_recovered_0"
+	},
+	{
+		"OriginalText" : "I'm healed!",
+		"TranslatedText" : "",
+		"key" : "speech_heal_recovered_1"
+	},
+	{
+		"OriginalText" : "Recovered from injuries! Returning to station!",
+		"TranslatedText" : "",
+		"key" : "speech_heal_recovered_returned_0"
+	},
+	{
+		"OriginalText" : "Recovered, returning to station!",
+		"TranslatedText" : "",
+		"key" : "speech_heal_recovered_returned_1"
+	},
+	{
+		"OriginalText" : "{1} needs medical attention!",
+		"TranslatedText" : "",
+		"key" : "speech_incapacitated_other_0"
+	},
+	{
+		"OriginalText" : "I'm down! Requesting assistance!",
+		"TranslatedText" : "",
+		"key" : "speech_incapacitated_self_0"
+	},
+	{
+		"OriginalText" : "Altitude too high to land!",
+		"TranslatedText" : "",
+		"key" : "speech_landing_altitude_0"
+	},
+	{
+		"OriginalText" : "Hydraulics out- landing gear non-operational!",
+		"TranslatedText" : "",
+		"key" : "speech_landing_gear_hydraulics_out"
+	},
+	{
+		"OriginalText" : "Retrying landing approach! Gear must be lowered!",
+		"TranslatedText" : "",
+		"key" : "speech_landing_gear_still_up_0"
+	},
+	{
+		"OriginalText" : "Medical assistance required!",
+		"TranslatedText" : "",
+		"key" : "speech_major_injuries_0"
+	},
+	{
+		"OriginalText" : "I'm heavily injured!",
+		"TranslatedText" : "",
+		"key" : "speech_minor_injuries_0"
+	},
+	{
+		"OriginalText" : "We're getting reports that an enemy ace pilot, {0} {1}, is active in the area!",
+		"TranslatedText" : "",
+		"key" : "speech_mission_command_ace_encounter_likely"
+	},
+	{
+		"OriginalText" : "We're getting reports that the enemy ace twins, {0} {1}, are active in the area!",
+		"TranslatedText" : "",
+		"key" : "speech_mission_command_ace_encounter_likely_plural"
+	},
+	{
+		"OriginalText" : "Navigation's difficult through this cloud!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_clouds_1"
+	},
+	{
+		"OriginalText" : "Cloud cover making it difficult to navigate!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_clouds_2"
+	},
+	{
+		"OriginalText" : "I've marked a new heading!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_new_course_0"
+	},
+	{
+		"OriginalText" : "New course plotted!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_new_course_1"
+	},
+	{
+		"OriginalText" : "Custom marker placed!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_new_course_custom"
+	},
+	{
+		"OriginalText" : "No visibility for navigation at this altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_no_visibility"
+	},
+	{
+		"OriginalText" : "I need a navigation update!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_update_required_0"
+	},
+	{
+		"OriginalText" : "Navigation update required!",
+		"TranslatedText" : "",
+		"key" : "speech_navigation_update_required_1"
+	},
+	{
+		"OriginalText" : "New intel received! Adding to map!",
+		"TranslatedText" : "",
+		"key" : "speech_new_intel_map"
+	},
+	{
+		"OriginalText" : "We've lost all our engines!",
+		"TranslatedText" : "",
+		"key" : "speech_no_engines_1"
+	},
+	{
+		"OriginalText" : "None of our engines are left!",
+		"TranslatedText" : "",
+		"key" : "speech_no_engines_2"
+	},
+	{
+		"OriginalText" : "No new intel received at this time!",
+		"TranslatedText" : "",
+		"key" : "speech_no_new_intel_map"
+	},
+	{
+		"OriginalText" : "There's nobody in the pilot's seat!",
+		"TranslatedText" : "",
+		"key" : "speech_no_pilot_0"
+	},
+	{
+		"OriginalText" : "No pilot!",
+		"TranslatedText" : "",
+		"key" : "speech_no_pilot_1"
+	},
+	{
+		"OriginalText" : "Only one engine remaining!",
+		"TranslatedText" : "",
+		"key" : "speech_one_engine_0"
+	},
+	{
+		"OriginalText" : "We've got one engine left!",
+		"TranslatedText" : "",
+		"key" : "speech_one_engine_1"
+	},
+	{
+		"OriginalText" : "Everyone bail out!",
+		"TranslatedText" : "",
+		"key" : "speech_order_bail_out_1"
+	},
+	{
+		"OriginalText" : "Bail out!",
+		"TranslatedText" : "",
+		"key" : "speech_order_bail_out_2"
+	},
+	{
+		"OriginalText" : "Going past {0} now!",
+		"TranslatedText" : "",
+		"key" : "speech_passing_city_0"
+	},
+	{
+		"OriginalText" : "We are passing {0}!",
+		"TranslatedText" : "",
+		"key" : "speech_passing_city_1"
+	},
+	{
+		"OriginalText" : "Photo is too blurry! Suggest lower altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_photo_taken_blurry_0"
+	},
+	{
+		"OriginalText" : "Photo too blurry at this altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_photo_taken_blurry_1"
+	},
+	{
+		"OriginalText" : "Intel photograph taken!",
+		"TranslatedText" : "",
+		"key" : "speech_photo_taken_good"
+	},
+	{
+		"OriginalText" : "Nothing spotted in photo...",
+		"TranslatedText" : "",
+		"key" : "speech_photo_taken_missed"
+	},
+	{
+		"OriginalText" : "Starting bomb run!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_bombrun_start_1"
+	},
+	{
+		"OriginalText" : "Commencing bomb run!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_bombrun_start_2"
+	},
+	{
+		"OriginalText" : "Adjusting heading!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_confirm_navigation_0"
+	},
+	{
+		"OriginalText" : "Heading confirmed!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_confirm_navigation_1"
+	},
+	{
+		"OriginalText" : "Adjusting heading...",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_confirm_navigation_2"
+	},
+	{
+		"OriginalText" : "Hold on chaps!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_doing_manouvre_1"
+	},
+	{
+		"OriginalText" : "Brace for manoeuvre!",
+		"TranslatedText" : "",
+		"key" : "speech_pilot_doing_manouvre_2"
+	},
+	{
+		"OriginalText" : "Electrics have failed! The radar is out!",
+		"TranslatedText" : "",
+		"key" : "speech_radar_electrics_out_0"
+	},
+	{
+		"OriginalText" : "We've been spotted on enemy radar!",
+		"TranslatedText" : "",
+		"key" : "speech_radar_site_detected_0"
+	},
+	{
+		"OriginalText" : "Spotted by enemy radar!",
+		"TranslatedText" : "",
+		"key" : "speech_radar_site_detected_1"
+	},
+	{
+		"OriginalText" : "We're in range of a radar site!",
+		"TranslatedText" : "",
+		"key" : "speech_radar_site_range_0"
+	},
+	{
+		"OriginalText" : "Within range of enemy radar.",
+		"TranslatedText" : "",
+		"key" : "speech_radar_site_range_1"
+	},
+	{
+		"OriginalText" : "Reached high altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_reached_altitude_high"
+	},
+	{
+		"OriginalText" : "Reached low altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_reached_altitude_low"
+	},
+	{
+		"OriginalText" : "Reached mid altitude!",
+		"TranslatedText" : "",
+		"key" : "speech_reached_altitude_mid"
+	},
+	{
+		"OriginalText" : "Repair complete!",
+		"TranslatedText" : "",
+		"key" : "speech_repair_complete"
+	},
+	{
+		"OriginalText" : "Aborting mission! Returning to base.",
+		"TranslatedText" : "",
+		"key" : "speech_return_abort"
+	},
+	{
+		"OriginalText" : "Returning to base!",
+		"TranslatedText" : "",
+		"key" : "speech_return_bombs_gone_0"
+	},
+	{
+		"OriginalText" : "That was a piece of cake!",
+		"TranslatedText" : "",
+		"key" : "speech_return_safely_0"
+	},
+	{
+		"OriginalText" : "That went better than expected!",
+		"TranslatedText" : "",
+		"key" : "speech_return_safely_1"
+	},
+	{
+		"OriginalText" : "Back home safe!",
+		"TranslatedText" : "",
+		"key" : "speech_return_safely_2"
+	},
+	{
+		"OriginalText" : "Objectives complete! Returning to base!",
+		"TranslatedText" : "",
+		"key" : "speech_return_targets_destroyed_0"
+	},
+	{
+		"OriginalText" : "{0} ready to use!",
+		"TranslatedText" : "",
+		"key" : "speech_skill_ready_0"
+	},
+	{
+		"OriginalText" : "{0} recharged!",
+		"TranslatedText" : "",
+		"key" : "speech_skill_ready_1"
+	},
+	{
+		"OriginalText" : "Emergency landing!",
+		"TranslatedText" : "",
+		"key" : "speech_start_emergency_land"
+	},
+	{
+		"OriginalText" : "Target is submerging!",
+		"TranslatedText" : "",
+		"key" : "speech_submarine_submerging_0"
+	},
+	{
+		"OriginalText" : "Submarine is diving!",
+		"TranslatedText" : "",
+		"key" : "speech_submarine_submerging_1"
+	},
+	{
+		"OriginalText" : "A submarine is preparing to fire a torpedo!",
+		"TranslatedText" : "",
+		"key" : "speech_submarine_torpedo"
+	},
+	{
+		"OriginalText" : "I'm taking fire!",
+		"TranslatedText" : "",
+		"key" : "speech_taking_damage_0"
+	},
+	{
+		"OriginalText" : "Altitude too low for corkscrew!",
+		"TranslatedText" : "",
+		"key" : "speech_too_low_for_corkscrew"
+	},
+	{
+		"OriginalText" : "Altitude too low for emergency dive!",
+		"TranslatedText" : "",
+		"key" : "speech_too_low_for_emgdive"
+	},
+	{
+		"OriginalText" : "We've only got two engines left!",
+		"TranslatedText" : "",
+		"key" : "speech_two_engines_0"
+	},
+	{
+		"OriginalText" : "Only two engines working, now!",
+		"TranslatedText" : "",
+		"key" : "speech_two_engines_1"
+	},
+	{
+		"OriginalText" : "A V1 rocket's just launched!",
+		"TranslatedText" : "",
+		"key" : "speech_v1_launch_happens"
+	},
+	{
+		"OriginalText" : "They're preparing to launch a V1 rocket!",
+		"TranslatedText" : "",
+		"key" : "speech_v1_launch_starts"
+	},
+	{
+		"OriginalText" : "Spitfire fighters reporting in!",
+		"TranslatedText" : "",
+		"key" : "spitfire_pilot_arrive"
+	},
+	{
+		"OriginalText" : "Enemy fighter destroyed!",
+		"TranslatedText" : "",
+		"key" : "spitfire_pilot_get_fighter_0"
+	},
+	{
+		"OriginalText" : "Fighter shot down!",
+		"TranslatedText" : "",
+		"key" : "spitfire_pilot_get_fighter_1"
+	},
+	{
+		"OriginalText" : "Returning to base!",
+		"TranslatedText" : "",
+		"key" : "spitfire_pilot_leave"
+	},
+	{
+		"OriginalText" : "Spitfire Leader:",
+		"TranslatedText" : "",
+		"key" : "spitfire_pilot_name"
+	}
+]

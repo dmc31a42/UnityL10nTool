@@ -1,0 +1,37 @@
+[
+	{
+		"OriginalText" : "Anti Submarine",
+		"TranslatedText" : "",
+		"key" : "bombload_01"
+	},
+	{
+		"OriginalText" : "\"Abnormal\"",
+		"TranslatedText" : "",
+		"key" : "bombload_02"
+	},
+	{
+		"OriginalText" : "\"No-Ball\"",
+		"TranslatedText" : "",
+		"key" : "bombload_03"
+	},
+	{
+		"OriginalText" : "\"Plumbduff-Plus\"",
+		"TranslatedText" : "",
+		"key" : "bombload_04"
+	},
+	{
+		"OriginalText" : "\"Grand Slam\"",
+		"TranslatedText" : "",
+		"key" : "bombload_05"
+	},
+	{
+		"OriginalText" : "Leaflets",
+		"TranslatedText" : "",
+		"key" : "bombload_06"
+	},
+	{
+		"OriginalText" : "Supplies",
+		"TranslatedText" : "",
+		"key" : "bombload_07"
+	}
+]

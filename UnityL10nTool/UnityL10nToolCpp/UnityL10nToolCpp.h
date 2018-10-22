@@ -33,6 +33,26 @@ public :
 	}*/
 };
 
+struct OnlineResourcePair {
+public:
+	wstring filePath;
+	wstring URL;
+	OnlineResourcePair() {}
+	OnlineResourcePair(Json::Value json) {
+		if (json.isMember("filePath")) {
+			this->filePath = WideMultiStringConverter->from_bytes(json["filePath"].asString());
+		}
+		if (json.isMember("URL")) {
+			this->URL = WideMultiStringConverter->from_bytes(json["URL"].asString());
+		}
+	}
+	Json::Value toJson() {
+		Json::Value json;
+		json["filePath"] = WideMultiStringConverter->to_bytes(this->filePath);
+		json["URL"] = WideMultiStringConverter->to_bytes(this->URL);
+	}
+};
+
 class UnityL10nToolCpp
 {
 	UnityL10nToolProjectInfo UnityL10nToolProjectInfoGlobal;
@@ -68,6 +88,10 @@ class UnityL10nToolCpp
 	vector<wstring> TextPluginNames;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithAssetMap;
 	map<wstring, TextPluginInfo*> TextPluginInfoInteractWithFileTextMap;
+#pragma endregion
+
+#pragma region OnlineResourcePair member
+	vector<OnlineResourcePair> OnlineResourcePairsGlobal;
 #pragma endregion
 
 	UnityL10nToolAPI _unityL10nToolAPI;
@@ -117,6 +141,12 @@ public:
 #pragma region MonoTextAssetPluginPatcher
 	bool GetAssetReplacerFromMonoTexts();
 #pragma endregion
+	vector<OnlineResourcePair> GetOnlineResourcePairs();
+	void AddOnlineResoucesPair(OnlineResourcePair onlineResourcePair);
+	void SetOnlineResourcePairs(vector<OnlineResourcePair> onlineResourcePairs);
+	Json::Value SetOnlineResourcePairsToProjectJson();
+	bool DownloadResourcesFromInternetToTempFolder();
+	bool DownloadResourcesFromInternetToResourceFolder();
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();

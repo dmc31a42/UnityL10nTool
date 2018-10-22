@@ -8,6 +8,9 @@
 #include <iostream>
 #include <locale>
 #include <codecvt>
+#include <urlmon.h>
+#pragma comment(lib, "urlmon.lib")
+#pragma comment(lib,"wininet.lib")
 
 #include "GeneralPurposeFunctions.h"
 #include "IULTPluginCommonInterface.h"
@@ -1027,6 +1030,7 @@ Json::Value UnityL10nToolCpp::GetPacherConfigJson() {
 		patcherConfigJson["FontPlugin"][WideMultiStringConverter->to_bytes(iterator->first)] = fontAssetPluginPatcherConfigJson;
 	}
 	patcherConfigJson["TextPlugin"]["Done"] = TextAssetMapsGlobal.ToJSON()["Done"];
+	patcherConfigJson["OnlineResources"] = SetOnlineResourcePairsToProjectJson();
 	return patcherConfigJson;
 }
 
@@ -1531,4 +1535,81 @@ TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAs
 	else {
 		return textAssetMap;
 	}
+}
+
+vector<OnlineResourcePair> UnityL10nToolCpp::GetOnlineResourcePairs()
+{
+	if (OnlineResourcePairsGlobal.size() == 0) {
+		if (projectJson.isMember("OnlineResources")) {
+			Json::Value json = projectJson["OnlineResources"];
+			if (json.isArray()) {
+				for (Json::ArrayIndex i = 0; i < json.size(); i++) {
+					OnlineResourcePairsGlobal.push_back(OnlineResourcePair(json[i]));
+				}
+			}
+		}
+	}
+	return OnlineResourcePairsGlobal;
+}
+
+void UnityL10nToolCpp::AddOnlineResoucesPair(OnlineResourcePair onlineResourcePair)
+{
+	OnlineResourcePairsGlobal.push_back(onlineResourcePair);
+}
+
+void UnityL10nToolCpp::SetOnlineResourcePairs(vector<OnlineResourcePair> onlineResourcePairs)
+{
+	OnlineResourcePairsGlobal = onlineResourcePairs;
+}
+
+Json::Value UnityL10nToolCpp::SetOnlineResourcePairsToProjectJson()
+{
+	Json::Value json(Json::arrayValue);
+	for (vector<OnlineResourcePair>::iterator itr = OnlineResourcePairsGlobal.begin();
+		itr != OnlineResourcePairsGlobal.end(); itr++) {
+		Json::Value jsonChild;
+		jsonChild["filePath"] = WideMultiStringConverter->to_bytes(itr->filePath);
+		jsonChild["URL"] = WideMultiStringConverter->to_bytes(itr->URL);
+		json.append(jsonChild);
+	}
+	projectJson["OnlineResources"] = json;
+	return json;
+}
+
+bool DownloadResourcesFromURLToFolder(wstring URL, wstring folderPath) {
+	HRESULT hr;
+	hr = URLDownloadToFileW(0, URL.c_str(), folderPath.c_str(), 0, 0);
+	switch (hr)
+	{
+	case S_OK:
+		cout << "Successful download\n";
+		return true;
+	case E_OUTOFMEMORY:
+		cout << "Out of memory error\n";
+		return false;
+	case INET_E_DOWNLOAD_FAILURE:
+		cout << "Cannot access server data\n";
+		return false;
+	default:
+		cout << "Unknown error\n";
+		return false;
+	}
+}
+
+bool UnityL10nToolCpp::DownloadResourcesFromInternetToTempFolder()
+{
+	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
+		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
+		DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, CurrentDirectory + L"temp\\" + onlineResourcePairItr->filePath);
+	}
+	return true;
+}
+
+bool UnityL10nToolCpp::DownloadResourcesFromInternetToResourceFolder()
+{
+	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
+		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
+		DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + onlineResourcePairItr->filePath);
+	}
+	return true;
 }

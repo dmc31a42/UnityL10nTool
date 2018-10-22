@@ -214,6 +214,8 @@ namespace UnityL10nToolCShop
         public FontAssetMapCLI SelectedFontAssetItem;
         List<string> interactWithAssetNames;
         List<string> interactWithFileTextNames;
+        public ObservableCollection<OnlineResourcePairCLI> OnlineResourcePairCLIsGlobal { get; set; }
+        public ProjectSettingsCLI ProjectSettingsCLIGlobal { get; set; }
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
         {
@@ -295,6 +297,13 @@ namespace UnityL10nToolCShop
             interactWithAssetNames.Insert(0, "");
             interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
             interactWithFileTextNames.Insert(0, "");
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Resources List...");
+            OnlineResourcePairCLIsGlobal = unityL10nToolCppManaged.GetOnlineResourcePairs();
+
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Project Settings...");
+            unityL10nToolCppManaged.LoadProjectSettingsFromJson();
+            ProjectSettingsCLIGlobal = unityL10nToolCppManaged.GetProjectSettings();
         }
 
         private void LoadUnityL10nTool_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -311,6 +320,8 @@ namespace UnityL10nToolCShop
             PluginInteractWithAssetNamesCombobox.ItemsSource = interactWithAssetNames;
             PluginInteractWithFileTextNamesCombobox.ItemsSource = interactWithFileTextNames;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
+            OnlineResourcesDataGrid.ItemsSource = OnlineResourcePairCLIsGlobal;
+            ProjectSettingsGrid.DataContext = ProjectSettingsCLIGlobal;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -405,14 +416,17 @@ namespace UnityL10nToolCShop
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            unityL10nToolCppManaged.SetProjectSettings(ProjectSettingsCLIGlobal);
             unityL10nToolCppManaged.SetPluginsSupportAssetMap(pluginsSupportAssetMap);
             unityL10nToolCppManaged.GetProjectConfigJsonFromFontPlugin();
             unityL10nToolCppManaged.SetTextPluginConfigToJsonValue();
+            unityL10nToolCppManaged.SetOnlineResourcePairs(OnlineResourcePairCLIsGlobal);
             unityL10nToolCppManaged.SaveProjectConfigJson();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            unityL10nToolCppManaged.SetOnlineResourcePairs(OnlineResourcePairCLIsGlobal);
             unityL10nToolCppManaged.BuildProject(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "Build\\"));
         }
 

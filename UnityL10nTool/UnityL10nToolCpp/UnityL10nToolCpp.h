@@ -53,6 +53,27 @@ public:
 	}
 };
 
+struct ProjectSettings {
+public:
+	bool DownloadOnlineResourcesWhenBuild;
+	ProjectSettings() {
+		this->DownloadOnlineResourcesWhenBuild = false;
+	}
+	ProjectSettings(Json::Value json) {
+		if (json.isMember("DownloadOnlineResourcesWhenBuild")) {
+			this->DownloadOnlineResourcesWhenBuild = json["DownloadOnlineResourcesWhenBuild"].asBool();
+		}
+		else {
+			this->DownloadOnlineResourcesWhenBuild = false;
+		}
+	}
+	Json::Value toJson() {
+		Json::Value json;
+		json["DownloadOnlineResourcesWhenBuild"] = this->DownloadOnlineResourcesWhenBuild;
+		return json;
+	}
+};
+
 class UnityL10nToolCpp
 {
 	UnityL10nToolProjectInfo UnityL10nToolProjectInfoGlobal;
@@ -93,6 +114,8 @@ class UnityL10nToolCpp
 #pragma region OnlineResourcePair member
 	vector<OnlineResourcePair> OnlineResourcePairsGlobal;
 #pragma endregion
+
+	ProjectSettings ProjectSettingsGlobal;
 
 	UnityL10nToolAPI _unityL10nToolAPI;
 	vector<string> AssemblyNames;
@@ -145,12 +168,17 @@ public:
 	void AddOnlineResoucesPair(OnlineResourcePair onlineResourcePair);
 	void SetOnlineResourcePairs(vector<OnlineResourcePair> onlineResourcePairs);
 	Json::Value SetOnlineResourcePairsToProjectJson();
-	bool DownloadResourcesFromInternetToTempFolder();
-	bool DownloadResourcesFromInternetToResourceFolder();
+	// deprecated
+	void DownloadResourcesFromInternetToTempFolder();
+	// deprecated
+	void DownloadResourcesFromInternetToResourceFolder();
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();
 	bool SetTextPluginConfigToJsonValue();
+	void LoadProjectSettingsFromJson();
+	ProjectSettings GetProjectSettings();
+	void SetProjectSettings(ProjectSettings projectSettings);
 	bool SaveProjectConfigJson();
 	Json::Value GetPacherConfigJson();
 	bool BuildProject(wstring buildTargetFolder);

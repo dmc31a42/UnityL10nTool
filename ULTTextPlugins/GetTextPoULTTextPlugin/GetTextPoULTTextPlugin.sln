@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GetTextPoULTTextPlugin", "GetTextPoULTTextPlugin\GetTextPoULTTextPlugin.vcxproj", "{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Debug|x64.ActiveCfg = Debug|x64
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Debug|x64.Build.0 = Debug|x64
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Debug|x86.ActiveCfg = Debug|Win32
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Debug|x86.Build.0 = Debug|Win32
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Release|x64.ActiveCfg = Release|x64
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Release|x64.Build.0 = Release|x64
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Release|x86.ActiveCfg = Release|Win32
+		{B8DBCC51-4CD0-477A-BD39-A11B36A44CFB}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3EFD0F6-A52F-4E82-B482-0D5E0CA87A4F}
+	EndGlobalSection
+EndGlobal

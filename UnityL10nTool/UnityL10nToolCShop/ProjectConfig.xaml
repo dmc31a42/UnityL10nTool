@@ -371,8 +371,33 @@
                         </TabControl>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Online Resource"/>
+                <TabItem Header="Online Resources">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="5">
+                            <Button x:Name="RemoveSelectedOnlineResources" Content="Remove" Width="Auto"/>
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" x:Name="OnlineResourcesDataGrid" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding filePath}" Header="File Name" Width="1*"/>
+                                <DataGridTextColumn Binding="{Binding URL}" Header="URL" Width="1*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
                 <TabItem Header="Updater"/>
+                <TabItem Header="Project Setting">
+                    <Grid x:Name="ProjectSettingsGrid">
+                        <StackPanel Margin="5">
+                            <CheckBox x:Name="DownloadOnlineResourcesWhenBuildCheckbox" IsChecked="{Binding Path=DownloadOnlineResourcesWhenBuild}">
+                                <TextBlock Text="Download online resources when build"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
             </TabControl>
         </Grid>
     </Grid>

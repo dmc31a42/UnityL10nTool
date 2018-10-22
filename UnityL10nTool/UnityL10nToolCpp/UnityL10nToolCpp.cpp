@@ -951,6 +951,24 @@ bool UnityL10nToolCpp::SetTextPluginConfigToJsonValue() {
 	return true;
 }
 
+void UnityL10nToolCpp::LoadProjectSettingsFromJson()
+{
+	if (projectJson.isMember("ProjectSettings")) {
+		ProjectSettingsGlobal = ProjectSettings(projectJson["ProjectSettings"]);
+	}
+}
+
+ProjectSettings UnityL10nToolCpp::GetProjectSettings()
+{
+	return ProjectSettingsGlobal;
+}
+
+void UnityL10nToolCpp::SetProjectSettings(ProjectSettings projectSettings)
+{
+	ProjectSettingsGlobal = projectSettings;
+	projectJson["ProjectSettings"] = ProjectSettingsGlobal.toJson();
+}
+
 // https://sockbandit.wordpress.com/2012/05/31/c-read-and-write-utf-8-file-using-standard-libarary/
 bool UnityL10nToolCpp::SaveProjectConfigJson() {
 	std::wofstream wof;
@@ -1012,6 +1030,9 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	for (map<wstring, TextPluginInfo*>::iterator textPluginInfoItr = textPluginInfos.begin();
 		textPluginInfoItr != textPluginInfos.end(); textPluginInfoItr++) {
 		copyFileCustom((CurrentDirectory + textPluginInfoItr->second->TextPluginFileRelativePath).c_str(), (buildTargetFolder + textPluginInfoItr->second->TextPluginFileRelativePath).c_str());
+	}
+	if (ProjectSettingsGlobal.DownloadOnlineResourcesWhenBuild) {
+		DownloadResourcesFromInternetToResourceFolder();
 	}
 	CopyDirTo(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\", buildTargetFolder + L"Resource\\");
 	return true;
@@ -1596,20 +1617,22 @@ bool DownloadResourcesFromURLToFolder(wstring URL, wstring folderPath) {
 	}
 }
 
-bool UnityL10nToolCpp::DownloadResourcesFromInternetToTempFolder()
+void UnityL10nToolCpp::DownloadResourcesFromInternetToTempFolder()
 {
 	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
 		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
-		DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, CurrentDirectory + L"temp\\" + onlineResourcePairItr->filePath);
+		if (onlineResourcePairItr->filePath != L"" && onlineResourcePairItr->URL != L"") {
+			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, CurrentDirectory + L"temp\\" + onlineResourcePairItr->filePath);
+		}
 	}
-	return true;
 }
 
-bool UnityL10nToolCpp::DownloadResourcesFromInternetToResourceFolder()
+void UnityL10nToolCpp::DownloadResourcesFromInternetToResourceFolder()
 {
 	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
 		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
-		DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + onlineResourcePairItr->filePath);
+		if (onlineResourcePairItr->filePath != L"" && onlineResourcePairItr->URL != L"") {
+			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + onlineResourcePairItr->filePath);
+		}
 	}
-	return true;
 }

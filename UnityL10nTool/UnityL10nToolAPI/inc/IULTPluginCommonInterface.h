@@ -656,8 +656,7 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJson(Ass
 }
 
 inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldArrayFromJson(AssetTypeTemplateField* assetTypeTemplateField, Json::Value json) {
-	Json::StyledWriter writer;
-	string testStr = writer.write(json);
+	string testStr = JsonToStyleString(json);
 	vector<AssetTypeValueField*>* assetTypeValueFieldArray = new vector<AssetTypeValueField*>();
 	for (Json::ArrayIndex i = 0; i < json.size(); i++) {
 		Json::Value childJson = json[i];

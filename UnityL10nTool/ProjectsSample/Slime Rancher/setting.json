@@ -1,6 +1,186 @@
 {
-	"GameName": "Slime Rancher",
-	"MakerName": "Monomi Park",
-	"GamePath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Slime Rancher\\SlimeRancher_Data\\",
-	"DataFolderName": "SlimeRancher"
+	"DataFolderName" : "SlimeRancher",
+	"FontPlugin" : 
+	{
+		"TMPFontAsset" : null
+	},
+	"GameName" : "Slime Rancher",
+	"GamePath" : "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Slime Rancher\\SlimeRancher_Data\\",
+	"MakerName" : "Monomi Park",
+	"OnlineResources" : 
+	[
+		{
+			"URL" : "https://translate.zanata.org/rest/file/translation/SlimeRancherKoreanL10n/1.3.0/ko/po?docId=pedia",
+			"filePath" : "resources.assets_pedia_pedia.po"
+		}
+	],
+	"ProjectSettings" : 
+	{
+		"DownloadOnlineResourcesWhenBuild" : false
+	},
+	"TextPlugin" : 
+	{
+		"Done" : 
+		[
+			{
+				"InteractWithAssetPluginName" : "RegExp",
+				"InteractWithFileTextPluginName" : "GetTextPo",
+				"InteractWithMonoAssetPluginName" : "",
+				"assetName" : "pedia",
+				"assetsName" : "resources.assets",
+				"containerPath" : "i18n/en/pedia",
+				"languagePairDics" : 
+				{
+					"0" : 
+					{
+						"InteractWithAssetOptions" : 
+						[
+							{
+								"OptionDescription" : "",
+								"OptionName" : "RegExp Match expression",
+								"Value" : "^([^\\n#]*?) ?= ?([^=#]*)$",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Select which group is key.",
+								"OptionName" : "Select Key Group",
+								"Value" : 1,
+								"ValueAsChild" : null,
+								"type" : "INT",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "Select which group is value.",
+								"OptionName" : "Select Value Group",
+								"Value" : 2,
+								"ValueAsChild" : null,
+								"type" : "INT",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Key Replace [0] From",
+								"Value" : "",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "Key Replace [0] To",
+										"Value" : "",
+										"ValueAsChild" : null,
+										"type" : "WSTRING",
+										"typeAsChild" : "NONE"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							},
+							{
+								"OptionDescription" : "",
+								"OptionName" : "Value Replace [0] From",
+								"Value" : "\\\\\\n *\\t*",
+								"ValueAsChild" : null,
+								"nestedOptions" : 
+								[
+									{
+										"OptionDescription" : "",
+										"OptionName" : "Value Replace [0] To",
+										"Value" : "",
+										"ValueAsChild" : null,
+										"nestedOptions" : 
+										[
+											{
+												"OptionDescription" : "",
+												"OptionName" : "Value Replace [1] From",
+												"Value" : "\\\\n",
+												"ValueAsChild" : null,
+												"nestedOptions" : 
+												[
+													{
+														"OptionDescription" : "",
+														"OptionName" : "Value Replace [1] To",
+														"Value" : "\\n",
+														"ValueAsChild" : null,
+														"nestedOptions" : 
+														[
+															{
+																"OptionDescription" : "",
+																"OptionName" : "Value Replace [2] From",
+																"Value" : "\\n[ \\t]*?\\n$",
+																"ValueAsChild" : null,
+																"nestedOptions" : 
+																[
+																	{
+																		"OptionDescription" : "",
+																		"OptionName" : "Value Replace [2] To",
+																		"Value" : "",
+																		"ValueAsChild" : null,
+																		"nestedOptions" : 
+																		[
+																			{
+																				"OptionDescription" : "",
+																				"OptionName" : "Value Replace [3] From",
+																				"Value" : "",
+																				"ValueAsChild" : null,
+																				"nestedOptions" : 
+																				[
+																					{
+																						"OptionDescription" : "",
+																						"OptionName" : "Value Replace [3] To",
+																						"Value" : "",
+																						"ValueAsChild" : null,
+																						"type" : "WSTRING",
+																						"typeAsChild" : "NONE"
+																					}
+																				],
+																				"type" : "WSTRING",
+																				"typeAsChild" : "NONE"
+																			}
+																		],
+																		"type" : "WSTRING",
+																		"typeAsChild" : "NONE"
+																	}
+																],
+																"type" : "WSTRING",
+																"typeAsChild" : "NONE"
+															}
+														],
+														"type" : "WSTRING",
+														"typeAsChild" : "NONE"
+													}
+												],
+												"type" : "WSTRING",
+												"typeAsChild" : "NONE"
+											}
+										],
+										"type" : "WSTRING",
+										"typeAsChild" : "NONE"
+									}
+								],
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"InteractWithFileTextOptions" : 
+						[
+							{
+								"OptionDescription" : "Set File Name saved.",
+								"OptionName" : "File Name:",
+								"Value" : "pedia.po",
+								"ValueAsChild" : null,
+								"type" : "WSTRING",
+								"typeAsChild" : "NONE"
+							}
+						],
+						"TranslatedFileName" : "pedia.po"
+					}
+				},
+				"useContainerPath" : false
+			}
+		],
+		"InteractWithFileTextNews" : []
+	}
 }

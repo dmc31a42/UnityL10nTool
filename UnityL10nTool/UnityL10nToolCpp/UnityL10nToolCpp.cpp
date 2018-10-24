@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <fstream>
+#include <sstream>
 
 #include <iostream>
 #include <locale>
@@ -43,7 +44,8 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 	UnityL10nToolProjectInfoGlobal.JSONPath = ProjectJsonFolderPath + L"setting.json";
 	UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder = ProjectJsonFolderPath;
 	string projectJsonStr = readFile2(UnityL10nToolProjectInfoGlobal.JSONPath);
-	JsonReader->parse(projectJsonStr, projectJson);
+	//JsonReader->parse(projectJsonStr, projectJson);
+	JsonParseFromString(projectJsonStr, projectJson);
 	UnityL10nToolProjectInfoGlobal.GameName = WideMultiStringConverter->from_bytes(projectJson["GameName"].asString());
 	UnityL10nToolProjectInfoGlobal.MakerName = WideMultiStringConverter->from_bytes(projectJson["MakerName"].asString());
 	UnityL10nToolProjectInfoGlobal.GamePath = MakeSureBackslashEndOfFolderPath(WideMultiStringConverter->from_bytes(projectJson["GamePath"].asString()));
@@ -1581,6 +1583,7 @@ void UnityL10nToolCpp::AddOnlineResoucesPair(OnlineResourcePair onlineResourcePa
 void UnityL10nToolCpp::SetOnlineResourcePairs(vector<OnlineResourcePair> onlineResourcePairs)
 {
 	OnlineResourcePairsGlobal = onlineResourcePairs;
+	SetOnlineResourcePairsToProjectJson();
 }
 
 Json::Value UnityL10nToolCpp::SetOnlineResourcePairsToProjectJson()

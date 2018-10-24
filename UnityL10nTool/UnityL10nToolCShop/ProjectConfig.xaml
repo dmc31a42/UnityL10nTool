@@ -309,6 +309,7 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
                                             <DataGrid.Columns>
@@ -318,11 +319,12 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <Button Grid.Row="1" x:Name="UpdateTestGetOriginalDicButton" Content="GetOriginalDic" Margin="5" Click="UpdateTestGetOriginalDicButton_Click"/>
-                                        <Button Grid.Row="2" x:Name="UpdateTestLoadTranslatedFileTextButton" Content="LoadTranslatedFileText" Margin="5" Click="UpdateTestLoadTranslatedFileTextButton_Click"/>
-                                        <Button Grid.Row="3" x:Name="UpdateTestGetTranslatedDicsButton" Content="GetTranslatedDic" Margin="5" Click="UpdateTestGetTranslatedDicsButton_Click"/>
-                                        <Button Grid.Row="4" x:Name="UpdateTestGetUpdatedFileText" Content="GetUpdatedFileText" Margin="5" Click="UpdateTestGetUpdatedFileText_Click"/>
-                                        <Button Grid.Row="5" x:Name="UpdateTestSaveFileTextToTempFolder" Content="SaveFileTextToTempFolder" Margin="5" Click="UpdateTestSaveFileTextToTempFolder_Click"/>
-                                        <Button Grid.Row="6" x:Name="UpdateTestGetTranslatedText" Content="GetTranslatedText" Margin="5" Click="UpdateTestGetTranslatedText_Click"/>
+                                        <Button Grid.Row="2" x:Name="UpdateTestDownloadOnlineResources" Content="Download Online Resource" Margin="5" Click="UpdateTestDownloadOnlineResources_Click"/>
+                                        <Button Grid.Row="3" x:Name="UpdateTestLoadTranslatedFileTextButton" Content="LoadTranslatedFileText" Margin="5" Click="UpdateTestLoadTranslatedFileTextButton_Click"/>
+                                        <Button Grid.Row="4" x:Name="UpdateTestGetTranslatedDicsButton" Content="GetTranslatedDic" Margin="5" Click="UpdateTestGetTranslatedDicsButton_Click"/>
+                                        <Button Grid.Row="5" x:Name="UpdateTestGetUpdatedFileText" Content="GetUpdatedFileText" Margin="5" Click="UpdateTestGetUpdatedFileText_Click"/>
+                                        <Button Grid.Row="6" x:Name="UpdateTestSaveFileTextToTempFolder" Content="SaveFileTextToTempFolder" Margin="5" Click="UpdateTestSaveFileTextToTempFolder_Click"/>
+                                        <Button Grid.Row="7" x:Name="UpdateTestGetTranslatedText" Content="GetTranslatedText" Margin="5" Click="UpdateTestGetTranslatedText_Click"/>
                                     </Grid>
                                     <Grid Grid.Column="1" DataContext="{Binding Path=SelectedItem}">
                                         <Grid.RowDefinitions>

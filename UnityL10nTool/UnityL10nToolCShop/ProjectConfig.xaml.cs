@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -216,6 +217,19 @@ namespace UnityL10nToolCShop
         List<string> interactWithFileTextNames;
         public ObservableCollection<OnlineResourcePairCLI> OnlineResourcePairCLIsGlobal { get; set; }
         public ProjectSettingsCLI ProjectSettingsCLIGlobal { get; set; }
+
+        static void DownloadWebFile(string name, string path, string url)
+        {
+            WebClient webClient = new WebClient();
+            try
+            {
+                webClient.DownloadFile(url, path + name);
+            }
+            catch
+            {
+
+            }
+        }
 
         public ProjectConfig(UnityL10nToolProjectInfo unityL10NToolProjectInfo)
         {
@@ -933,6 +947,11 @@ namespace UnityL10nToolCShop
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
             textAssetTabControlContext.Done.SelectedItem = textAssetMapCLIResult;
             textAssetTabControlContext.Done.Saveds.Remove(selectedItem);
+        }
+
+        private void UpdateTestDownloadOnlineResources_Click(object sender, RoutedEventArgs e)
+        {
+            unityL10nToolCppManaged.DownloadResourcesFromInternetToTempFolder();
         }
     }
 }

@@ -129,7 +129,9 @@ namespace UnityL10nToolCShop
             grid.Children.Add(textBlock1);
             PropertiesStackPanel.Children.Add(grid);
 
-            if (fontAssetMapOptionCLI.nestedOptions == null || fontAssetMapOptionCLI.nestedOptions.Count == 0)
+            if ((fontAssetMapOptionCLI.nestedOptions == null || fontAssetMapOptionCLI.nestedOptions.Count == 0) ||
+                (fontAssetMapOptionCLI.nestedOptions != null && fontAssetMapOptionCLI.nestedOptions.Count == 1 
+                && fontAssetMapOptionCLI.nestedOptions[0].typeAsChild == AssetMapOptionCLI.Type.OPTION_TYPE_NONE))
             {
                 Binding binding = new Binding("Value")
                 {
@@ -145,7 +147,6 @@ namespace UnityL10nToolCShop
                         textBox1.TextChanged += TextBox_TextChangedAsync;
                         Grid.SetColumn(textBox1, 1);
                         grid.Children.Add(textBox1);
-
                         break;
                     case AssetMapOptionCLI.Type.OPTION_TYPE_INT:
                         TextBox textBox2 = new TextBox();
@@ -155,7 +156,6 @@ namespace UnityL10nToolCShop
                         textBox2.TextChanged += TextBox_TextChangedAsync;
                         Grid.SetColumn(textBox2, 1);
                         grid.Children.Add(textBox2);
-
                         break;
                     case AssetMapOptionCLI.Type.OPTION_TYPE_DOUBLE:
                         TextBox textBox3 = new TextBox();
@@ -176,6 +176,12 @@ namespace UnityL10nToolCShop
                         Grid.SetColumn(checkBox1, 1);
                         grid.Children.Add(checkBox1);
                         break;
+                }
+                if((fontAssetMapOptionCLI.nestedOptions != null && fontAssetMapOptionCLI.nestedOptions.Count == 1
+                && fontAssetMapOptionCLI.nestedOptions[0].typeAsChild == AssetMapOptionCLI.Type.OPTION_TYPE_NONE))
+                {
+                    AssetMapOptionCLI child = fontAssetMapOptionCLI.nestedOptions[0];
+                    SetPropertyControlRecursive(ref child);
                 }
             }
             else

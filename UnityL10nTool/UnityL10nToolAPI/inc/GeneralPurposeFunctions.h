@@ -9,10 +9,14 @@ using namespace std;
 #ifndef UnityL10nToolCppCLIDEFINE
 #define UnityL10nToolCppCLIDEFINE
 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter = new std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>(); // #include <codecvt>
-Json::Reader* JsonReader = new Json::Reader();
+//Json::Reader* JsonReader = new Json::Reader();
+Json::CharReaderBuilder* builder = new Json::CharReaderBuilder();
+std::unique_ptr<Json::CharReader> const JsonReader(builder->newCharReader());
+Json::StreamWriterBuilder* wbuilder = new Json::StreamWriterBuilder();
 #else
 extern std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter;
-extern Json::Reader* JsonReader;
+extern std::unique_ptr<Json::CharReader> const JsonReader;
+extern Json::StreamWriterBuilder* wbuilder;
 #endif // !UnityL10nToolCppCLIDEFINE
 
 std::string readFile2(const std::wstring & fileName);
@@ -23,6 +27,37 @@ bool copyFileCustom(const wchar_t *SRC, const wchar_t* DEST);
 std::vector<std::wstring> get_all_files_names_within_folder(std::wstring filter);
 bool CreateProcessCustom(std::wstring commandLine);
 bool CopyDirTo(const wstring& source_folder, const wstring& target_folder);
+
+inline Json::Value JsonParseFromString(string str) {
+	Json::Value json;
+	string err;
+	JsonReader->parse(str.c_str(), str.c_str() + str.size(), &json, &err);
+	return json;
+}
+
+inline bool JsonParseFromString(string str, Json::Value& json) {
+	string err;
+	return JsonReader->parse(str.c_str(), str.c_str() + str.size(), &json, &err);
+}
+
+inline Json::Value JsonParseFromWString(wstring wstr) {
+	string str = WideMultiStringConverter->to_bytes(wstr);
+	return JsonParseFromString(str);
+}
+
+inline bool JsonParseFromWstring(wstring wstr, Json::Value& json) {
+	string str = WideMultiStringConverter->to_bytes(wstr);
+	return JsonParseFromString(str, json);
+}
+
+inline string JsonToStyleString(Json::Value& json) {
+	(*wbuilder)["indentation"] = "\t";
+	return Json::writeString((*wbuilder), json);
+}
+
+inline wstring JsonToStyleWString(Json::Value& json) {
+	return WideMultiStringConverter->from_bytes(JsonToStyleString(json));
+}
 
 // https://stackoverflow.com/questions/4725115/on-windows-is-there-an-interface-for-copying-folders/4725137
 inline bool CopyDirTo(const wstring& source_folder, const wstring& target_folder)

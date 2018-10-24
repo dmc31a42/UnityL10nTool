@@ -114,7 +114,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -156,13 +156,13 @@
     <ClInclude Include="..\UnityL10nToolAPI\inc\IULTFontPluginInterface.h" />
     <ClInclude Include="..\UnityL10nToolAPI\inc\IULTPluginCommonInterface.h" />
     <ClInclude Include="..\UnityL10nToolAPI\inc\IULTTextPluginInterface.h" />
-    <ClInclude Include="json\json.h" />
+    <ClInclude Include="..\UnityL10nToolAPI\inc\json\json.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UnityL10nToolCpp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jsoncpp.cpp" />
+    <ClCompile Include="..\UnityL10nToolAPI\inc\jsoncpp.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

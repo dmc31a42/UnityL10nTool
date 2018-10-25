@@ -747,6 +747,7 @@ bool UnityL10nToolCpp::GetTranslatedTextAssetsFromFile()
 		textAssetMap = LoadTranslatedFileTextFromTempAndResourceFolder(textAssetMap);
 		textAssetMap = GetTranslatedLanguagePairDics(textAssetMap, true);
 		textAssetMap = GetTranslatedText(textAssetMap, true);
+		*textAssetMapItr = textAssetMap;
 	}
 	return true;
 }
@@ -850,7 +851,7 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 				dataArrayField->GetValue()->Set(&byteArrayData);
 				AssetsReplacer* assetsReplacer = _unityL10nToolAPI.makeAssetsReplacer(assetsName, assetsFileTable, assetFileInfoEx, baseAssetTypeInstance);
 				AssetsReplacersMap[assetsName].push_back(assetsReplacer);
-				break;
+				continue;
 			}
 		}
 		else {
@@ -1465,7 +1466,8 @@ TextAssetMap UnityL10nToolCpp::LoadTranslatedFileTextFromTempAndResourceFolder(T
 		iterator != textAssetMap.languagePairDics.end(); iterator++) {
 		wstring fileName;
 		if (textAssetMap.useContainerPath) {
-			fileName = ReplaceAll(textAssetMap.containerPath, L"\\", L"_") + iterator->second.TranslatedFileName;
+			fileName = textAssetMap.containerPath;
+			fileName = ReplaceAll(fileName, L"/", L"_") + L"_" + iterator->second.TranslatedFileName;
 		}
 		else {
 			fileName = textAssetMap.assetsName + L"_" + textAssetMap.assetName + L"_" + iterator->second.TranslatedFileName;

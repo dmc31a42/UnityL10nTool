@@ -34,6 +34,7 @@ namespace UnityL10nToolPatcherCShop
             unityL10nToolCppManaged.ProcessResourceAndMonoManger();
             unityL10nToolCppManaged.LoadMonoClassDatabase();
             unityL10nToolCppManaged.LoadUnityL10nToolAPI();
+            unityL10nToolCppManaged.GetOnlineResourcePairs();
             unityL10nToolCppManaged.DownloadResourcesFromInternetToTempFolder();
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
             unityL10nToolCppManaged.SetPacherConfigJson();

@@ -22,7 +22,7 @@ namespace UnityL10nToolCShop
             = DependencyProperty.Register(
                 "IsReadOnly",
                 typeof(bool),
-                typeof(InteractWithTextAssetProperties),
+                typeof(TextAssetAssetMapOptionsProperties),
                 new PropertyMetadata(false));
         List<AssetMapOptionCLI> AssetMapOptionCLIsGlobal;
         public event DependencyPropertyChangedEventHandler OptionChanged;
@@ -35,10 +35,13 @@ namespace UnityL10nToolCShop
         public void Refresh()
         {
             PropertiesStackPanel.Children.Clear();
-            for (int i = 0; i < AssetMapOptionCLIsGlobal.Count; i++)
+            if(AssetMapOptionCLIsGlobal != null)
             {
-                AssetMapOptionCLI child = AssetMapOptionCLIsGlobal[i];
-                SetPropertyControlRecursive(ref child);
+                for (int i = 0; i < AssetMapOptionCLIsGlobal.Count; i++)
+                {
+                    AssetMapOptionCLI child = AssetMapOptionCLIsGlobal[i];
+                    SetPropertyControlRecursive(ref child);
+                }
             }
             return;
         }
@@ -373,6 +376,9 @@ namespace UnityL10nToolCShop
             Grid grid = (Grid)sender;
             HelpStackPanel.DataContext = grid.DataContext;
         }
+
+        // https://stackoverflow.com/questions/3061475/paste-event-in-a-wpf-textbox not work
+        // https://stackoverflow.com/questions/7616274/change-paste-contents-in-textbox not work
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {

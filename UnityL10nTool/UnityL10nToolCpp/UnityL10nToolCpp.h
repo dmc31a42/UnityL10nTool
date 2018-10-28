@@ -56,8 +56,18 @@ public:
 struct ProjectSettings {
 public:
 	bool DownloadOnlineResourcesWhenBuild;
+	bool ZipBuildFolderAfterBuild;
+	bool CreateCurrentVersionTxtFileAfterBuild;
+	bool RemoveBuildFolderBeforeBuild;
+	wstring ZipFileName;
+	bool IsZipFileNameConatinVersion;
 	ProjectSettings() {
 		this->DownloadOnlineResourcesWhenBuild = false;
+		this->ZipBuildFolderAfterBuild = false;
+		this->CreateCurrentVersionTxtFileAfterBuild = false;
+		this->RemoveBuildFolderBeforeBuild = false;
+		this->ZipFileName = L"";
+		this->IsZipFileNameConatinVersion = false;
 	}
 	ProjectSettings(Json::Value json) {
 		if (json.isMember("DownloadOnlineResourcesWhenBuild")) {
@@ -66,10 +76,130 @@ public:
 		else {
 			this->DownloadOnlineResourcesWhenBuild = false;
 		}
+		if (json.isMember("ZipBuildFolderAfterBuild")) {
+			this->ZipBuildFolderAfterBuild = json["ZipBuildFolderAfterBuild"].asBool();
+		}
+		else {
+			this->ZipBuildFolderAfterBuild = false;
+		}
+		if (json.isMember("CreateCurrentVersionTxtFileAfterBuild")) {
+			this->CreateCurrentVersionTxtFileAfterBuild = json["CreateCurrentVersionTxtFileAfterBuild"].asBool();
+		}
+		else {
+			this->CreateCurrentVersionTxtFileAfterBuild = false;
+		}
+		if (json.isMember("RemoveBuildFolderBeforeBuild")) {
+			this->RemoveBuildFolderBeforeBuild = json["RemoveBuildFolderBeforeBuild"].asBool();
+		}
+		if (json.isMember("ZipFileName")) {
+			this->ZipFileName = WideMultiStringConverter->from_bytes(json["ZipFileName"].asString());
+		}
+		else {
+			this->ZipFileName = L"";
+		}
+		if (json.isMember("IsZipFileNameConatinVersion")) {
+			this->IsZipFileNameConatinVersion = json["IsZipFileNameConatinVersion"].asBool();
+		}
+		else {
+			this->IsZipFileNameConatinVersion = false;
+		}
 	}
 	Json::Value toJson() {
 		Json::Value json;
 		json["DownloadOnlineResourcesWhenBuild"] = this->DownloadOnlineResourcesWhenBuild;
+		json["ZipBuildFolderAfterBuild"] = this->ZipBuildFolderAfterBuild;
+		json["CreateCurrentVersionTxtFileAfterBuild"] = this->CreateCurrentVersionTxtFileAfterBuild;
+		json["RemoveBuildFolderBeforeBuild"] = this->RemoveBuildFolderBeforeBuild;
+		json["ZipFileName"] = WideMultiStringConverter->to_bytes(this->ZipFileName);
+		json["IsZipFileNameConatinVersion"] = this->IsZipFileNameConatinVersion;
+		return json;
+	}
+};
+
+struct OnlineUpdate {
+public:
+	enum SelectedEnum
+	{
+		None = 0,
+		Manual = 1,
+		GitHub = 2,
+	};
+	SelectedEnum Selected;
+	wstring currentVersion;
+	wstring currentVersionURL; // for Manual
+	wstring manualZipURL; // for Manual
+	wstring gitHubOwner;
+	wstring gitHubRepo;
+	OnlineUpdate() {
+		Selected = OnlineUpdate::None;
+	}
+	OnlineUpdate(Json::Value json) {
+		if(json.isMember("Selected")) {
+			string selectedStr = json["Selected"].asString();
+			if (selectedStr == "Manual") {
+				this->Selected = OnlineUpdate::Manual;
+			}
+			else if (selectedStr == "GitHub") {
+				this->Selected = OnlineUpdate::GitHub;
+			}
+			else {
+				this->None;
+			}
+			if (json.isMember("currentVersion")) {
+				this->currentVersion = WideMultiStringConverter->from_bytes(json["currentVersion"].asString());
+				switch (this->Selected) {
+				case Manual:
+					if (json.isMember("currentVersionURL") && json.isMember("manualZipURL")) {
+						this->currentVersionURL = WideMultiStringConverter->from_bytes(json["currentVersionURL"].asString());
+						this->manualZipURL = WideMultiStringConverter->from_bytes(json["manualZipURL"].asString());
+					}
+					else {
+						this->Selected = OnlineUpdate::None;
+					}
+					break;
+				case GitHub:
+					if(json.isMember("gitHubOwner") && json.isMember("gitHubRepo")) {
+						this->gitHubOwner = WideMultiStringConverter->from_bytes(json["gitHubOwner"].asString());
+						this->gitHubRepo = WideMultiStringConverter->from_bytes(json["gitHubRepo"].asString());
+					}
+					else {
+						this->Selected = OnlineUpdate::None;
+					}
+					break;
+				default:
+					this->Selected = OnlineUpdate::None;
+				}
+			}
+			else {
+				this->Selected = OnlineUpdate::None;
+			}
+		}
+		else {
+			this->Selected = OnlineUpdate::None;
+		}
+	}
+	Json::Value toJson() {
+		Json::Value json;
+		if (this->currentVersion != L"") {
+			json["currentVersion"] = WideMultiStringConverter->to_bytes(this->currentVersion);
+			switch (this->Selected) {
+			case OnlineUpdate::Manual:
+				if (currentVersionURL != L"" && manualZipURL != L"") {
+					json["Selected"] = "Manual";
+					json["currentVersionURL"] = WideMultiStringConverter->to_bytes(this->currentVersionURL);
+					json["manualZipURL"] = WideMultiStringConverter->to_bytes(this->manualZipURL);
+					return json;
+				}
+			case OnlineUpdate::GitHub:
+				if (this->gitHubOwner != L"" && this->gitHubRepo != L"") {
+					json["Selected"] = "GitHub";
+					json["gitHubOwner"] = WideMultiStringConverter->to_bytes(this->gitHubOwner);
+					json["gitHubRepo"] = WideMultiStringConverter->to_bytes(this->gitHubRepo);
+					return json;
+				}
+			}
+		}
+		json["Selected"] = "None";
 		return json;
 	}
 };
@@ -113,6 +243,9 @@ class UnityL10nToolCpp
 
 #pragma region OnlineResourcePair member
 	vector<OnlineResourcePair> OnlineResourcePairsGlobal;
+#pragma endregion
+#pragma region OnlineUpdate member
+	OnlineUpdate OnlineUpdateGlobal;
 #pragma endregion
 
 	ProjectSettings ProjectSettingsGlobal;
@@ -172,6 +305,11 @@ public:
 	void DownloadResourcesFromInternetToTempFolder();
 	// deprecated
 	void DownloadResourcesFromInternetToResourceFolder();
+
+#pragma region OnlineUpdate
+	OnlineUpdate GetOnlineUpdate();
+	void SetOnlineUpdate(OnlineUpdate onlineUpdate);
+#pragma endregion
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);
 	bool GetProjectConfigJsonFromFontPlugin();

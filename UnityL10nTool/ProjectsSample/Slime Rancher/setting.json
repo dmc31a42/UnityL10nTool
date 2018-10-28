@@ -11,7 +11,7 @@
 					"AssetsName" : "sharedassets0.assets",
 					"ContainerPath" : "",
 					"Font Family" : "나눔바른고딕",
-					"useContainerPath" : false
+					"UseContainerPath" : false
 				}
 			]
 		}
@@ -62,9 +62,21 @@
 			"filePath" : "i18n_en_ui_ui.po"
 		}
 	],
+	"OnlineUpdate" : 
+	{
+		"Selected" : "GitHub",
+		"currentVersion" : "v0.1.0",
+		"gitHubOwner" : "dmc31a42",
+		"gitHubRepo" : "UnityL10nToolTest"
+	},
 	"ProjectSettings" : 
 	{
-		"DownloadOnlineResourcesWhenBuild" : true
+		"CreateCurrentVersionTxtFileAfterBuild" : true,
+		"DownloadOnlineResourcesWhenBuild" : true,
+		"IsZipFileNameConatinVersion" : false,
+		"RemoveBuildFolderBeforeBuild" : true,
+		"ZipBuildFolderAfterBuild" : true,
+		"ZipFileName" : "SlimeRancherKoreanPatcher"
 	},
 	"TextPlugin" : 
 	{

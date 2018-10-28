@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO.Compression;
 using UnityL10nToolCppCLI;
 
 namespace UnityL10nToolCShop
@@ -203,6 +204,34 @@ namespace UnityL10nToolCShop
         }
     }
 
+    public class EnumBooleanConverter : IValueConverter
+    {
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string parameterString = parameter as string;
+            if (parameterString == null)
+                return DependencyProperty.UnsetValue;
+
+            if (Enum.IsDefined(value.GetType(), value) == false)
+                return DependencyProperty.UnsetValue;
+
+            object parameterValue = Enum.Parse(value.GetType(), parameterString);
+
+            return parameterValue.Equals(value);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string parameterString = parameter as string;
+            if (parameterString == null)
+                return DependencyProperty.UnsetValue;
+
+            return Enum.Parse(targetType, parameterString);
+        }
+        #endregion
+    }
+
     public partial class ProjectConfig : Window
     {
         
@@ -217,6 +246,7 @@ namespace UnityL10nToolCShop
         List<string> interactWithFileTextNames;
         public ObservableCollection<OnlineResourcePairCLI> OnlineResourcePairCLIsGlobal { get; set; }
         public ProjectSettingsCLI ProjectSettingsCLIGlobal { get; set; }
+        public OnlineUpdateCLI OnlineUpdateCLIGlobal { get; set; }
 
         static void DownloadWebFile(string name, string path, string url)
         {
@@ -315,6 +345,9 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Resources List...");
             OnlineResourcePairCLIsGlobal = unityL10nToolCppManaged.GetOnlineResourcePairs();
 
+            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Update...");
+            OnlineUpdateCLIGlobal = unityL10nToolCppManaged.GetOnlineUpdate();
+
             LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Project Settings...");
             unityL10nToolCppManaged.LoadProjectSettingsFromJson();
             ProjectSettingsCLIGlobal = unityL10nToolCppManaged.GetProjectSettings();
@@ -336,6 +369,7 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.Dispose();
             OnlineResourcesDataGrid.ItemsSource = OnlineResourcePairCLIsGlobal;
             ProjectSettingsGrid.DataContext = ProjectSettingsCLIGlobal;
+            UpdaterGrid.DataContext = OnlineUpdateCLIGlobal;
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -435,13 +469,66 @@ namespace UnityL10nToolCShop
             unityL10nToolCppManaged.GetProjectConfigJsonFromFontPlugin();
             unityL10nToolCppManaged.SetTextPluginConfigToJsonValue();
             unityL10nToolCppManaged.SetOnlineResourcePairs(OnlineResourcePairCLIsGlobal);
+            unityL10nToolCppManaged.SetOnlineUpdate(OnlineUpdateCLIGlobal);
             unityL10nToolCppManaged.SaveProjectConfigJson();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            unityL10nToolCppManaged.SetOnlineResourcePairs(OnlineResourcePairCLIsGlobal);
-            unityL10nToolCppManaged.BuildProject(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "Build\\"));
+            string projectFolderName = unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "");
+            Button_Click_3(null, null);
+            if (ProjectSettingsCLIGlobal.RemoveBuildFolderBeforeBuild)
+            {
+                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(projectFolderName + "Build\\");
+                // Delete this dir and all subdirs.
+                try
+                {
+                    di.Delete(true);
+                }
+                catch (System.IO.IOException ioException)
+                {
+                    Console.WriteLine(ioException.Message);
+                }
+            }
+            unityL10nToolCppManaged.BuildProject(projectFolderName + "Build\\");
+            if (ProjectSettingsCLIGlobal.ZipBuildFolderAfterBuild)
+            {
+                string ZipPath;
+                string zipFileNamePrefix;
+                if(ProjectSettingsCLIGlobal.ZipFileName != "")
+                {
+                    zipFileNamePrefix = ProjectSettingsCLIGlobal.ZipFileName;
+                } else
+                {
+                    zipFileNamePrefix = unityL10NToolProjectInfo.GameName;
+                }
+                if (OnlineUpdateCLIGlobal.currentVersion != "")
+                {
+                    if (ProjectSettingsCLIGlobal.CreateCurrentVersionTxtFileAfterBuild)
+                    {
+                        System.IO.File.WriteAllText(projectFolderName + "CurrentVersion.txt", OnlineUpdateCLIGlobal.currentVersion);
+                    }
+                    if(ProjectSettingsCLIGlobal.IsZipFileNameConatinVersion)
+                    {
+                        ZipPath = projectFolderName + zipFileNamePrefix + " " + OnlineUpdateCLIGlobal.currentVersion + ".zip";
+                    }
+                    else
+                    {
+                        ZipPath = projectFolderName + zipFileNamePrefix + ".zip";
+                    }
+                }
+                else
+                {
+                    ZipPath = projectFolderName + zipFileNamePrefix + ".zip";
+                }
+                if(System.IO.File.Exists(ZipPath))
+                {
+                    System.IO.File.Delete(ZipPath);
+                }
+                ZipFile.CreateFromDirectory(projectFolderName + "Build\\", ZipPath);
+            }
+            
+
         }
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

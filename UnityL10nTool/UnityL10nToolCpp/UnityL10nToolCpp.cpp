@@ -77,6 +77,11 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 	{
 		// Failed to create directory.
 	}
+
+	if (projectJson.isMember("OnlineUpdate")) {
+		OnlineUpdateGlobal = OnlineUpdate(projectJson["OnlineUpdate"]);
+	}
+	
 }
 
 bool UnityL10nToolCpp::LoadGlobalgamemanagersFile() {
@@ -1055,6 +1060,7 @@ Json::Value UnityL10nToolCpp::GetPacherConfigJson() {
 	}
 	patcherConfigJson["TextPlugin"]["Done"] = TextAssetMapsGlobal.ToJSON()["Done"];
 	patcherConfigJson["OnlineResources"] = SetOnlineResourcePairsToProjectJson();
+	patcherConfigJson["OnlineUpdate"] = projectJson["OnlineUpdate"];
 	return patcherConfigJson;
 }
 
@@ -1640,4 +1646,15 @@ void UnityL10nToolCpp::DownloadResourcesFromInternetToResourceFolder()
 			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + onlineResourcePairItr->filePath);
 		}
 	}
+}
+
+OnlineUpdate UnityL10nToolCpp::GetOnlineUpdate()
+{
+	return OnlineUpdateGlobal;
+}
+
+void UnityL10nToolCpp::SetOnlineUpdate(OnlineUpdate onlineUpdate)
+{
+	OnlineUpdateGlobal = onlineUpdate;
+	projectJson["OnlineUpdate"] = onlineUpdate.toJson();
 }

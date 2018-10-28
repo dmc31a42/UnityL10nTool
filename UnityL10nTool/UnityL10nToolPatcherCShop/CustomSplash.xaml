@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomSplash" Height="200" Width="320"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        ResizeMode="NoResize" Loaded="Window_Loaded">
+        ResizeMode="NoResize" Loaded="Window_Loaded" Unloaded="Window_Unloaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
@@ -15,6 +15,6 @@
         </Grid.RowDefinitions>
         <Image x:Name="SplashImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="180" Stretch="Fill"/>
         <ProgressBar x:Name="ProgressBar1" Grid.Row="1" Width="320" Height="20" IsIndeterminate="True" Background="Transparent" BorderThickness="0"/>
-        <TextBlock Grid.Row="1" Text="Check lastest version...(Test)" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="currentStateTextBlock" Grid.Row="1" Text="Check lastest version...(Test)" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

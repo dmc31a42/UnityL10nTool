@@ -390,12 +390,71 @@
                         </DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Updater"/>
+                <TabItem Header="Updater">
+                    <Grid x:Name="UpdaterGrid" Margin="5">
+                        <Grid.Resources>
+                            <local:EnumBooleanConverter x:Key="enumBooleanConverter" />
+                        </Grid.Resources>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Current Version: "/>
+                                <TextBox Text="{Binding Path=currentVersion}"/>
+                            </StackPanel>
+                            <!-- https://stackoverflow.com/questions/397556/how-to-bind-radiobuttons-to-an-enum -->
+                            <RadioButton x:Name="NoneRadioButton" IsChecked="{Binding Path=Selected, Converter={StaticResource enumBooleanConverter}, ConverterParameter=None}">
+                                <TextBlock Text="None" VerticalAlignment="Center"/>
+                            </RadioButton>
+
+                            <RadioButton x:Name="ManualRadioButton" IsChecked="{Binding Path=Selected, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Manual}">
+                                <TextBlock Text="Manual" VerticalAlignment="Center"/>
+                            </RadioButton>
+                            <StackPanel Margin="20,0,0,0" IsEnabled="{Binding Path=IsChecked, ElementName=ManualRadioButton, Mode=OneWay}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Current Version Text File URL: "/>
+                                    <TextBox Text="{Binding Path=currentVersionURL}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Lastest Patcher Zip File Download URL: "/>
+                                    <TextBox Text="{Binding Path=manualZipURL}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <RadioButton x:Name="GitHubRadioButton" IsChecked="{Binding Path=Selected, Converter={StaticResource enumBooleanConverter}, ConverterParameter=GitHub}">
+                                <TextBlock Text="GitHub" VerticalAlignment="Center"/>
+                            </RadioButton>
+                            <StackPanel Margin="20,0,0,0" IsEnabled="{Binding Path=IsChecked, ElementName=GitHubRadioButton, Mode=OneWay}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="GitHub Owner Name: "/>
+                                    <TextBox Text="{Binding Path=gitHubOwner}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="GitHub Repo Name: "/>
+                                    <TextBox Text="{Binding Path=gitHubRepo}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
                 <TabItem Header="Project Setting">
                     <Grid x:Name="ProjectSettingsGrid">
                         <StackPanel Margin="5">
                             <CheckBox x:Name="DownloadOnlineResourcesWhenBuildCheckbox" IsChecked="{Binding Path=DownloadOnlineResourcesWhenBuild}">
-                                <TextBlock Text="Download online resources when build"/>
+                                <TextBlock Text="Download online resources when building."/>
+                            </CheckBox>
+                            <CheckBox x:Name="ZipBuildFolderAfterBuildCheckbox" IsChecked="{Binding Path=ZipBuildFolderAfterBuild}">
+                                <TextBlock Text="Zip Build folder after building."/>
+                            </CheckBox>
+                            <CheckBox x:Name="CreateCurrentVersionTxtFileAfterBuildCheckbox" IsChecked="{Binding Path=CreateCurrentVersionTxtFileAfterBuild}">
+                                <TextBlock Text="Create CurrentVersion.txt file after build if currentVersion is defined."/>
+                            </CheckBox>
+                            <CheckBox x:Name="RemoveBuildFolderBeforeBuildCheckbox" IsChecked="{Binding Path=RemoveBuildFolderBeforeBuild}">
+                                <TextBlock Text="Remove Build folder before building."/>
+                            </CheckBox>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Zip file name (if empty, GameName is used): " Margin="20,0,0,0"/>
+                                <TextBox x:Name="ZipFileNameTextBox" Text="{Binding Path=ZipFileName}"/>
+                            </StackPanel>
+                            <CheckBox x:Name="IsZipFileNameConatinVersionCheckbox" IsChecked="{Binding Path=IsZipFileNameConatinVersion}">
+                                <TextBlock Text="Zip file name contain currentVersion."/>
                             </CheckBox>
                         </StackPanel>
                     </Grid>

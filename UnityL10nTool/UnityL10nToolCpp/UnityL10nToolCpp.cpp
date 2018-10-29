@@ -22,7 +22,7 @@ using namespace std;
 //WideMultiStringConverter = &(std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>());
 //JsonReader = &(Json::Reader());
 
-UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
+UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFolderPath)
 {
 	
 
@@ -51,7 +51,14 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath)
 	UnityL10nToolProjectInfoGlobal.GamePath = MakeSureBackslashEndOfFolderPath(WideMultiStringConverter->from_bytes(projectJson["GamePath"].asString()));
 	UnityL10nToolProjectInfoGlobal.DataFolderName = WideMultiStringConverter->from_bytes(projectJson["DataFolderName"].asString());
 	
-	if (DetermineProjectGamePath(
+	if (gameFolderPath != L"" && DetermineProjectGamePath(
+		gameFolderPath,
+		UnityL10nToolProjectInfoGlobal.GameName,
+		UnityL10nToolProjectInfoGlobal.MakerName)) {
+		UnityL10nToolProjectInfoGlobal.GamePath = gameFolderPath;
+		projectJson["GamePath"] = WideMultiStringConverter->to_bytes(gameFolderPath);
+	}
+	else if (DetermineProjectGamePath(
 		UnityL10nToolProjectInfoGlobal.GamePath,
 		UnityL10nToolProjectInfoGlobal.GameName,
 		UnityL10nToolProjectInfoGlobal.MakerName)) {
@@ -1040,7 +1047,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 		copyFileCustom((CurrentDirectory + textPluginInfoItr->second->TextPluginFileRelativePath).c_str(), (buildTargetFolder + textPluginInfoItr->second->TextPluginFileRelativePath).c_str());
 	}
 	if (ProjectSettingsGlobal.DownloadOnlineResourcesWhenBuild) {
-		DownloadResourcesFromInternetToResourceFolder();
+		DownloadResourcesFromInternetToBuildResourceFolder();
 	}
 	CopyDirTo(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\", buildTargetFolder + L"Resource\\");
 	return true;
@@ -1410,6 +1417,7 @@ TextAssetMap UnityL10nToolCpp::GetTranslatedText(TextAssetMap textAssetMap, bool
 			return textAssetMap;
 		}
 	}
+	return textAssetMap;
 }
 
 TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap, bool IsFinal = false)
@@ -1443,6 +1451,7 @@ TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap, bool
 	else {
 		return textAssetMap;
 	}
+	return textAssetMap;
 }
 
 bool UnityL10nToolCpp::SaveUpdateFileToTempFolder(TextAssetMap textAssetMap)
@@ -1566,6 +1575,7 @@ TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAs
 	else {
 		return textAssetMap;
 	}
+	return textAssetMap;
 }
 
 vector<OnlineResourcePair> UnityL10nToolCpp::GetOnlineResourcePairs()
@@ -1630,20 +1640,29 @@ bool DownloadResourcesFromURLToFolder(wstring URL, wstring folderPath) {
 
 void UnityL10nToolCpp::DownloadResourcesFromInternetToTempFolder()
 {
-	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
-		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
-		if (onlineResourcePairItr->filePath != L"" && onlineResourcePairItr->URL != L"") {
-			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, CurrentDirectory + L"temp\\" + onlineResourcePairItr->filePath);
-		}
-	}
+	DownloadResourcesFromInternetToFolder(CurrentDirectory + L"temp\\");
 }
 
-void UnityL10nToolCpp::DownloadResourcesFromInternetToResourceFolder()
+void UnityL10nToolCpp::DownloadResourcesFromInternetToBuildResourceFolder()
+{
+	if (CreateDirectory((UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resource\\").c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+		// CopyFile(...)
+	}
+	else
+	{
+		// Failed to create directory.
+	}
+	DownloadResourcesFromInternetToFolder(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resource\\");
+}
+
+void UnityL10nToolCpp::DownloadResourcesFromInternetToFolder(wstring folderPath)
 {
 	for (vector<OnlineResourcePair>::iterator onlineResourcePairItr = OnlineResourcePairsGlobal.begin();
 		onlineResourcePairItr != OnlineResourcePairsGlobal.end(); onlineResourcePairItr++) {
 		if (onlineResourcePairItr->filePath != L"" && onlineResourcePairItr->URL != L"") {
-			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + onlineResourcePairItr->filePath);
+			DownloadResourcesFromURLToFolder(onlineResourcePairItr->URL, folderPath + onlineResourcePairItr->filePath);
 		}
 	}
 }

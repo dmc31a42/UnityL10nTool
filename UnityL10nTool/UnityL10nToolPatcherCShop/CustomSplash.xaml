@@ -13,8 +13,8 @@
             <RowDefinition Height="180"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Image x:Name="SplashImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="180" Stretch="Fill"/>
-        <ProgressBar x:Name="ProgressBar1" Grid.Row="1" Width="320" Height="20" IsIndeterminate="True" Background="Transparent" BorderThickness="0"/>
-        <TextBlock x:Name="currentStateTextBlock" Grid.Row="1" Text="Check lastest version...(Test)" HorizontalAlignment="Center"/>
+        <Image x:Name="SplashImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="320" Height="180" Stretch="Fill" Source="DefaultSplash.png"/>
+        <ProgressBar x:Name="ProgressBar1" Grid.Row="1" Width="320" Height="20" IsIndeterminate="True" Background="Gray" BorderThickness="0"/>
+        <TextBlock x:Name="currentStateTextBlock" Grid.Row="1" Text="Check lastest version...(Test)" HorizontalAlignment="Center" Foreground="White"/>
     </Grid>
 </Window>

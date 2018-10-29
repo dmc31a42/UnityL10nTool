@@ -56,6 +56,7 @@ namespace UnityL10nToolPatcherCShop
             await Task.Delay(2000);
         }
 
+        private string lastestVersionStr;
         private async Task<bool> CheckIsLastestVersionInOnline(OnlineUpdateCLI onlineUpdate)
         {
             WebClient webClient = new WebClient();
@@ -80,6 +81,7 @@ namespace UnityL10nToolPatcherCShop
                             return false;
                         } else
                         {
+                            lastestVersionStr = currentVersionDownloaded;
                             return true;
                         }
                     }
@@ -103,6 +105,7 @@ namespace UnityL10nToolPatcherCShop
                                 onlineUpdate._gitHubDownloadURL = (string)assetsJson[0]["browser_download_url"];
                                 if(currentVersionDownload != onlineUpdate.currentVersion)
                                 {
+                                    lastestVersionStr = currentVersionDownload;
                                     return true;
                                 }
                             }
@@ -262,11 +265,16 @@ namespace UnityL10nToolPatcherCShop
         private async Task<bool> PatchLastestVersion(OnlineUpdateCLI onlineUpdateCLI)
         {
             WebClient webClient = new WebClient();
+            webClient.DownloadProgressChanged += (s, e) =>
+            {
+                ProgressBar1.Value = e.ProgressPercentage;
+            };
             switch (onlineUpdateCLI.Selected)
             {
                 case OnlineUpdateCLI.SelectedEnum.Manual:
                     try
                     {
+                        ProgressBar1.IsIndeterminate = false;
                         await webClient.DownloadFileTaskAsync(new Uri(onlineUpdateCLI.manualZipURL), "temp\\lastestVersion.zip");
                     } catch
                     {
@@ -276,6 +284,7 @@ namespace UnityL10nToolPatcherCShop
                 case OnlineUpdateCLI.SelectedEnum.GitHub:
                     try
                     {
+                        ProgressBar1.IsIndeterminate = false;
                         await webClient.DownloadFileTaskAsync(new Uri(onlineUpdateCLI._gitHubDownloadURL), "temp\\lastestVersion.zip");
                     }
                     catch
@@ -286,6 +295,8 @@ namespace UnityL10nToolPatcherCShop
             }
             if (File.Exists("temp\\lastestVersion.zip"))
             {
+                ProgressBar1.IsIndeterminate = true;
+                currentStateTextBlock.Text = "Apply Patch";
                 ZipFile.ExtractToDirectory("temp\\lastestVersion.zip", "temp\\lastestVersion");
                 RenamePrev(AppDomain.CurrentDomain.BaseDirectory, "dll");
                 RenamePrev(AppDomain.CurrentDomain.BaseDirectory, "exe");
@@ -313,7 +324,7 @@ namespace UnityL10nToolPatcherCShop
                     if(IsLastestVersionInOnline)
                     {
                         if (MessageBox.Show(
-                            "Lastest patcher is available in online.\nDo you want to download it?",
+                            "Lastest patcher is available in online.\nDo you want to download it?\nCurrent version:\t" + onlineUpdateCLI.currentVersion + "\nLastest version:\t" + lastestVersionStr,
                             "Lastest version available",
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {

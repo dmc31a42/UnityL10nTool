@@ -256,7 +256,7 @@ class UnityL10nToolCpp
 	map<string, vector<AssetsReplacer*>> AssetsReplacersMap;
 
 public:
-	UnityL10nToolCpp(wstring gameFolderPath);
+	UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFolderPath = L"");
 	bool LoadGlobalgamemanagersFile();
 	bool ProcessResourceAndMonoManger();
 	bool LoadMonoClassDatabase();
@@ -304,7 +304,8 @@ public:
 	// deprecated
 	void DownloadResourcesFromInternetToTempFolder();
 	// deprecated
-	void DownloadResourcesFromInternetToResourceFolder();
+	void DownloadResourcesFromInternetToBuildResourceFolder();
+	void DownloadResourcesFromInternetToFolder(wstring folderPath);
 
 #pragma region OnlineUpdate
 	OnlineUpdate GetOnlineUpdate();

@@ -5,9 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolPatcherCShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="480" Width="320">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="707,389,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="MainImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="DefaultSplash.png" Stretch="Fill"/>
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"  Text="Game Folder: " Margin="5"/>
+                <TextBlock x:Name="ErrorMessageTextBlock" Grid.Column="1" Text="It is not game folder" Margin="5" Foreground="Red"/>
+            </Grid>
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="gameFolderPathTextBox" Grid.Column="0" Margin="0,0,5,0" DataObject.Pasting="gameFolderPathTextBox_Pasting" TextChanged="gameFolderPathTextBox_TextChanged"/>
+                <Button Grid.Column="1" x:Name="SelectGameFolderButton" Content="..." Click="SelectGameFolderButton_Click"/>
+            </Grid>
+        </StackPanel>
+        <ListBox x:Name="ProgressListBox" Grid.Row="2" Margin="5"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ProgressBar x:Name="ProgressBar1" Grid.Row="1"  IsIndeterminate="False" Background="Transparent" BorderThickness="1" Margin="10"/>
+            <Button Grid.Column="2" Content="Patch" Margin="10" Click="Button_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        </Grid>
     </Grid>
 </Window>

@@ -15,10 +15,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO.Compression;
-using UnityL10nToolCppCLI;
+//using UnityL10nToolCppCLI;
 
 namespace UnityL10nToolPatcherCShop
 {
+    class OnlineUpdateCLI
+    {
+        public enum SelectedEnum
+        {
+            None = 0,
+            Manual = 1,
+            GitHub = 2,
+        }
+        public SelectedEnum Selected;
+        public string currentVersion;
+        public string currentVersionURL;
+        public string manualZipURL;
+        public string gitHubOwner;
+        public string gitHubRepo;
+        public string _gitHubDownloadURL;
+    }
     /// <summary>
     /// CustomSplash.xaml에 대한 상호 작용 논리
     /// </summary>
@@ -347,10 +363,6 @@ namespace UnityL10nToolPatcherCShop
                                 currentStateTextBlock.Text = "Patch Fail...";
                                 await Task.Delay(1000);
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("tset");
                         }
                     }
                     Window mainWindow = new MainWindow();

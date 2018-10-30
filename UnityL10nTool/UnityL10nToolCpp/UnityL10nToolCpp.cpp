@@ -1192,6 +1192,7 @@ void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)
 }
 
 wstring FindUnityGameFolderFromDataFolderNameInternal2(wstring path, wstring GameName, wstring MakerName) {
+	path = UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(path);
 	WIN32_FIND_DATA fdAppInfo;
 	HANDLE hFindAppInfo = ::FindFirstFileW((path + L"app.info").c_str(), &fdAppInfo);
 	if (hFindAppInfo != INVALID_HANDLE_VALUE) {

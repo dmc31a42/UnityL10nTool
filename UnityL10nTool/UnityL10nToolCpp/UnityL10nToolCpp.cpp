@@ -148,6 +148,9 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 	_wgetcwd(WcharCurrentDirectory, 255);
 	wstring tempCurrentDirectory = WcharCurrentDirectory;
 	tempCurrentDirectory += L"\\";
+	if (!DirExists(tempCurrentDirectory + L"Projects\\")) {
+		CreateDirectory((tempCurrentDirectory + L"Projects\\").c_str(), NULL);
+	}
 	if (DirExists(tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\")) {
 		return L"";
 	}
@@ -701,6 +704,13 @@ bool UnityL10nToolCpp::SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap:
 	vector< vector<TextAssetMap>*> vectorPtrs;
 	vector<TextAssetMap>* targetPtrs;
 	switch (toWhere) {
+	case TextAssetMap::ToWhere::None:
+		//targetPtrs = InteractWithAssetNewsPtr;
+		vectorPtrs.push_back(InteractWithAssetNewsPtr);
+		vectorPtrs.push_back(InteractWithFileTextNewsPtr);
+		//vectorPtrs.push_back(InteractWithMonoAssetNewsPtr);
+		vectorPtrs.push_back(DonePtr);
+		break;
 	case TextAssetMap::ToWhere::ToInteractWithAsset:
 		targetPtrs = InteractWithAssetNewsPtr;
 		//vectorPtrs.push_back(InteractWithAssetNewsPtr);
@@ -741,9 +751,14 @@ bool UnityL10nToolCpp::SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap:
 		for (vector<TextAssetMap>::iterator textAssetMapPtr = (*vectorPtr)->begin();
 			textAssetMapPtr != (*vectorPtr)->end(); textAssetMapPtr++) {
 			if (TextAssetMap::LooseCompare(textAssetMap, *textAssetMapPtr)) {
-				(*vectorPtr)->erase(textAssetMapPtr);
-				targetPtrs->push_back(textAssetMap);
-				return true;
+				if (toWhere == TextAssetMap::None) {
+					*textAssetMapPtr = textAssetMap;
+				}
+				else {
+					(*vectorPtr)->erase(textAssetMapPtr);
+					targetPtrs->push_back(textAssetMap);
+					return true;
+				}
 			}
 		}
 	}

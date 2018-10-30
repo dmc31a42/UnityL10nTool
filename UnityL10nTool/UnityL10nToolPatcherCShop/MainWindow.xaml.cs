@@ -67,6 +67,7 @@ namespace UnityL10nToolPatcherCShop
                     return;
                 }
             }
+            PatchButton.IsEnabled = false;
             if (patcherJson.ContainsKey("OnlineResources"))
             {
                 JToken[] jTokens = patcherJson["OnlineResources"].ToArray();

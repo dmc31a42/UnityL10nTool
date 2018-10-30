@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolCShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="UnityL10nTool: Select or Make new project" Height="450" Width="800" Icon="defaultIcon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,7 +29,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="true">
+                        <Grid Grid.Row="0" Grid.Column="0" ShowGridLines="false">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />

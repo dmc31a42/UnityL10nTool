@@ -475,60 +475,81 @@ namespace UnityL10nToolCShop
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            string projectFolderName = unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "");
-            Button_Click_3(null, null);
-            if (ProjectSettingsCLIGlobal.RemoveBuildFolderBeforeBuild)
+            projectConfigSplash = new ProjectConfigSplash();
+            projectConfigSplash.SetValue(Grid.RowSpanProperty, 2);
+            projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
+
+            MainGrid.Children.Add(projectConfigSplash);
+            LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
+            LoadUnityL10nTool_BackgroundWorker.DoWork += (workerSender, workerE) =>
             {
-                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(projectFolderName + "Build\\");
-                // Delete this dir and all subdirs.
-                try
+                LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Cleaning for building");
+                string projectFolderName = unityL10NToolProjectInfo.JSONPath.Replace("setting.json", "");
+                Button_Click_3(null, null);
+                if (ProjectSettingsCLIGlobal.RemoveBuildFolderBeforeBuild)
                 {
-                    di.Delete(true);
-                }
-                catch (System.IO.IOException ioException)
-                {
-                    Console.WriteLine(ioException.Message);
-                }
-            }
-            unityL10nToolCppManaged.BuildProject(projectFolderName + "Build\\");
-            if (ProjectSettingsCLIGlobal.ZipBuildFolderAfterBuild)
-            {
-                string ZipPath;
-                string zipFileNamePrefix;
-                if(ProjectSettingsCLIGlobal.ZipFileName != "")
-                {
-                    zipFileNamePrefix = ProjectSettingsCLIGlobal.ZipFileName;
-                } else
-                {
-                    zipFileNamePrefix = unityL10NToolProjectInfo.GameName;
-                }
-                if (OnlineUpdateCLIGlobal.currentVersion != "")
-                {
-                    if (ProjectSettingsCLIGlobal.CreateCurrentVersionTxtFileAfterBuild)
+                    System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(projectFolderName + "Build\\");
+                    // Delete this dir and all subdirs.
+                    try
                     {
-                        System.IO.File.WriteAllText(projectFolderName + "CurrentVersion.txt", OnlineUpdateCLIGlobal.currentVersion);
+                        di.Delete(true);
                     }
-                    if(ProjectSettingsCLIGlobal.IsZipFileNameConatinVersion)
+                    catch (System.IO.IOException ioException)
                     {
-                        ZipPath = projectFolderName + zipFileNamePrefix + " " + OnlineUpdateCLIGlobal.currentVersion + ".zip";
+                        Console.WriteLine(ioException.Message);
+                    }
+                }
+                LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Building");
+                unityL10nToolCppManaged.BuildProject(projectFolderName + "Build\\");
+                if (ProjectSettingsCLIGlobal.ZipBuildFolderAfterBuild)
+                {
+                    LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Zipping built result");
+                    string ZipPath;
+                    string zipFileNamePrefix;
+                    if (ProjectSettingsCLIGlobal.ZipFileName != "")
+                    {
+                        zipFileNamePrefix = ProjectSettingsCLIGlobal.ZipFileName;
+                    }
+                    else
+                    {
+                        zipFileNamePrefix = unityL10NToolProjectInfo.GameName;
+                    }
+                    if (OnlineUpdateCLIGlobal.currentVersion != "")
+                    {
+                        if (ProjectSettingsCLIGlobal.CreateCurrentVersionTxtFileAfterBuild)
+                        {
+                            System.IO.File.WriteAllText(projectFolderName + "CurrentVersion.txt", OnlineUpdateCLIGlobal.currentVersion);
+                        }
+                        if (ProjectSettingsCLIGlobal.IsZipFileNameConatinVersion)
+                        {
+                            ZipPath = projectFolderName + zipFileNamePrefix + " " + OnlineUpdateCLIGlobal.currentVersion + ".zip";
+                        }
+                        else
+                        {
+                            ZipPath = projectFolderName + zipFileNamePrefix + ".zip";
+                        }
                     }
                     else
                     {
                         ZipPath = projectFolderName + zipFileNamePrefix + ".zip";
                     }
+                    if (System.IO.File.Exists(ZipPath))
+                    {
+                        System.IO.File.Delete(ZipPath);
+                    }
+                    ZipFile.CreateFromDirectory(projectFolderName + "Build\\", ZipPath);
                 }
-                else
-                {
-                    ZipPath = projectFolderName + zipFileNamePrefix + ".zip";
-                }
-                if(System.IO.File.Exists(ZipPath))
-                {
-                    System.IO.File.Delete(ZipPath);
-                }
-                ZipFile.CreateFromDirectory(projectFolderName + "Build\\", ZipPath);
-            }
-            
-
+            };
+            LoadUnityL10nTool_BackgroundWorker.ProgressChanged += (workerSender, workerE)=>
+            {
+                projectConfigSplash.ProgressText = (string)workerE.UserState;
+            };
+            LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += (workerSender, workerE)=>
+            {
+                MainGrid.Children.Remove(projectConfigSplash);
+            };
+            LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
+            LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
         }
 
         private void CustomProperties_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -1039,6 +1060,12 @@ namespace UnityL10nToolCShop
         private void UpdateTestDownloadOnlineResources_Click(object sender, RoutedEventArgs e)
         {
             unityL10nToolCppManaged.DownloadResourcesFromInternetToTempFolder();
+        }
+
+        private void UseContainerPathCheckChanged(object sender, RoutedEventArgs e)
+        {
+            TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.None);
         }
     }
 }

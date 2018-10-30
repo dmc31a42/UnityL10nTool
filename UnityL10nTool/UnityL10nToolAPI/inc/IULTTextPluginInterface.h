@@ -72,6 +72,7 @@ typedef map<wstring, LanguagePairDic> LanguagePairDics;
 
 struct TextAssetMap {
 	enum ToWhere {
+		None = 0,
 		ToInteractWithAsset = 1,
 		ToInteractWithFileText = 2,
 		ToInteractWithMonoAsset = 3,

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomSplash" Height="200" Width="320"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        ResizeMode="NoResize" Loaded="Window_Loaded" Unloaded="Window_Unloaded">
+        ResizeMode="NoResize" Loaded="Window_Loaded" Unloaded="Window_Unloaded" Icon="defaultIcon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>

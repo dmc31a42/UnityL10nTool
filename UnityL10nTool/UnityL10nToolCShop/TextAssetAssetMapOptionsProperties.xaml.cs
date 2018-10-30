@@ -148,6 +148,7 @@ namespace UnityL10nToolCShop
                         textBox1.SetBinding(TextBox.TextProperty, binding);
                         textBox1.IsEnabled = !IsReadOnly;
                         textBox1.TextChanged += TextBox_TextChangedAsync;
+                        DataObject.AddPastingHandler(textBox1, OnPasteTextBox);
                         Grid.SetColumn(textBox1, 1);
                         grid.Children.Add(textBox1);
                         break;
@@ -157,6 +158,7 @@ namespace UnityL10nToolCShop
                         textBox2.SetBinding(TextBox.TextProperty, binding);
                         textBox2.IsEnabled = !IsReadOnly;
                         textBox2.TextChanged += TextBox_TextChangedAsync;
+                        DataObject.AddPastingHandler(textBox2, OnPasteTextBox);
                         Grid.SetColumn(textBox2, 1);
                         grid.Children.Add(textBox2);
                         break;
@@ -166,6 +168,7 @@ namespace UnityL10nToolCShop
                         textBox3.SetBinding(TextBox.TextProperty, binding);
                         textBox3.IsEnabled = !IsReadOnly;
                         textBox3.TextChanged += TextBox_TextChangedAsync;
+                        DataObject.AddPastingHandler(textBox3, OnPasteTextBox);
                         Grid.SetColumn(textBox3, 1);
                         grid.Children.Add(textBox3);
 
@@ -350,6 +353,20 @@ namespace UnityL10nToolCShop
             }
         }
 
+        private void OnPasteTextBox(object sender, DataObjectPastingEventArgs e)
+        {
+            var isText = e.SourceDataObject.GetDataPresent(DataFormats.UnicodeText, true);
+            if (!isText) return;
+
+            var text = e.SourceDataObject.GetData(DataFormats.UnicodeText) as string;
+            TextBox textBox = sender as TextBox;
+            Grid grid = textBox.Parent as Grid;
+            AssetMapOptionCLI assetMapOptionCLI = grid.DataContext as AssetMapOptionCLI;
+            e.CancelCommand();
+            assetMapOptionCLI.Value = text;
+            OptionChanged(this, new DependencyPropertyChangedEventArgs());
+        }
+
         private async void TextBox_TextChangedAsync(object sender, TextChangedEventArgs e)
         {
             if(sender is TextBox textBox)
@@ -358,7 +375,7 @@ namespace UnityL10nToolCShop
                 {
                     string startStr = textBox.Text;
 
-                    await Task.Delay(500);
+                    await Task.Delay(1000);
                     if (startStr == textBox.Text)
                     {
                         if(textBox.DataContext is AssetMapOptionCLI assetMapOptionCLI)

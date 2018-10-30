@@ -79,8 +79,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.ULTFontPlugin</TargetExt>
-    <IncludePath>..\..\UnityL10nTool\UABE_API\inc;..\..\UnityL10nTool\UnityL10nToolAPI\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\UnityL10nTool\UABE_API\bin32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\UnityL10nTool\UABE_API\inc;..\..\..\UnityL10nTool\UnityL10nToolAPI\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\UnityL10nTool\UABE_API\bin32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -140,8 +140,8 @@ xcopy "$(ProjectDir)..\TMPFontAsset\*" "$(ProjectDir)..\$(SolutionName)Release\P
 xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\" /Y /E
 xcopy "$(OutDir)$(TargetName).pdb" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\" /Y /E
 xcopy "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\$(SolutionName)Release\Plugins\FontPlugins\" /Y /E
-xcopy "$(ProjectDir)..\$(SolutionName)Debug\*" "$(ProjectDir)..\..\PluginsDebug\"  /Y /E
-xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\PluginsRelease\"  /Y /E</Command>
+xcopy "$(ProjectDir)..\$(SolutionName)Debug\*" "$(ProjectDir)..\..\..\PluginsDebug\"  /Y /E
+xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\..\PluginsRelease\"  /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,12 +164,12 @@ xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\PluginsRele
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\UnityL10nTool\UnityL10nToolAPI\inc\json\json.h" />
+    <ClInclude Include="..\..\..\UnityL10nTool\UnityL10nToolAPI\inc\json\json.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\UnityL10nTool\UnityL10nToolAPI\inc\jsoncpp.cpp" />
+    <ClCompile Include="..\..\..\UnityL10nTool\UnityL10nToolAPI\inc\jsoncpp.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

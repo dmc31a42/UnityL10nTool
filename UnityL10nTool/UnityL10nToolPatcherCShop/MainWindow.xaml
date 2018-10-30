@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolPatcherCShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="320">
+        Title="MainWindow" Height="480" Width="320" Icon="defaultIcon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,7 +13,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image x:Name="MainImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="DefaultSplash.png" Stretch="Fill"/>
+        <Image x:Name="MainImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="DefaultSplash.png" Stretch="Fill" />
         <StackPanel Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <ProgressBar x:Name="ProgressBar1" Grid.Row="1"  IsIndeterminate="False" Background="Transparent" BorderThickness="1" Margin="10"/>
-            <Button Grid.Column="2" Content="Patch" Margin="10" Click="Button_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom"/>
+            <Button x:Name="PatchButton" Grid.Column="2" Content="Patch" Margin="10" Click="Button_Click" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </Window>

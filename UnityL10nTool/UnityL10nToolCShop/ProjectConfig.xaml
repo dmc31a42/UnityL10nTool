@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:UnityL10nToolCShop"
     mc:Ignorable="d"
         x:Class="UnityL10nToolCShop.ProjectConfig"
-        Title="ProjectConfig" Height="672" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}">
+        Title="UnityL10nTool" Height="672" Width="1077.8" Loaded="Window_Loaded" Closed="Window_Closed" d:DataContext="{d:DesignData /SampleData/FontAssetMapCLIs/FontAssetMapCLIs.xaml}" Icon="defaultIcon.ico">
     <Window.Resources>
         <DataTemplate x:Key="ItemTemplate">
             <StackPanel>
@@ -145,7 +145,7 @@
                                             <Label Content=", Container Path: "/>
                                             <TextBlock Text="{Binding containerPath}" TextWrapping="Wrap" VerticalAlignment="Center"/>
                                             <Label Content=", Use Container Path: "/>
-                                            <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center"/>
+                                            <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center" Checked="UseContainerPathCheckChanged" Unchecked="UseContainerPathCheckChanged"/>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Row="2" DataContext="{Binding Path=SelectedItem}">
@@ -198,9 +198,9 @@
                                 </Grid>
 
                             </TabItem>
-                            <TabItem Header="InteractWithMonoTextAsset">
+                            <!--TabItem Header="InteractWithMonoTextAsset">
 
-                            </TabItem>
+                            </-->
                             <TabItem Header="InteractWithFileText">
                                 <Grid DataContext="{Binding InteractWithFileText}">
                                     <Grid.RowDefinitions>
@@ -242,7 +242,7 @@
                                             <Label Content=", Container Path: "/>
                                             <TextBlock Text="{Binding containerPath}" TextWrapping="Wrap" VerticalAlignment="Center"/>
                                             <Label Content=", Use Container Path: "/>
-                                            <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center"/>
+                                            <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center" Checked="UseContainerPathCheckChanged" Unchecked="UseContainerPathCheckChanged"/>
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Row="2" DataContext="{Binding Path=SelectedItem}">
@@ -294,7 +294,7 @@
                                     </Grid>
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="Update Process Test">
+                            <TabItem Header="Done(Test)">
                                 <Grid DataContext="{Binding Path=Done}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="3*"/>
@@ -303,6 +303,7 @@
                                     <Grid Grid.Column="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
+                                            <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -319,12 +320,13 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <Button Grid.Row="1" x:Name="UpdateTestGetOriginalDicButton" Content="GetOriginalDic" Margin="5" Click="UpdateTestGetOriginalDicButton_Click"/>
-                                        <Button Grid.Row="2" x:Name="UpdateTestDownloadOnlineResources" Content="Download Online Resource" Margin="5" Click="UpdateTestDownloadOnlineResources_Click"/>
                                         <Button Grid.Row="3" x:Name="UpdateTestLoadTranslatedFileTextButton" Content="LoadTranslatedFileText" Margin="5" Click="UpdateTestLoadTranslatedFileTextButton_Click"/>
                                         <Button Grid.Row="4" x:Name="UpdateTestGetTranslatedDicsButton" Content="GetTranslatedDic" Margin="5" Click="UpdateTestGetTranslatedDicsButton_Click"/>
                                         <Button Grid.Row="5" x:Name="UpdateTestGetUpdatedFileText" Content="GetUpdatedFileText" Margin="5" Click="UpdateTestGetUpdatedFileText_Click"/>
                                         <Button Grid.Row="6" x:Name="UpdateTestSaveFileTextToTempFolder" Content="SaveFileTextToTempFolder" Margin="5" Click="UpdateTestSaveFileTextToTempFolder_Click"/>
                                         <Button Grid.Row="7" x:Name="UpdateTestGetTranslatedText" Content="GetTranslatedText" Margin="5" Click="UpdateTestGetTranslatedText_Click"/>
+
+                                        <Button Grid.Row="8" x:Name="UpdateTestDownloadOnlineResources" Content="Download All Online Resources" Margin="5" Click="UpdateTestDownloadOnlineResources_Click"/>
                                     </Grid>
                                     <Grid Grid.Column="1" DataContext="{Binding Path=SelectedItem}">
                                         <Grid.RowDefinitions>
@@ -367,9 +369,9 @@
                                     </Grid>
                                 </Grid>
                             </TabItem>
-                            <TabItem Header="Patch Process Test(X)">
+                            <!--TabItem Header="Patch Process Test(X)">
                                 
-                            </TabItem>
+                            </-->
                         </TabControl>
                     </Grid>
                 </TabItem>

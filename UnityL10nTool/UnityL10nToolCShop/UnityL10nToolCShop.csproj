@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>defaultIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
@@ -137,6 +140,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -153,6 +157,9 @@
       <Name>UnityL10nToolCppCLI</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="defaultIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -201,6 +208,10 @@ echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.xml" "$(ProjectDir)..\..\U
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.dll" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolCppCLI.pdb" /Y
 echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\AssetsTools.dll" /Y /E
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Microsoft.WindowsAPICodePack.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Microsoft.WindowsAPICodePack.xml" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Microsoft.WindowsAPICodePack.Shell.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.xml" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\Microsoft.WindowsAPICodePack.Shell.xml" /Y
 echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.exe" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolPatcherCShop.exe" /Y /E
 echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.pdb" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\UnityL10nToolPatcherCShop.pdb" /Y /E
 xcopy "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\*" "$(ProjectDir)$(OutDir)PatcherLibs\" /Y /E
@@ -208,6 +219,8 @@ xcopy "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\*" "$(ProjectDir)$(OutD
 echo f | xcopy "$(ProjectDir)$(OutDir)Newtonsoft.Json.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\Newtonsoft.Json.dll" /Y
 echo f | xcopy "$(ProjectDir)$(OutDir)UnityL10nToolCppCLI.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\UnityL10nToolCppCLI.dll" /Y
 echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\AssetsTools.dll" /Y /E
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\Microsoft.WindowsAPICodePack.dll" /Y
+echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\Microsoft.WindowsAPICodePack.Shell.dll" /Y
 echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.exe" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\UnityL10nToolPatcherCShop.exe" /Y /E
 xcopy "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\*" "$(ProjectDir)$(OutDir)PatcherLibs\" /Y /E
 

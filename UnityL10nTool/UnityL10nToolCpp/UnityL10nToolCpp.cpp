@@ -1044,7 +1044,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 			//CREATE_NO_WINDOW,              // No creation flags
 			NULL,
 			NULL,           // Use parent's environment block
-			(CurrentDirectory + L"Libraries\\").c_str(),           // Use parent's starting directory 
+			(CurrentDirectory + L"Libraries\\").c_str(),           // Use parent's starting directory
 			&si,            // Pointer to STARTUPINFO structure
 			&pi)           // Pointer to PROCESS_INFORMATION structure
 			)
@@ -1056,7 +1056,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 		// Wait until child process exits.
 		WaitForSingleObject(pi.hProcess, INFINITE);
 
-		// Close process and thread handles. 
+		// Close process and thread handles.
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);*/
 	}

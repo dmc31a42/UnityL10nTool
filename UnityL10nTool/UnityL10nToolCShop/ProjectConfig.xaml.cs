@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO.Compression;
 using UnityL10nToolCppCLI;
+using Microsoft.Win32;
 
 namespace UnityL10nToolCShop
 {
@@ -277,6 +278,27 @@ namespace UnityL10nToolCShop
             projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
 
             MainGrid.Children.Add(projectConfigSplash);
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico"))
+            {
+                System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico",
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico");
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico", UriKind.RelativeOrAbsolute);
+                PatcherIconImage.Source = BitmapFrame.Create(uri);
+            }
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png"))
+            {
+                System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png",
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customSplash.png");
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png", UriKind.RelativeOrAbsolute);
+                PatcherSplashImage.Source = BitmapFrame.Create(uri);
+            }
+            if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png"))
+            {
+                System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png",
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customMain.png");
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png", UriKind.RelativeOrAbsolute);
+                PatcherMainImage.Source = BitmapFrame.Create(uri);
+            }
             LoadUnityL10nTool_BackgroundWorker = new BackgroundWorker();
             LoadUnityL10nTool_BackgroundWorker.DoWork += LoadUnityL10nTool_DoWork;
             LoadUnityL10nTool_BackgroundWorker.ProgressChanged += LoadUnityL10nTool_ProgressChanged;
@@ -1066,6 +1088,57 @@ namespace UnityL10nToolCShop
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
             unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.None);
+        }
+
+        private void PatcherIconImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Icon resource (*.ico)|*.ico";
+            if(openFileDialog.ShowDialog() == true)
+            {
+                string iconFilePath = openFileDialog.FileName;
+                if(System.IO.File.Exists(iconFilePath))
+                {
+                    System.IO.File.Copy(iconFilePath, AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico", true);
+                    System.IO.File.Copy(iconFilePath, AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico", true);
+                    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico", UriKind.RelativeOrAbsolute);
+                    PatcherIconImage.Source = BitmapFrame.Create(uri);
+                }
+            }
+        }
+
+        private void PatcherSplashImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "png image (*.png)|*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string pngFilePath = openFileDialog.FileName;
+                if (System.IO.File.Exists(pngFilePath))
+                {
+                    System.IO.File.Copy(pngFilePath, AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png", true);
+                    System.IO.File.Copy(pngFilePath, AppDomain.CurrentDomain.BaseDirectory + "temp\\customSplash.png", true);
+                    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "temp\\customSplash.png", UriKind.RelativeOrAbsolute);
+                    PatcherSplashImage.Source = BitmapFrame.Create(uri);
+                }
+            }
+        }
+
+        private void PatcherMainImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "png image (*.png)|*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string pngFilePath = openFileDialog.FileName;
+                if (System.IO.File.Exists(pngFilePath))
+                {
+                    System.IO.File.Copy(pngFilePath, AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png", true);
+                    System.IO.File.Copy(pngFilePath, AppDomain.CurrentDomain.BaseDirectory + "temp\\customMain.png", true);
+                    Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "temp\\customMain.png", UriKind.RelativeOrAbsolute);
+                    PatcherMainImage.Source = BitmapFrame.Create(uri);
+                }
+            }
         }
     }
 }

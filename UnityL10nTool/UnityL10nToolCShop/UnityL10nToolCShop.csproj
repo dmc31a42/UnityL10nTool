@@ -161,6 +161,12 @@
   <ItemGroup>
     <Resource Include="defaultIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DefaultMain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DefaultSplash.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo f | xcopy "$(ProjectDir)$(OutDir)$(TargetName).exe" "$(ProjectDir)..\..\UnityL10nToolDebug\UnityL10nTool.exe" /Y
@@ -223,6 +229,11 @@ echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.dll" "$(Proje
 echo f | xcopy "$(ProjectDir)$(OutDir)Microsoft.WindowsAPICodePack.Shell.dll" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\Microsoft.WindowsAPICodePack.Shell.dll" /Y
 echo f | xcopy "$(ProjectDir)..\UnityL10nToolPatcherCShop\bin\Release\UnityL10nToolPatcherCShop.exe" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\UnityL10nToolPatcherCShop.exe" /Y /E
 xcopy "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\*" "$(ProjectDir)$(OutDir)PatcherLibs\" /Y /E
+
+echo f | xcopy "$(ProjectDir)..\..\README.txt" "$(ProjectDir)..\..\UnityL10nToolDebug\README.txt" /Y
+echo f | xcopy "$(ProjectDir)..\..\README.txt" "$(ProjectDir)..\..\UnityL10nToolRelease\README.txt" /Y
+echo f | xcopy "$(ProjectDir)..\..\README.txt" "$(ProjectDir)..\..\UnityL10nToolDebug\PatcherLibs\README.txt" /Y
+echo f | xcopy "$(ProjectDir)..\..\README.txt" "$(ProjectDir)..\..\UnityL10nToolRelease\PatcherLibs\README.txt" /Y
 
 rem For Development
 xcopy "$(ProjectDir)..\ProjectsSample\*" "$(ProjectDir)$(OutDir)Projects\" /Y /E</PostBuildEvent>

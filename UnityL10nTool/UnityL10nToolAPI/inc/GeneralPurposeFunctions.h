@@ -250,3 +250,14 @@ inline bool DirExists(const std::wstring& dirName_in)
 
 	return false;    // this is not a directory!
 }
+
+// https://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c
+inline bool FileExist(const std::wstring& name) {
+	if (FILE *file = _wfopen(name.c_str(), L"r")) {
+		fclose(file);
+		return true;
+	}
+	else {
+		return false;
+	}
+}

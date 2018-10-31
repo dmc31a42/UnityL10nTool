@@ -19,8 +19,6 @@
 
 using namespace std;
 
-//WideMultiStringConverter = &(std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>());
-//JsonReader = &(Json::Reader());
 
 UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFolderPath)
 {
@@ -1025,8 +1023,52 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	wof.close();
 
 	CopyDirTo(CurrentDirectory + L"PatcherLibs\\", buildTargetFolder + L"");
+#pragma region ModifyFromIconFileToExeDll
+	if (FileExist(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customIcon.ico")) {
+		wstring moduleName = CurrentDirectory + L"Libraries\\ModifyFromIconFileToExeDll.exe";
+		wstring command = (L"\"" + buildTargetFolder + L"UnityL10nToolPatcherCShop.exe\" \"" + UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customIcon.ico\" 32512").c_str();
+		string systemCommand = WideMultiStringConverter->to_bytes(moduleName + L" " + command);
+		system(systemCommand.c_str());
+		/*STARTUPINFO si;
+		PROCESS_INFORMATION pi;
+
+		ZeroMemory(&si, sizeof(si));
+		si.cb = sizeof(si);
+		ZeroMemory(&pi, sizeof(pi));
+		if (!CreateProcess(
+			(CurrentDirectory + L"Libraries\\ModifyFromIconFileToExeDll.exe").c_str(),   // No module name (use command line)
+			(LPWSTR)(command.c_str()),        // Command line
+			NULL,           // Process handle not inheritable
+			NULL,           // Thread handle not inheritable
+			FALSE,          // Set handle inheritance to FALSE
+			//CREATE_NO_WINDOW,              // No creation flags
+			NULL,
+			NULL,           // Use parent's environment block
+			(CurrentDirectory + L"Libraries\\").c_str(),           // Use parent's starting directory 
+			&si,            // Pointer to STARTUPINFO structure
+			&pi)           // Pointer to PROCESS_INFORMATION structure
+			)
+		{
+			printf("CreateProcess failed (%d).\n", GetLastError());
+			return false;
+		}
+
+		// Wait until child process exits.
+		WaitForSingleObject(pi.hProcess, INFINITE);
+
+		// Close process and thread handles. 
+		CloseHandle(pi.hProcess);
+		CloseHandle(pi.hThread);*/
+	}
+#pragma endregion
 	CopyDirTo(CurrentDirectory + L"Libraries\\", buildTargetFolder + L"Libraries\\");
 	CopyDirTo(CurrentDirectory + L"ClassDatabase\\", buildTargetFolder + L"ClassDatabase\\");
+	if (FileExist(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customSplash.png")) {
+		CopyFileW((UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customSplash.png").c_str(), (buildTargetFolder + L"customSplash.png").c_str(), false);
+	}
+	if (FileExist(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customMain.png")) {
+		CopyFileW((UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customMain.png").c_str(), (buildTargetFolder + L"customMain.png").c_str(), false);
+	}
 
 	if (CreateDirectoryW((buildTargetFolder +L"Plugins\\").c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())

@@ -20,7 +20,7 @@
         <ListBox x:Name="ProjectListBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding}" Grid.IsSharedSizeScope="True" HorizontalContentAlignment="Stretch" SelectionChanged="ProjectListBox_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid ShowGridLines="true" >
+                    <Grid ShowGridLines="false" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>

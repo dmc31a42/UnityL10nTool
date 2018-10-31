@@ -51,6 +51,15 @@ namespace UnityL10nToolPatcherCShop
             MakerName = (string)patcherJson["MakerName"];
             Title = GameName + " Patcher";
             gameFolderPathTextBox.Text = UnityL10nToolCppManaged.FindUnityGameFolderFromDataFolderName(DataFolderName, GameName, MakerName);
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "customMain.png"))
+            {
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "customMain.png", UriKind.RelativeOrAbsolute);
+                MainImage.Source = BitmapFrame.Create(uri);
+            }
+            else
+            {
+
+            }
         }
 
         private void BackgroundWorker_DoWork1(object sender, DoWorkEventArgs e)

@@ -13,7 +13,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image x:Name="MainImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="DefaultSplash.png" Stretch="Fill" />
+        <Image x:Name="MainImage" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="DefaultMain.png" Stretch="Fill" />
         <StackPanel Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>

@@ -57,9 +57,9 @@ namespace UnityL10nToolPatcherCShop
                 Console.WriteLine(ioException.Message);
             }
             System.IO.Directory.CreateDirectory("temp\\");
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "splash.png"))
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "customSplash.png"))
             {
-                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "splash.png", UriKind.RelativeOrAbsolute);
+                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "customSplash.png", UriKind.RelativeOrAbsolute);
                 SplashImage.Source = BitmapFrame.Create(uri);
             } else
             {

@@ -281,21 +281,21 @@ namespace UnityL10nToolCShop
             if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico"))
             {
                 System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico",
-                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico");
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico", true);
                 Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "temp\\customIcon.ico", UriKind.RelativeOrAbsolute);
                 PatcherIconImage.Source = BitmapFrame.Create(uri);
             }
             if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png"))
             {
                 System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png",
-                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customSplash.png");
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customSplash.png", true);
                 Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customSplash.png", UriKind.RelativeOrAbsolute);
                 PatcherSplashImage.Source = BitmapFrame.Create(uri);
             }
             if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png"))
             {
                 System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png",
-                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customMain.png");
+                    AppDomain.CurrentDomain.BaseDirectory + "temp\\customMain.png", true);
                 Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customMain.png", UriKind.RelativeOrAbsolute);
                 PatcherMainImage.Source = BitmapFrame.Create(uri);
             }
@@ -523,6 +523,18 @@ namespace UnityL10nToolCShop
                 }
                 LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Building");
                 unityL10nToolCppManaged.BuildProject(projectFolderName + "Build\\");
+                string binaryName;
+                if (ProjectSettingsCLIGlobal.ZipFileName != "")
+                {
+                    binaryName = ProjectSettingsCLIGlobal.ZipFileName;
+                }
+                else
+                {
+                    binaryName = unityL10NToolProjectInfo.GameName + " Patcher";
+                }
+                System.IO.File.Move(
+                    projectFolderName + "Build\\UnityL10nToolPatcherCShop.exe",
+                    projectFolderName + "Build\\" + binaryName + ".exe");
                 if (ProjectSettingsCLIGlobal.ZipBuildFolderAfterBuild)
                 {
                     LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Zipping built result");

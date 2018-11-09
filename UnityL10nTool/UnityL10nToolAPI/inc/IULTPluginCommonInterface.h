@@ -1,5 +1,4 @@
 #pragma once
-using namespace std;
 #include <map>
 #include <algorithm>
 #include "json/json.h"
@@ -26,13 +25,13 @@ public:
 		OPTION_TYPE_DOUBLE = 3,
 		OPTION_TYPE_BOOL = 4
 	};
-	wstring OptionName;
-	wstring OptionDescription;
+	std::wstring OptionName;
+	std::wstring OptionDescription;
 	void* Value;
 	void* ValueAsChild;
 	Type type;
 	Type typeAsChild;
-	vector<AssetMapOption> nestedOptions;
+	std::vector<AssetMapOption> nestedOptions;
 	Json::Value ToJson() {
 		Json::Value result;
 		Json::Value null_value;
@@ -46,7 +45,7 @@ public:
 		case OPTION_TYPE_WSTRING:
 			result["type"] = "WSTRING";
 			if (this->Value) {
-				result["Value"] = WideMultiStringConverter->to_bytes(*(wstring*)this->Value);
+				result["Value"] = WideMultiStringConverter->to_bytes(*(std::wstring*)this->Value);
 			}
 			else {
 				result["Value"] = null_value;
@@ -88,7 +87,7 @@ public:
 		case OPTION_TYPE_WSTRING:
 			result["typeAsChild"] = "WSTRING";
 			if (this->ValueAsChild) {
-				result["ValueAsChild"] = WideMultiStringConverter->to_bytes(*(wstring*)this->ValueAsChild);
+				result["ValueAsChild"] = WideMultiStringConverter->to_bytes(*(std::wstring*)this->ValueAsChild);
 			}
 			else {
 				result["ValueAsChild"] = null_value;
@@ -122,7 +121,7 @@ public:
 			}
 			break;
 		}
-		for (vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin();
+		for (std::vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin();
 			iterator != this->nestedOptions.end(); iterator++) {
 			//if (!(iterator->Value == NULL && iterator->ValueAsChild == NULL)) {
 			if (!(iterator->Value == NULL)) {
@@ -132,19 +131,19 @@ public:
 		return result;
 	}
 	AssetMapOption() {}
-	AssetMapOption(wstring OptionName, wstring OptionDescription, void* Value, void* ValueAsChild, Type type, Type typeAsChild, vector<AssetMapOption> nestedOptions)
+	AssetMapOption(std::wstring OptionName, std::wstring OptionDescription, void* Value, void* ValueAsChild, Type type, Type typeAsChild, std::vector<AssetMapOption> nestedOptions)
 		:OptionName(OptionName), OptionDescription(OptionDescription), Value(Value), ValueAsChild(ValueAsChild), type(type), typeAsChild(typeAsChild), nestedOptions(nestedOptions) {}
 	AssetMapOption(Json::Value json) {
 		this->OptionName = WideMultiStringConverter->from_bytes(json["OptionName"].asString());
 		this->OptionDescription = WideMultiStringConverter->from_bytes(json["OptionDescription"].asString());
-		string tempType = json["type"].asString();
+		std::string tempType = json["type"].asString();
 		if (tempType == "NONE") {
 			this->type = OPTION_TYPE_NONE;
 		}
 		else if (tempType == "WSTRING") {
 			this->type = OPTION_TYPE_WSTRING;
 			if (!json["Value"].isNull()) {
-				this->Value = new wstring(WideMultiStringConverter->from_bytes(json["Value"].asString()));
+				this->Value = new std::wstring(WideMultiStringConverter->from_bytes(json["Value"].asString()));
 			}
 		}
 		else if (tempType == "INT") {
@@ -166,16 +165,16 @@ public:
 			}
 		}
 		else {
-			throw new exception(("Unknown Type" + tempType).c_str());
+			throw new std::exception(("Unknown Type" + tempType).c_str());
 		}
-		string tempTypeAsChild = json["typeAsChild"].asString();
+		std::string tempTypeAsChild = json["typeAsChild"].asString();
 		if (tempTypeAsChild == "NONE") {
 			this->typeAsChild = OPTION_TYPE_NONE;
 		}
 		else if (tempTypeAsChild == "WSTRING") {
 			this->typeAsChild = OPTION_TYPE_WSTRING;
 			if (!json["ValueAsChild"].isNull()) {
-				this->ValueAsChild = new wstring(WideMultiStringConverter->from_bytes(json["ValueAsChild"].asString()));
+				this->ValueAsChild = new std::wstring(WideMultiStringConverter->from_bytes(json["ValueAsChild"].asString()));
 			}
 		}
 		else if (tempTypeAsChild == "INT") {
@@ -197,7 +196,7 @@ public:
 			}
 		}
 		else {
-			throw new exception(("Unknown Type" + tempType).c_str());
+			throw new std::exception(("Unknown Type" + tempType).c_str());
 		}
 		Json::Value nestedOptionsJson = json["nestedOptions"];
 		for (Json::ArrayIndex i = 0; i < nestedOptionsJson.size(); i++) {
@@ -207,45 +206,45 @@ public:
 };
 
 struct UnityL10nToolAPI {
-	string version;
-	string versionFirstTwoNumbers;
+	std::string version;
+	std::string versionFirstTwoNumbers;
 	ClassDatabaseFile* BasicClassDatabaseFile;
 	ClassDatabaseFile* MonoClassDatabaseFile;
 	const ResourceManagerFile* ResourceManagerFileGlobal;
 	const AssetsFileTable* GlobalgamemanagersAssetsTable;
-	vector<string>* AssetsFileNames;
+	std::vector<std::string>* AssetsFileNames;
 	/* FindAFromB */
-	const map <string, AssetsFile*>* FindAssetsFilesFromAssetsName;
-	const map <string, AssetsFileTable*>* FindAssetsFileTablesFromAssetsName;
-	const map <INT32, UINT32>* FindBasicClassIndexFromClassID;
-	const map <string, UINT32>* FindBasicClassIndexFromClassName;
-	const map<pair<string, INT64>, string>* FindMonoClassNameFromAssetsNameANDPathId;
-	const map<string, UINT32>* FindMonoClassIndexFromMonoClassName;
-	const map<pair<INT32, INT64>, string>* FindContainerPathFromFileIDPathID;
-	const map<string, pair<INT32, INT64>>* FindFileIDPathIDFromContainerPath;
-	const map<string, INT32>* FindPathIDOfContainerPathFromAssetsName;
-	const map<INT32, string>* FindAssetsNameFromPathIDOfContainerPath;
+	const std::map <std::string, AssetsFile*>* FindAssetsFilesFromAssetsName;
+	const std::map <std::string, AssetsFileTable*>* FindAssetsFileTablesFromAssetsName;
+	const std::map <INT32, UINT32>* FindBasicClassIndexFromClassID;
+	const std::map <std::string, UINT32>* FindBasicClassIndexFromClassName;
+	const std::map<std::pair<std::string, INT64>, std::string>* FindMonoClassNameFromAssetsNameANDPathId;
+	const std::map<std::string, UINT32>* FindMonoClassIndexFromMonoClassName;
+	const std::map<std::pair<INT32, INT64>, std::string>* FindContainerPathFromFileIDPathID;
+	const std::map<std::string, std::pair<INT32, INT64>>* FindFileIDPathIDFromContainerPath;
+	const std::map<std::string, INT32>* FindPathIDOfContainerPathFromAssetsName;
+	const std::map<INT32, std::string>* FindAssetsNameFromPathIDOfContainerPath;
 
 	
 	void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	AssetTypeInstance * GetBasicAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeInstance * GetDetailAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
-	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(string MonoClassName);
-	AssetsReplacer * makeAssetsReplacer(string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
-	AssetsReplacer * makeAssetsReplacer(string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
-	string GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField * assetTypeTemplateField);
-	string GetJsonKeyFromAssetTypeValueField(AssetTypeValueField * assetTypeValueField);
-	string GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField * field);
-	string GetJsonFromAssetTypeValueField(AssetTypeValueField * field);
+	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
+	AssetsReplacer * makeAssetsReplacer(std::string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
+	AssetsReplacer * makeAssetsReplacer(std::string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
+	std::string GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField * assetTypeTemplateField);
+	std::string GetJsonKeyFromAssetTypeValueField(AssetTypeValueField * assetTypeValueField);
+	std::string GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField * field);
+	std::string GetJsonFromAssetTypeValueField(AssetTypeValueField * field);
 	AssetTypeValueField * GetAssetTypeValueFieldFromJsonRecursive(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	AssetTypeValueField * GetAssetTypeValueFieldFromJson(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	AssetTypeValueField * GetAssetTypeValueFieldArrayFromJson(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField * assetTypeValueField, Json::Value json);
-	string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
-	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, string assetName);
-	wstring GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx);
-	wstring GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx);
+	std::string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
+	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, std::string assetName);
+	std::wstring GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx);
+	std::wstring GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx);
 };
 
 
@@ -264,26 +263,26 @@ inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFileTable* ass
 	}
 }
 
-inline string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField* baseAssetTypeValueField) {
+inline std::string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField* baseAssetTypeValueField) {
 	if (baseAssetTypeValueField) {
-		string m_Name = baseAssetTypeValueField->Get("m_Name")->GetValue()->AsString();
+		std::string m_Name = baseAssetTypeValueField->Get("m_Name")->GetValue()->AsString();
 		AssetTypeValueField* m_ScriptATVF = baseAssetTypeValueField->Get("m_Script");
 		if (m_ScriptATVF) {
 			int m_FileId = m_ScriptATVF->Get("m_FileID")->GetValue()->AsInt();
 			unsigned __int64 m_PathID = m_ScriptATVF->Get("m_PathID")->GetValue()->AsUInt64();
-			string assetsName = string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
-			return FindMonoClassNameFromAssetsNameANDPathId->find(pair<string, INT64>(assetsName, m_PathID))->second;
+			std::string assetsName = std::string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
+			return FindMonoClassNameFromAssetsNameANDPathId->find(std::pair<std::string, INT64>(assetsName, m_PathID))->second;
 		}
 		else {
-			throw new exception("GetClassNameFromBaseAssetTypeValueField: m_ScriptATVF not exist");
+			throw new std::exception("GetClassNameFromBaseAssetTypeValueField: m_ScriptATVF not exist");
 		}
 	}
 	else {
-		throw new exception("GetClassNameFromBaseAssetTypeValueField: baseAssetTypeValueField not exist");
+		throw new std::exception("GetClassNameFromBaseAssetTypeValueField: baseAssetTypeValueField not exist");
 	}
 }
 
-inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFileTable, string assetName) {
+inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFileTable, std::string assetName) {
 	char readName[100];
 	AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
 	for (unsigned int i = 0; i < assetsFileTable->assetFileInfoCount; i++) {
@@ -295,7 +294,7 @@ inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFil
 			AssetTypeInstance* assetTypeValueField = GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
 			AssetTypeValueField* pbase = assetTypeValueField->GetBaseField();
 			if (pbase) {
-				string m_Name = pbase->Get("m_Name")->GetValue()->AsString();
+				std::string m_Name = pbase->Get("m_Name")->GetValue()->AsString();
 				if (assetName == m_Name) {
 					assetTypeValueField->~AssetTypeInstance();
 					return assetFileInfoEx->index;
@@ -336,7 +335,7 @@ inline AssetTypeInstance* UnityL10nToolAPI::GetDetailAssetTypeInstanceFromAssetF
 	AssetTypeInstance* baseAssetTypeInstance = GetBasicAssetTypeInstanceFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx);
 	if (classId == 0x72) {
 		AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance->GetBaseField();
-		string monoScriptFullName = GetClassNameFromBaseAssetTypeValueField(assetsFileTable, baseAssetTypeValueField);
+		std::string monoScriptFullName = GetClassNameFromBaseAssetTypeValueField(assetsFileTable, baseAssetTypeValueField);
 		baseAssetTypeInstance->~AssetTypeInstance();
 		AssetTypeTemplateField* baseMonoTypeTemplateField = GetMonoAssetTypeTemplateFieldFromClassName(monoScriptFullName);
 		AssetTypeInstance* baseMonoTypeInstance = new AssetTypeInstance(
@@ -353,8 +352,8 @@ inline AssetTypeInstance* UnityL10nToolAPI::GetDetailAssetTypeInstanceFromAssetF
 	}
 }
 
-inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFromClassName(string MonoClassName) {
-	map<string, UINT32>::const_iterator indexOfMonoclassIterator = FindMonoClassIndexFromMonoClassName->find(MonoClassName);
+inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName) {
+	std::map<std::string, UINT32>::const_iterator indexOfMonoclassIterator = FindMonoClassIndexFromMonoClassName->find(MonoClassName);
 	if (indexOfMonoclassIterator == FindMonoClassIndexFromMonoClassName->end()) {
 		return new AssetTypeTemplateField;
 	}
@@ -374,7 +373,7 @@ inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFr
 	return baseAssetTypeTemplateField;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson) {
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(std::string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson) {
 	INT64 PathId = assetFileInfoEx->index;
 	int classId;
 	WORD monoClassId;
@@ -398,31 +397,31 @@ inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(string assetsFileNam
 	return NULL;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance) {
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(std::string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance) {
 	return makeAssetsReplacer(assetsFileName, assetsFileTable, assetFileInfoEx, assetTypeInstance, Json::Value());
 }
 
-inline string UnityL10nToolAPI::GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField* assetTypeTemplateField) {
-	string align;
+inline std::string UnityL10nToolAPI::GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField* assetTypeTemplateField) {
+	std::string align;
 	if (assetTypeTemplateField->align || assetTypeTemplateField->valueType == ValueType_String) {
 		align = "1";
 	}
 	else {
 		align = "0";
 	}
-	string key = align + " " + string(assetTypeTemplateField->type) + " " + string(assetTypeTemplateField->name);
+	std::string key = align + " " + std::string(assetTypeTemplateField->type) + " " + std::string(assetTypeTemplateField->name);
 	return key;
 }
 
-inline string UnityL10nToolAPI::GetJsonKeyFromAssetTypeValueField(AssetTypeValueField* assetTypeValueField) {
+inline std::string UnityL10nToolAPI::GetJsonKeyFromAssetTypeValueField(AssetTypeValueField* assetTypeValueField) {
 	return GetJsonKeyFromAssetTypeTemplateField(assetTypeValueField->GetTemplateField());
 }
 
-inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField *field) {
+inline std::string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField *field) {
 	AssetTypeTemplateField* templateField = field->GetTemplateField();
 	AssetTypeValueField** fieldChildren = field->GetChildrenList();
 	DWORD childrenCount = field->GetChildrenCount();
-	string str;
+	std::string str;
 	if (templateField->isArray) {
 		if (childrenCount == 0) {
 			str = "[";
@@ -438,15 +437,15 @@ inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTyp
 	for (DWORD i = 0; i < childrenCount; i++) {
 		AssetTypeValueField* fieldChild = fieldChildren[i];
 		AssetTypeTemplateField* templateFieldChild = fieldChild->GetTemplateField();
-		string align;
+		std::string align;
 		if (templateFieldChild->align || templateFieldChild->valueType == ValueType_String) {
 			align = "1";
 		}
 		else {
 			align = "0";
 		}
-		string key = align + " " + string(templateFieldChild->type) + " " + string(templateFieldChild->name);
-		string value;
+		std::string key = align + " " + std::string(templateFieldChild->type) + " " + std::string(templateFieldChild->name);
+		std::string value;
 		switch (templateFieldChild->valueType) {
 		case ValueType_None:
 			if (templateFieldChild->isArray) {
@@ -460,19 +459,19 @@ inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTyp
 		case ValueType_Int16:
 		case ValueType_Int32:
 		case ValueType_Int64:
-			value = to_string((long long)fieldChild->GetValue()->AsInt());
+			value = std::to_string((long long)fieldChild->GetValue()->AsInt());
 			break;
 		case ValueType_UInt8:
 		case ValueType_UInt16:
 		case ValueType_UInt32:
 		case ValueType_UInt64:
-			value = to_string(fieldChild->GetValue()->AsUInt64());
+			value = std::to_string(fieldChild->GetValue()->AsUInt64());
 			break;
 		case ValueType_Float:
-			value = to_string((long double)fieldChild->GetValue()->AsFloat());
+			value = std::to_string((long double)fieldChild->GetValue()->AsFloat());
 			break;
 		case ValueType_Double:
-			value = to_string((long double)fieldChild->GetValue()->AsDouble());
+			value = std::to_string((long double)fieldChild->GetValue()->AsDouble());
 			break;
 		case ValueType_Bool:
 			if (fieldChild->GetValue()->AsBool()) {
@@ -483,7 +482,7 @@ inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTyp
 			}
 			break;
 		case ValueType_String:
-			value = "\"" + string(fieldChild->GetValue()->AsString()) + "\"";
+			value = "\"" + std::string(fieldChild->GetValue()->AsString()) + "\"";
 			break;
 		}
 		if (templateField->isArray) {
@@ -518,49 +517,49 @@ inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueFieldRecursive(AssetTyp
 	return str;
 }
 
-inline string UnityL10nToolAPI::GetJsonFromAssetTypeValueField(AssetTypeValueField *field) {
-	string str = "{\r\n";
+inline std::string UnityL10nToolAPI::GetJsonFromAssetTypeValueField(AssetTypeValueField *field) {
+	std::string str = "{\r\n";
 	AssetTypeTemplateField* templateField = field->GetTemplateField();
-	string key = string(templateField->align ? "1" : "0") + " " + string(templateField->type) + " " + string(templateField->name);
+	std::string key = std::string(templateField->align ? "1" : "0") + " " + std::string(templateField->type) + " " + std::string(templateField->name);
 	str += "    \"" + key + "\": \r\n    ";
-	string value = GetJsonFromAssetTypeValueFieldRecursive(field);
+	std::string value = GetJsonFromAssetTypeValueFieldRecursive(field);
 	str += ReplaceAll(value, "\r\n", "\r\n    ");
 	str += "\r\n}";
 	return str;
 }
 
 inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonRecursive(AssetTypeTemplateField* assetTypeTemplateField, Json::Value json) {
-	vector<AssetTypeValueField*>* assetTypeValueFieldArray = new vector<AssetTypeValueField*>();
+	std::vector<AssetTypeValueField*>* assetTypeValueFieldArray = new std::vector<AssetTypeValueField*>();
 	AssetTypeValue* assetTypeValue = new AssetTypeValue(ValueType_None, 0);
 	AssetTypeValueField* assetTypeValueField = new AssetTypeValueField();
-	string align;
+	std::string align;
 	if (assetTypeTemplateField->align || assetTypeTemplateField->valueType == ValueType_String) {
 		align = "1";
 	}
 	else {
 		align = "0";
 	}
-	string key = align + " " + string(assetTypeTemplateField->type) + " " + string(assetTypeTemplateField->name);
+	std::string key = align + " " + std::string(assetTypeTemplateField->type) + " " + std::string(assetTypeTemplateField->name);
 	//Json::Value thisJson = json[key];
 	Json::Value thisJson = json;
 	// 이전코드가 잘못되 수정하는도중 임시로 재할당
-	vector<string> testStrs1 = thisJson.getMemberNames();
+	std::vector<std::string> testStrs1 = thisJson.getMemberNames();
 	/*Json::Value thisJson = */
 	for (unsigned int i = 0; i < assetTypeTemplateField->childrenCount; i++) {
 		AssetTypeTemplateField* childAssetTypeTemplateField = &assetTypeTemplateField->children[i];
-		string alignChild;
+		std::string alignChild;
 		if (childAssetTypeTemplateField->align || childAssetTypeTemplateField->valueType == ValueType_String) {
 			alignChild = "1";
 		}
 		else {
 			alignChild = "0";
 		}
-		string keyChild = alignChild + " " + string(childAssetTypeTemplateField->type) + " " + string(childAssetTypeTemplateField->name);
+		std::string keyChild = alignChild + " " + std::string(childAssetTypeTemplateField->type) + " " + std::string(childAssetTypeTemplateField->name);
 		//void* container;
 		AssetTypeValue* childAssetTypeValue;
 		AssetTypeValueField* childAssetTypeValueField = new AssetTypeValueField();
 		AssetTypeByteArray* assetTypeByteArray;
-		string* tempStr;
+		std::string* tempStr;
 
 		//only test
 		INT32 testInt = 0;
@@ -627,7 +626,7 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonRecu
 			break;
 
 		case ValueType_String:
-			tempStr = new string(thisJson[keyChild].asString());
+			tempStr = new std::string(thisJson[keyChild].asString());
 			childAssetTypeValue = new AssetTypeValue(ValueType_String, (void*)tempStr->c_str());
 			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
 			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
@@ -643,7 +642,7 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonRecu
 			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
 			break;
 		case ValueType_Array:
-			throw new exception("No implement");
+			throw new std::exception("No implement");
 			break;
 		}
 	}
@@ -656,11 +655,11 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJson(Ass
 }
 
 inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldArrayFromJson(AssetTypeTemplateField* assetTypeTemplateField, Json::Value json) {
-	string testStr = JsonToStyleString(json);
-	vector<AssetTypeValueField*>* assetTypeValueFieldArray = new vector<AssetTypeValueField*>();
+	std::string testStr = JsonToStyleString(json);
+	std::vector<AssetTypeValueField*>* assetTypeValueFieldArray = new std::vector<AssetTypeValueField*>();
 	for (Json::ArrayIndex i = 0; i < json.size(); i++) {
 		Json::Value childJson = json[i];
-		string key = childJson.getMemberNames()[0];
+		std::string key = childJson.getMemberNames()[0];
 		assetTypeValueFieldArray->push_back(GetAssetTypeValueFieldFromJsonRecursive(&assetTypeTemplateField->children[1], childJson[key]));
 	}
 
@@ -674,12 +673,12 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldArrayFromJso
 }
 
 inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField* assetTypeValueField, Json::Value json) {
-	string key = GetJsonKeyFromAssetTypeValueField(assetTypeValueField);
-	vector<string> jsonKeyList = json.getMemberNames();
+	std::string key = GetJsonKeyFromAssetTypeValueField(assetTypeValueField);
+	std::vector<std::string> jsonKeyList = json.getMemberNames();
 	for (unsigned int i = 0; i < assetTypeValueField->GetChildrenCount(); i++) {
 		AssetTypeValueField* childAssetTypeValueField = assetTypeValueField->GetChildrenList()[i];
-		string keyChild = GetJsonKeyFromAssetTypeValueField(childAssetTypeValueField);
-		vector<string>::iterator iterator = find(jsonKeyList.begin(), jsonKeyList.end(), keyChild);
+		std::string keyChild = GetJsonKeyFromAssetTypeValueField(childAssetTypeValueField);
+		std::vector<std::string>::iterator iterator = find(jsonKeyList.begin(), jsonKeyList.end(), keyChild);
 
 		if (iterator != jsonKeyList.end()) {
 			switch (childAssetTypeValueField->GetTemplateField()->valueType) {
@@ -721,7 +720,7 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSONRecursive(AssetTy
 				break;
 
 			case ValueType_String:
-				childAssetTypeValueField->GetValue()->Set(new string(json[keyChild].asString()));
+				childAssetTypeValueField->GetValue()->Set(new std::string(json[keyChild].asString()));
 				break;
 
 			case ValueType_None:
@@ -735,7 +734,7 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSONRecursive(AssetTy
 				break;
 
 			case ValueType_Array:
-				throw new exception("No implement");
+				throw new std::exception("No implement");
 				break;
 			}
 		}
@@ -744,7 +743,7 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSONRecursive(AssetTy
 }
 
 inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField* assetTypeValueField, Json::Value json) {
-	vector<string> jsonMembers = json.getMemberNames();
+	std::vector<std::string> jsonMembers = json.getMemberNames();
 	if (jsonMembers.size() == 0) {
 		return true;
 	}
@@ -753,14 +752,14 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSON(AssetTypeValueFi
 	}
 }
 
-inline wstring UnityL10nToolAPI::GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx * assetFileInfoEx) {
+inline std::wstring UnityL10nToolAPI::GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx * assetFileInfoEx) {
 	return UnityL10nToolAPI::GetAssetNameW(assetsFileTable->getAssetsFile(), assetFileInfoEx);
 }
 
-inline wstring UnityL10nToolAPI::GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx)
+inline std::wstring UnityL10nToolAPI::GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx)
 {
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> WideMultiStringConverterLocal;
 	char tempName[100];
 	assetFileInfoEx->ReadName(assetsFile, tempName);
-	return wstring(WideMultiStringConverterLocal.from_bytes(tempName));
+	return std::wstring(WideMultiStringConverterLocal.from_bytes(tempName));
 }

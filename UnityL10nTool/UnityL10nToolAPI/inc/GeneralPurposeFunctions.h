@@ -3,7 +3,6 @@
 #include <shellapi.h>
 #include <codecvt> // for std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 #include "json/json.h"
-using namespace std;
 
 // http://faithlife.codes/blog/2008/04/exception_0xc0020001_in_ccli_assembly/ Due to static value 0xc0020001 occur
 #ifndef UnityL10nToolCppCLIDEFINE
@@ -20,49 +19,49 @@ extern Json::StreamWriterBuilder* wbuilder;
 #endif // !UnityL10nToolCppCLIDEFINE
 
 std::string readFile2(const std::wstring & fileName);
-vector<wstring> GetAllFilesFilterWithinAllSubFolder(wstring directory, wstring filter);
+std::vector<std::wstring> GetAllFilesFilterWithinAllSubFolder(std::wstring directory, std::wstring filter);
 std::string ReplaceAll(std::string & str, const std::string & from, const std::string & to);
 bool copyFileCustom(const char *SRC, const char* DEST);
 bool copyFileCustom(const wchar_t *SRC, const wchar_t* DEST);
 std::vector<std::wstring> get_all_files_names_within_folder(std::wstring filter);
 bool CreateProcessCustom(std::wstring commandLine);
-bool CopyDirTo(const wstring& source_folder, const wstring& target_folder);
+bool CopyDirTo(const std::wstring& source_folder, const std::wstring& target_folder);
 
-inline Json::Value JsonParseFromString(string str) {
+inline Json::Value JsonParseFromString(std::string str) {
 	Json::Value json;
-	string err;
+	std::string err;
 	JsonReader->parse(str.c_str(), str.c_str() + str.size(), &json, &err);
 	return json;
 }
 
-inline bool JsonParseFromString(string str, Json::Value& json) {
-	string err;
+inline bool JsonParseFromString(std::string str, Json::Value& json) {
+	std::string err;
 	return JsonReader->parse(str.c_str(), str.c_str() + str.size(), &json, &err);
 }
 
-inline Json::Value JsonParseFromWString(wstring wstr) {
-	string str = WideMultiStringConverter->to_bytes(wstr);
+inline Json::Value JsonParseFromWString(std::wstring wstr) {
+	std::string str = WideMultiStringConverter->to_bytes(wstr);
 	return JsonParseFromString(str);
 }
 
-inline bool JsonParseFromWstring(wstring wstr, Json::Value& json) {
-	string str = WideMultiStringConverter->to_bytes(wstr);
+inline bool JsonParseFromWstring(std::wstring wstr, Json::Value& json) {
+	std::string str = WideMultiStringConverter->to_bytes(wstr);
 	return JsonParseFromString(str, json);
 }
 
-inline string JsonToStyleString(Json::Value& json) {
+inline std::string JsonToStyleString(Json::Value& json) {
 	(*wbuilder)["indentation"] = "\t";
 	return Json::writeString((*wbuilder), json);
 }
 
-inline wstring JsonToStyleWString(Json::Value& json) {
+inline std::wstring JsonToStyleWString(Json::Value& json) {
 	return WideMultiStringConverter->from_bytes(JsonToStyleString(json));
 }
 
 // https://stackoverflow.com/questions/4725115/on-windows-is-there-an-interface-for-copying-folders/4725137
-inline bool CopyDirTo(const wstring& source_folder, const wstring& target_folder)
+inline bool CopyDirTo(const std::wstring& source_folder, const std::wstring& target_folder)
 {
-	wstring new_sf = source_folder + L"*";
+	std::wstring new_sf = source_folder + L"*";
 	WCHAR sf[MAX_PATH + 1];
 	WCHAR tf[MAX_PATH + 1];
 
@@ -83,20 +82,20 @@ inline bool CopyDirTo(const wstring& source_folder, const wstring& target_folder
 }
 
 // https://stackoverflow.com/questions/116038/what-is-the-best-way-to-read-an-entire-file-into-a-stdstring-in-c#
-inline string readFile2(const wstring &fileName)
+inline std::string readFile2(const std::wstring &fileName)
 {
-	ifstream ifs(fileName.c_str(), ios::in | ios::binary | ios::ate);
+	std::ifstream ifs(fileName.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
 
-	ifstream::pos_type fileSize = ifs.tellg();
+	std::ifstream::pos_type fileSize = ifs.tellg();
 	if (fileSize < 0)
 		return std::string();
 
-	ifs.seekg(0, ios::beg);
+	ifs.seekg(0, std::ios::beg);
 
-	vector<char> bytes(fileSize);
+	std::vector<char> bytes(fileSize);
 	ifs.read(&bytes[0], fileSize);
 
-	return string(&bytes[0], fileSize);
+	return std::string(&bytes[0], fileSize);
 }
 
 inline bool copyFileCustom(const char *SRC, const char* DEST)
@@ -116,9 +115,9 @@ inline bool copyFileCustom(const wchar_t *SRC, const wchar_t* DEST)
 }
 
 //https://stackoverflow.com/questions/612097/how-can-i-get-the-list-of-files-in-a-directory-using-c-or-c
-inline vector<wstring> get_all_files_names_within_folder(wstring filter)
+inline std::vector<std::wstring> get_all_files_names_within_folder(std::wstring filter)
 {
-	vector<wstring> names;
+	std::vector<std::wstring> names;
 	WIN32_FIND_DATA fd;
 	HANDLE hFind = ::FindFirstFileW(filter.c_str(), &fd);
 	if (hFind != INVALID_HANDLE_VALUE) {
@@ -134,8 +133,8 @@ inline vector<wstring> get_all_files_names_within_folder(wstring filter)
 	return names;
 }
 
-inline vector<wstring> GetAllFolderName(wstring directory) {
-	vector<wstring> directories;
+inline std::vector<std::wstring> GetAllFolderName(std::wstring directory) {
+	std::vector<std::wstring> directories;
 	WIN32_FIND_DATAW fd;
 	HANDLE hFind = ::FindFirstFileW((directory + L"*").c_str(), &fd);
 	if (hFind != INVALID_HANDLE_VALUE) {
@@ -151,8 +150,8 @@ inline vector<wstring> GetAllFolderName(wstring directory) {
 	return directories;
 }
 
-inline vector<wstring> GetAllFilesFilterWithinAllSubFolderRecursive(wstring firstDirectory, wstring subDirectory, wstring filter) {
-	vector<wstring> files;
+inline std::vector<std::wstring> GetAllFilesFilterWithinAllSubFolderRecursive(std::wstring firstDirectory, std::wstring subDirectory, std::wstring filter) {
+	std::vector<std::wstring> files;
 	WIN32_FIND_DATAW fd;
 	HANDLE hFind = ::FindFirstFileW((firstDirectory + subDirectory + filter).c_str(), &fd);
 	if (hFind != INVALID_HANDLE_VALUE) {
@@ -173,7 +172,7 @@ inline vector<wstring> GetAllFilesFilterWithinAllSubFolderRecursive(wstring firs
 				if ((!lstrcmpW(fdSub.cFileName, L".")) || (!lstrcmpW(fdSub.cFileName, L".."))) {
 					continue;
 				}
-				vector<wstring> subFiles = GetAllFilesFilterWithinAllSubFolderRecursive(firstDirectory, subDirectory + fdSub.cFileName + L"\\", filter);
+				std::vector<std::wstring> subFiles = GetAllFilesFilterWithinAllSubFolderRecursive(firstDirectory, subDirectory + fdSub.cFileName + L"\\", filter);
 				files.insert(files.end(), subFiles.begin(), subFiles.end());
 			}
 		} while (FindNextFileW(hFindSub, &fdSub));
@@ -181,11 +180,11 @@ inline vector<wstring> GetAllFilesFilterWithinAllSubFolderRecursive(wstring firs
 	return files;
 }
 
-inline vector<wstring> GetAllFilesFilterWithinAllSubFolder(wstring directory, wstring filter) {
+inline std::vector<std::wstring> GetAllFilesFilterWithinAllSubFolder(std::wstring directory, std::wstring filter) {
 	return GetAllFilesFilterWithinAllSubFolderRecursive(directory, L"", filter);
 }
 
-inline bool CreateProcessCustom(wstring commandLine) {
+inline bool CreateProcessCustom(std::wstring commandLine) {
 	STARTUPINFO si;
 	PROCESS_INFORMATION pi;
 
@@ -263,6 +262,6 @@ inline bool DirExists(const std::wstring& dirName_in)
 //}
 
 inline bool FileExist(const std::wstring& name) {
-	ifstream f(name.c_str());
+	std::ifstream f(name.c_str());
 	return f.good();
 }

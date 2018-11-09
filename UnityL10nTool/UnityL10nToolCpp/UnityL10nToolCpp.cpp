@@ -64,7 +64,7 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFo
 	else {
 		wstring tempGamePath = FindUnityGameFolderFromDataFolderName(UnityL10nToolProjectInfoGlobal.DataFolderName, UnityL10nToolProjectInfoGlobal.GameName, UnityL10nToolProjectInfoGlobal.MakerName);
 		if (tempGamePath.empty()) {
-			throw new exception("Cannot Find Game Folder");
+			throw new std::exception("Cannot Find Game Folder");
 		}
 		else {
 			UnityL10nToolProjectInfoGlobal.GamePath = tempGamePath;
@@ -800,15 +800,15 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 						assetsFileTable = assetsFileTableIterator->second;
 					}
 					else {
-						throw new exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+						throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
 					}
 				}
 				else {
-					throw new exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
+					throw new std::exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
 				}
 			}
 			else {
-				throw new exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
+				throw new std::exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
 			}
 		} else {
 			assetsName = WideMultiStringConverter->to_bytes(textAssetMapItr->assetsName);
@@ -818,16 +818,16 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 				assetsFileTable = assetsFileTableIterator->second;
 				PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter->to_bytes(textAssetMapItr->assetName));
 				if (PathID == -1) {
-					throw new exception("PathID == -1");
+					throw new std::exception("PathID == -1");
 				}
 			}
 			else {
-				throw new exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+				throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
 			}
 		}
 		AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(PathID);
 		if (assetFileInfoEx == NULL) {
-			throw new exception("assetFileInfoEx == NULL");
+			throw new std::exception("assetFileInfoEx == NULL");
 		}
 		AssetTypeTemplateField templateBase;
 		//char *name = "";
@@ -880,9 +880,9 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 			}
 		}
 		else {
-			throw new exception("pBase == NULL");
+			throw new std::exception("pBase == NULL");
 		}
-		throw new exception("UNKNOWN");
+		throw new std::exception("UNKNOWN");
 	}
 	return true;
 
@@ -1429,7 +1429,7 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithAssetMap.find(textAssetMap.InteractWithAssetPluginName);
 		if (iterator != TextPluginInfoInteractWithAssetMap.end()) {
 			/*wstring m_Script = GetOriginalText(textAssetMap);*/
-			LanguagePairDics result = iterator->second->GetOriginalMapFromText(textAssetMap.OriginalText, textAssetMap.languagePairDics);
+			map<wstring, LanguagePairDic> result = iterator->second->GetOriginalMapFromText(textAssetMap.OriginalText, textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
 			if (IsFinal == false) {
 				for (vector<TextAssetMap>::iterator iterator = TextAssetMapsGlobal.InteractWithAssetNews.begin();
@@ -1455,7 +1455,7 @@ TextAssetMap UnityL10nToolCpp::GetOriginalLanguagePairDics(TextAssetMap textAsse
 	else {
 		return textAssetMap;
 	}
-	throw new exception("UNKNOWN");
+	throw new std::exception("UNKNOWN");
 }
 
 TextAssetMap UnityL10nToolCpp::GetTranslatedText(TextAssetMap textAssetMap, bool IsFinal = false)
@@ -1483,7 +1483,7 @@ TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap, bool
 	if (textAssetMap.InteractWithFileTextPluginName != L"") {
 		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
-			LanguagePairDics result = iterator->second->GetUpdateFileTextFromMap(textAssetMap.languagePairDics);
+			map<wstring, LanguagePairDic> result = iterator->second->GetUpdateFileTextFromMap(textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
 			if (IsFinal == false) {
 				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
@@ -1514,7 +1514,7 @@ TextAssetMap UnityL10nToolCpp::GetUpdateFileText(TextAssetMap textAssetMap, bool
 
 bool UnityL10nToolCpp::SaveUpdateFileToTempFolder(TextAssetMap textAssetMap)
 {
-	for (LanguagePairDics::iterator iterator = textAssetMap.languagePairDics.begin();
+	for (std::map<wstring, LanguagePairDic>::iterator iterator = textAssetMap.languagePairDics.begin();
 		iterator != textAssetMap.languagePairDics.end(); iterator++) {
 		std::wofstream wof;
 		wof.clear();
@@ -1535,7 +1535,7 @@ bool UnityL10nToolCpp::SaveUpdateFileToTempFolder(TextAssetMap textAssetMap)
 
 TextAssetMap UnityL10nToolCpp::LoadTranslatedFileTextFromTempAndResourceFolder(TextAssetMap textAssetMap)
 {
-	for (LanguagePairDics::iterator iterator = textAssetMap.languagePairDics.begin();
+	for (std::map<wstring, LanguagePairDic>::iterator iterator = textAssetMap.languagePairDics.begin();
 		iterator != textAssetMap.languagePairDics.end(); iterator++) {
 		wstring fileName;
 		if (textAssetMap.useContainerPath) {
@@ -1594,17 +1594,17 @@ bool UnityL10nToolCpp::UpdateTextAssetMap(TextAssetMap textAssetMap) {
 TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAssetMap, bool IsFinal = false)
 {
 	if (textAssetMap.InteractWithFileTextPluginName != L"") {
-		map<wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
+		map<std::wstring, TextPluginInfo*>::iterator iterator = TextPluginInfoInteractWithFileTextMap.find(textAssetMap.InteractWithFileTextPluginName);
 		if (iterator != TextPluginInfoInteractWithFileTextMap.end()) {
-			LanguagePairDics result = iterator->second->GetTranslatedMapFromFileText(textAssetMap.languagePairDics);
+			map<std::wstring, LanguagePairDic> result = iterator->second->GetTranslatedMapFromFileText(textAssetMap.languagePairDics);
 			textAssetMap.languagePairDics = result;
 			if(IsFinal == false) {
 				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithFileTextNews.begin();
 					textAssetMapItr != TextAssetMapsGlobal.InteractWithFileTextNews.end(); textAssetMapItr++) {
 					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
-						for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
+						for (map<std::wstring, LanguagePairDic>::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
 							lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
-							LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
+							map<wstring, LanguagePairDic>::iterator lpdResultItr = result.find(lpdItr->first);
 							if (lpdResultItr != result.end()) {
 								lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
 							}
@@ -1617,9 +1617,9 @@ TextAssetMap UnityL10nToolCpp::GetTranslatedLanguagePairDics(TextAssetMap textAs
 				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
 					textAssetMapItr != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
 					if (TextAssetMap::LooseCompare(*textAssetMapItr, textAssetMap)) {
-						for (LanguagePairDics::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
+						for (map<wstring, LanguagePairDic>::iterator lpdItr = textAssetMapItr->languagePairDics.begin();
 							lpdItr != textAssetMapItr->languagePairDics.end(); lpdItr++) {
-							LanguagePairDics::iterator lpdResultItr = result.find(lpdItr->first);
+							map<wstring, LanguagePairDic>::iterator lpdResultItr = result.find(lpdItr->first);
 							if (lpdResultItr != result.end()) {
 								lpdItr->second.AddDicFromTranslated(lpdResultItr->second);
 							}

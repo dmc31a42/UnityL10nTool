@@ -28,11 +28,11 @@ typedef bool(_cdecl *SetPluginSupportAssetMapCallback)(FontAssetMaps supportAsse
 typedef Json::Value(_cdecl *GetProjectConfigJsonCallback)();
 typedef Json::Value(_cdecl *GetPacherConfigJsonCallback)();
 typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetProjectAssetReplacerCallback)();
-typedef bool(_cdecl *CopyBuildFileToBuildFolderCallback)(wstring FontPluginRelativePath, wstring targetPath);
+typedef bool(_cdecl *CopyBuildFileToBuildFolderCallback)(std::wstring FontPluginRelativePath, std::wstring targetPath);
 /* Used in Patcher */
 typedef bool(_cdecl *SetPacherConfigJsonCallback)(Json::Value patcherConfig);
 typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetPatcherAssetReplacerCallback)();
-typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(wstring FontPluginRelativePath, wstring targetPath);
+typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(std::wstring FontPluginRelativePath, std::wstring targetPath);
 
 struct FontAssetMap {
 	std::string assetsName;

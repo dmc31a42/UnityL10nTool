@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UnityL10nToolCShop"
         mc:Ignorable="d"
-        Title="UnityL10nTool: Select or Make new project" Height="450" Width="800" Icon="defaultIcon.ico">
+        Title="UnityL10nTool: Select or Make new project" Height="450" Width="800" Icon="defaultIcon.ico"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

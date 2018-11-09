@@ -1,35 +1,34 @@
 #pragma once
-using namespace std;
+
 #include <string>
 #include <vector>
 #include <map>
 
 #include "IULTPluginCommonInterface.h"
 
-
 struct LanguagePair {
-	wstring Original;
-	wstring Translated;
+	std::wstring Original;
+	std::wstring Translated;
 };
 /* If split one asset to multiple file, set keys as plugin want.
-Otherwise set key to "" (empty wstring) */
+Otherwise set key to "" (empty std::wstring) */
 struct LanguagePairDic {
 public:
-	map<wstring, LanguagePair> Dic;
-	wstring TranslatedFileText;
-	wstring TranslatedFileName;
-	vector<AssetMapOption> InteractWithAssetOptions;
-	vector<AssetMapOption> InteractWithFileTextOptions;
+	std::map<std::wstring, LanguagePair> Dic;
+	std::wstring TranslatedFileText;
+	std::wstring TranslatedFileName;
+	std::vector<AssetMapOption> InteractWithAssetOptions;
+	std::vector<AssetMapOption> InteractWithFileTextOptions;
 	Json::Value ToJSON() {
 		Json::Value result;
 		Json::Value InteractWithAssetOptionsJson(Json::arrayValue);
 		Json::Value InteractWithFileTextOptionsJson(Json::arrayValue);
 		result["TranslatedFileName"] = WideMultiStringConverter->to_bytes(TranslatedFileName);
-		for (vector<AssetMapOption>::iterator iterator = this->InteractWithAssetOptions.begin();
+		for (std::vector<AssetMapOption>::iterator iterator = this->InteractWithAssetOptions.begin();
 			iterator != this->InteractWithAssetOptions.end(); iterator++) {
 			InteractWithAssetOptionsJson.append(iterator->ToJson());
 		}
-		for (vector<AssetMapOption>::iterator iterator = this->InteractWithFileTextOptions.begin();
+		for (std::vector<AssetMapOption>::iterator iterator = this->InteractWithFileTextOptions.begin();
 			iterator != this->InteractWithFileTextOptions.end(); iterator++) {
 			InteractWithFileTextOptionsJson.append(iterator->ToJson());
 		}
@@ -50,25 +49,25 @@ public:
 		}
 	}
 	bool AddDicFromTranslated(LanguagePairDic other) {
-		map<wstring, LanguagePair> tempDic;
-		for (map<wstring, LanguagePair>::iterator iterator = this->Dic.begin();
+		std::map<std::wstring, LanguagePair> tempDic;
+		for (std::map<std::wstring, LanguagePair>::iterator iterator = this->Dic.begin();
 			iterator != this->Dic.end(); iterator++) {
-			map<wstring, LanguagePair>::iterator otherDicItr = other.Dic.find(iterator->first);
+			std::map<std::wstring, LanguagePair>::iterator otherDicItr = other.Dic.find(iterator->first);
 			if (otherDicItr != other.Dic.end()) {
 				iterator->second.Translated = otherDicItr->second.Translated;
 			}
 			else {
-				tempDic.insert(pair<wstring, LanguagePair>(otherDicItr->first,otherDicItr->second));
+				tempDic.insert(std::pair<std::wstring, LanguagePair>(otherDicItr->first,otherDicItr->second));
 			}
 		}
-		for (map<wstring, LanguagePair>::iterator iterator = tempDic.begin();
+		for (std::map<std::wstring, LanguagePair>::iterator iterator = tempDic.begin();
 			iterator != tempDic.end(); iterator++) {
-			this->Dic.insert(pair<wstring, LanguagePair>(iterator->first, iterator->second));
+			this->Dic.insert(std::pair<std::wstring, LanguagePair>(iterator->first, iterator->second));
 		}
 		return true;
 	}
 };
-typedef map<wstring, LanguagePairDic> LanguagePairDics;
+typedef std::map<std::wstring, LanguagePairDic> LanguagePairDics;
 
 struct TextAssetMap {
 	enum ToWhere {
@@ -78,17 +77,17 @@ struct TextAssetMap {
 		ToInteractWithMonoAsset = 3,
 		ToDone = 4,
 	};
-	wstring assetsName;
-	wstring assetName;
-	wstring containerPath;
-	wstring InteractWithAssetPluginName;
-	wstring InteractWithFileTextPluginName;
-	wstring InteractWithMonoAssetPluginName;
+	std::wstring assetsName;
+	std::wstring assetName;
+	std::wstring containerPath;
+	std::wstring InteractWithAssetPluginName;
+	std::wstring InteractWithFileTextPluginName;
+	std::wstring InteractWithMonoAssetPluginName;
 	bool useContainerPath;
-	wstring OriginalText;
-	wstring TranslatedText;
+	std::wstring OriginalText;
+	std::wstring TranslatedText;
 	bool IsFileTextMerged;
-	vector<AssetMapOption> InteractWithFileTextMergedOptions;
+	std::vector<AssetMapOption> InteractWithFileTextMergedOptions;
 	LanguagePairDics languagePairDics;
 	Json::Value ToJSON() {
 		Json::Value result;
@@ -115,10 +114,10 @@ struct TextAssetMap {
 		this->InteractWithMonoAssetPluginName = WideMultiStringConverter->from_bytes(json["InteractWithMonoAssetPluginName"].asString());
 		this->useContainerPath = json["useContainerPath"].asBool();
 		Json::Value languagePairDicsJson = json["languagePairDics"];
-		vector<string> languagePairDicsJsonKeys = languagePairDicsJson.getMemberNames();
-		for (vector<string>::iterator iterator = languagePairDicsJsonKeys.begin();
+		std::vector<std::string> languagePairDicsJsonKeys = languagePairDicsJson.getMemberNames();
+		for (std::vector<std::string>::iterator iterator = languagePairDicsJsonKeys.begin();
 			iterator != languagePairDicsJsonKeys.end(); iterator++) {
-			this->languagePairDics.insert(pair<wstring, LanguagePairDic>(
+			this->languagePairDics.insert(std::pair<std::wstring, LanguagePairDic>(
 				WideMultiStringConverter->from_bytes(*iterator),
 				LanguagePairDic(languagePairDicsJson[*iterator])
 				));
@@ -137,18 +136,18 @@ struct TextAssetMap {
 };
 
 struct TextAssetMaps {
-	vector<TextAssetMap> InteractWithAssetNews;
-	vector<TextAssetMap> InteractWithFileTextNews;
-	vector<TextAssetMap> Done;
+	std::vector<TextAssetMap> InteractWithAssetNews;
+	std::vector<TextAssetMap> InteractWithFileTextNews;
+	std::vector<TextAssetMap> Done;
 	Json::Value ToJSON() {
 		Json::Value result;
 		Json::Value InteractWithFileTextNewsJson(Json::arrayValue);
 		Json::Value DoneJson(Json::arrayValue);
-		for (vector<TextAssetMap>::iterator iterator = InteractWithFileTextNews.begin();
+		for (std::vector<TextAssetMap>::iterator iterator = InteractWithFileTextNews.begin();
 			iterator != InteractWithFileTextNews.end(); iterator++) {
 			InteractWithFileTextNewsJson.append(iterator->ToJSON());
 		}
-		for (vector<TextAssetMap>::iterator iterator = Done.begin();
+		for (std::vector<TextAssetMap>::iterator iterator = Done.begin();
 			iterator != Done.end(); iterator++) {
 			DoneJson.append(iterator->ToJSON());
 		}
@@ -171,24 +170,24 @@ struct TextPluginInfo;
 typedef bool(_cdecl *GetTextPluginInfoCallback)(TextPluginInfo* textPluginInfo);
 
 #pragma region InteractWithAssetCallback
-typedef LanguagePairDics(_cdecl *GetAssetParserOptionsCallback)(wstring OriginalText);
-typedef LanguagePairDics(_cdecl *GetOriginalMapFromTextCallback)(wstring OriginalText, LanguagePairDics languagePairDics);
-typedef wstring(_cdecl *GetTranslatedTextFromMapCallback)(wstring OriginalText, LanguagePairDics TranslatedMap);
+typedef LanguagePairDics(_cdecl *GetAssetParserOptionsCallback)(std::wstring OriginalText);
+typedef LanguagePairDics(_cdecl *GetOriginalMapFromTextCallback)(std::wstring OriginalText, LanguagePairDics languagePairDics);
+typedef std::wstring(_cdecl *GetTranslatedTextFromMapCallback)(std::wstring OriginalText, LanguagePairDics TranslatedMap);
 #pragma endregion
 
 #pragma region InteractWithFileCallback
 typedef LanguagePairDics(_cdecl *GetFileParserOptionsCallback)(LanguagePairDics UpdateMap);
 typedef LanguagePairDics(_cdecl *GetUpdateFileTextFromMapCallback)(LanguagePairDics UpdateMap);
-typedef LanguagePairDics(_cdecl *GetUpdateFileTextMergedFromMapCallback)(LanguagePairDics UpdateMap, vector<AssetMapOption> assetMapOptions);
+typedef LanguagePairDics(_cdecl *GetUpdateFileTextMergedFromMapCallback)(LanguagePairDics UpdateMap, std::vector<AssetMapOption> assetMapOptions);
 typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextCallback)(LanguagePairDics translatedMap);
-typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextMergedCallback)(map<wstring, wstring> TranslatedFileNameText, LanguagePairDics translatedMap, vector<AssetMapOption> assetMapOptions);
+typedef LanguagePairDics(_cdecl *GetTranslatedMapFromFileTextMergedCallback)(std::map<std::wstring, std::wstring> TranslatedFileNameText, LanguagePairDics translatedMap, std::vector<AssetMapOption> assetMapOptions);
 #pragma endregion
 
 struct TextPluginInfo {
 
 	wchar_t TextPluginName[64];
 
-	wstring TextPluginFileRelativePath;
+	std::wstring TextPluginFileRelativePath;
 #pragma region InteractWithAsset
 	/* Member of InteractWithAsset. temperary deprecated*/
 	GetAssetParserOptionsCallback GetAssetParserOptions;
@@ -209,16 +208,19 @@ struct TextPluginInfo {
 
 };
 
+
 struct MonoTextPluginInfo;
 typedef bool(_cdecl *GetMonoTextPluginInfoCallback)(UnityL10nToolAPI* unityL10nToolAPI, MonoTextPluginInfo* monoTextPluginInfo);
-typedef vector<TextAssetMap>(_cdecl *GetMonoTextAssetMapCallback)();
+typedef std::vector<TextAssetMap>(_cdecl *GetMonoTextAssetMapCallback)();
 typedef TextAssetMap(_cdecl *GetOriginalMapFromMonoTextCallback)(TextAssetMap OriginalMap);
-typedef pair<string, AssetsReplacer*>(_cdecl *GetAssetReplacerForTranslatedTextFromMapCallback)(TextAssetMap TranslatedMap);
+typedef TextAssetMap(_cdecl *GetTranslatedTextFromMonoTextMapCallback)(TextAssetMap TranslatedMap);
+typedef std::pair<std::string, AssetsReplacer*>(_cdecl *GetAssetReplacerForTranslatedTextFromMapCallback)(TextAssetMap TranslatedMap);
 
 struct MonoTextPluginInfo {
 	wchar_t MonoTextPluginName[64];
 
 	GetMonoTextAssetMapCallback GetMonoTextAssetMap;
 	GetOriginalMapFromMonoTextCallback GetOriginalMapFromMonoText;
+	GetTranslatedTextFromMonoTextMapCallback GetTranslatedTextFromMonoTextMap;
 	GetAssetReplacerForTranslatedTextFromMapCallback GetAssetReplacerForTranslatedTextFromMap;
 };

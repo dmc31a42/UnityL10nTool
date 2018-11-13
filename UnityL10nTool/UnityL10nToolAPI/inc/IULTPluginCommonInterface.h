@@ -216,6 +216,7 @@ struct UnityL10nToolAPI {
 	/* FindAFromB */
 	const std::map <std::string, AssetsFile*>* FindAssetsFilesFromAssetsName;
 	const std::map <std::string, AssetsFileTable*>* FindAssetsFileTablesFromAssetsName;
+	const std::map <AssetsFileTable*, std::string>* FindAssetsNameFromAssetsFileTables;
 	const std::map <INT32, UINT32>* FindBasicClassIndexFromClassID;
 	const std::map <std::string, UINT32>* FindBasicClassIndexFromClassName;
 	const std::map<std::pair<std::string, INT64>, std::string>* FindMonoClassNameFromAssetsNameANDPathId;
@@ -270,8 +271,20 @@ inline std::string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(Ass
 		if (m_ScriptATVF) {
 			int m_FileId = m_ScriptATVF->Get("m_FileID")->GetValue()->AsInt();
 			unsigned __int64 m_PathID = m_ScriptATVF->Get("m_PathID")->GetValue()->AsUInt64();
-			std::string assetsName = std::string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
-			return FindMonoClassNameFromAssetsNameANDPathId->find(std::pair<std::string, INT64>(assetsName, m_PathID))->second;
+			std::string assetsName;
+			if (m_FileId == 0) {
+				assetsName = FindAssetsNameFromAssetsFileTables->find(assetsFileTable)->second;
+			}
+			else {
+				assetsName = std::string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
+			}
+			std::map<std::pair<std::string, INT64>, std::string>::const_iterator iterator = FindMonoClassNameFromAssetsNameANDPathId->find(std::pair<std::string, INT64>(assetsName, m_PathID));
+			if (iterator != FindMonoClassNameFromAssetsNameANDPathId->end()) {
+				return iterator->second;
+			}
+			else {
+				return "";
+			}
 		}
 		else {
 			throw new std::exception("GetClassNameFromBaseAssetTypeValueField: m_ScriptATVF not exist");

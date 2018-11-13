@@ -305,6 +305,8 @@ namespace UnityL10nToolCShop
             LoadUnityL10nTool_BackgroundWorker.RunWorkerCompleted += LoadUnityL10nTool_RunWorkerCompleted;
             LoadUnityL10nTool_BackgroundWorker.WorkerReportsProgress = true;
             LoadUnityL10nTool_BackgroundWorker.RunWorkerAsync();
+            //LoadUnityL10nTool_DoWork(null, null);
+            //LoadUnityL10nTool_RunWorkerCompleted(null, null);
         }
 
         private void LoadUnityL10nTool_DoWork(object sender, DoWorkEventArgs e)
@@ -330,47 +332,47 @@ namespace UnityL10nToolCShop
             }
             unityL10NToolProjectInfo.GamePath = gamePath;
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Initialize UnityL10nTool...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Initialize UnityL10nTool...");
             unityL10nToolCppManaged = new UnityL10nToolCppManaged(unityL10NToolProjectInfo.JSONPath.Replace("setting.json", ""));
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Assets...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Assets...");
             unityL10nToolCppManaged.LoadGlobalgamemanagersFile(); 
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Class Information...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Class Information...");
             unityL10nToolCppManaged.ProcessResourceAndMonoManger(); 
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading MonoClassDatabase...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading MonoClassDatabase...");
             unityL10nToolCppManaged.LoadMonoClassDatabase();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading UnityL10nToolAPI...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading UnityL10nToolAPI...");
             unityL10nToolCppManaged.LoadUnityL10nToolAPI();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins...");
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins Support Asset List...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Font Plugins Support Asset List...");
             pluginsSupportAssetMap = unityL10nToolCppManaged.GetPluginsSupportAssetMap();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
             bool resultload = unityL10nToolCppManaged.LoadTextPlugins();
             TextAssetMapsCLI textAssetMapsCLILocal = unityL10nToolCppManaged.GetTextAssetMaps();
             TextAssetTabControlContext textAssetTabControlContextLocal = new TextAssetTabControlContext(textAssetMapsCLILocal);
             textAssetTabControlContext = textAssetTabControlContextLocal;
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Text Plugins Support Asset List...");
             interactWithAssetNames = unityL10nToolCppManaged.GetInteractWithAssetPluginNames();
             //interactWithAssetNames.Insert(0, null);
             interactWithAssetNames.Insert(0, "");
             interactWithFileTextNames = unityL10nToolCppManaged.GetInteractWithFileTextPluginNames();
             interactWithFileTextNames.Insert(0, "");
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Resources List...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Resources List...");
             OnlineResourcePairCLIsGlobal = unityL10nToolCppManaged.GetOnlineResourcePairs();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Update...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Update...");
             OnlineUpdateCLIGlobal = unityL10nToolCppManaged.GetOnlineUpdate();
 
-            LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Project Settings...");
+            if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Project Settings...");
             unityL10nToolCppManaged.LoadProjectSettingsFromJson();
             ProjectSettingsCLIGlobal = unityL10nToolCppManaged.GetProjectSettings();
         }

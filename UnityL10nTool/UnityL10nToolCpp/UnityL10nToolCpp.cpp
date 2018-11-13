@@ -181,6 +181,7 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 		assetsFileTable->GenerateQuickLookupTree();
 		FindAssetsFilesFromAssetsName.insert(pair<string, AssetsFile*>(assetsFileName, assetsFile));
 		FindAssetsFileTablesFromAssetsName.insert(pair<string, AssetsFileTable*>(assetsFileName, assetsFileTable));
+		FindAssetsNameFromAssetsFileTables.insert(pair<AssetsFileTable*, string>(assetsFileTable, assetsFileName));
 		AssetsFileNames.push_back(assetsFileName);
 		if (assetsFileName == "globalgamemanagers") {
 			GlobalgamemanagersAssetsTable = assetsFileTable;
@@ -460,6 +461,7 @@ bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	_unityL10nToolAPI.AssetsFileNames = &AssetsFileNames;
 	_unityL10nToolAPI.FindAssetsFilesFromAssetsName = &FindAssetsFilesFromAssetsName;
 	_unityL10nToolAPI.FindAssetsFileTablesFromAssetsName = &FindAssetsFileTablesFromAssetsName;
+	_unityL10nToolAPI.FindAssetsNameFromAssetsFileTables = &FindAssetsNameFromAssetsFileTables;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassID = &FindBasicClassIndexFromClassID;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassName = &FindBasicClassIndexFromClassName;
 	_unityL10nToolAPI.FindMonoClassNameFromAssetsNameANDPathId = &FindMonoClassNameFromAssetsNameANDPathId;
@@ -628,7 +630,13 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 					AssetTypeValueField* pbase = assetTypeInstance->GetBaseField();
 					wstring m_Script;
 					if (pbase) {
-						m_Script = WideMultiStringConverter->from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+						try {
+							// 이럴때 문자열을 온전히 받아올 수 없으면 AssetTypeByteArray를 써서 문자열을 받아와야함.
+							m_Script = WideMultiStringConverter->from_bytes(pbase->Get("m_Script")->GetValue()->AsString());
+						}
+						catch (exception e1) {
+							m_Script = L"";
+						}
 					}
 					TextAssetMap textAssetMap;
 					textAssetMap.assetsName = assetsName;

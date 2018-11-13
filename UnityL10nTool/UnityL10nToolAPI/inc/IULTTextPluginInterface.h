@@ -10,8 +10,8 @@ struct LanguagePair {
 	std::wstring Original;
 	std::wstring Translated;
 };
-/* If split one asset to multiple file, set keys as plugin want.
-Otherwise set key to "" (empty std::wstring) */
+///* If split one asset to multiple file, set keys as plugin want.
+//Otherwise set key to "" (empty std::wstring) */
 struct LanguagePairDic {
 public:
 	std::map<std::wstring, LanguagePair> Dic;
@@ -42,16 +42,15 @@ public:
 		Json::Value InteractWithAssetOptionsJson = json["InteractWithAssetOptions"];
 		Json::Value InteractWithFileTextOptionsJson = json["InteractWithFileTextOptions"];
 		for (Json::ArrayIndex i = 0; i < InteractWithAssetOptionsJson.size(); i++) {
-			this->InteractWithAssetOptions.push_back(AssetMapOption(InteractWithAssetOptionsJson[i]));
+			this->InteractWithAssetOptions.push_back(AssetMapOption((Json::Value)InteractWithAssetOptionsJson[i]));
 		}
 		for (Json::ArrayIndex i = 0; i < InteractWithFileTextOptionsJson.size(); i++) {
-			this->InteractWithFileTextOptions.push_back(AssetMapOption(InteractWithFileTextOptionsJson[i]));
+			this->InteractWithFileTextOptions.push_back(AssetMapOption((Json::Value)InteractWithFileTextOptionsJson[i]));
 		}
 	}
 	bool AddDicFromTranslated(LanguagePairDic other) {
 		std::map<std::wstring, LanguagePair> tempDic;
-		for (std::map<std::wstring, LanguagePair>::iterator iterator = this->Dic.begin();
-			iterator != this->Dic.end(); iterator++) {
+		for (std::map<std::wstring, LanguagePair>::iterator iterator = this->Dic.begin(); iterator != this->Dic.end(); iterator++) {
 			std::map<std::wstring, LanguagePair>::iterator otherDicItr = other.Dic.find(iterator->first);
 			if (otherDicItr != other.Dic.end()) {
 				iterator->second.Translated = otherDicItr->second.Translated;
@@ -98,8 +97,7 @@ struct TextAssetMap {
 		result["InteractWithFileTextPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithFileTextPluginName);
 		result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithMonoAssetPluginName);
 		result["useContainerPath"] = this->useContainerPath;
-		for (LanguagePairDics::iterator iterator = this->languagePairDics.begin();
-			iterator != this->languagePairDics.end(); iterator++) {
+		for (LanguagePairDics::iterator iterator = this->languagePairDics.begin(); iterator != this->languagePairDics.end(); iterator++) {
 			result["languagePairDics"][WideMultiStringConverter->to_bytes(iterator->first)] = iterator->second.ToJSON();
 		}
 		return result;
@@ -115,8 +113,7 @@ struct TextAssetMap {
 		this->useContainerPath = json["useContainerPath"].asBool();
 		Json::Value languagePairDicsJson = json["languagePairDics"];
 		std::vector<std::string> languagePairDicsJsonKeys = languagePairDicsJson.getMemberNames();
-		for (std::vector<std::string>::iterator iterator = languagePairDicsJsonKeys.begin();
-			iterator != languagePairDicsJsonKeys.end(); iterator++) {
+		for (std::vector<std::string>::iterator iterator = languagePairDicsJsonKeys.begin(); iterator != languagePairDicsJsonKeys.end(); iterator++) {
 			this->languagePairDics.insert(std::pair<std::wstring, LanguagePairDic>(
 				WideMultiStringConverter->from_bytes(*iterator),
 				LanguagePairDic(languagePairDicsJson[*iterator])
@@ -143,12 +140,10 @@ struct TextAssetMaps {
 		Json::Value result;
 		Json::Value InteractWithFileTextNewsJson(Json::arrayValue);
 		Json::Value DoneJson(Json::arrayValue);
-		for (std::vector<TextAssetMap>::iterator iterator = InteractWithFileTextNews.begin();
-			iterator != InteractWithFileTextNews.end(); iterator++) {
+		for (std::vector<TextAssetMap>::iterator iterator = InteractWithFileTextNews.begin(); iterator != InteractWithFileTextNews.end(); iterator++) {
 			InteractWithFileTextNewsJson.append(iterator->ToJSON());
 		}
-		for (std::vector<TextAssetMap>::iterator iterator = Done.begin();
-			iterator != Done.end(); iterator++) {
+		for (std::vector<TextAssetMap>::iterator iterator = Done.begin(); iterator != Done.end(); iterator++) {
 			DoneJson.append(iterator->ToJSON());
 		}
 		result["InteractWithFileTextNews"] = InteractWithFileTextNewsJson;

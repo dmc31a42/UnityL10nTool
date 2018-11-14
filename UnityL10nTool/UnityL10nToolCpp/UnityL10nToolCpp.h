@@ -269,6 +269,7 @@ public:
 	vector<wstring> GetInteractWithAssetPluginNames();
 	vector<wstring> GetInteractWithFileTextPluginNames();
 	TextAssetMaps GetTextAssetMaps();
+	TextAssetMap GetTextAssetMapFromExternalFile(wstring ExternalRelativeFilePath);
 	bool SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap::ToWhere toWhere);
 	//vector<wstring> GetTextPluginNameInteractWithAssetList();
 	//vector<wstring> GetTextPluginNameInteractWithFileTextList();

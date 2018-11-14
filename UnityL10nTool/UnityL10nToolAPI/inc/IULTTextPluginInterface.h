@@ -79,6 +79,7 @@ struct TextAssetMap {
 	std::wstring assetsName;
 	std::wstring assetName;
 	std::wstring containerPath;
+	std::wstring ExternalRelativeFilePath;
 	std::wstring InteractWithAssetPluginName;
 	std::wstring InteractWithFileTextPluginName;
 	std::wstring InteractWithMonoAssetPluginName;
@@ -93,6 +94,7 @@ struct TextAssetMap {
 		result["assetsName"] = WideMultiStringConverter->to_bytes(this->assetsName);
 		result["assetName"] = WideMultiStringConverter->to_bytes(this->assetName);
 		result["containerPath"] = WideMultiStringConverter->to_bytes(this->containerPath);
+		result["ExternalRelativeFilePath"] = WideMultiStringConverter->to_bytes(this->containerPath);
 		result["InteractWithAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithAssetPluginName);
 		result["InteractWithFileTextPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithFileTextPluginName);
 		result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithMonoAssetPluginName);
@@ -107,6 +109,9 @@ struct TextAssetMap {
 		this->assetsName = WideMultiStringConverter->from_bytes(json["assetsName"].asString());
 		this->assetName = WideMultiStringConverter->from_bytes(json["assetName"].asString());
 		this->containerPath = WideMultiStringConverter->from_bytes(json["containerPath"].asString());
+		if (json.isMember("ExternalRelativeFilePath")) {
+			this->ExternalRelativeFilePath = WideMultiStringConverter->from_bytes(json["ExternalRelativeFilePath"].asString());
+		}
 		this->InteractWithAssetPluginName = WideMultiStringConverter->from_bytes(json["InteractWithAssetPluginName"].asString());
 		this->InteractWithFileTextPluginName = WideMultiStringConverter->from_bytes(json["InteractWithFileTextPluginName"].asString());
 		this->InteractWithMonoAssetPluginName = WideMultiStringConverter->from_bytes(json["InteractWithMonoAssetPluginName"].asString());

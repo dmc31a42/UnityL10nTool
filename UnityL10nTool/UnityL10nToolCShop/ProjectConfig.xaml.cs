@@ -1154,5 +1154,18 @@ namespace UnityL10nToolCShop
                 }
             }
         }
+
+        private void LoadFromExternalFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if(openFileDialog.ShowDialog() == true)
+            {
+                if(System.IO.File.Exists(openFileDialog.FileName))
+                {
+                    TextAssetMapCLI textAssetMapCLI = unityL10nToolCppManaged.GetTextAssetMapFromExternalFile(openFileDialog.FileName);
+                    textAssetTabControlContext.InteractWithTextAsset.News.Add(textAssetMapCLI);
+                }
+            }
+        }
     }
 }

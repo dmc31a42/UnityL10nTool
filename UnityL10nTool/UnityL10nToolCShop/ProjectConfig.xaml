@@ -116,6 +116,7 @@
                             <TabItem Header="InteractWithTextAsset" >
                                 <Grid DataContext="{Binding InteractWithTextAsset}">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="1*"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="1*"/>
@@ -124,7 +125,10 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid>
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                                        <Button x:Name="LoadFromExternalFileButton" Content="Load from external file" Click="LoadFromExternalFileButton_Click"/>
+                                    </StackPanel>
+                                    <Grid Grid.Row="1">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
                                             <ColumnDefinition Width="1*"/>
@@ -135,6 +139,7 @@
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <DataGrid x:Name="InteractWithTextAssetDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" GotFocus="InteractWithTextAssetDataGridSaveds_GotFocus">
@@ -145,7 +150,7 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>
-                                    <Grid Grid.Row="1">
+                                    <Grid Grid.Row="2">
                                         <StackPanel Orientation="Horizontal" DataContext="{Binding Path=SelectedItem}">
                                             <Label Content="Assets Name: " />
                                             <Label Content="{Binding assetsName}"/>
@@ -157,7 +162,7 @@
                                             <CheckBox IsChecked="{Binding useContainerPath}" VerticalAlignment="Center" Checked="UseContainerPathCheckChanged" Unchecked="UseContainerPathCheckChanged"/>
                                         </StackPanel>
                                     </Grid>
-                                    <Grid Grid.Row="2" DataContext="{Binding Path=SelectedItem}">
+                                    <Grid Grid.Row="3" DataContext="{Binding Path=SelectedItem}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="Auto"/>

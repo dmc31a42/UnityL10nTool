@@ -543,6 +543,10 @@ bool UnityL10nToolCpp::LoadTextPlugins()
 			getTextPluginInfoCallback = (GetTextPluginInfoCallback)GetProcAddress(PluginHInstance, "GetTextPluginInfo");
 			if (getTextPluginInfoCallback) {
 				TextPluginInfo* textPluginInfo = new TextPluginInfo();
+				textPluginInfo->GetOriginalMapFromText = NULL;
+				textPluginInfo->GetTranslatedMapFromFileText = NULL;
+				textPluginInfo->GetTranslatedTextFromMap = NULL;
+				textPluginInfo->GetUpdateFileTextFromMap = NULL;
 				bool result = getTextPluginInfoCallback(textPluginInfo);
 				if (result) {
 					textPluginInfo->TextPluginFileRelativePath = L"Plugins\\TextPlugins\\" + *iterator;
@@ -675,30 +679,62 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 		}
 		for (vector<TextAssetMap>::iterator iterator = textAssetMapsLocal.Done.begin();
 			iterator != textAssetMapsLocal.Done.end(); iterator++) {
-			for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithAssetNews.begin();
-				iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); textAssetMapItr++) {
-				if (iterator->assetsName == textAssetMapItr->assetsName &&
-					iterator->assetName == textAssetMapItr->assetName &&
-					iterator->containerPath == textAssetMapItr->containerPath) {
-					vector<wstring>::const_iterator InteractWithAssetPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithAssetPluginName);
-					vector<wstring>::const_iterator InteractWithFileTextPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithFileTextPluginName);
-					map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithAssetItr = TextPluginInfoInteractWithAssetMap.find(iterator->InteractWithAssetPluginName);
-					map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithFileTextItr = TextPluginInfoInteractWithFileTextMap.find(iterator->InteractWithFileTextPluginName);
-					if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end() &&
-						textPluginInfoInteractWithFileTextItr != TextPluginInfoInteractWithFileTextMap.end()) {
-						iterator->OriginalText = textAssetMapItr->OriginalText;
-						TextAssetMapsGlobal.Done.push_back(*iterator);
-						TextAssetMapsGlobal.InteractWithAssetNews.erase(textAssetMapItr);
-						break;
-					}
-					else {
-						break;
+			if (iterator->ExternalRelativeFilePath.empty()) {
+				for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.InteractWithAssetNews.begin();
+					iterator != TextAssetMapsGlobal.InteractWithAssetNews.end(); textAssetMapItr++) {
+					if (iterator->assetsName == textAssetMapItr->assetsName &&
+						iterator->assetName == textAssetMapItr->assetName &&
+						iterator->containerPath == textAssetMapItr->containerPath) {
+						vector<wstring>::const_iterator InteractWithAssetPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithAssetPluginName);
+						vector<wstring>::const_iterator InteractWithFileTextPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithFileTextPluginName);
+						map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithAssetItr = TextPluginInfoInteractWithAssetMap.find(iterator->InteractWithAssetPluginName);
+						map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithFileTextItr = TextPluginInfoInteractWithFileTextMap.find(iterator->InteractWithFileTextPluginName);
+						if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end() &&
+							textPluginInfoInteractWithFileTextItr != TextPluginInfoInteractWithFileTextMap.end()) {
+							iterator->OriginalText = textAssetMapItr->OriginalText;
+							TextAssetMapsGlobal.Done.push_back(*iterator);
+							TextAssetMapsGlobal.InteractWithAssetNews.erase(textAssetMapItr);
+							break;
+						}
+						else {
+							break;
+						}
 					}
 				}
 			}
+			else {
+				vector<wstring>::const_iterator InteractWithAssetPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithAssetPluginName);
+				vector<wstring>::const_iterator InteractWithFileTextPluginFound = find(TextPluginNames.begin(), TextPluginNames.end(), iterator->InteractWithFileTextPluginName);
+				map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithAssetItr = TextPluginInfoInteractWithAssetMap.find(iterator->InteractWithAssetPluginName);
+				map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithFileTextItr = TextPluginInfoInteractWithFileTextMap.find(iterator->InteractWithFileTextPluginName);
+				if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end() &&
+					textPluginInfoInteractWithFileTextItr != TextPluginInfoInteractWithFileTextMap.end()) {
+					if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + iterator->ExternalRelativeFilePath)) {
+						iterator->OriginalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GamePath + iterator->ExternalRelativeFilePath));
+						TextAssetMapsGlobal.Done.push_back(*iterator);
+						break;
+					}
+				}
+			}			
 		}
 	}
 	return TextAssetMapsGlobal;
+}
+
+TextAssetMap UnityL10nToolCpp::GetTextAssetMapFromExternalFile(wstring ExternalRelativeFilePath)
+{
+	ReplaceAll(ExternalRelativeFilePath, UnityL10nToolProjectInfoGlobal.GamePath, L"");
+	if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + ExternalRelativeFilePath)) {
+		wstring originalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GamePath + ExternalRelativeFilePath));
+		TextAssetMap textAssetMap = TextAssetMap();
+		textAssetMap.ExternalRelativeFilePath = ExternalRelativeFilePath;
+		textAssetMap.OriginalText = originalText;
+		TextAssetMapsGlobal.InteractWithAssetNews.push_back(textAssetMap);
+		return textAssetMap;
+	}
+	else {
+		return TextAssetMap();
+	}
 }
 
 bool UnityL10nToolCpp::SetTextAssetMaps(TextAssetMap textAssetMap, TextAssetMap::ToWhere toWhere)
@@ -789,108 +825,119 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 {
 	for (vector<TextAssetMap>::iterator textAssetMapItr = TextAssetMapsGlobal.Done.begin();
 		textAssetMapItr != TextAssetMapsGlobal.Done.end(); textAssetMapItr++) {
-		AssetsFileTable* assetsFileTable;
-		INT64 PathID;
-		string assetsName;
-		if (textAssetMapItr->useContainerPath) {
-			map<string, pair<INT32, INT64>>::iterator FileIDPathIDiterator
-				= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter->to_bytes(textAssetMapItr->containerPath));
-			if (FileIDPathIDiterator != FindFileIDPathIDFromContainerPath.end()) {
-				INT32 FileIDOfContainerPath = FileIDPathIDiterator->second.first;
-				PathID = FileIDPathIDiterator->second.second;
-				map<INT32, string>::iterator assetsNameIterator
-					= FindAssetsNameFromPathIDOfContainerPath.find(FileIDOfContainerPath);
-				if (assetsNameIterator != FindAssetsNameFromPathIDOfContainerPath.end()) {
-					assetsName = assetsNameIterator->second;
-					map<string, AssetsFileTable*>::iterator assetsFileTableIterator
-						= FindAssetsFileTablesFromAssetsName.find(assetsName);
-					if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
-						assetsFileTable = assetsFileTableIterator->second;
+		if (textAssetMapItr->ExternalRelativeFilePath.empty()) {
+			AssetsFileTable* assetsFileTable;
+			INT64 PathID;
+			string assetsName;
+			if (textAssetMapItr->useContainerPath) {
+				map<string, pair<INT32, INT64>>::iterator FileIDPathIDiterator
+					= FindFileIDPathIDFromContainerPath.find(WideMultiStringConverter->to_bytes(textAssetMapItr->containerPath));
+				if (FileIDPathIDiterator != FindFileIDPathIDFromContainerPath.end()) {
+					INT32 FileIDOfContainerPath = FileIDPathIDiterator->second.first;
+					PathID = FileIDPathIDiterator->second.second;
+					map<INT32, string>::iterator assetsNameIterator
+						= FindAssetsNameFromPathIDOfContainerPath.find(FileIDOfContainerPath);
+					if (assetsNameIterator != FindAssetsNameFromPathIDOfContainerPath.end()) {
+						assetsName = assetsNameIterator->second;
+						map<string, AssetsFileTable*>::iterator assetsFileTableIterator
+							= FindAssetsFileTablesFromAssetsName.find(assetsName);
+						if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
+							assetsFileTable = assetsFileTableIterator->second;
+						}
+						else {
+							throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+						}
 					}
 					else {
-						throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+						throw new std::exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
 					}
 				}
 				else {
-					throw new std::exception("assetsNameIterator == FindAssetsNameFromPathIDOfContainerPath.end()");
+					throw new std::exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
 				}
 			}
 			else {
-				throw new std::exception("FileIDPathIDiterator == FindFileIDPathIDFromContainerPath.end()");
-			}
-		} else {
-			assetsName = WideMultiStringConverter->to_bytes(textAssetMapItr->assetsName);
-			map<string, AssetsFileTable*>::iterator assetsFileTableIterator
-				= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter->to_bytes(textAssetMapItr->assetsName));
-			if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
-				assetsFileTable = assetsFileTableIterator->second;
-				PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter->to_bytes(textAssetMapItr->assetName));
-				if (PathID == -1) {
-					throw new std::exception("PathID == -1");
-				}
-			}
-			else {
-				throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
-			}
-		}
-		AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(PathID);
-		if (assetFileInfoEx == NULL) {
-			throw new std::exception("assetFileInfoEx == NULL");
-		}
-		AssetTypeTemplateField templateBase;
-		//char *name = "";
-		//char *pathName = "";
-		int classId;
-		WORD monoClassId;
-		GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
-		templateBase.FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID.find(classId)->second], (DWORD)0, false);
-		for (DWORD i = 0; i < templateBase.childrenCount; i++)
-		{
-			if (!strcmp(templateBase.children[i].name, "m_Script"))
-			{
-				templateBase.children[i].type = "_string";
-				templateBase.children[i].valueType = ValueType_None;
-				for (DWORD k = 0; k < templateBase.children[i].childrenCount; k++)
-				{
-					if (!strcmp(templateBase.children[i].children[k].name, "Array"))
-					{
-						templateBase.children[i].children[k].type = "TypelessData";
-						break;
+				assetsName = WideMultiStringConverter->to_bytes(textAssetMapItr->assetsName);
+				map<string, AssetsFileTable*>::iterator assetsFileTableIterator
+					= FindAssetsFileTablesFromAssetsName.find(WideMultiStringConverter->to_bytes(textAssetMapItr->assetsName));
+				if (assetsFileTableIterator != FindAssetsFileTablesFromAssetsName.end()) {
+					assetsFileTable = assetsFileTableIterator->second;
+					PathID = _unityL10nToolAPI.FindAssetIndexFromName(assetsFileTable, WideMultiStringConverter->to_bytes(textAssetMapItr->assetName));
+					if (PathID == -1) {
+						throw new std::exception("PathID == -1");
 					}
 				}
-				break;
+				else {
+					throw new std::exception("assetsFileTableIterator == FindAssetsFileTablesFromAssetsName.end()");
+				}
 			}
-		}
-		AssetTypeTemplateField *pTemplateBase = &templateBase;
-		AssetTypeInstance* baseAssetTypeInstance = new AssetTypeInstance(
-			(DWORD)1,
-			&pTemplateBase,
-			assetFileInfoEx->curFileSize,
-			assetsFileTable->getReader(),
-			assetsFileTable->getAssetsFile()->header.endianness ? true : false,
-			assetFileInfoEx->absolutePos);
-		AssetTypeValueField *pBase = baseAssetTypeInstance->GetBaseField();
-		if (pBase) {
-			AssetTypeValueField *nameField = pBase->Get("m_Name");
-			AssetTypeValueField *scriptField = pBase->Get("m_Script");
-			AssetTypeValueField *dataArrayField = scriptField->Get("Array");
-			if (!nameField->IsDummy() && !scriptField->IsDummy() && !dataArrayField->IsDummy())
+			AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(PathID);
+			if (assetFileInfoEx == NULL) {
+				throw new std::exception("assetFileInfoEx == NULL");
+			}
+			AssetTypeTemplateField templateBase;
+			//char *name = "";
+			//char *pathName = "";
+			int classId;
+			WORD monoClassId;
+			GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
+			templateBase.FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID.find(classId)->second], (DWORD)0, false);
+			for (DWORD i = 0; i < templateBase.childrenCount; i++)
 			{
-				string* str = new string(WideMultiStringConverter->to_bytes(textAssetMapItr->TranslatedText));
-				//name = nameField->GetValue()->AsString();
-				AssetTypeByteArray byteArrayData;
-				byteArrayData.size = (DWORD)str->size();
-				byteArrayData.data = (BYTE*)str->c_str();
-				dataArrayField->GetValue()->Set(&byteArrayData);
-				AssetsReplacer* assetsReplacer = _unityL10nToolAPI.makeAssetsReplacer(assetsName, assetsFileTable, assetFileInfoEx, baseAssetTypeInstance);
-				AssetsReplacersMap[assetsName].push_back(assetsReplacer);
-				continue;
+				if (!strcmp(templateBase.children[i].name, "m_Script"))
+				{
+					templateBase.children[i].type = "_string";
+					templateBase.children[i].valueType = ValueType_None;
+					for (DWORD k = 0; k < templateBase.children[i].childrenCount; k++)
+					{
+						if (!strcmp(templateBase.children[i].children[k].name, "Array"))
+						{
+							templateBase.children[i].children[k].type = "TypelessData";
+							break;
+						}
+					}
+					break;
+				}
 			}
+			AssetTypeTemplateField *pTemplateBase = &templateBase;
+			AssetTypeInstance* baseAssetTypeInstance = new AssetTypeInstance(
+				(DWORD)1,
+				&pTemplateBase,
+				assetFileInfoEx->curFileSize,
+				assetsFileTable->getReader(),
+				assetsFileTable->getAssetsFile()->header.endianness ? true : false,
+				assetFileInfoEx->absolutePos);
+			AssetTypeValueField *pBase = baseAssetTypeInstance->GetBaseField();
+			if (pBase) {
+				AssetTypeValueField *nameField = pBase->Get("m_Name");
+				AssetTypeValueField *scriptField = pBase->Get("m_Script");
+				AssetTypeValueField *dataArrayField = scriptField->Get("Array");
+				if (!nameField->IsDummy() && !scriptField->IsDummy() && !dataArrayField->IsDummy())
+				{
+					string* str = new string(WideMultiStringConverter->to_bytes(textAssetMapItr->TranslatedText));
+					//name = nameField->GetValue()->AsString();
+					AssetTypeByteArray byteArrayData;
+					byteArrayData.size = (DWORD)str->size();
+					byteArrayData.data = (BYTE*)str->c_str();
+					dataArrayField->GetValue()->Set(&byteArrayData);
+					AssetsReplacer* assetsReplacer = _unityL10nToolAPI.makeAssetsReplacer(assetsName, assetsFileTable, assetFileInfoEx, baseAssetTypeInstance);
+					AssetsReplacersMap[assetsName].push_back(assetsReplacer);
+					continue;
+				}
+			}
+			else {
+				throw new std::exception("pBase == NULL");
+			}
+			throw new std::exception("UNKNOWN");
 		}
 		else {
-			throw new std::exception("pBase == NULL");
+			std::wofstream wof;
+			wof.clear();
+			wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+			wof.open(UnityL10nToolProjectInfoGlobal.GamePath + textAssetMapItr->ExternalRelativeFilePath);
+			wof << textAssetMapItr->TranslatedText;
+			wof.close();
 		}
-		throw new std::exception("UNKNOWN");
 	}
 	return true;
 

@@ -39,6 +39,9 @@
     <ClInclude Include="..\UnityL10nToolAPI\inc\json\json.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="log_util.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\UnityL10nToolAPI\inc\jsoncpp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="log_util.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

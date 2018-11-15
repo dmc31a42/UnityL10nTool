@@ -12,21 +12,21 @@
 #include <urlmon.h>
 #pragma comment(lib, "urlmon.lib")
 #pragma comment(lib,"wininet.lib")
-
 #include "GeneralPurposeFunctions.h"
 #include "IULTPluginCommonInterface.h"
 #include "IULTFontPluginInterface.h"
+#include "log_util.h"
 
 using namespace std;
 
-
 UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFolderPath)
 {
-	
+	LOGsetInfo(".", "UnityL10nTool");
+	LOGsetLevel(LOG_LVL_TRACE);
 
 	FirstAssetsFileName = "globalgamemanagers";
 	ProjectJsonFolderPath = MakeSureBackslashEndOfFolderPath(projectJsonFolderPath);
-	
+	//LOG_TRACE("ProjectJsonFolderPath: %ls", ProjectJsonFolderPath);
 	/* gameFolderPath should end by \ */
 	/*if (gameFolderPath.back() != L'\\') {
 		GameFolderPath = gameFolderPath + L'\\';
@@ -229,6 +229,7 @@ bool UnityL10nToolCpp::LoadBasicClassDatabase() {
 }
 
 bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
+	LOG_TRACE("UnityL10nToolCpp::ProcessResourceAndMonoManger() start");
 	string globalgamemanagersName = "globalgamemanagers";
 	AssetsFileTable* globalgamemanagersTable = FindAssetsFileTablesFromAssetsName[globalgamemanagersName];
 	AssetsFile* globalgamemanagersFile = globalgamemanagersTable->getAssetsFile();
@@ -237,27 +238,38 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 
 	FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>("globalgamemanagers", 0));
 	FindAssetsNameFromPathIDOfContainerPath.insert(pair<INT32, string>(0, "globalgamemanagers"));
+	LOG_TRACE("dependencyCount==%d", GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.dependencyCount);
 	for (INT32 i = 0; i < GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.dependencyCount; i++) {
 		string dependencyAssetsPath = string(GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.pDependencies[i].assetPath);
-		FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>(dependencyAssetsPath, i+1));
+		LOG_TRACE("dependencyAssetsPath == %s", dependencyAssetsPath);
+		LOG_TRACE("i==%d", i);
+		FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>(dependencyAssetsPath, i + 1));
 		FindAssetsNameFromPathIDOfContainerPath.insert(pair<INT32, string>(i + 1, dependencyAssetsPath));
 	}
 	ResourceManagerClassId = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName["ResourceManager"]].classId;
+	LOG_TRACE("ResourceManagerClassId == %d", ResourceManagerClassId);
 	MonoManagerClassId = BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassName["MonoManager"]].classId;
+	LOG_TRACE("MonoManagerClassId == %d", MonoManagerClassId);
 	int AssetSearchCount = 2;
+	LOG_TRACE("AssetSearchCount == %d", AssetSearchCount);
+	LOG_TRACE("globalgamemanagersTable->assetFileInfoCount == %d", globalgamemanagersTable->assetFileInfoCount);
 	for (unsigned int i = 0;
 		(i < globalgamemanagersTable->assetFileInfoCount) && AssetSearchCount > 0;
 		i++) {
+		LOG_TRACE("i == %d", i);
 		AssetFileInfoEx* assetFileInfoEx = &globalgamemanagersTable->pAssetFileInfo[i];
 		int classId;
 		WORD monoId;
 		GetClassIdFromAssetFileInfoEx(GlobalgamemanagersAssetsTable, assetFileInfoEx, classId, monoId);
+		LOG_TRACE("classId == %d", classId);
 		if (classId == ResourceManagerClassId) {
 			//assetFileInfoEx.absolutePos
 			ResourceManagerFileGlobal = new ResourceManagerFile();
+			LOG_TRACE("ifsGlobalgamemanagers(%ls)", GameFolderPath + WideMultiStringConverter->from_bytes(globalgamemanagersName));
 			std::ifstream ifsGlobalgamemanagers(GameFolderPath + WideMultiStringConverter->from_bytes(globalgamemanagersName), std::ios::binary | std::ios::ate);
+			LOG_TRACE("assetFileInfoEx->absolutePos == %d", assetFileInfoEx->absolutePos);
 			ifsGlobalgamemanagers.seekg(assetFileInfoEx->absolutePos, std::ios::beg);
-
+			LOG_TRACE("assetFileInfoEx->curFileSize == %d", assetFileInfoEx->curFileSize);
 			std::vector<char> resourceManagerBuffer(assetFileInfoEx->curFileSize);
 			if (ifsGlobalgamemanagers.read(resourceManagerBuffer.data(), assetFileInfoEx->curFileSize))
 			{
@@ -271,8 +283,10 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 				globalgamemanagersFile->header.format,
 				globalgamemanagersFile->header.endianness ? true : false);
 			ResourceManager_PPtr resourceManager_PPtr;
+			LOG_TRACE("ResourceManagerFileGlobal->containerArrayLen == %d", ResourceManagerFileGlobal->containerArrayLen);
 			for (int i = 0; i < ResourceManagerFileGlobal->containerArrayLen; i++) {
 				resourceManager_PPtr = ResourceManagerFileGlobal->containerArray[i].ids;
+				LOG_TRACE(("resourceManager_PPtr{ fileId == " + to_string((long long)resourceManager_PPtr.fileId) + ", pathId == " + to_string((long long)resourceManager_PPtr.pathId)).c_str());
 				pair<INT32, INT64> tempFilePathID = pair<INT32, INT64>(resourceManager_PPtr.fileId, resourceManager_PPtr.pathId);
 				FindContainerPathFromFileIDPathID.insert(pair<pair<INT32, INT64>, string>(tempFilePathID, ResourceManagerFileGlobal->containerArray[i].name));
 				FindFileIDPathIDFromContainerPath.insert(pair<string, pair<INT32, INT64>>(ResourceManagerFileGlobal->containerArray[i].name, tempFilePathID));
@@ -297,11 +311,13 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 					AssetTypeValueField** m_ScriptsChildrenListATVF = m_ScriptsArrayATVF->GetChildrenList();
 					int classId = 0;
 					UINT16 monoClassId;
-
+					LOG_TRACE("m_ScriptsArrayATVF->GetChildrenCount() == %d", m_ScriptsArrayATVF->GetChildrenCount());
 					for (DWORD i = 0; i < m_ScriptsArrayATVF->GetChildrenCount(); i++) {
 						INT32 m_FileID = m_ScriptsChildrenListATVF[i]->Get("m_FileID")->GetValue()->AsInt();
 						INT64 m_PathID = m_ScriptsChildrenListATVF[i]->Get("m_PathID")->GetValue()->AsInt64();
+						LOG_TRACE(("i: " + to_string((long long)i) + " m_FileID == " + to_string((long long)m_FileID) + ", m_PathID == " + to_string((long long)m_PathID)).c_str());
 						string assetsName = string(globalgamemanagersFile->dependencies.pDependencies[m_FileID - 1].assetPath);
+						LOG_TRACE("assetsName == %s", assetsName);
 						AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[assetsName];
 						AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
 						AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(m_PathID);
@@ -324,6 +340,7 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 							if (m_ClassNameATVF && m_NamespaceATVF) {
 								string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
 								FindMonoClassNameFromAssetsNameANDPathId.insert(pair<pair<string, INT64>, string>(pair<string, INT64>(assetsName, assetFileInfoEx->index), monoScriptFullName));
+								LOG_TRACE(("FindMonoClassNameFromAssetsNameANDPathId.insert<<" + assetsName + "," + to_string((long long)assetFileInfoEx->index) + ">," + monoScriptFullName + ">").c_str());
 							}
 						}
 					}
@@ -333,15 +350,16 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 					baseAssetTypeValueField->Get("m_AssemblyNames")->Get("Array");
 				if (m_AssemblyNamesArrayATVF) {
 					AssetTypeValueField** m_AssemblyNamesChildrenListATVF = m_AssemblyNamesArrayATVF->GetChildrenList();
+					LOG_TRACE("m_AssemblyNamesArrayATVF->GetChildrenCount() == %d", m_AssemblyNamesArrayATVF->GetChildrenCount());
 					for (DWORD i = 0; i < m_AssemblyNamesArrayATVF->GetChildrenCount(); i++) {
 						AssemblyNames.push_back(m_AssemblyNamesChildrenListATVF[i]->GetValue()->AsString());
+						LOG_TRACE("m_AssemblyNamesChildrenListATVF[i]->GetValue()->AsString() == %s", m_AssemblyNamesChildrenListATVF[i]->GetValue()->AsString());
 					}
 				}
 			}
 			AssetSearchCount--;
 		}
 	}
-	
 	return true;
 }
 

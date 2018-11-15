@@ -6,7 +6,6 @@
 
 // http://faithlife.codes/blog/2008/04/exception_0xc0020001_in_ccli_assembly/ Due to static value 0xc0020001 occur
 #ifndef UnityL10nToolCppCLIDEFINE
-#define UnityL10nToolCppCLIDEFINE
 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter = new std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>(); // #include <codecvt>
 //Json::Reader* JsonReader = new Json::Reader();
 Json::CharReaderBuilder* builder = new Json::CharReaderBuilder();

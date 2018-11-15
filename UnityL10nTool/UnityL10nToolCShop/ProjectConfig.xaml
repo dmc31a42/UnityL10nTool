@@ -83,7 +83,7 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <local:CustomProperties Grid.Row="0" DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}" />
-                                            <Button Grid.Row="1" x:Name="AddEditButton" Content="Add" Click="Button_Click"/>
+                                            <Button Grid.Row="1" x:Name="AddEditButton" Content="Add" Click="Button_Click" IsEnabled="False"/>
                                         </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="0">
@@ -185,7 +185,7 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>
-                                    <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" DataContext="{Binding SelectedItem}" DataContextChanged="Grid_DataContextChanged" >
+                                    <Grid Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" DataContext="{Binding SelectedItem}" DataContextChanged="Grid_DataContextChanged" >
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -207,7 +207,7 @@
                                             <Button x:Name="LanguagePairDicsRemove" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemove_Click"/>
                                         </Grid>
                                         <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithTextAssetProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithAssetOptions, ElementName=LanguagePairDicsCombobox}" OptionChanged="interactWithTextAssetProperties_OptionChanged"/>
-                                        <Button Grid.Row="4" x:Name="AddToInteractWithFileAssetEditButton" Content="Add" Click="AddToInteractWithFileAssetEditButton_Click"/>
+                                        <Button Grid.Row="4" x:Name="AddToInteractWithFileAssetEditButton" Content="Add" Click="AddToInteractWithFileAssetEditButton_Click" IsEnabled="False"/>
                                     </Grid>
                                 </Grid>
 
@@ -304,7 +304,7 @@
                                             <!--Button x:Name="LanguagePairDicsRemoveOfWithFileText" Grid.Column="2" Content="Remove" Click="LanguagePairDicsRemoveOfWithFileText_Click"/-->
                                         </Grid>
                                         <local:TextAssetAssetMapOptionsProperties Grid.Row="2" x:Name="interactWithFileTextProperties"  DataContext="{Binding Path=SelectedItem.Value.InteractWithFileTextOptions, ElementName=LanguagePairDicsComboboxOfWithFileText}" OptionChanged="interactWithFileTextProperties_OptionChanged"/>
-                                        <Button Grid.Row="4" x:Name="AddToDoneEditButton" Content="Add" Click="AddToDoneEditButton_Click"/>
+                                        <Button Grid.Row="4" x:Name="AddToDoneEditButton" Content="Add" Click="AddToDoneEditButton_Click" IsEnabled="False"/>
                                     </Grid>
                                 </Grid>
                             </TabItem>
@@ -402,6 +402,23 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding filePath}" Header="File Name" Width="1*"/>
                                 <DataGridTextColumn Binding="{Binding URL}" Header="URL" Width="1*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Copy Resources">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft" Margin="5">
+                            <Button x:Name="RemoveSelectedCopyResourcesManual" Content="Remove" Width="Auto"/>
+                        </StackPanel>
+                        <DataGrid Grid.Row="1" x:Name="CopyResourcesManualDataGrid" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding ResourcesFileFromProjectFolder}" Header="ResourcesFileFromProjectFolder" Width="1*"/>
+                                <DataGridTextColumn Binding="{Binding ResourcesFileTargetRelativePath}" Header="ResourcesFileTargetRelativePath" Width="1*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

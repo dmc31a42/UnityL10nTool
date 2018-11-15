@@ -33,6 +33,27 @@ public :
 	}*/
 };
 
+struct CopyResourcesManualPair {
+public:
+	wstring ResourcesFileFromProjectFolder;
+	wstring ResourcesFileTargetRelativePath;
+	CopyResourcesManualPair() {}
+	CopyResourcesManualPair(Json::Value json) {
+		if (json.isMember("ResourcesFileFromProjectFolder")) {
+			this->ResourcesFileFromProjectFolder = WideMultiStringConverter->from_bytes(json["ResourcesFileFromProjectFolder"].asString());
+		}
+		if (json.isMember("ResourcesFileTargetRelativePath")) {
+			this->ResourcesFileTargetRelativePath = WideMultiStringConverter->from_bytes(json["ResourcesFileTargetRelativePath"].asString());
+		}
+	}
+	Json::Value toString() {
+		Json::Value json;
+		json["ResourcesFileFromProjectFolder"] = WideMultiStringConverter->to_bytes(this->ResourcesFileFromProjectFolder);
+		json["ResourcesFileTargetRelativePath"] = WideMultiStringConverter->to_bytes(this->ResourcesFileTargetRelativePath);
+		return json;
+	}
+};
+
 struct OnlineResourcePair {
 public:
 	wstring filePath;
@@ -50,6 +71,7 @@ public:
 		Json::Value json;
 		json["filePath"] = WideMultiStringConverter->to_bytes(this->filePath);
 		json["URL"] = WideMultiStringConverter->to_bytes(this->URL);
+		return json;
 	}
 };
 
@@ -248,7 +270,9 @@ class UnityL10nToolCpp
 #pragma region OnlineUpdate member
 	OnlineUpdate OnlineUpdateGlobal;
 #pragma endregion
-
+#pragma region CopyResourcesManualPair member
+	vector<CopyResourcesManualPair> CopyResourcesManualPairsGlobal;
+#pragma endregion
 	ProjectSettings ProjectSettingsGlobal;
 
 	UnityL10nToolAPI _unityL10nToolAPI;
@@ -312,6 +336,14 @@ public:
 #pragma region OnlineUpdate
 	OnlineUpdate GetOnlineUpdate();
 	void SetOnlineUpdate(OnlineUpdate onlineUpdate);
+#pragma endregion
+
+#pragma region CopyResourcesManual
+	vector<CopyResourcesManualPair> GetCopyResourcesManualPairs();
+	void AddCopyResourcesManualPair(CopyResourcesManualPair copyResourcesManualPair);
+	void SetCopyResourcesManualPairs(vector<CopyResourcesManualPair> copyResourcesManualPairs);
+	Json::Value SetCopyResourcesManualPairsToProjectJson();
+	void CopyResourcesManualPairsForPatcher();
 #pragma endregion
 
 	bool SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps);

@@ -1197,6 +1197,7 @@ Json::Value UnityL10nToolCpp::GetPacherConfigJson() {
 	}
 	patcherConfigJson["TextPlugin"]["Done"] = TextAssetMapsGlobal.ToJSON()["Done"];
 	patcherConfigJson["OnlineResources"] = SetOnlineResourcePairsToProjectJson();
+	patcherConfigJson["CopyResourcesManuals"] = SetCopyResourcesManualPairsToProjectJson();
 	patcherConfigJson["OnlineUpdate"] = projectJson["OnlineUpdate"];
 	return patcherConfigJson;
 }
@@ -1807,4 +1808,60 @@ void UnityL10nToolCpp::SetOnlineUpdate(OnlineUpdate onlineUpdate)
 {
 	OnlineUpdateGlobal = onlineUpdate;
 	projectJson["OnlineUpdate"] = onlineUpdate.toJson();
+}
+
+vector<CopyResourcesManualPair> UnityL10nToolCpp::GetCopyResourcesManualPairs()
+{
+	if (CopyResourcesManualPairsGlobal.size() == 0) {
+		if (projectJson.isMember("CopyResourcesManuals")) {
+			Json::Value json = projectJson["CopyResourcesManuals"];
+			if (json.isArray()) {
+				for (Json::ArrayIndex i = 0; i < json.size(); i++) {
+					CopyResourcesManualPairsGlobal.push_back(CopyResourcesManualPair(json[i]));
+				}
+			}
+		}
+	}
+	return CopyResourcesManualPairsGlobal;
+}
+
+void UnityL10nToolCpp::AddCopyResourcesManualPair(CopyResourcesManualPair copyResourcesManualPair)
+{
+	CopyResourcesManualPairsGlobal.push_back(copyResourcesManualPair);
+}
+
+void UnityL10nToolCpp::SetCopyResourcesManualPairs(vector<CopyResourcesManualPair> copyResourcesManualPairs)
+{
+	CopyResourcesManualPairsGlobal = copyResourcesManualPairs;
+	SetCopyResourcesManualPairsToProjectJson();
+}
+
+Json::Value UnityL10nToolCpp::SetCopyResourcesManualPairsToProjectJson()
+{
+	Json::Value json(Json::arrayValue);
+	for (vector<CopyResourcesManualPair>::iterator itr = CopyResourcesManualPairsGlobal.begin();
+		itr != CopyResourcesManualPairsGlobal.end(); itr++) {
+		Json::Value jsonChild;
+		jsonChild["ResourcesFileFromProjectFolder"] = WideMultiStringConverter->to_bytes(itr->ResourcesFileFromProjectFolder);
+		jsonChild["ResourcesFileTargetRelativePath"] = WideMultiStringConverter->to_bytes(itr->ResourcesFileTargetRelativePath);
+		json.append(jsonChild);
+	}
+	projectJson["CopyResourcesManuals"] = json;
+	return json;
+}
+
+void UnityL10nToolCpp::CopyResourcesManualPairsForPatcher()
+{
+	for (vector<CopyResourcesManualPair>::iterator CopyResourcesManualPairItr = CopyResourcesManualPairsGlobal.begin();
+		CopyResourcesManualPairItr != CopyResourcesManualPairsGlobal.end(); CopyResourcesManualPairItr++) {
+		if (CopyResourcesManualPairItr->ResourcesFileFromProjectFolder != L"" && CopyResourcesManualPairItr->ResourcesFileTargetRelativePath != L"") {
+			if (FileExist(CopyResourcesManualPairItr->ResourcesFileFromProjectFolder)) {
+				if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath)) {
+					DeleteFileW((UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
+				}
+				copyFileCustom((CopyResourcesManualPairItr->ResourcesFileFromProjectFolder).c_str(),
+					(UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
+			}
+		}
+	}
 }

@@ -248,6 +248,7 @@ namespace UnityL10nToolCShop
         public ObservableCollection<OnlineResourcePairCLI> OnlineResourcePairCLIsGlobal { get; set; }
         public ProjectSettingsCLI ProjectSettingsCLIGlobal { get; set; }
         public OnlineUpdateCLI OnlineUpdateCLIGlobal { get; set; }
+        public ObservableCollection<CopyResourcesManualPairCLI> CopyResourcesManualPairCLIsGlobal { get; set; }
 
         static void DownloadWebFile(string name, string path, string url)
         {
@@ -369,6 +370,9 @@ namespace UnityL10nToolCShop
             if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Resources List...");
             OnlineResourcePairCLIsGlobal = unityL10nToolCppManaged.GetOnlineResourcePairs();
 
+            if (e != null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Copy Resources by Manual List...");
+            CopyResourcesManualPairCLIsGlobal = unityL10nToolCppManaged.GetCopyResourcesManualPairs();
+
             if(e!=null) LoadUnityL10nTool_BackgroundWorker.ReportProgress(0, "Loading Online Update...");
             OnlineUpdateCLIGlobal = unityL10nToolCppManaged.GetOnlineUpdate();
 
@@ -392,6 +396,7 @@ namespace UnityL10nToolCShop
             PluginInteractWithFileTextNamesCombobox.ItemsSource = interactWithFileTextNames;
             LoadUnityL10nTool_BackgroundWorker.Dispose();
             OnlineResourcesDataGrid.ItemsSource = OnlineResourcePairCLIsGlobal;
+            CopyResourcesManualDataGrid.ItemsSource = CopyResourcesManualPairCLIsGlobal;
             ProjectSettingsGrid.DataContext = ProjectSettingsCLIGlobal;
             UpdaterGrid.DataContext = OnlineUpdateCLIGlobal;
         }
@@ -484,6 +489,7 @@ namespace UnityL10nToolCShop
             Grid grid = (Grid)dataGrid.Parent;
             Button button = (Button)grid.FindName("AddEditButton");
             button.Content = "Add";
+            button.IsEnabled = true;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -493,6 +499,7 @@ namespace UnityL10nToolCShop
             unityL10nToolCppManaged.GetProjectConfigJsonFromFontPlugin();
             unityL10nToolCppManaged.SetTextPluginConfigToJsonValue();
             unityL10nToolCppManaged.SetOnlineResourcePairs(OnlineResourcePairCLIsGlobal);
+            unityL10nToolCppManaged.SetCopyResourcesManualPairs(CopyResourcesManualPairCLIsGlobal);
             unityL10nToolCppManaged.SetOnlineUpdate(OnlineUpdateCLIGlobal);
             unityL10nToolCppManaged.SaveProjectConfigJson();
         }
@@ -832,6 +839,7 @@ namespace UnityL10nToolCShop
             interactWithTextAssetProperties.IsReadOnly = false;
             PluginInteractWithAssetNamesCombobox.IsEnabled = true;
             AddToInteractWithFileAssetEditButton.Content = "Add";
+            AddToInteractWithFileAssetEditButton.IsEnabled = true;
         }
 
         private void InteractWithTextAssetDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)
@@ -860,6 +868,7 @@ namespace UnityL10nToolCShop
             interactWithFileTextProperties.IsReadOnly = false;
             PluginInteractWithFileTextNamesCombobox.IsEnabled = true;
             AddToDoneEditButton.Content = "Add";
+            AddToDoneEditButton.IsEnabled = true;
         }
 
         private void InteractWithFileTextDataGridSaveds_GotFocus(object sender, RoutedEventArgs e)

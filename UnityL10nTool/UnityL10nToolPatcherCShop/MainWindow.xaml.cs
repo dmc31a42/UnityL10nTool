@@ -179,6 +179,8 @@ namespace UnityL10nToolPatcherCShop
             unityL10nToolCppManaged.MakeModifiedAssetsFile();
             PatchBackgroundWorker.ReportProgress(1, "Copying resource files to game folder...");
             unityL10nToolCppManaged.CopyResourceFileToGameFolder();
+            unityL10nToolCppManaged.GetCopyResourcesManualPairs();
+            unityL10nToolCppManaged.CopyResourcesManualPairsForPatcher();
             PatchBackgroundWorker.ReportProgress(1, "Done...");
         }
 

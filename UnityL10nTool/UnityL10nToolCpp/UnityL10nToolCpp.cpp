@@ -109,16 +109,30 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 			iterator != folderList.end(); iterator++) {
 			size_t index = iterator->find(L"_Data");
 			if (index != std::wstring::npos) {
-				folder = MakeSureBackslashEndOfFolderPath(folder + *iterator);
-				wifstream wif2(folder + L"app.info");
+				wstring tempfolder = MakeSureBackslashEndOfFolderPath(folder + *iterator);
+				wifstream wif2(tempfolder + L"app.info");
 				if (wif2.good()) {
 					wif2.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 					std::wstringstream wss;
 					wss << wif2.rdbuf();
 					appInfoFileText = wss.str();
+					folder = tempfolder;
 					break;
 				}
+				else {
+					wstring refGameName;
+					wstring refMakerName;
+					if (GetGameMakerNameFromGlobalgamemanager(tempfolder, refGameName, refMakerName)) {
+						appInfoFileText = refMakerName + L"\n" + refGameName;
+						break;
+					}
+				}
 			}
+		}
+		wstring refGameName;
+		wstring refMakerName;
+		if (GetGameMakerNameFromGlobalgamemanager(folder, refGameName, refMakerName)) {
+			appInfoFileText = refMakerName + L"\n" + refGameName;
 		}
 	}
 	if (appInfoFileText == L"") {
@@ -182,6 +196,7 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 		FindAssetsFilesFromAssetsName.insert(pair<string, AssetsFile*>(assetsFileName, assetsFile));
 		FindAssetsFileTablesFromAssetsName.insert(pair<string, AssetsFileTable*>(assetsFileName, assetsFileTable));
 		FindAssetsNameFromAssetsFileTables.insert(pair<AssetsFileTable*, string>(assetsFileTable, assetsFileName));
+		FindAssetsNameFromAssetsFiles.insert(pair<AssetsFile*, string>(assetsFile, assetsFileName));
 		AssetsFileNames.push_back(assetsFileName);
 		if (assetsFileName == "globalgamemanagers") {
 			GlobalgamemanagersAssetsTable = assetsFileTable;
@@ -315,32 +330,34 @@ bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 					for (DWORD i = 0; i < m_ScriptsArrayATVF->GetChildrenCount(); i++) {
 						INT32 m_FileID = m_ScriptsChildrenListATVF[i]->Get("m_FileID")->GetValue()->AsInt();
 						INT64 m_PathID = m_ScriptsChildrenListATVF[i]->Get("m_PathID")->GetValue()->AsInt64();
-						LOG_TRACE(("i: " + to_string((long long)i) + " m_FileID == " + to_string((long long)m_FileID) + ", m_PathID == " + to_string((long long)m_PathID)).c_str());
-						string assetsName = string(globalgamemanagersFile->dependencies.pDependencies[m_FileID - 1].assetPath);
-						LOG_TRACE("assetsName == %s", assetsName);
-						AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[assetsName];
-						AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
-						AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(m_PathID);
-						if (classId == 0) {
-							GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
-						}
-						AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
-						baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID[classId]], (DWORD)0, false);
-						AssetTypeInstance baseAssetTypeInstance(
-							(DWORD)1,
-							&baseAssetTypeTemplateField,
-							assetFileInfoEx->curFileSize,
-							assetsFileTable->getReader(),
-							assetsFile->header.endianness ? true : false,
-							assetFileInfoEx->absolutePos);
-						AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
-						if (baseAssetTypeValueField) {
-							AssetTypeValueField* m_ClassNameATVF = baseAssetTypeValueField->Get("m_ClassName");
-							AssetTypeValueField* m_NamespaceATVF = baseAssetTypeValueField->Get("m_Namespace");
-							if (m_ClassNameATVF && m_NamespaceATVF) {
-								string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
-								FindMonoClassNameFromAssetsNameANDPathId.insert(pair<pair<string, INT64>, string>(pair<string, INT64>(assetsName, assetFileInfoEx->index), monoScriptFullName));
-								LOG_TRACE(("FindMonoClassNameFromAssetsNameANDPathId.insert<<" + assetsName + "," + to_string((long long)assetFileInfoEx->index) + ">," + monoScriptFullName + ">").c_str());
+						if (m_PathID != 0) {
+							LOG_TRACE(("i: " + to_string((long long)i) + " m_FileID == " + to_string((long long)m_FileID) + ", m_PathID == " + to_string((long long)m_PathID)).c_str());
+							string assetsName = _unityL10nToolAPI.FindAssetsNameFromFileIdDependencies(m_FileID, globalgamemanagersFile);
+							LOG_TRACE("assetsName == %s", assetsName);
+							AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[assetsName];
+							AssetsFile* assetsFile = assetsFileTable->getAssetsFile();
+							AssetFileInfoEx* assetFileInfoEx = assetsFileTable->getAssetInfo(m_PathID);
+							if (classId == 0) {
+								GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classId, monoClassId);
+							}
+							AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
+							baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID[classId]], (DWORD)0, false);
+							AssetTypeInstance baseAssetTypeInstance(
+								(DWORD)1,
+								&baseAssetTypeTemplateField,
+								assetFileInfoEx->curFileSize,
+								assetsFileTable->getReader(),
+								assetsFile->header.endianness ? true : false,
+								assetFileInfoEx->absolutePos);
+							AssetTypeValueField* baseAssetTypeValueField = baseAssetTypeInstance.GetBaseField();
+							if (baseAssetTypeValueField) {
+								AssetTypeValueField* m_ClassNameATVF = baseAssetTypeValueField->Get("m_ClassName");
+								AssetTypeValueField* m_NamespaceATVF = baseAssetTypeValueField->Get("m_Namespace");
+								if (m_ClassNameATVF && m_NamespaceATVF) {
+									string monoScriptFullName = string(m_NamespaceATVF->GetValue()->AsString()) + "." + m_ClassNameATVF->GetValue()->AsString();
+									FindMonoClassNameFromAssetsNameANDPathId.insert(pair<pair<string, INT64>, string>(pair<string, INT64>(assetsName, assetFileInfoEx->index), monoScriptFullName));
+									LOG_TRACE(("FindMonoClassNameFromAssetsNameANDPathId.insert<<" + assetsName + "," + to_string((long long)assetFileInfoEx->index) + ">," + monoScriptFullName + ">").c_str());
+								}
 							}
 						}
 					}
@@ -480,6 +497,7 @@ bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	_unityL10nToolAPI.FindAssetsFilesFromAssetsName = &FindAssetsFilesFromAssetsName;
 	_unityL10nToolAPI.FindAssetsFileTablesFromAssetsName = &FindAssetsFileTablesFromAssetsName;
 	_unityL10nToolAPI.FindAssetsNameFromAssetsFileTables = &FindAssetsNameFromAssetsFileTables;
+	_unityL10nToolAPI.FindAssetsNameFromAssetsFiles = &FindAssetsNameFromAssetsFiles;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassID = &FindBasicClassIndexFromClassID;
 	_unityL10nToolAPI.FindBasicClassIndexFromClassName = &FindBasicClassIndexFromClassName;
 	_unityL10nToolAPI.FindMonoClassNameFromAssetsNameANDPathId = &FindMonoClassNameFromAssetsNameANDPathId;
@@ -1322,6 +1340,74 @@ void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)
 	}
 }
 
+bool GetGameMakerNameFromGlobalgamemanager(wstring path, wstring& GameName, wstring& MakerName) {
+	wstring globalgamemanagersFileName = L"globalgamemanagers";
+	WIN32_FIND_DATA fdGlobalgamemanager;
+	HANDLE hFindGlobalgamemanager = ::FindFirstFileW((path + globalgamemanagersFileName).c_str(), &fdGlobalgamemanager);
+	if (hFindGlobalgamemanager != INVALID_HANDLE_VALUE) {
+		::FindClose(hFindGlobalgamemanager);
+		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((path + globalgamemanagersFileName).c_str(), true, RWOpenFlags_None);
+		AssetsFile* assetsFile = new AssetsFile(assetsReader);
+		AssetsFileTable* assetsFileTable = new AssetsFileTable(assetsFile);
+		string version = assetsFile->typeTree.unityVersion;
+		size_t lastDotOffset = version.find_last_of('.');
+		string versionFirstTwoNumbers = version.substr(0, lastDotOffset);
+		wstring filter = L"ClassDatabase\\U" + WideMultiStringConverter->from_bytes(versionFirstTwoNumbers) + L".*.dat";
+		vector<wstring> classDatabasePathList = get_all_files_names_within_folder(filter);
+		wstring classDatabaseFileName = classDatabasePathList[0];
+		IAssetsReader* classDatabaseReader = Create_AssetsReaderFromFile((L"ClassDatabase\\" + classDatabaseFileName).c_str(), true, RWOpenFlags_None);
+		ClassDatabaseFile* BasicClassDatabaseFile = new ClassDatabaseFile();
+		BasicClassDatabaseFile->Read(classDatabaseReader);
+		int PlayerSettingsClassid = 0;
+		int PlayerSettingsItr = 0;
+		for (size_t i = 0; i < BasicClassDatabaseFile->classes.size(); i++)
+		{
+			const char* classDatabaseTypeName = BasicClassDatabaseFile->classes[i].name.GetString(BasicClassDatabaseFile);
+			if (strcmp(classDatabaseTypeName, "PlayerSettings") == 0) {
+				PlayerSettingsClassid = BasicClassDatabaseFile->classes[i].classId;
+				PlayerSettingsItr = i;
+				break;
+			}
+		}
+		if (PlayerSettingsClassid != 0) {
+			for (int i = 0; i < assetsFileTable->assetFileInfoCount; i++)
+			{
+				int classid = 0;
+				UINT16 MonoClassid = 0;
+				AssetFileInfoEx* assetFileInfoEx = &assetsFileTable->pAssetFileInfo[i];
+				UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(assetsFileTable, assetFileInfoEx, classid, MonoClassid);
+				if (PlayerSettingsClassid == classid) {
+					AssetTypeTemplateField* baseAssetTypeTemplateField = new AssetTypeTemplateField;
+					baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[PlayerSettingsItr], (DWORD)0, false);
+					AssetTypeInstance baseAssetTypeInstance = AssetTypeInstance(
+						(DWORD)1,
+						&baseAssetTypeTemplateField,
+						assetFileInfoEx->curFileSize,
+						assetsFileTable->getReader(),
+						assetsFileTable->getAssetsFile()->header.endianness ? true : false,
+						assetFileInfoEx->absolutePos);
+
+					AssetTypeValueField* pBase = baseAssetTypeInstance.GetBaseField();
+					if (pBase) {
+						AssetTypeValueField* companyNameField = pBase->Get("companyName");
+						AssetTypeValueField* productNameField = pBase->Get("productName");
+						if (companyNameField && productNameField &&
+							!companyNameField->IsDummy() && !productNameField->IsDummy()) {
+							MakerName = WideMultiStringConverter->from_bytes(companyNameField->GetValue()->AsString());
+							GameName = WideMultiStringConverter->from_bytes(productNameField->GetValue()->AsString());
+							return true;
+						}
+					}
+					baseAssetTypeTemplateField->Clear();
+					break;
+				}
+			}
+		}
+	}
+	::FindClose(hFindGlobalgamemanager);
+	return false;
+}
+
 wstring FindUnityGameFolderFromDataFolderNameInternal2(wstring path, wstring GameName, wstring MakerName) {
 	path = UnityL10nToolCpp::MakeSureBackslashEndOfFolderPath(path);
 	WIN32_FIND_DATA fdAppInfo;
@@ -1337,6 +1423,13 @@ wstring FindUnityGameFolderFromDataFolderNameInternal2(wstring path, wstring Gam
 				::FindClose(hFindAppInfo);
 				return path;
 			}
+		}
+	}
+	else {
+		wstring tempGameName;
+		wstring tempMakerName;
+		if (GetGameMakerNameFromGlobalgamemanager(path, tempGameName, tempMakerName)) {
+			return path;
 		}
 	}
 	::FindClose(hFindAppInfo);

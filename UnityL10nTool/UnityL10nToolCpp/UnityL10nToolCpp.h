@@ -244,6 +244,7 @@ class UnityL10nToolCpp
 	map <string, AssetsFile*> FindAssetsFilesFromAssetsName;
 	map <string, AssetsFileTable*> FindAssetsFileTablesFromAssetsName;
 	map<AssetsFileTable*, string> FindAssetsNameFromAssetsFileTables;
+	map<AssetsFile*, string> FindAssetsNameFromAssetsFiles;
 	map <INT32, UINT32> FindBasicClassIndexFromClassID;
 	map <string, UINT32> FindBasicClassIndexFromClassName;
 	map<pair<string, INT64>, string> FindMonoClassNameFromAssetsNameANDPathId;
@@ -380,3 +381,5 @@ protected:
 	//bool LoadFindMonoClassNameFromMonoScriptPathId(AssetsFileTable * globalgamemanagersAssetsTable);
 	//bool LoadFindMonoClassNameFromMonoScriptPathId();
 };
+
+bool GetGameMakerNameFromGlobalgamemanager(wstring path, wstring & GameName, wstring & MakerName);

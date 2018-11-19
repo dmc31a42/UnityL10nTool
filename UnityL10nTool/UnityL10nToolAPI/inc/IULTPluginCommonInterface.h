@@ -217,6 +217,7 @@ struct UnityL10nToolAPI {
 	const std::map <std::string, AssetsFile*>* FindAssetsFilesFromAssetsName;
 	const std::map <std::string, AssetsFileTable*>* FindAssetsFileTablesFromAssetsName;
 	const std::map <AssetsFileTable*, std::string>* FindAssetsNameFromAssetsFileTables;
+	const std::map <AssetsFile*, std::string>* FindAssetsNameFromAssetsFiles;
 	const std::map <INT32, UINT32>* FindBasicClassIndexFromClassID;
 	const std::map <std::string, UINT32>* FindBasicClassIndexFromClassName;
 	const std::map<std::pair<std::string, INT64>, std::string>* FindMonoClassNameFromAssetsNameANDPathId;
@@ -227,7 +228,7 @@ struct UnityL10nToolAPI {
 	const std::map<INT32, std::string>* FindAssetsNameFromPathIDOfContainerPath;
 
 	
-	void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
+	static void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	AssetTypeInstance * GetBasicAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeInstance * GetDetailAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
@@ -243,14 +244,12 @@ struct UnityL10nToolAPI {
 	bool ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSON(AssetTypeValueField * assetTypeValueField, Json::Value json);
 	std::string GetClassNameFromBaseAssetTypeValueField(AssetsFileTable* assetsFileTable, AssetTypeValueField * baseAssetTypeValueField);
+	std::string FindAssetsNameFromFileIdDependencies(int m_FileId, AssetsFileTable * assetsFileTable);
+	std::string FindAssetsNameFromFileIdDependencies(int m_FileId, AssetsFile * assetsFile);
 	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, std::string assetName);
 	std::wstring GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx);
 	std::wstring GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx);
 };
-
-
-
-
 
 inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, int& classId, UINT16& monoClassId) {
 	if (assetsFileTable->getAssetsFile()->header.format <= 0x10) {
@@ -271,13 +270,7 @@ inline std::string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(Ass
 		if (m_ScriptATVF) {
 			int m_FileId = m_ScriptATVF->Get("m_FileID")->GetValue()->AsInt();
 			unsigned __int64 m_PathID = m_ScriptATVF->Get("m_PathID")->GetValue()->AsUInt64();
-			std::string assetsName;
-			if (m_FileId == 0) {
-				assetsName = FindAssetsNameFromAssetsFileTables->find(assetsFileTable)->second;
-			}
-			else {
-				assetsName = std::string(assetsFileTable->getAssetsFile()->dependencies.pDependencies[m_FileId - 1].assetPath);
-			}
+			std::string assetsName = FindAssetsNameFromFileIdDependencies(m_FileId, assetsFileTable);
 			std::map<std::pair<std::string, INT64>, std::string>::const_iterator iterator = FindMonoClassNameFromAssetsNameANDPathId->find(std::pair<std::string, INT64>(assetsName, m_PathID));
 			if (iterator != FindMonoClassNameFromAssetsNameANDPathId->end()) {
 				return iterator->second;
@@ -293,6 +286,22 @@ inline std::string UnityL10nToolAPI::GetClassNameFromBaseAssetTypeValueField(Ass
 	else {
 		throw new std::exception("GetClassNameFromBaseAssetTypeValueField: baseAssetTypeValueField not exist");
 	}
+}
+
+inline std::string UnityL10nToolAPI::FindAssetsNameFromFileIdDependencies(int m_FileId, AssetsFileTable * assetsFileTable) {
+	return this->FindAssetsNameFromFileIdDependencies(m_FileId, assetsFileTable->getAssetsFile());
+}
+
+inline std::string UnityL10nToolAPI::FindAssetsNameFromFileIdDependencies(int m_FileId, AssetsFile * assetsFile)
+{
+	std::string assetsName;
+	if (m_FileId == 0) {
+		assetsName = FindAssetsNameFromAssetsFiles->find(assetsFile)->second;
+	}
+	else {
+		assetsName = std::string(assetsFile->dependencies.pDependencies[m_FileId - 1].assetPath);
+	}
+	return assetsName;
 }
 
 inline INT64 UnityL10nToolAPI::FindAssetIndexFromName(AssetsFileTable* assetsFileTable, std::string assetName) {

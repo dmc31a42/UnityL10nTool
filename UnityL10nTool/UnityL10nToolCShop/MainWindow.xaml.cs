@@ -120,6 +120,9 @@ namespace UnityL10nToolCShop
                     Window projectConfig = new ProjectConfig(unityL10NToolProjectInfo);
                     projectConfig.Show();
                     Window.GetWindow(this).Close();
+                } else
+                {
+                    MessageBox.Show("Fail to find unity game folder. please check github wiki manual. If there is a problem, please report issue at github.", "Find unity folder fail");
                 }
             }
         }

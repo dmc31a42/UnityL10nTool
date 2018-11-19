@@ -94,7 +94,7 @@ struct TextAssetMap {
 		result["assetsName"] = WideMultiStringConverter->to_bytes(this->assetsName);
 		result["assetName"] = WideMultiStringConverter->to_bytes(this->assetName);
 		result["containerPath"] = WideMultiStringConverter->to_bytes(this->containerPath);
-		result["ExternalRelativeFilePath"] = WideMultiStringConverter->to_bytes(this->containerPath);
+		result["ExternalRelativeFilePath"] = WideMultiStringConverter->to_bytes(this->ExternalRelativeFilePath);
 		result["InteractWithAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithAssetPluginName);
 		result["InteractWithFileTextPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithFileTextPluginName);
 		result["InteractWithMonoAssetPluginName"] = WideMultiStringConverter->to_bytes(this->InteractWithMonoAssetPluginName);

@@ -388,17 +388,24 @@ namespace UnityL10nToolCShop
 
         private void LoadUnityL10nTool_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MainGrid.Children.Remove(projectConfigSplash);
-            GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
-            FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
-            TextAssetTabControl.DataContext = textAssetTabControlContext;
-            PluginInteractWithAssetNamesCombobox.ItemsSource = interactWithAssetNames;
-            PluginInteractWithFileTextNamesCombobox.ItemsSource = interactWithFileTextNames;
-            LoadUnityL10nTool_BackgroundWorker.Dispose();
-            OnlineResourcesDataGrid.ItemsSource = OnlineResourcePairCLIsGlobal;
-            CopyResourcesManualDataGrid.ItemsSource = CopyResourcesManualPairCLIsGlobal;
-            ProjectSettingsGrid.DataContext = ProjectSettingsCLIGlobal;
-            UpdaterGrid.DataContext = OnlineUpdateCLIGlobal;
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+                MessageBox.Show("Error during working. Please report issue at github");
+            } else
+            {
+                MainGrid.Children.Remove(projectConfigSplash);
+                GamePathTextBlock.Text = unityL10NToolProjectInfo.GamePath;
+                FontAssetTabControl.ItemsSource = pluginsSupportAssetMap;
+                TextAssetTabControl.DataContext = textAssetTabControlContext;
+                PluginInteractWithAssetNamesCombobox.ItemsSource = interactWithAssetNames;
+                PluginInteractWithFileTextNamesCombobox.ItemsSource = interactWithFileTextNames;
+                LoadUnityL10nTool_BackgroundWorker.Dispose();
+                OnlineResourcesDataGrid.ItemsSource = OnlineResourcePairCLIsGlobal;
+                CopyResourcesManualDataGrid.ItemsSource = CopyResourcesManualPairCLIsGlobal;
+                ProjectSettingsGrid.DataContext = ProjectSettingsCLIGlobal;
+                UpdaterGrid.DataContext = OnlineUpdateCLIGlobal;
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)

@@ -1386,7 +1386,7 @@ bool GetGameMakerNameFromGlobalgamemanager(wstring path, wstring& GameName, wstr
 						assetsFileTable->getReader(),
 						assetsFileTable->getAssetsFile()->header.endianness ? true : false,
 						assetFileInfoEx->absolutePos);
-
+					baseAssetTypeTemplateField->Clear();
 					AssetTypeValueField* pBase = baseAssetTypeInstance.GetBaseField();
 					if (pBase) {
 						AssetTypeValueField* companyNameField = pBase->Get("companyName");
@@ -1395,16 +1395,24 @@ bool GetGameMakerNameFromGlobalgamemanager(wstring path, wstring& GameName, wstr
 							!companyNameField->IsDummy() && !productNameField->IsDummy()) {
 							MakerName = WideMultiStringConverter->from_bytes(companyNameField->GetValue()->AsString());
 							GameName = WideMultiStringConverter->from_bytes(productNameField->GetValue()->AsString());
+							
+							assetsFile->~AssetsFile();
+							assetsFileTable->~AssetsFileTable();
+							assetsReader->Close();
 							return true;
 						}
 					}
-					baseAssetTypeTemplateField->Clear();
+					
 					break;
 				}
 			}
 		}
+		assetsFile->~AssetsFile();
+		assetsFileTable->~AssetsFileTable();
+		assetsReader->Close();
 	}
 	::FindClose(hFindGlobalgamemanager);
+
 	return false;
 }
 

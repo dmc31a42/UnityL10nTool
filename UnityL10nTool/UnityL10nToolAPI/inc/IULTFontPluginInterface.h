@@ -35,6 +35,7 @@ typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetPatcherAssetReplacerCall
 typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(std::wstring FontPluginRelativePath, std::wstring targetPath);
 
 struct FontAssetMap {
+	std::wstring Id;
 	std::string assetsName;
 	std::string assetName;
 	std::string containerPath;
@@ -101,6 +102,7 @@ inline vector<FontAssetMap> GetFontAssetMapListFromMonoClassName(UnityL10nToolAP
 							}
 						}
 						FontAssetMap tempFontAssetMap = {
+							L"",
 							assetsName,
 							assetName,
 							containerPath,

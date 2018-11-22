@@ -172,6 +172,10 @@
       <Name>UnityL10nToolCppCLI</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
+    <ProjectReference Include="..\UnityL10nToolPatcherCShop\UnityL10nToolPatcherCShop.csproj">
+      <Project>{f0614b73-63c8-445e-9243-f534d8bdb970}</Project>
+      <Name>UnityL10nToolPatcherCShop</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="defaultIcon.ico" />

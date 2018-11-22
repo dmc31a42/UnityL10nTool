@@ -72,6 +72,7 @@
                                         </Grid.ColumnDefinitions>
                                         <DataGrid x:Name="FontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" AutoGenerateColumns="False" SelectedCellsChanged="FontAssetMapDataGrid_SelectedCellsChanged">
                                             <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
@@ -93,6 +94,7 @@
                                         </Grid.ColumnDefinitions>
                                         <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>

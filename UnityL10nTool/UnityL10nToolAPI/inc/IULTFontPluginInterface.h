@@ -42,6 +42,17 @@ public:
 	std::string containerPath;
 	bool useContainerPath;
 	std::vector<AssetMapOption> options;
+	bool LooseEquals(FontAssetMap fontAssetMap) {
+		if (this->assetName == fontAssetMap.assetName &&
+			this->assetsName == fontAssetMap.assetsName &&
+			this->containerPath == fontAssetMap.containerPath &&
+			this->Id == fontAssetMap.Id) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	FontAssetMap() {}
 	FontAssetMap(std::wstring Id, std::string assetsName, std::string assetName, std::string containerPath, bool useContainerPath, std::vector<AssetMapOption> options)
 		: Id(Id), assetsName(assetsName), assetName(assetName), containerPath(containerPath), useContainerPath(useContainerPath), options(options) {

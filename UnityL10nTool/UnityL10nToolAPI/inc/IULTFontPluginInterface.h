@@ -35,12 +35,70 @@ typedef map<string, vector<AssetsReplacer*>>(_cdecl *GetPatcherAssetReplacerCall
 typedef bool(_cdecl *CopyResourceFileToGameFolderCallback)(std::wstring FontPluginRelativePath, std::wstring targetPath);
 
 struct FontAssetMap {
+public:
 	std::wstring Id;
 	std::string assetsName;
 	std::string assetName;
 	std::string containerPath;
 	bool useContainerPath;
 	std::vector<AssetMapOption> options;
+	FontAssetMap() {}
+	FontAssetMap(std::wstring Id, std::string assetsName, std::string assetName, std::string containerPath, bool useContainerPath, std::vector<AssetMapOption> options)
+		: Id(Id), assetsName(assetsName), assetName(assetName), containerPath(containerPath), useContainerPath(useContainerPath), options(options) {
+
+	}
+	FontAssetMap(Json::Value json) {
+		if (json.isMember("assetsName") && json["assetsName"].isString()) {
+			this->assetsName = json["assetsName"].asString();
+		}
+		else {
+			this->assetsName = "";
+		}
+		if (json.isMember("assetName") && json["assetName"].isString()) {
+			this->assetName = json["assetName"].asString();
+		}
+		else {
+			this->assetName = "";
+		}
+		if (json.isMember("containerPath") && json["containerPath"].isString()) {
+			this->containerPath = json["containerPath"].asString();
+		}
+		else {
+			this->containerPath = "";
+		}
+		if (json.isMember("Id") && json["Id"].isString()) {
+			this->Id = WideMultiStringConverter->from_bytes(json["Id"].asString());
+		}
+		else {
+			this->Id = L"";
+		}
+		if (json.isMember("useContainerPath") && json["useContainerPath"].isBool()) {
+			this->useContainerPath = json["useContainerPath"].asBool();
+		}
+		else {
+			this->useContainerPath = false;
+		}
+		if (json.isMember("options") && json["options"].isArray()) {
+			Json::Value optionsJsonArray = json["options"];
+			for (Json::ArrayIndex i = 0; optionsJsonArray.size(); i++) {
+				this->options.push_back(AssetMapOption((Json::Value)optionsJsonArray[i]));
+			}
+		}
+	}
+	Json::Value ToJson() {
+		Json::Value json;
+		json["assetsName"] = this->assetsName;
+		json["assetName"] = this->assetName;
+		json["containerPath"] = this->containerPath;
+		json["Id"] = WideMultiStringConverter->to_bytes(this->Id);
+		json["useContainerPath"] = this->useContainerPath;
+		Json::Value optionsJsonArray(Json::arrayValue);
+		for (std::vector<AssetMapOption>::iterator iterator = this->options.begin(); iterator != this->options.end(); iterator++) {
+			optionsJsonArray.append(iterator->ToJson());
+		}
+		json["options"] = optionsJsonArray;
+		return json;
+	}
 };
 
 struct FontAssetMaps {
@@ -101,13 +159,13 @@ inline vector<FontAssetMap> GetFontAssetMapListFromMonoClassName(UnityL10nToolAP
 								containerPath = containerPathIterator->second;
 							}
 						}
-						FontAssetMap tempFontAssetMap = {
+						FontAssetMap tempFontAssetMap = FontAssetMap(
 							L"",
 							assetsName,
 							assetName,
 							containerPath,
 							false,
-							std::vector<AssetMapOption>() };
+							std::vector<AssetMapOption>() );
 						fontAssetMapList.push_back(tempFontAssetMap);
 					}
 				}

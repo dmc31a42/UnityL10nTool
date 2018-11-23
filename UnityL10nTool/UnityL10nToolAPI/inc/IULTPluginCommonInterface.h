@@ -121,8 +121,7 @@ public:
 			}
 			break;
 		}
-		for (std::vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin();
-			iterator != this->nestedOptions.end(); iterator++) {
+		for (std::vector<AssetMapOption>::iterator iterator = this->nestedOptions.begin(); iterator != this->nestedOptions.end(); iterator++) {
 			//if (!(iterator->Value == NULL && iterator->ValueAsChild == NULL)) {
 			if (!(iterator->Value == NULL)) {
 				result["nestedOptions"].append(iterator->ToJson());

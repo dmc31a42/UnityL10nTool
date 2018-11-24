@@ -42,6 +42,7 @@ public:
 	std::string containerPath;
 	bool useContainerPath;
 	std::vector<AssetMapOption> options;
+	INT64 _m_PathID;
 	bool LooseEquals(FontAssetMap fontAssetMap) {
 		if (this->assetName == fontAssetMap.assetName &&
 			this->assetsName == fontAssetMap.assetsName &&
@@ -177,6 +178,7 @@ inline vector<FontAssetMap> GetFontAssetMapListFromMonoClassName(UnityL10nToolAP
 							containerPath,
 							false,
 							std::vector<AssetMapOption>() );
+						tempFontAssetMap._m_PathID = assetFileInfoEx->index;
 						fontAssetMapList.push_back(tempFontAssetMap);
 					}
 				}

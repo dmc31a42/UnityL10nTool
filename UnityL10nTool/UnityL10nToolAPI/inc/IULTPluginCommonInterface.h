@@ -228,6 +228,7 @@ struct UnityL10nToolAPI {
 
 	
 	static void GetClassIdFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
+	static void GetClassIdFromAssetFileInfoEx(AssetsFile * assetsFile, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	AssetTypeInstance * GetBasicAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeInstance * GetDetailAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
@@ -251,11 +252,17 @@ struct UnityL10nToolAPI {
 };
 
 inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, int& classId, UINT16& monoClassId) {
-	if (assetsFileTable->getAssetsFile()->header.format <= 0x10) {
-		classId = assetFileInfoEx->curFileType;
+	GetClassIdFromAssetFileInfoEx(assetsFileTable->getAssetsFile(), assetFileInfoEx, classId, monoClassId);
+}
+
+inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx, int& classId, UINT16& monoClassId) {
+	if (assetsFile->header.format < 0x10) {
+		//classId = assetFileInfoEx->curFileType;
+		classId = assetFileInfoEx->inheritedUnityClass;
+		monoClassId = assetFileInfoEx->scriptIndex;
 	}
 	else {
-		classId = assetsFileTable->getAssetsFile()->typeTree.pTypes_Unity5[assetFileInfoEx->curFileTypeOrIndex].classId;
+		classId = assetsFile->typeTree.pTypes_Unity5[assetFileInfoEx->curFileTypeOrIndex].classId;
 		if (classId == 0x72) {
 			monoClassId = (WORD)(0xFFFFFFFF - assetFileInfoEx->curFileType); // same as monoScriptIndex in AssetsReplacer
 		}
@@ -374,7 +381,11 @@ inline AssetTypeInstance* UnityL10nToolAPI::GetDetailAssetTypeInstanceFromAssetF
 }
 
 inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName) {
-	std::map<std::string, UINT32>::const_iterator indexOfMonoclassIterator = FindMonoClassIndexFromMonoClassName->find(MonoClassName);
+	std::string tempMonoClassName = MonoClassName;
+	if (tempMonoClassName.size() > 0 && tempMonoClassName[0] == '.') {
+		tempMonoClassName = tempMonoClassName.substr(1, tempMonoClassName.size() - 1);
+	}
+	std::map<std::string, UINT32>::const_iterator indexOfMonoclassIterator = FindMonoClassIndexFromMonoClassName->find(tempMonoClassName);
 	if (indexOfMonoclassIterator == FindMonoClassIndexFromMonoClassName->end()) {
 		return new AssetTypeTemplateField;
 	}

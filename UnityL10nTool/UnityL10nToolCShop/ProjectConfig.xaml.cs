@@ -428,9 +428,7 @@ namespace UnityL10nToolCShop
             try
             {
                 FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
-                    x.assetName == fontAssetMapCLI.assetName &&
-                    x.assetsName == fontAssetMapCLI.assetsName &&
-                    x.containerPath == fontAssetMapCLI.containerPath);
+                    x.LooseEquals(fontAssetMapCLI));
                 fontAssetMapsCLI.Saveds.Remove(found);
                 FontAssetMapCLI clone = fontAssetMapCLI.Clone();
                 fontAssetMapsCLI.Saveds.Add(clone);
@@ -455,9 +453,7 @@ namespace UnityL10nToolCShop
             try
             {
                 FontAssetMapCLI found = fontAssetMapsCLI.News.Single(x =>
-                    x.assetName == fontAssetMapCLI.assetName &&
-                    x.assetsName == fontAssetMapCLI.assetsName &&
-                    x.containerPath == fontAssetMapCLI.containerPath);
+                    x.LooseEquals(fontAssetMapCLI));
                 int index = fontAssetMapsCLI.News.IndexOf(found);
                 fontAssetMapsCLI.News.Remove(found);
                 fontAssetMapsCLI.News.Insert(index, fontAssetMapCLI);
@@ -480,9 +476,7 @@ namespace UnityL10nToolCShop
             try
             {
                 FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
-                    x.assetName == fontAssetMapCLI.assetName &&
-                    x.assetsName == fontAssetMapCLI.assetsName &&
-                    x.containerPath == fontAssetMapCLI.containerPath);
+                    x.LooseEquals(fontAssetMapCLI));
                 fontAssetMapsCLI.Saveds.Remove(found);
             } catch(Exception exception1)
             {

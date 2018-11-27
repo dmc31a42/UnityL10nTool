@@ -107,13 +107,15 @@ namespace UnityL10nToolPatcherCShop
             }
             System.IO.Directory.CreateDirectory("temp\\");
             PatchBackgroundWorker = new BackgroundWorker();
-            PatchBackgroundWorker.DoWork += BackgroundWorker_DoWork;
-            PatchBackgroundWorker.ProgressChanged += PatchBackgroundWorker_ProgressChanged;
-            PatchBackgroundWorker.RunWorkerCompleted += PatchBackgroundWorker_RunWorkerCompleted;
-            PatchBackgroundWorker.WorkerReportsProgress = true;
-            PatchBackgroundWorker.RunWorkerAsync(gameFolderPathTextBox.Text);
+            //PatchBackgroundWorker.DoWork += BackgroundWorker_DoWork;
+            //PatchBackgroundWorker.ProgressChanged += PatchBackgroundWorker_ProgressChanged;
+            //PatchBackgroundWorker.RunWorkerCompleted += PatchBackgroundWorker_RunWorkerCompleted;
+            //PatchBackgroundWorker.WorkerReportsProgress = true;
+            //PatchBackgroundWorker.RunWorkerAsync(gameFolderPathTextBox.Text);
+            BackgroundWorker_DoWork(null, new DoWorkEventArgs(gameFolderPathTextBox.Text));
+            PatchBackgroundWorker_RunWorkerCompleted(null, null);
 
-            
+
         }
 
         private void PatchBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -137,9 +139,9 @@ namespace UnityL10nToolPatcherCShop
         private async void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             string gamePath = (string)e.Argument;
-            PatchBackgroundWorker.ReportProgress(1, "Loading patcher configuration...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading patcher configuration...");
             unityL10nToolCppManaged = new UnityL10nToolCppManaged(".\\", gamePath);
-            PatchBackgroundWorker.ReportProgress(1, "Downloading resources...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Downloading resources...");
             List<Task> downloadTasksQuery = new List<Task>();
             foreach (OnlineResourcePairCLI onlineResourcePairCLI in OnlineResourcePairCLIs)
             {
@@ -149,39 +151,39 @@ namespace UnityL10nToolPatcherCShop
                 downloadTasksQuery.Add(webClient.DownloadFileTaskAsync(onlineResourcePairCLI.URL, "temp\\" + onlineResourcePairCLI.filePath));
             }
             Task[] downloadTasks = downloadTasksQuery.ToArray();
-            PatchBackgroundWorker.ReportProgress(1, "Loading globalgamemanagers...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading globalgamemanagers...");
             unityL10nToolCppManaged.LoadGlobalgamemanagersFile();
-            PatchBackgroundWorker.ReportProgress(1, "Loading Resource and MonoManager...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading Resource and MonoManager...");
             unityL10nToolCppManaged.ProcessResourceAndMonoManger();
-            PatchBackgroundWorker.ReportProgress(1, "Loading mono ClassDatabase...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading mono ClassDatabase...");
             unityL10nToolCppManaged.LoadMonoClassDatabase();
-            PatchBackgroundWorker.ReportProgress(1, "Loading UnityL10nTool API...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading UnityL10nTool API...");
             unityL10nToolCppManaged.LoadUnityL10nToolAPI();
             await Task.WhenAll(downloadTasks);
-            PatchBackgroundWorker.ReportProgress(1, "Downloading resources...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Downloading resources...");
             //unityL10nToolCppManaged.GetOnlineResourcePairs();
             //unityL10nToolCppManaged.DownloadResourcesFromInternetToTempFolder();
-            PatchBackgroundWorker.ReportProgress(1, "Loading font plugins...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading font plugins...");
             List<string> loadedFontPlugins = unityL10nToolCppManaged.LoadFontPlugins();
-            PatchBackgroundWorker.ReportProgress(1, "Setting patcher configuration...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Setting patcher configuration...");
             unityL10nToolCppManaged.SetPacherConfigJson();
-            PatchBackgroundWorker.ReportProgress(1, "Loading font assets replacers...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading font assets replacers...");
             unityL10nToolCppManaged.LoadAssetsReplacer();
-            PatchBackgroundWorker.ReportProgress(1, "Loading text plugins...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading text plugins...");
             unityL10nToolCppManaged.LoadTextPlugins();
-            PatchBackgroundWorker.ReportProgress(1, "Loading text asset maps...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading text asset maps...");
             unityL10nToolCppManaged.GetTextAssetMaps();
-            PatchBackgroundWorker.ReportProgress(1, "Loading translated text assets from file...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading translated text assets from file...");
             unityL10nToolCppManaged.GetTranslatedTextAssetsFromFile();
-            PatchBackgroundWorker.ReportProgress(1, "Loading text assets replacers...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Loading text assets replacers...");
             unityL10nToolCppManaged.GetAssetReplacerFromTextAssets();
-            PatchBackgroundWorker.ReportProgress(1, "Making modified assets files...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Making modified assets files...");
             unityL10nToolCppManaged.MakeModifiedAssetsFile();
-            PatchBackgroundWorker.ReportProgress(1, "Copying resource files to game folder...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Copying resource files to game folder...");
             unityL10nToolCppManaged.CopyResourceFileToGameFolder();
             unityL10nToolCppManaged.GetCopyResourcesManualPairs();
             unityL10nToolCppManaged.CopyResourcesManualPairsForPatcher();
-            PatchBackgroundWorker.ReportProgress(1, "Done...");
+            if(sender != null) PatchBackgroundWorker.ReportProgress(1, "Done...");
         }
 
         private void gameFolderPathTextBox_Pasting(object sender, DataObjectPastingEventArgs e)

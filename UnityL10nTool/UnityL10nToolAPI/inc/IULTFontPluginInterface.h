@@ -92,7 +92,7 @@ public:
 		}
 		if (json.isMember("options") && json["options"].isArray()) {
 			Json::Value optionsJsonArray = json["options"];
-			for (Json::ArrayIndex i = 0; optionsJsonArray.size(); i++) {
+			for (Json::ArrayIndex i = 0; i < optionsJsonArray.size(); i++) {
 				this->options.push_back(AssetMapOption((Json::Value)optionsJsonArray[i]));
 			}
 		}

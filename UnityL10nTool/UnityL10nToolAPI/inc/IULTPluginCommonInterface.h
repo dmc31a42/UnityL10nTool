@@ -239,6 +239,7 @@ struct UnityL10nToolAPI {
 	std::string GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField * field);
 	std::string GetJsonFromAssetTypeValueField(AssetTypeValueField * field);
 	AssetTypeValueField * GetAssetTypeValueFieldFromJsonRecursive(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
+	AssetTypeValueField * GetAssetTypeValueFieldFromJsonObject(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	AssetTypeValueField * GetAssetTypeValueFieldFromJson(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	AssetTypeValueField * GetAssetTypeValueFieldArrayFromJson(AssetTypeTemplateField * assetTypeTemplateField, Json::Value json);
 	bool ModifyAssetTypeValueFieldFromJSONRecursive(AssetTypeValueField * assetTypeValueField, Json::Value json);
@@ -561,22 +562,85 @@ inline std::string UnityL10nToolAPI::GetJsonFromAssetTypeValueField(AssetTypeVal
 }
 
 inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonRecursive(AssetTypeTemplateField* assetTypeTemplateField, Json::Value json) {
+	AssetTypeValue* assetTypeValue;
+	AssetTypeValueField*  assetTypeValueField = new AssetTypeValueField();
+
+	switch (assetTypeTemplateField->valueType) {
+	case ValueType_Int8:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new INT8((INT8)json.asInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Int16:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new INT16((INT16)json.asInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Int32:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new INT32((INT32)json.asInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Int64:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new INT64((INT64)json.asInt64()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_UInt8:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new UINT8((UINT8)json.asUInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_UInt16:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new UINT16((UINT16)json.asUInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_UInt32:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new UINT32((UINT32)json.asUInt()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_UInt64:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new UINT64((UINT64)json.asUInt64()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Float:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new float((float)json.asFloat()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Double:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new double((double)json.asDouble()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_Bool:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, new bool((bool)json.asBool()));
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_String:
+		assetTypeValue = new AssetTypeValue(assetTypeTemplateField->valueType, (void*)(new std::string(json.asString()))->c_str());
+		assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, 0, 0);
+		break;
+	case ValueType_None:
+		if (assetTypeTemplateField->isArray) {
+			assetTypeValueField = GetAssetTypeValueFieldArrayFromJson(assetTypeTemplateField, json);
+		}
+		else {
+			assetTypeValueField = GetAssetTypeValueFieldFromJsonObject(assetTypeTemplateField, json);
+		}
+		break;
+	case ValueType_Array:
+		throw new std::exception("No implement");
+		break;
+	}
+	return assetTypeValueField;
+}
+
+inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonObject(AssetTypeTemplateField* assetTypeTemplateField, Json::Value json) {
 	std::vector<AssetTypeValueField*>* assetTypeValueFieldArray = new std::vector<AssetTypeValueField*>();
 	AssetTypeValue* assetTypeValue = new AssetTypeValue(ValueType_None, 0);
 	AssetTypeValueField* assetTypeValueField = new AssetTypeValueField();
-	std::string align;
+	/*std::string align;
 	if (assetTypeTemplateField->align || assetTypeTemplateField->valueType == ValueType_String) {
 		align = "1";
 	}
 	else {
 		align = "0";
 	}
-	std::string key = align + " " + std::string(assetTypeTemplateField->type) + " " + std::string(assetTypeTemplateField->name);
-	//Json::Value thisJson = json[key];
-	Json::Value thisJson = json;
-	// 이전코드가 잘못되 수정하는도중 임시로 재할당
-	std::vector<std::string> testStrs1 = thisJson.getMemberNames();
-	/*Json::Value thisJson = */
+	std::string key = align + " " + std::string(assetTypeTemplateField->type) + " " + std::string(assetTypeTemplateField->name);*/
 	for (unsigned int i = 0; i < assetTypeTemplateField->childrenCount; i++) {
 		AssetTypeTemplateField* childAssetTypeTemplateField = &assetTypeTemplateField->children[i];
 		std::string alignChild;
@@ -587,96 +651,8 @@ inline AssetTypeValueField* UnityL10nToolAPI::GetAssetTypeValueFieldFromJsonRecu
 			alignChild = "0";
 		}
 		std::string keyChild = alignChild + " " + std::string(childAssetTypeTemplateField->type) + " " + std::string(childAssetTypeTemplateField->name);
-		//void* container;
-		AssetTypeValue* childAssetTypeValue;
-		AssetTypeValueField* childAssetTypeValueField = new AssetTypeValueField();
-		AssetTypeByteArray* assetTypeByteArray;
-		std::string* tempStr;
-
-		//only test
-		INT32 testInt = 0;
-		switch (childAssetTypeTemplateField->valueType) {
-		case ValueType_Int8:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Int8, new INT8((INT8)thisJson[keyChild].asInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_Int16:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Int16, new INT16((INT16)thisJson[keyChild].asInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_Int32:
-			testInt = thisJson[keyChild].asInt();
-			childAssetTypeValue = new AssetTypeValue(ValueType_Int32, new INT32((INT32)thisJson[keyChild].asInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_Int64:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Int64, new INT64((INT64)thisJson[keyChild].asInt64()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_UInt8:
-			childAssetTypeValue = new AssetTypeValue(ValueType_UInt8, new UINT8((UINT8)thisJson[keyChild].asUInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_UInt16:
-			childAssetTypeValue = new AssetTypeValue(ValueType_UInt16, new UINT16((UINT16)thisJson[keyChild].asUInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_UInt32:
-			childAssetTypeValue = new AssetTypeValue(ValueType_UInt32, new UINT32((UINT32)thisJson[keyChild].asUInt()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_UInt64:
-			childAssetTypeValue = new AssetTypeValue(ValueType_UInt64, new UINT64((UINT64)thisJson[keyChild].asUInt64()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_Float:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Float, new FLOAT((FLOAT)thisJson[keyChild].asFloat()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_Double:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Double, new double((double)thisJson[keyChild].asFloat()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_Bool:
-			childAssetTypeValue = new AssetTypeValue(ValueType_Bool, new BOOL((BOOL)thisJson[keyChild].asBool()));
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_String:
-			tempStr = new std::string(thisJson[keyChild].asString());
-			childAssetTypeValue = new AssetTypeValue(ValueType_String, (void*)tempStr->c_str());
-			childAssetTypeValueField->Read(childAssetTypeValue, childAssetTypeTemplateField, 0, 0);
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-
-		case ValueType_None:
-			if (childAssetTypeTemplateField->isArray) {
-				childAssetTypeValueField = GetAssetTypeValueFieldArrayFromJson(childAssetTypeTemplateField, thisJson[keyChild]);
-			}
-			else {
-				childAssetTypeValueField = GetAssetTypeValueFieldFromJsonRecursive(childAssetTypeTemplateField, thisJson[keyChild]);
-			}
-			assetTypeValueFieldArray->push_back(childAssetTypeValueField);
-			break;
-		case ValueType_Array:
-			throw new std::exception("No implement");
-			break;
-		}
+		AssetTypeValueField* childAssetTypeValueField = GetAssetTypeValueFieldFromJsonRecursive(childAssetTypeTemplateField, json[keyChild]);
+		assetTypeValueFieldArray->push_back(childAssetTypeValueField);
 	}
 	assetTypeValueField->Read(assetTypeValue, assetTypeTemplateField, assetTypeValueFieldArray->size(), assetTypeValueFieldArray->data());
 	return assetTypeValueField;

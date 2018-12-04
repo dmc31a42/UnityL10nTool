@@ -97,6 +97,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>resource.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,6 +112,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>resource.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,6 +132,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>AssetsTools.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>resource.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\UnityDefaultFont\*" "$(ProjectDir)..\$(SolutionName)Debug\Plugins\FontPlugins\UnityDefaultFont\" /Y /E
@@ -157,14 +160,23 @@ xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\..\PluginsR
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>resource.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\UnityL10nTool\UnityL10nToolAPI\inc\json\json.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\UnityL10nTool\UnityL10nToolAPI\inc\jsoncpp.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="UnityDefaultFontULTFontPlugin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="UnityDefaultFontULTFontPlugin.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

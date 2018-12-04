@@ -107,13 +107,13 @@ namespace UnityL10nToolPatcherCShop
             }
             System.IO.Directory.CreateDirectory("temp\\");
             PatchBackgroundWorker = new BackgroundWorker();
-            //PatchBackgroundWorker.DoWork += BackgroundWorker_DoWork;
-            //PatchBackgroundWorker.ProgressChanged += PatchBackgroundWorker_ProgressChanged;
-            //PatchBackgroundWorker.RunWorkerCompleted += PatchBackgroundWorker_RunWorkerCompleted;
-            //PatchBackgroundWorker.WorkerReportsProgress = true;
-            //PatchBackgroundWorker.RunWorkerAsync(gameFolderPathTextBox.Text);
-            BackgroundWorker_DoWork(null, new DoWorkEventArgs(gameFolderPathTextBox.Text));
-            PatchBackgroundWorker_RunWorkerCompleted(null, null);
+            PatchBackgroundWorker.DoWork += BackgroundWorker_DoWork;
+            PatchBackgroundWorker.ProgressChanged += PatchBackgroundWorker_ProgressChanged;
+            PatchBackgroundWorker.RunWorkerCompleted += PatchBackgroundWorker_RunWorkerCompleted;
+            PatchBackgroundWorker.WorkerReportsProgress = true;
+            PatchBackgroundWorker.RunWorkerAsync(gameFolderPathTextBox.Text);
+            //BackgroundWorker_DoWork(null, new DoWorkEventArgs(gameFolderPathTextBox.Text));
+            //PatchBackgroundWorker_RunWorkerCompleted(null, null);
 
 
         }

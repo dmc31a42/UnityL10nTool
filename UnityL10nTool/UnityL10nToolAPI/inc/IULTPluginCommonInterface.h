@@ -250,6 +250,8 @@ struct UnityL10nToolAPI {
 	INT64 FindAssetIndexFromName(AssetsFileTable * assetsFileTable, std::string assetName);
 	std::wstring GetAssetNameW(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx);
 	std::wstring GetAssetNameW(AssetsFile* assetsFile, AssetFileInfoEx* assetFileInfoEx);
+	std::string GetAssetNameA(AssetsFileTable* assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
+	std::string GetAssetNameA(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx);
 };
 
 inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, int& classId, UINT16& monoClassId) {
@@ -770,4 +772,14 @@ inline std::wstring UnityL10nToolAPI::GetAssetNameW(AssetsFile* assetsFile, Asse
 	char tempName[100];
 	assetFileInfoEx->ReadName(assetsFile, tempName);
 	return std::wstring(WideMultiStringConverterLocal.from_bytes(tempName));
+}
+
+inline std::string UnityL10nToolAPI::GetAssetNameA(AssetsFileTable* assetsFileTable, AssetFileInfoEx * assetFileInfoEx) {
+	return UnityL10nToolAPI::GetAssetNameA(assetsFileTable->getAssetsFile(), assetFileInfoEx);
+}
+
+inline std::string UnityL10nToolAPI::GetAssetNameA(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx) {
+	char tempName[100];
+	assetFileInfoEx->ReadName(assetsFile, tempName);
+	return string(tempName);
 }

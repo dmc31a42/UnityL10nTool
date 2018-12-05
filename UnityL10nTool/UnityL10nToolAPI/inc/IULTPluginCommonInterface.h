@@ -232,8 +232,8 @@ struct UnityL10nToolAPI {
 	AssetTypeInstance * GetBasicAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeInstance * GetDetailAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
-	AssetsReplacer * makeAssetsReplacer(std::string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
-	AssetsReplacer * makeAssetsReplacer(std::string assetsFileName, AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
+	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
+	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
 	std::string GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField * assetTypeTemplateField);
 	std::string GetJsonKeyFromAssetTypeValueField(AssetTypeValueField * assetTypeValueField);
 	std::string GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField * field);
@@ -408,7 +408,7 @@ inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFr
 	return baseAssetTypeTemplateField;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(std::string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson) {
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson) {
 	INT64 PathId = assetFileInfoEx->index;
 	int classId;
 	WORD monoClassId;
@@ -432,8 +432,8 @@ inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(std::string assetsFi
 	return NULL;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(std::string assetsFileName, AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance) {
-	return makeAssetsReplacer(assetsFileName, assetsFileTable, assetFileInfoEx, assetTypeInstance, Json::Value());
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance) {
+	return makeAssetsReplacer(assetsFileTable, assetFileInfoEx, assetTypeInstance, Json::Value());
 }
 
 inline std::string UnityL10nToolAPI::GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField* assetTypeTemplateField) {
@@ -781,5 +781,5 @@ inline std::string UnityL10nToolAPI::GetAssetNameA(AssetsFileTable* assetsFileTa
 inline std::string UnityL10nToolAPI::GetAssetNameA(AssetsFile* assetsFile, AssetFileInfoEx * assetFileInfoEx) {
 	char tempName[100];
 	assetFileInfoEx->ReadName(assetsFile, tempName);
-	return string(tempName);
+	return std::string(tempName);
 }

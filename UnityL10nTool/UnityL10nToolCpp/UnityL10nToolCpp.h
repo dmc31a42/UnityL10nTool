@@ -257,6 +257,7 @@ class UnityL10nToolCpp
 	/* FontPlugin */
 	map<wstring, HINSTANCE> FontPluginMap;
 	map<wstring, FontPluginInfo*> FontPluginInfoMap;
+	map<wstring, FontAssetMaps> FontAssetMapsGlobal;
 #pragma region TextPlugin member
 	TextAssetMaps TextAssetMapsGlobal;
 	map<wstring, HINSTANCE> TextplugInMap;

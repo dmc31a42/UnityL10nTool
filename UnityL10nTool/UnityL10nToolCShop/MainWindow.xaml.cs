@@ -140,27 +140,34 @@ namespace UnityL10nToolCShop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            WebClient webClient = new WebClient();
-            webClient.Headers.Add("User-Agent", "UnityL10nTool");
-            string gitHubApiURL = "https://api.github.com/repos/dmc31a42/UnityL10nTool/releases/latest";
-            string gitHubAPIResult = webClient.DownloadString(new Uri(gitHubApiURL));
-            JObject gitHubJson = JObject.Parse(gitHubAPIResult);
-            if (gitHubJson.ContainsKey("tag_name") && gitHubJson.ContainsKey("assets"))
+            try
             {
-                string currentVersionDownload = gitHubJson["tag_name"].ToObject<string>();
-                string lastestVersionStr = currentVersionDownload;
-                if (VersionString != lastestVersionStr)
+                WebClient webClient = new WebClient();
+                webClient.Headers.Add("User-Agent", "UnityL10nTool");
+                string gitHubApiURL = "https://api.github.com/repos/dmc31a42/UnityL10nTool/releases/latest";
+                string gitHubAPIResult = webClient.DownloadString(new Uri(gitHubApiURL));
+                JObject gitHubJson = JObject.Parse(gitHubAPIResult);
+                if (gitHubJson.ContainsKey("tag_name") && gitHubJson.ContainsKey("assets"))
                 {
-                    if (MessageBox.Show(
-                        "Lastest Version is updated. Click 'Yes' to visit GitHub release page and close this program.",
-                        "Lastest Version exist",
-                        MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    string currentVersionDownload = gitHubJson["tag_name"].ToObject<string>();
+                    string lastestVersionStr = currentVersionDownload;
+                    if (VersionString != lastestVersionStr)
                     {
-                        System.Diagnostics.Process.Start("https://github.com/dmc31a42/UnityL10nTool/releases/latest");
-                        Window.GetWindow(this).Close();
+                        if (MessageBox.Show(
+                            "Lastest Version is updated. Click 'Yes' to visit GitHub release page and close this program.",
+                            "Lastest Version exist",
+                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("https://github.com/dmc31a42/UnityL10nTool/releases/latest");
+                            Window.GetWindow(this).Close();
+                        }
                     }
                 }
+            } catch (Exception ex)
+            {
+
             }
+            
         }
     }
 }

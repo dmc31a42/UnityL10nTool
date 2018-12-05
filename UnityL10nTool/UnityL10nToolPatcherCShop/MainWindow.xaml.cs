@@ -120,8 +120,16 @@ namespace UnityL10nToolPatcherCShop
 
         private void PatchBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Patch complete.\nPatcher will be closed.", "Patch complete");
-            Window.GetWindow(this).Close();
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.Message);
+                MessageBox.Show("Error during working. Please report issue at github");
+            }
+            else
+            {
+                MessageBox.Show("Patch complete.\nPatcher will be closed.", "Patch complete");
+                Window.GetWindow(this).Close();
+            }
         }
 
         int maximumProgress = 16;

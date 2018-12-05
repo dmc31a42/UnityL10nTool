@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.1.5.%2a</ApplicationVersion>
+    <ApplicationVersion>0.1.6.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -187,6 +187,11 @@
     <Resource Include="DefaultSplash.png" />
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2%28x86 및 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
@@ -222,6 +227,10 @@ echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.dll" "$(ProjectDir)..
 
 echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.lib" "$(ProjectDir)$(OutDir)" /Y
 echo f | xcopy "$(ProjectDir)..\UABE_API\bin32\AssetsTools.lib" "$(ProjectDir)..\..\UnityL10nToolDebug\" /Y
+
+xcopy "$(ProjectDir)..\VisualC++2010Redistributable\*" "$(ProjectDir)$(OutDir)" /Y /E
+xcopy "$(ProjectDir)..\VisualC++2010Redistributable\*" "$(ProjectDir)..\..\UnityL10nToolDebug\" /Y /E
+xcopy "$(ProjectDir)..\VisualC++2010Redistributable\*" "$(ProjectDir)..\..\UnityL10nToolRelease\" /Y /E
 
 xcopy "$(ProjectDir)..\ClassDatabase\*" "$(ProjectDir)$(OutDir)ClassDatabase\" /Y /E
 xcopy "$(ProjectDir)..\ClassDatabase\*" "$(ProjectDir)..\..\UnityL10nToolDebug\ClassDatabase\" /Y /E

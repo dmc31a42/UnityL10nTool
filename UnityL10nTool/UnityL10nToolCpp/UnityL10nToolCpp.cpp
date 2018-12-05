@@ -956,7 +956,7 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 					byteArrayData.size = (DWORD)str->size();
 					byteArrayData.data = (BYTE*)str->c_str();
 					dataArrayField->GetValue()->Set(&byteArrayData);
-					AssetsReplacer* assetsReplacer = _unityL10nToolAPI.makeAssetsReplacer(assetsName, assetsFileTable, assetFileInfoEx, baseAssetTypeInstance);
+					AssetsReplacer* assetsReplacer = _unityL10nToolAPI.makeAssetsReplacer(assetsFileTable, assetFileInfoEx, baseAssetTypeInstance);
 					AssetsReplacersMap[assetsName].push_back(assetsReplacer);
 					continue;
 				}
@@ -1042,6 +1042,7 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 
 bool UnityL10nToolCpp::SetPluginsSupportAssetMap(map<wstring, FontAssetMaps> pluginSupportAssetMaps)
 {
+	FontAssetMapsGlobal = pluginSupportAssetMaps;
 	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
 		iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
@@ -1152,6 +1153,8 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 		CloseHandle(pi.hThread);*/
 	}
 #pragma endregion
+	CopyFileW((CurrentDirectory + L"msvcp100.dll").c_str(), (buildTargetFolder + L"msvcp100.dll").c_str(), false);
+	CopyFileW((CurrentDirectory + L"msvcr100.dll").c_str(), (buildTargetFolder + L"msvcr100.dll").c_str(), false);
 	CopyDirTo(CurrentDirectory + L"Libraries\\", buildTargetFolder + L"Libraries\\");
 	CopyDirTo(CurrentDirectory + L"ClassDatabase\\", buildTargetFolder + L"ClassDatabase\\");
 	if (FileExist(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"customSplash.png")) {
@@ -1171,11 +1174,15 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	{
 	}
 	else {}
-	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin();
-		iterator != FontPluginInfoMap.end(); iterator++) {
+	for (map<wstring, FontPluginInfo*>::iterator iterator = FontPluginInfoMap.begin(); iterator != FontPluginInfoMap.end(); iterator++) {
 		FontPluginInfo* fontPluginInfo = iterator->second;
-		if (fontPluginInfo->CopyBuildFileToBuildFolder(fontPluginInfo->relativePluginPath, buildTargetFolder + fontPluginInfo->relativePluginPath)) {
-			copyFileCustom((fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str(), (buildTargetFolder + fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str());
+		map<wstring, FontAssetMaps>::iterator foundFAMs = FontAssetMapsGlobal.find(fontPluginInfo->FontPluginName);
+		if (foundFAMs != FontAssetMapsGlobal.end()) {
+			if (foundFAMs->second.Saveds.size() != 0) {
+				if (fontPluginInfo->CopyBuildFileToBuildFolder(fontPluginInfo->relativePluginPath, buildTargetFolder + fontPluginInfo->relativePluginPath)) {
+					copyFileCustom((fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str(), (buildTargetFolder + fontPluginInfo->relativePluginPath + fontPluginInfo->pluginFileName).c_str());
+				}
+			}
 		}
 	}
 	map<wstring, TextPluginInfo*> textPluginInfos;
@@ -1186,9 +1193,11 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 		textPluginInfos[textAssetMapItr->InteractWithFileTextPluginName] =
 			TextPluginInfoInteractWithFileTextMap[textAssetMapItr->InteractWithFileTextPluginName];
 	}
-	if (CreateDirectoryW((buildTargetFolder + L"Plugins\\TextPlugins\\").c_str(), NULL) ||
-		ERROR_ALREADY_EXISTS == GetLastError())
-	{
+	if (textPluginInfos.size() != 0) {
+		if (CreateDirectoryW((buildTargetFolder + L"Plugins\\TextPlugins\\").c_str(), NULL) ||
+			ERROR_ALREADY_EXISTS == GetLastError())
+		{
+		}
 	}
 	for (map<wstring, TextPluginInfo*>::iterator textPluginInfoItr = textPluginInfos.begin();
 		textPluginInfoItr != textPluginInfos.end(); textPluginInfoItr++) {

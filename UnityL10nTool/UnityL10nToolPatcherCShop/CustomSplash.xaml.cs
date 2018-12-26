@@ -328,6 +328,8 @@ namespace UnityL10nToolPatcherCShop
         {
             // https://code.i-harness.com/ko-kr/q/2152283 .Net을 4.5초과로 변경하거나 아래의 작업.
             try {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
                 System.IO.DirectoryInfo di = new System.IO.DirectoryInfo("temp\\");
                 // Delete this dir and all subdirs.
                 try

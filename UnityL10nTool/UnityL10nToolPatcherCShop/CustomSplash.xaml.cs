@@ -43,28 +43,7 @@ namespace UnityL10nToolPatcherCShop
         public JObject patcherJson;
         public CustomSplash()
         {
-            // https://code.i-harness.com/ko-kr/q/2152283 .Net을 4.5초과로 변경하거나 아래의 작업.
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             InitializeComponent();
-            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo("temp\\");
-            // Delete this dir and all subdirs.
-            try
-            {
-                di.Delete(true);
-            }
-            catch (System.IO.IOException ioException)
-            {
-                Console.WriteLine(ioException.Message);
-            }
-            System.IO.Directory.CreateDirectory("temp\\");
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "customSplash.png"))
-            {
-                Uri uri = new Uri(AppDomain.CurrentDomain.BaseDirectory + "customSplash.png", UriKind.RelativeOrAbsolute);
-                SplashImage.Source = BitmapFrame.Create(uri);
-            } else
-            {
-
-            }
         }
 
         private async void WailtFor2Second()
@@ -78,11 +57,12 @@ namespace UnityL10nToolPatcherCShop
             WebClient webClient = new WebClient();
             // https://stackoverflow.com/questions/47576074/get-releases-github-api-v3
             webClient.Headers.Add("User-Agent", "UnityL10nTool");
-            switch (onlineUpdate.Selected)
+            try
             {
-                case OnlineUpdateCLI.SelectedEnum.Manual:
-                    try
-                    {
+                switch (onlineUpdate.Selected)
+                {
+                    case OnlineUpdateCLI.SelectedEnum.Manual:
+
                         //string tempCurrentVersionPath = "temp\\currentVersion.txt";
                         //if (System.IO.File.Exists(tempCurrentVersionPath))
                         //{
@@ -91,35 +71,31 @@ namespace UnityL10nToolPatcherCShop
                         //await webClient.DownloadFileTaskAsync(new Uri(onlineUpdate.currentVersionURL), tempCurrentVersionPath);
                         //webClient.DownloadFile(new Uri(onlineUpdate.currentVersionURL), tempCurrentVersionPath);
                         //string currentVersionDownloaded = System.IO.File.ReadAllText(tempCurrentVersionPath);
-                        string currentVersionDownloaded = await webClient.DownloadStringTaskAsync(new Uri(onlineUpdate.currentVersionURL));
+                        Uri uri = new Uri(onlineUpdate.currentVersionURL);
+                        string currentVersionDownloaded = await webClient.DownloadStringTaskAsync(uri);
                         if (onlineUpdate.currentVersion == currentVersionDownloaded)
                         {
                             return false;
-                        } else
+                        }
+                        else
                         {
                             lastestVersionStr = currentVersionDownloaded;
                             return true;
                         }
-                    }
-                    catch(Exception exception)
-                    {
-                        Console.Write(exception);
-                        return false;  
-                    }
-                case OnlineUpdateCLI.SelectedEnum.GitHub:
-                    try
-                    {
+
+                    case OnlineUpdateCLI.SelectedEnum.GitHub:
+
                         string gitHubApiURL = "https://api.github.com/repos/" + onlineUpdate.gitHubOwner + "/" + onlineUpdate.gitHubRepo + "/releases/latest";
                         string gitHubAPIResult = await webClient.DownloadStringTaskAsync(new Uri(gitHubApiURL));
                         JObject gitHubJson = JObject.Parse(gitHubAPIResult);
-                        if(gitHubJson.ContainsKey("tag_name") && gitHubJson.ContainsKey("assets"))
+                        if (gitHubJson.ContainsKey("tag_name") && gitHubJson.ContainsKey("assets"))
                         {
                             string currentVersionDownload = gitHubJson["tag_name"].ToObject<string>();
                             JToken[] assetsJson = gitHubJson["assets"].ToArray();
-                            if(assetsJson.Count() >=1 && assetsJson[0]["browser_download_url"] != null)
+                            if (assetsJson.Count() >= 1 && assetsJson[0]["browser_download_url"] != null)
                             {
                                 onlineUpdate._gitHubDownloadURL = (string)assetsJson[0]["browser_download_url"];
-                                if(currentVersionDownload != onlineUpdate.currentVersion)
+                                if (currentVersionDownload != onlineUpdate.currentVersion)
                                 {
                                     lastestVersionStr = currentVersionDownload;
                                     return true;
@@ -127,14 +103,25 @@ namespace UnityL10nToolPatcherCShop
                             }
                         }
                         return false;
-                    }
-                    catch(Exception exception)
-                    {
-                        Console.Write(exception);
+
+                    default:
                         return false;
-                    }
-                default:
-                    return false;
+                }
+            }
+            catch (ArgumentNullException argumentNullException)
+            {
+                MessageBox.Show(argumentNullException.Message);
+                return false;
+            }
+            catch (UriFormatException uriFormatException)
+            {
+                MessageBox.Show(uriFormatException.Message);
+                return false;
+            }
+            catch (WebException webException)
+            {
+                MessageBox.Show(webException.Message);
+                return false;
             }
         }
 
@@ -326,63 +313,6 @@ namespace UnityL10nToolPatcherCShop
             }
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "setting.json"))
-            {
-                string jsonStr = System.IO.File.ReadAllText("setting.json");
-                patcherJson = JObject.Parse(jsonStr);
-                if (patcherJson.ContainsKey("OnlineUpdate"))
-                {
-                    JObject onlineUpdateJson = (JObject)patcherJson["OnlineUpdate"];
-                    OnlineUpdateCLI onlineUpdateCLI = ConvertFromJsonToOnlineUpdateCLI(onlineUpdateJson);
-                    bool IsLastestVersionInOnline = await CheckIsLastestVersionInOnline(onlineUpdateCLI);
-                    if(IsLastestVersionInOnline)
-                    {
-                        if (MessageBox.Show(
-                            "Lastest patcher is available in online.\nDo you want to download it?\nCurrent version:\t" + onlineUpdateCLI.currentVersion + "\nLastest version:\t" + lastestVersionStr,
-                            "Lastest version available",
-                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        {
-                            currentStateTextBlock.Text = "Download lastest patcher...";
-                            string thisExeFilePath = System.Reflection.Assembly.GetEntryAssembly().Location;
-                            bool patchedSuccessful = await PatchLastestVersion(onlineUpdateCLI);
-                            if (patchedSuccessful)
-                            {
-                                // https://stackoverflow.com/questions/8434379/start-new-process-without-being-a-child-of-the-spawning-process
-                                System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
-                                {
-                                    FileName = thisExeFilePath
-                                };
-                                System.Diagnostics.Process.Start(psi);
-                                Window.GetWindow(this).Close();
-                                return;
-                            }
-                            else
-                            {
-                                currentStateTextBlock.Text = "Patch Fail...";
-                                await Task.Delay(1000);
-                            }
-                        }
-                    }
-                    Window mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    Window.GetWindow(this).Close();
-                }
-                else
-                {
-                    await Task.Delay(2000);
-                    Window mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    Window.GetWindow(this).Close();
-                }
-            } else
-            {
-                MessageBox.Show("Cannot Find setting.json.\nPatcher Program will be closed.");
-                Window.GetWindow(this).Close();
-            }
-        }
-
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
             try
@@ -391,6 +321,97 @@ namespace UnityL10nToolPatcherCShop
             } catch(Exception exception)
             {
                 Console.Write(exception);
+            }
+        }
+
+        private async void Window_ContentRendered(object sender, EventArgs e)
+        {
+            // https://code.i-harness.com/ko-kr/q/2152283 .Net을 4.5초과로 변경하거나 아래의 작업.
+            try {
+                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo("temp\\");
+                // Delete this dir and all subdirs.
+                try
+                {
+                    di.Delete(true);
+                }
+                catch (System.IO.IOException) { }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+                System.IO.Directory.CreateDirectory("temp\\");
+                string customSplashFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "customSplash.png");
+                if (File.Exists(customSplashFilePath))
+                {
+                    Uri uri = new Uri(customSplashFilePath, UriKind.RelativeOrAbsolute);
+                    SplashImage.Source = BitmapFrame.Create(uri);
+                }
+                else
+                {
+
+                }
+                string settingsFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setting.json");
+                if (File.Exists(settingsFilePath))
+                {
+                    string jsonStr = System.IO.File.ReadAllText(settingsFilePath);
+                    patcherJson = JObject.Parse(jsonStr);
+                    if (patcherJson.ContainsKey("OnlineUpdate"))
+                    {
+                        JObject onlineUpdateJson = (JObject)patcherJson["OnlineUpdate"];
+                        OnlineUpdateCLI onlineUpdateCLI = ConvertFromJsonToOnlineUpdateCLI(onlineUpdateJson);
+                        bool IsLastestVersionInOnline = await CheckIsLastestVersionInOnline(onlineUpdateCLI);
+                        if (IsLastestVersionInOnline)
+                        {
+                            if (MessageBox.Show(
+                                "Lastest patcher is available in online.\nDo you want to download it?\nCurrent version:\t" + onlineUpdateCLI.currentVersion + "\nLastest version:\t" + lastestVersionStr,
+                                "Lastest version available",
+                                MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                            {
+                                currentStateTextBlock.Text = "Download lastest patcher...";
+                                string thisExeFilePath = System.Reflection.Assembly.GetEntryAssembly().Location;
+                                bool patchedSuccessful = await PatchLastestVersion(onlineUpdateCLI);
+                                if (patchedSuccessful)
+                                {
+                                    // https://stackoverflow.com/questions/8434379/start-new-process-without-being-a-child-of-the-spawning-process
+                                    System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo
+                                    {
+                                        FileName = thisExeFilePath
+                                    };
+                                    System.Diagnostics.Process.Start(psi);
+                                    Window.GetWindow(this).Close();
+                                    return;
+                                }
+                                else
+                                {
+                                    currentStateTextBlock.Text = "Patch Fail...";
+                                    await Task.Delay(1000);
+                                }
+                            }
+                        }
+                        Window mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Window.GetWindow(this).Close();
+                    }
+                    else
+                    {
+                        await Task.Delay(2000);
+                        Window mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Window.GetWindow(this).Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cannot Find setting.json.\nPatcher Program will be closed.");
+                    Window.GetWindow(this).Close();
+                }
+            } catch (NotSupportedException notSupportedException)
+            {
+                MessageBox.Show(notSupportedException.Message);
+                await Task.Delay(2000);
+                Window mainWindow = new MainWindow();
+                mainWindow.Show();
+                Window.GetWindow(this).Close();
             }
         }
     }

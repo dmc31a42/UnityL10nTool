@@ -273,4 +273,21 @@ echo f | xcopy "$(ProjectDir)..\..\README.txt" "$(ProjectDir)..\..\UnityL10nTool
 rem For Development
 xcopy "$(ProjectDir)..\ProjectsSample\*" "$(ProjectDir)$(OutDir)Projects\" /Y /E</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>if exist $(ProjectDir)..\..\ULTFontPlugins\ (
+  xcopy $(ProjectDir)buildall.targets $(ProjectDir)..\..\ULTFontPlugins\ /Y
+ "$(MSBuildBinPath)\msbuild.exe" $(ProjectDir)..\..\ULTFontPlugins\buildall.targets /p:Configuration=Release /p:Platform=x86 /t:Default
+ del $(ProjectDir)..\..\ULTFontPlugins\buildall.targets
+)
+if exist $(ProjectDir)..\..\ULTMonoTextPlugins\ (
+  xcopy $(ProjectDir)buildall.targets $(ProjectDir)..\..\ULTMonoTextPlugins\ /Y
+ "$(MSBuildBinPath)\msbuild.exe" $(ProjectDir)..\..\ULTMonoTextPlugins\buildall.targets /p:Configuration=Release /p:Platform=x86 /t:Default
+ del $(ProjectDir)..\..\ULTMonoTextPlugins\buildall.targets
+)
+if exist $(ProjectDir)..\..\ULTTextPlugins\ (
+  xcopy $(ProjectDir)buildall.targets $(ProjectDir)..\..\ULTTextPlugins\ /Y
+ "$(MSBuildBinPath)\msbuild.exe" $(ProjectDir)..\..\ULTTextPlugins\buildall.targets /p:Configuration=Release /p:Platform=x86 /t:Default
+ del $(ProjectDir)..\..\ULTTextPlugins\buildall.targets
+)</PreBuildEvent>
+  </PropertyGroup>
 </Project>

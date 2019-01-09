@@ -235,6 +235,8 @@ class UnityL10nToolCpp
 	string FirstAssetsFileName;
 	string version;
 	string versionFirstTwoNumbers;
+	int MajorVersion;
+	int MinorVersion;
 	ClassDatabaseFile* BasicClassDatabaseFile;
 	ClassDatabaseFile* MonoClassDatabaseFile;
 	ResourceManagerFile* ResourceManagerFileGlobal;
@@ -364,7 +366,7 @@ public:
 	bool CopyResourceFileToGameFolder();
 	~UnityL10nToolCpp();
 
-	static bool DetermineUnityGameFolder(wstring path);
+	static wstring DetermineUnityGameFolder(wstring path);
 	static bool DetermineProjectGamePath(wstring path, wstring GameName, wstring MakerName);
 	static wstring FindUnityGameFolderFromDataFolderName(wstring dataFolderName, wstring GameName, wstring MakerName);
 	static wstring MakeSureBackslashEndOfFolderPath(wstring path);

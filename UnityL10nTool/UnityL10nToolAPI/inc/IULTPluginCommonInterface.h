@@ -207,6 +207,8 @@ public:
 struct UnityL10nToolAPI {
 	std::string version;
 	std::string versionFirstTwoNumbers;
+	int MajorVersion;
+	int MinorVersion;
 	ClassDatabaseFile* BasicClassDatabaseFile;
 	ClassDatabaseFile* MonoClassDatabaseFile;
 	const ResourceManagerFile* ResourceManagerFileGlobal;
@@ -231,6 +233,8 @@ struct UnityL10nToolAPI {
 	static void GetClassIdFromAssetFileInfoEx(AssetsFile * assetsFile, AssetFileInfoEx * assetFileInfoEx, int & classId, UINT16 & monoClassId);
 	AssetTypeInstance * GetBasicAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
 	AssetTypeInstance * GetDetailAssetTypeInstanceFromAssetFileInfoEx(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx);
+	AssetTypeTemplateField * ReplaceSInt64TointForUnity4Recursive(AssetTypeTemplateField * assetTypeTemplateField);
+	AssetTypeTemplateField * ReplaceSInt64TointForUnity4(AssetTypeTemplateField * assetTypeTemplateField);
 	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
 	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
 	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
@@ -262,13 +266,14 @@ inline void UnityL10nToolAPI::GetClassIdFromAssetFileInfoEx(AssetsFile* assetsFi
 	if (assetsFile->header.format < 0x10) {
 		//classId = assetFileInfoEx->curFileType;
 		classId = assetFileInfoEx->inheritedUnityClass;
-		monoClassId = assetFileInfoEx->scriptIndex;
+		//monoClassId = assetFileInfoEx->scriptIndex;
 	}
 	else {
 		classId = assetsFile->typeTree.pTypes_Unity5[assetFileInfoEx->curFileTypeOrIndex].classId;
-		if (classId == 0x72) {
-			monoClassId = (WORD)(0xFFFFFFFF - assetFileInfoEx->curFileType); // same as monoScriptIndex in AssetsReplacer
-		}
+		
+	}
+	if (classId == 0x72) {
+		monoClassId = (WORD)(0xFFFFFFFF - assetFileInfoEx->curFileType); // same as monoScriptIndex in AssetsReplacer
 	}
 }
 
@@ -383,6 +388,27 @@ inline AssetTypeInstance* UnityL10nToolAPI::GetDetailAssetTypeInstanceFromAssetF
 	}
 }
 
+inline AssetTypeTemplateField* UnityL10nToolAPI::ReplaceSInt64TointForUnity4Recursive(AssetTypeTemplateField* assetTypeTemplateField) {
+	if (assetTypeTemplateField->childrenCount == 2) {
+		AssetTypeTemplateField* m_FileIDATTF = &assetTypeTemplateField->children[0];
+		AssetTypeTemplateField* m_PathIDATTF = &assetTypeTemplateField->children[1];
+		if (strcmp(m_FileIDATTF->name,"m_FileID") == 0
+			&& strcmp(m_PathIDATTF->name,"m_PathID") == 0) {
+			m_PathIDATTF->type = "int";
+			m_PathIDATTF->valueType = ValueType_Int32;
+			return assetTypeTemplateField;
+		}
+	}
+	for (unsigned int i = 0; i < assetTypeTemplateField->childrenCount; i++) {
+		ReplaceSInt64TointForUnity4Recursive(&assetTypeTemplateField->children[i]);
+	}
+	return assetTypeTemplateField;
+}
+
+inline AssetTypeTemplateField* UnityL10nToolAPI::ReplaceSInt64TointForUnity4(AssetTypeTemplateField* assetTypeTemplateField) {
+	return ReplaceSInt64TointForUnity4Recursive(assetTypeTemplateField);
+}
+
 inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName) {
 	std::string tempMonoClassName = MonoClassName;
 	if (tempMonoClassName.size() > 0 && tempMonoClassName[0] == '.') {
@@ -398,6 +424,9 @@ inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFr
 	baseAssetTypeTemplateField->FromClassDatabase(BasicClassDatabaseFile, &BasicClassDatabaseFile->classes[FindBasicClassIndexFromClassID->find(0x72)->second], (DWORD)0, false);
 	AssetTypeTemplateField* baseMonoTypeTemplateField = new AssetTypeTemplateField;
 	baseMonoTypeTemplateField->FromClassDatabase(MonoClassDatabaseFile, &MonoClassDatabaseFile->classes[indexOfMonoclass], (DWORD)0, true);
+	if (MajorVersion <= 4) {
+		ReplaceSInt64TointForUnity4(baseMonoTypeTemplateField);
+	}
 	int prevBaseAssetTypeTemplateFieldChildrenCount = baseAssetTypeTemplateField->childrenCount;
 	int prevBaseMonoTypeTemplateFieldChildrenCount = baseMonoTypeTemplateField->childrenCount;
 	baseAssetTypeTemplateField->AddChildren(prevBaseMonoTypeTemplateFieldChildrenCount);
@@ -730,7 +759,7 @@ inline bool UnityL10nToolAPI::ModifyAssetTypeValueFieldFromJSONRecursive(AssetTy
 				break;
 
 			case ValueType_String:
-				childAssetTypeValueField->GetValue()->Set(new std::string(json[keyChild].asString()));
+				childAssetTypeValueField->GetValue()->Set((void *)(new std::string(json[keyChild].asString()))->c_str());
 				break;
 
 			case ValueType_None:

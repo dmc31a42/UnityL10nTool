@@ -24,7 +24,7 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFo
 	LOGsetInfo(".", "UnityL10nTool");
 	LOGsetLevel(LOG_LVL_TRACE);
 
-	FirstAssetsFileName = "globalgamemanagers";
+	//FirstAssetsFileName = "globalgamemanagers";
 	ProjectJsonFolderPath = MakeSureBackslashEndOfFolderPath(projectJsonFolderPath);
 	//LOG_TRACE("ProjectJsonFolderPath: %ls", ProjectJsonFolderPath);
 	/* gameFolderPath should end by \ */
@@ -72,7 +72,7 @@ UnityL10nToolCpp::UnityL10nToolCpp(wstring projectJsonFolderPath, wstring gameFo
 		}
 	}
 	GameFolderPath = UnityL10nToolProjectInfoGlobal.GamePath;
-
+	FirstAssetsFileName = WideMultiStringConverter->to_bytes(DetermineUnityGameFolder(GameFolderPath));
 	if (CreateDirectory(L".\\temp\\", NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
@@ -163,10 +163,10 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 	if (!DirExists(tempCurrentDirectory + L"Projects\\")) {
 		CreateDirectory((tempCurrentDirectory + L"Projects\\").c_str(), NULL);
 	}
-	if (DirExists(tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\")) {
+	if (DirExists(tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\")) {
 		return L"";
 	}
-	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\").c_str(), NULL) ||
+	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\").c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
 		// CopyFile(...)
@@ -178,10 +178,10 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 	std::wofstream wof;
 	wof.clear();
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
-	wof.open(tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\setting.json");
+	wof.open(tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\setting.json");
 	wof << WideMultiStringConverter->from_bytes(json.toStyledString());
 	wof.close();
-	return tempCurrentDirectory + L"Projects\\" + tempDataFolderName + L"\\";
+	return tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\";
 }
 
 bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
@@ -198,11 +198,14 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 		FindAssetsNameFromAssetsFileTables.insert(pair<AssetsFileTable*, string>(assetsFileTable, assetsFileName));
 		FindAssetsNameFromAssetsFiles.insert(pair<AssetsFile*, string>(assetsFile, assetsFileName));
 		AssetsFileNames.push_back(assetsFileName);
-		if (assetsFileName == "globalgamemanagers") {
+		if (assetsFileName == FirstAssetsFileName) {
 			GlobalgamemanagersAssetsTable = assetsFileTable;
 			version = assetsFile->typeTree.unityVersion;
 			size_t lastDotOffset = version.find_last_of('.');
 			versionFirstTwoNumbers = version.substr(0, lastDotOffset);
+			size_t majorDotMinorOffser = versionFirstTwoNumbers.find_last_of('.');
+			MajorVersion = atoi(versionFirstTwoNumbers.substr(0, majorDotMinorOffser).c_str());
+			MinorVersion = atoi(versionFirstTwoNumbers.substr(majorDotMinorOffser + 1).c_str());
 			LoadBasicClassDatabase();
 			//ProcessResourceAndMonoManger(assetsFileTable, assetsFileName);
 		}
@@ -245,14 +248,14 @@ bool UnityL10nToolCpp::LoadBasicClassDatabase() {
 
 bool UnityL10nToolCpp::ProcessResourceAndMonoManger() {
 	LOG_TRACE("UnityL10nToolCpp::ProcessResourceAndMonoManger() start");
-	string globalgamemanagersName = "globalgamemanagers";
+	string globalgamemanagersName = FirstAssetsFileName;
 	AssetsFileTable* globalgamemanagersTable = FindAssetsFileTablesFromAssetsName[globalgamemanagersName];
 	AssetsFile* globalgamemanagersFile = globalgamemanagersTable->getAssetsFile();
 	int ResourceManagerClassId;
 	int MonoManagerClassId;
 
-	FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>("globalgamemanagers", 0));
-	FindAssetsNameFromPathIDOfContainerPath.insert(pair<INT32, string>(0, "globalgamemanagers"));
+	FindPathIDOfContainerPathFromAssetsName.insert(pair<string, INT32>(FirstAssetsFileName, 0));
+	FindAssetsNameFromPathIDOfContainerPath.insert(pair<INT32, string>(0, FirstAssetsFileName));
 	LOG_TRACE("dependencyCount==%d", GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.dependencyCount);
 	for (INT32 i = 0; i < GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.dependencyCount; i++) {
 		string dependencyAssetsPath = string(GlobalgamemanagersAssetsTable->getAssetsFile()->dependencies.pDependencies[i].assetPath);
@@ -489,6 +492,8 @@ bool UnityL10nToolCpp::LoadMonoClassDatabase() {
 bool UnityL10nToolCpp::LoadUnityL10nToolAPI() {
 	_unityL10nToolAPI.version = version;
 	_unityL10nToolAPI.versionFirstTwoNumbers = versionFirstTwoNumbers;
+	_unityL10nToolAPI.MajorVersion = MajorVersion;
+	_unityL10nToolAPI.MinorVersion = MinorVersion;
 	_unityL10nToolAPI.BasicClassDatabaseFile = BasicClassDatabaseFile;
 	_unityL10nToolAPI.MonoClassDatabaseFile = MonoClassDatabaseFile;
 	_unityL10nToolAPI.ResourceManagerFileGlobal = ResourceManagerFileGlobal;
@@ -1310,7 +1315,7 @@ UnityL10nToolCpp::~UnityL10nToolCpp()
 	GlobalgamemanagersAssetsTable = NULL;
 }
 
-bool UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
+wstring UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
 {
 	path = MakeSureBackslashEndOfFolderPath(path);
 	WIN32_FIND_DATA fd;
@@ -1318,11 +1323,18 @@ bool UnityL10nToolCpp::DetermineUnityGameFolder(wstring path)
 	if (hFind != INVALID_HANDLE_VALUE) {
 		if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
 			::FindClose(hFind);
-			return true;
+			return L"globalgamemanagers";
 		}
 	}
 	::FindClose(hFind);
-	return false;
+	hFind = ::FindFirstFileW((path + L"mainData").c_str(), &fd);
+	if (hFind != INVALID_HANDLE_VALUE) {
+		if (!(fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)) {
+			::FindClose(hFind);
+			return L"mainData";
+		}
+	}
+	return L"";
 }
 
 void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)
@@ -1350,7 +1362,8 @@ void GetHardDiskDrivesNames(vector<wstring> &strIPAddresses)
 }
 
 bool GetGameMakerNameFromGlobalgamemanager(wstring path, wstring& GameName, wstring& MakerName) {
-	wstring globalgamemanagersFileName = L"globalgamemanagers";
+	wstring globalgamemanagersFileName = UnityL10nToolCpp::DetermineUnityGameFolder(path);
+	if (globalgamemanagersFileName == L"") return false;
 	WIN32_FIND_DATA fdGlobalgamemanager;
 	HANDLE hFindGlobalgamemanager = ::FindFirstFileW((path + globalgamemanagersFileName).c_str(), &fdGlobalgamemanager);
 	if (hFindGlobalgamemanager != INVALID_HANDLE_VALUE) {

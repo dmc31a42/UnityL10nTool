@@ -1,0 +1,13 @@
+<Project ToolsVersion="4.0" 
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         DefaultTargets="Default">
+
+    <ItemGroup>
+        <AllFiles Include=".\**\*.sln"/>
+    </ItemGroup>
+
+    <Target Name="Default">
+         <MSBuild Projects="@(AllFiles)" Targets="Clean;Build"/>
+    </Target>
+
+ </Project>

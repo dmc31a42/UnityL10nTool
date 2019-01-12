@@ -279,6 +279,10 @@ namespace UnityL10nToolCShop
             projectConfigSplash.SetValue(Grid.ColumnSpanProperty, 2);
 
             MainGrid.Children.Add(projectConfigSplash);
+            if(!System.IO.Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "temp\\"))
+            {
+                System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "temp\\");
+            }
             if (System.IO.File.Exists(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico"))
             {
                 System.IO.File.Copy(AppDomain.CurrentDomain.BaseDirectory + "Projects\\" + unityL10NToolProjectInfo.GameName + "\\customIcon.ico",

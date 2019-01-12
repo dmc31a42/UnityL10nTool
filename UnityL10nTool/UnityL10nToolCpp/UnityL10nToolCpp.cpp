@@ -1278,7 +1278,11 @@ bool UnityL10nToolCpp::MakeModifiedAssetsFile() {
 			assetsFileTable->getAssetsFile()->Write(assetsWriter, 0, assetsReplacers.data(), assetsReplacers.size(), 0);
 			assetsFileTable->getReader()->Close();
 			assetsWriter->Close();
-			int removeResult = _wremove(fullPath.c_str());
+			int removeResult = _wremove((fullPath).c_str());
+			if (removeResult == -1) {
+				MessageBoxW(NULL, (L"Cannot modify " + fullPath + L"\nPlease close Game and Steam and retry.").c_str(), L"Please Close Game and steam.", MB_OK);
+				throw new exception("Please Close Game and steam.");
+			}
 			int renameResult = _wrename((fullPath + L".mod").c_str(), fullPath.c_str());
 		}
 	}

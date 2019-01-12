@@ -169,5 +169,22 @@ namespace UnityL10nToolCShop
             }
             
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(sender is Button button &&
+                button.DataContext is UnityL10nToolProjectInfo unityL10NToolProjectInfo)
+            {
+                string assumedProjectFolder = "Projects\\" + unityL10NToolProjectInfo.GameName;
+                if (System.IO.Directory.Exists(assumedProjectFolder))
+                {
+                    System.IO.Directory.Delete(assumedProjectFolder, true);
+                    if(ProjectListBox.ItemsSource is ObservableCollection<UnityL10nToolProjectInfo> tempCollection)
+                    {
+                        tempCollection.Remove(unityL10NToolProjectInfo);
+                    }
+                }
+            }
+        }
     }
 }

@@ -160,13 +160,18 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 	_wgetcwd(WcharCurrentDirectory, 255);
 	wstring tempCurrentDirectory = WcharCurrentDirectory;
 	tempCurrentDirectory += L"\\";
+
+	wstring ProjectDirectory = tempGameName;
+	const wchar_t PathSpecialCharactor[] = { L'\\', L'/', L':', L'*', L'?', L'"', L'<', L'>', L'|'};
+	RemoveAll(ProjectDirectory, PathSpecialCharactor, sizeof(PathSpecialCharactor)/sizeof(PathSpecialCharactor[0]));
+
 	if (!DirExists(tempCurrentDirectory + L"Projects\\")) {
 		CreateDirectory((tempCurrentDirectory + L"Projects\\").c_str(), NULL);
 	}
-	if (DirExists(tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\")) {
+	if (DirExists(tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\")) {
 		return L"";
 	}
-	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\").c_str(), NULL) ||
+	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\").c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
 		// CopyFile(...)
@@ -178,10 +183,10 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 	std::wofstream wof;
 	wof.clear();
 	wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
-	wof.open(tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\setting.json");
+	wof.open(tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\setting.json");
 	wof << WideMultiStringConverter->from_bytes(json.toStyledString());
 	wof.close();
-	return tempCurrentDirectory + L"Projects\\" + tempGameName + L"\\";
+	return tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\";
 }
 
 bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {

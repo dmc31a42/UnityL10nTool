@@ -217,6 +217,18 @@ inline bool CreateProcessCustom(std::wstring commandLine) {
 	return true;
 }
 
+inline std::wstring RemoveAll(std::wstring& str, const wchar_t from[], size_t sizeOfFrom) {
+	size_t start_pos = 0;
+	const size_t Wchar_tSize = sizeof(wchar_t);
+	for(int i=0; i< sizeOfFrom; ++i) {
+		start_pos = 0;
+		while ((start_pos = str.find(from[i], start_pos)) != std::wstring::npos) {
+			str.erase(start_pos, 1);
+		}
+	}
+	return str;
+}
+
 inline std::string ReplaceAll(std::string &str, const std::string& from, const std::string& to) {
 	size_t start_pos = 0; //string처음부터 검사
 	while ((start_pos = str.find(from, start_pos)) != std::string::npos)  //from을 찾을 수 없을 때까지

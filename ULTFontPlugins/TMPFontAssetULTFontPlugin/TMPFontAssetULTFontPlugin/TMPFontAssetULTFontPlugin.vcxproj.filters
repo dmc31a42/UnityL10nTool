@@ -41,9 +41,6 @@
     <ClCompile Include="..\..\..\UnityL10nTool\UnityL10nToolAPI\inc\jsoncpp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TMPFontResource.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resource.def">

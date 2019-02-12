@@ -17,12 +17,12 @@ using namespace std;
 struct UnityL10nToolProjectInfo
 {
 public :
-	wstring GameName;
-	wstring MakerName;
-	wstring GamePath;
-	wstring JSONPath;
-	wstring DataFolderName;
-	wstring ProjectRelativeFolder;
+	std::wstring GameName;
+	std::wstring MakerName;
+	std::wstring GamePath;
+	std::wstring JSONPath;
+	std::wstring DataFolderName;
+	std::wstring ProjectRelativeFolder;
 	/*UnityL10nToolProjectInfo(wstring GameName, wstring MakerName, wstring GamePath, wstring JSONPath, wstring DataFolderName)
 	{
 		this->GameName = GameName;

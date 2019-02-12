@@ -179,7 +179,6 @@ xcopy "$(ProjectDir)..\$(SolutionName)Release\*" "$(ProjectDir)..\..\..\PluginsR
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TMPFontAssetULTFontPlugin.cpp" />
-    <ClCompile Include="TMPFontResource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resource.def" />

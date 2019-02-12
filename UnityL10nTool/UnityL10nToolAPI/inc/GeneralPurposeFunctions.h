@@ -2,15 +2,19 @@
 #include <Windows.h>
 #include <shellapi.h>
 #include <codecvt> // for std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+#include <fstream>
 #include "json/json.h"
 
 // http://faithlife.codes/blog/2008/04/exception_0xc0020001_in_ccli_assembly/ Due to static value 0xc0020001 occur
 #ifndef UnityL10nToolCppCLIDEFINE
+#ifndef GeneralPurposeGLOBAL
+#define GeneralPurposeGLOBAL
 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter = new std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>(); // #include <codecvt>
 //Json::Reader* JsonReader = new Json::Reader();
 Json::CharReaderBuilder* builder = new Json::CharReaderBuilder();
 std::unique_ptr<Json::CharReader> const JsonReader(builder->newCharReader());
 Json::StreamWriterBuilder* wbuilder = new Json::StreamWriterBuilder();
+#endif
 #else
 extern std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>* WideMultiStringConverter;
 extern std::unique_ptr<Json::CharReader> const JsonReader;
@@ -276,3 +280,6 @@ inline bool FileExist(const std::wstring& name) {
 	std::ifstream f(name.c_str());
 	return f.good();
 }
+
+
+

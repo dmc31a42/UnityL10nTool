@@ -236,8 +236,8 @@ struct UnityL10nToolAPI {
 	AssetTypeTemplateField * ReplaceSInt64TointForUnity4Recursive(AssetTypeTemplateField * assetTypeTemplateField);
 	AssetTypeTemplateField * ReplaceSInt64TointForUnity4(AssetTypeTemplateField * assetTypeTemplateField);
 	AssetTypeTemplateField * GetMonoAssetTypeTemplateFieldFromClassName(std::string MonoClassName);
-	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson);
-	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance);
+	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, Json::Value modifyJson, INT64 targetPathID = 0);
+	AssetsReplacer * makeAssetsReplacer(AssetsFileTable * assetsFileTable, AssetFileInfoEx * assetFileInfoEx, AssetTypeInstance * assetTypeInstance, INT64 targetPathID = 0);
 	std::string GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField * assetTypeTemplateField);
 	std::string GetJsonKeyFromAssetTypeValueField(AssetTypeValueField * assetTypeValueField);
 	std::string GetJsonFromAssetTypeValueFieldRecursive(AssetTypeValueField * field);
@@ -437,7 +437,7 @@ inline AssetTypeTemplateField* UnityL10nToolAPI::GetMonoAssetTypeTemplateFieldFr
 	return baseAssetTypeTemplateField;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson) {
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, Json::Value modifyJson, INT64 targetPathID) {
 	INT64 PathId = assetFileInfoEx->index;
 	int classId;
 	WORD monoClassId;
@@ -452,7 +452,10 @@ inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* ass
 		IAssetsWriter *pWriter = Create_AssetsWriterToMemory(newAssetBuffer, (size_t)newByteSize);
 		if (pWriter) {
 			newByteSize = baseAssetTypeValueField->Write(pWriter, 0, assetsFileTable->getAssetsFile()->header.endianness ? true : false);
-			AssetsReplacer *pReplacer = MakeAssetModifierFromMemory(0, PathId, classId, monoClassId, newAssetBuffer, (size_t)newByteSize, free);
+			if (targetPathID == 0) {
+				targetPathID = PathId;
+			}
+			AssetsReplacer *pReplacer = MakeAssetModifierFromMemory(0, targetPathID, classId, monoClassId, newAssetBuffer, (size_t)newByteSize, free);
 			if (pReplacer) {
 				return pReplacer;
 			}
@@ -461,8 +464,8 @@ inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* ass
 	return NULL;
 }
 
-inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance) {
-	return makeAssetsReplacer(assetsFileTable, assetFileInfoEx, assetTypeInstance, Json::Value());
+inline AssetsReplacer* UnityL10nToolAPI::makeAssetsReplacer(AssetsFileTable* assetsFileTable, AssetFileInfoEx* assetFileInfoEx, AssetTypeInstance* assetTypeInstance, INT64 targetPathID) {
+	return makeAssetsReplacer(assetsFileTable, assetFileInfoEx, assetTypeInstance, Json::Value(), targetPathID);
 }
 
 inline std::string UnityL10nToolAPI::GetJsonKeyFromAssetTypeTemplateField(AssetTypeTemplateField* assetTypeTemplateField) {

@@ -88,11 +88,16 @@
                                         </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False">
+                                        <Label Grid.Row="0" Grid.Column="0" Content="Asset list to patch" Padding="5"/>
+                                        <DataGrid x:Name="SelectedFontAssetMapDataGrid"  Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
@@ -102,8 +107,8 @@
                                                 <DataGridCheckBoxColumn Binding="{Binding useContainerPath}" Header="UseContainerPath" IsReadOnly="True" />
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" FlowDirection="RightToLeft" DataContext="{Binding SelectedItem, ElementName=SelectedFontAssetMapDataGrid}">
-                                            <Button Content="Edit" VerticalAlignment="Top" Margin="5" Click="Button_Click_1"/>
+                                        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical" FlowDirection="RightToLeft" DataContext="{Binding SelectedItem, ElementName=SelectedFontAssetMapDataGrid}">
+                                            <!--Button Content="Edit" VerticalAlignment="Top" Margin="5" Click="Button_Click_1"/-->
                                             <Button Content="Remove" VerticalAlignment="Top" Margin="5" Click="Button_Click_2"/>
                                         </StackPanel>
                                     </Grid>

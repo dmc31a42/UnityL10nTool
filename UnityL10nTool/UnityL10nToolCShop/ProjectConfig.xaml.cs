@@ -473,18 +473,21 @@ namespace UnityL10nToolCShop
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            FontAssetMapCLI fontAssetMapCLI = (FontAssetMapCLI)(button).DataContext;
-            StackPanel stackPanel = (StackPanel)button.Parent;
-            Grid grid = (Grid)stackPanel.Parent;
-            FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid.DataContext;
-            try
+            if((button).DataContext is FontAssetMapCLI fontAssetMapCLI)
             {
-                FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
-                    x.LooseEquals(fontAssetMapCLI));
-                fontAssetMapsCLI.Saveds.Remove(found);
-            } catch(Exception exception1)
-            {
-                throw new Exception(fontAssetMapCLI + " Must be found");
+                StackPanel stackPanel = (StackPanel)button.Parent;
+                Grid grid = (Grid)stackPanel.Parent;
+                FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid.DataContext;
+                try
+                {
+                    FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
+                        x.LooseEquals(fontAssetMapCLI));
+                    fontAssetMapsCLI.Saveds.Remove(found);
+                }
+                catch (Exception exception1)
+                {
+                    throw new Exception(fontAssetMapCLI + " Must be found");
+                }
             }
         }
 

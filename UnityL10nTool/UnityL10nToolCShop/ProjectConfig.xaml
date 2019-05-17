@@ -84,7 +84,7 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
                                             <local:CustomProperties Grid.Row="0" DataContext="{Binding Path=SelectedItem, ElementName=FontAssetMapDataGrid}" />
-                                            <Button Grid.Row="1" x:Name="AddEditButton" Content="Add" Click="Button_Click" IsEnabled="False"/>
+                                            <Button Grid.Row="1" x:Name="AddEditButton" Content="Apply &amp; Save" Click="Button_Click" IsEnabled="False"/>
                                         </Grid>
                                     </Grid>
                                     <Grid Grid.Row="1" Grid.Column="0">

@@ -237,6 +237,12 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 bool UnityL10nToolCpp::LoadBasicClassDatabase() {
 	wstring filter = L"ClassDatabase\\U" + WideMultiStringConverter->from_bytes(versionFirstTwoNumbers) + L".*.dat";
 	vector<wstring> classDatabasePathList = get_all_files_names_within_folder(filter);
+	if (classDatabasePathList.size() == 0) {
+		wstringstream errorMessage;
+		errorMessage << L"Unsupport Unity version: " << WideMultiStringConverter->from_bytes(versionFirstTwoNumbers);
+		MessageBoxW(NULL, errorMessage.str().c_str(), L"", 0x00000000L | 0x00000010L);
+		throw errorMessage.str().c_str();
+	}
 	wstring classDatabaseFileName = classDatabasePathList[0];
 	IAssetsReader* classDatabaseReader = Create_AssetsReaderFromFile((L"ClassDatabase\\" + classDatabaseFileName).c_str(), true, RWOpenFlags_None);
 	BasicClassDatabaseFile = new ClassDatabaseFile();

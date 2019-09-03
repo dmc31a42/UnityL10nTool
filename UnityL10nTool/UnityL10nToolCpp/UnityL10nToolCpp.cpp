@@ -167,6 +167,7 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 
 	if (!DirExists(tempCurrentDirectory + L"Projects\\")) {
 		CreateDirectory((tempCurrentDirectory + L"Projects\\").c_str(), NULL);
+		CreateDirectory((tempCurrentDirectory + L"Projects\\Resources").c_str(), NULL);
 	}
 	if (DirExists(tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\")) {
 		return L"";
@@ -1222,7 +1223,7 @@ bool UnityL10nToolCpp::BuildProject(wstring buildTargetFolder) {
 	if (ProjectSettingsGlobal.DownloadOnlineResourcesWhenBuild) {
 		DownloadResourcesFromInternetToBuildResourceFolder();
 	}
-	CopyDirTo(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\", buildTargetFolder + L"Resource\\");
+	CopyDirTo(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resources\\", buildTargetFolder + L"Resources\\");
 	return true;
 }
 
@@ -1769,7 +1770,7 @@ TextAssetMap UnityL10nToolCpp::LoadTranslatedFileTextFromTempAndResourceFolder(T
 			iterator->second.TranslatedFileText = wss.str();
 		}
 		else {
-			wifstream wif2(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resource\\" + fileName);
+			wifstream wif2(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Resources\\" + fileName);
 			if (wif2.good()) {
 				wif2.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 				std::wstringstream wss2;
@@ -1919,7 +1920,7 @@ void UnityL10nToolCpp::DownloadResourcesFromInternetToTempFolder()
 
 void UnityL10nToolCpp::DownloadResourcesFromInternetToBuildResourceFolder()
 {
-	if (CreateDirectory((UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resource\\").c_str(), NULL) ||
+	if (CreateDirectory((UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resources\\").c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
 		// CopyFile(...)
@@ -1928,7 +1929,7 @@ void UnityL10nToolCpp::DownloadResourcesFromInternetToBuildResourceFolder()
 	{
 		// Failed to create directory.
 	}
-	DownloadResourcesFromInternetToFolder(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resource\\");
+	DownloadResourcesFromInternetToFolder(UnityL10nToolProjectInfoGlobal.ProjectRelativeFolder + L"Build\\Resources\\");
 }
 
 void UnityL10nToolCpp::DownloadResourcesFromInternetToFolder(wstring folderPath)

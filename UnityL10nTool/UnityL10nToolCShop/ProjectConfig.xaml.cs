@@ -1066,7 +1066,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if(selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem, true);
@@ -1081,7 +1081,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if (selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.LoadTranslatedFileTextFromTempAndResourceFolder(selectedItem);
@@ -1096,7 +1096,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if (selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedLanguagePairDics(selectedItem, true);
@@ -1111,7 +1111,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if (selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetUpdateFileText(selectedItem, true);
@@ -1126,7 +1126,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if (selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             bool result = unityL10nToolCppManaged.SaveUpdateFileToTempFolder(selectedItem);
@@ -1137,7 +1137,7 @@ namespace UnityL10nToolCShop
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
             if (selectedItem == null)
             {
-                MessageBox.Show("Please select above a asset");
+                MessageBox.Show("Please select a asset above ");
                 return;
             }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedText(selectedItem, true);
@@ -1155,12 +1155,11 @@ namespace UnityL10nToolCShop
         private void UseContainerPathCheckChanged(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
-            if (selectedItem == null)
+            if (selectedItem != null)
             {
-                MessageBox.Show("Please select above a asset");
-                return;
+                unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.None);
             }
-            unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.None);
+            
         }
 
         private string StripFileName(String name)

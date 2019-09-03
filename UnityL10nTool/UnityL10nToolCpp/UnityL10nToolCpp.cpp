@@ -167,12 +167,16 @@ wstring UnityL10nToolCpp::NewGameProjectFromFolder(wstring folder) {
 
 	if (!DirExists(tempCurrentDirectory + L"Projects\\")) {
 		CreateDirectory((tempCurrentDirectory + L"Projects\\").c_str(), NULL);
-		CreateDirectory((tempCurrentDirectory + L"Projects\\Resources").c_str(), NULL);
 	}
 	if (DirExists(tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\")) {
 		return L"";
 	}
 	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\").c_str(), NULL) ||
+		ERROR_ALREADY_EXISTS == GetLastError())
+	{
+		// CopyFile(...)
+	}
+	if (CreateDirectory((tempCurrentDirectory + L"Projects\\" + ProjectDirectory + L"\\Resources\\").c_str(), NULL) ||
 		ERROR_ALREADY_EXISTS == GetLastError())
 	{
 		// CopyFile(...)

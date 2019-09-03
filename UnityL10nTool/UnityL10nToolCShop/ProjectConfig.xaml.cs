@@ -1064,6 +1064,11 @@ namespace UnityL10nToolCShop
         private void UpdateTestGetOriginalDicButton_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if(selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetOriginalLanguagePairDics(selectedItem, true);
             int i= textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
@@ -1074,6 +1079,11 @@ namespace UnityL10nToolCShop
         private void UpdateTestLoadTranslatedFileTextButton_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.LoadTranslatedFileTextFromTempAndResourceFolder(selectedItem);
             int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
@@ -1084,6 +1094,11 @@ namespace UnityL10nToolCShop
         private void UpdateTestGetTranslatedDicsButton_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedLanguagePairDics(selectedItem, true);
             int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
@@ -1094,6 +1109,11 @@ namespace UnityL10nToolCShop
         private void UpdateTestGetUpdatedFileText_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetUpdateFileText(selectedItem, true);
             int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
@@ -1104,12 +1124,22 @@ namespace UnityL10nToolCShop
         private void UpdateTestSaveFileTextToTempFolder_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             bool result = unityL10nToolCppManaged.SaveUpdateFileToTempFolder(selectedItem);
         }
 
         private void UpdateTestGetTranslatedText_Click(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.Done.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             TextAssetMapCLI textAssetMapCLIResult = unityL10nToolCppManaged.GetTranslatedText(selectedItem, true);
             int i = textAssetTabControlContext.Done.Saveds.IndexOf(selectedItem);
             textAssetTabControlContext.Done.Saveds.Insert(i, textAssetMapCLIResult);
@@ -1125,6 +1155,11 @@ namespace UnityL10nToolCShop
         private void UseContainerPathCheckChanged(object sender, RoutedEventArgs e)
         {
             TextAssetMapCLI selectedItem = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
+            if (selectedItem == null)
+            {
+                MessageBox.Show("Please select above a asset");
+                return;
+            }
             unityL10nToolCppManaged.SetTextAssetMaps(selectedItem, TextAssetMapCLI.ToWhere.None);
         }
 

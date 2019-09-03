@@ -23,6 +23,10 @@ public :
 	std::wstring JSONPath;
 	std::wstring DataFolderName;
 	std::wstring ProjectRelativeFolder;
+	std::wstring GameRootPath() {
+		std::wstring gameRootPath = GamePath;
+		return ReplaceAll(gameRootPath, L"\\" + DataFolderName + L"_Data", L"");
+	}
 	/*UnityL10nToolProjectInfo(wstring GameName, wstring MakerName, wstring GamePath, wstring JSONPath, wstring DataFolderName)
 	{
 		this->GameName = GameName;

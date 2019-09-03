@@ -144,7 +144,7 @@
                                         <DataGrid x:Name="InteractWithTextAssetDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}" GotFocus="InteractWithTextAssetDataGridNews_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
@@ -152,8 +152,9 @@
                                         <DataGrid x:Name="InteractWithTextAssetDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" GotFocus="InteractWithTextAssetDataGridSaveds_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>
@@ -242,15 +243,17 @@
                                         <DataGrid x:Name="InteractWithFileTextDataGridNews"  Grid.Row="0" Grid.Column="0" ItemsSource="{Binding News}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}" GotFocus="InteractWithFileTextDataGridNews_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <DataGrid x:Name="InteractWithFileTextDataGridSaveds"  Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Saveds}" AutoGenerateColumns="False" GotFocus="InteractWithFileTextDataGridSaveds_GotFocus">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>
@@ -336,8 +339,9 @@
                                         <DataGrid Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Saveds}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" AutoGenerateColumns="False" Validation.ErrorTemplate="{x:Null}">
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Binding="{Binding assetsName}" Header="AssetsName" IsReadOnly="True"/>
-                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetsName" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding assetName}" Header="AssetName" IsReadOnly="True"/>
                                                 <DataGridTextColumn Binding="{Binding containerPath}" Header="ContainerPath" IsReadOnly="True"/>
+                                                <DataGridTextColumn Binding="{Binding ExternalRelativeFilePath}" Header="ExternalRelativeFilePath" IsReadOnly="True"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                         <Button Grid.Row="1" x:Name="UpdateTestGetOriginalDicButton" Content="GetOriginalDic" Margin="5" Click="UpdateTestGetOriginalDicButton_Click"/>

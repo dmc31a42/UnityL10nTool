@@ -761,8 +761,8 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 				map<wstring, TextPluginInfo*>::iterator textPluginInfoInteractWithFileTextItr = TextPluginInfoInteractWithFileTextMap.find(iterator->InteractWithFileTextPluginName);
 				if (textPluginInfoInteractWithAssetItr != TextPluginInfoInteractWithAssetMap.end() &&
 					textPluginInfoInteractWithFileTextItr != TextPluginInfoInteractWithFileTextMap.end()) {
-					if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + iterator->ExternalRelativeFilePath)) {
-						iterator->OriginalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GamePath + iterator->ExternalRelativeFilePath));
+					if (FileExist(UnityL10nToolProjectInfoGlobal.GameRootPath() + iterator->ExternalRelativeFilePath)) {
+						iterator->OriginalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GameRootPath() + iterator->ExternalRelativeFilePath));
 						TextAssetMapsGlobal.Done.push_back(*iterator);
 						break;
 					}
@@ -775,9 +775,9 @@ TextAssetMaps UnityL10nToolCpp::GetTextAssetMaps()
 
 TextAssetMap UnityL10nToolCpp::GetTextAssetMapFromExternalFile(wstring ExternalRelativeFilePath)
 {
-	ReplaceAll(ExternalRelativeFilePath, UnityL10nToolProjectInfoGlobal.GamePath, L"");
-	if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + ExternalRelativeFilePath)) {
-		wstring originalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GamePath + ExternalRelativeFilePath));
+	ReplaceAll(ExternalRelativeFilePath, UnityL10nToolProjectInfoGlobal.GameRootPath(), L"");
+	if (FileExist(UnityL10nToolProjectInfoGlobal.GameRootPath() + ExternalRelativeFilePath)) {
+		wstring originalText = WideMultiStringConverter->from_bytes(readFile2(UnityL10nToolProjectInfoGlobal.GameRootPath() + ExternalRelativeFilePath));
 		TextAssetMap textAssetMap = TextAssetMap();
 		textAssetMap.ExternalRelativeFilePath = ExternalRelativeFilePath;
 		textAssetMap.OriginalText = originalText;
@@ -986,7 +986,7 @@ bool UnityL10nToolCpp::GetAssetReplacerFromTextAssets()
 			std::wofstream wof;
 			wof.clear();
 			wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
-			wof.open(UnityL10nToolProjectInfoGlobal.GamePath + textAssetMapItr->ExternalRelativeFilePath);
+			wof.open(UnityL10nToolProjectInfoGlobal.GameRootPath() + textAssetMapItr->ExternalRelativeFilePath);
 			wof << textAssetMapItr->TranslatedText;
 			wof.close();
 		}
@@ -1732,7 +1732,9 @@ bool UnityL10nToolCpp::SaveUpdateFileToTempFolder(TextAssetMap textAssetMap)
 		wof.clear();
 		wof.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
 		wstring fileName;
-		if (textAssetMap.useContainerPath) {
+		if (!textAssetMap.ExternalRelativeFilePath.empty()) {
+			fileName = iterator->second.TranslatedFileName;
+		} else if (textAssetMap.useContainerPath) {
 			fileName = ReplaceAll(textAssetMap.containerPath, L"\\", L"_") + iterator->second.TranslatedFileName;
 		}
 		else {
@@ -1750,7 +1752,9 @@ TextAssetMap UnityL10nToolCpp::LoadTranslatedFileTextFromTempAndResourceFolder(T
 	for (std::map<wstring, LanguagePairDic>::iterator iterator = textAssetMap.languagePairDics.begin();
 		iterator != textAssetMap.languagePairDics.end(); iterator++) {
 		wstring fileName;
-		if (textAssetMap.useContainerPath) {
+		if (!textAssetMap.ExternalRelativeFilePath.empty()) {
+			fileName = iterator->second.TranslatedFileName;
+		} else if (textAssetMap.useContainerPath) {
 			fileName = textAssetMap.containerPath;
 			fileName = ReplaceAll(fileName, L"/", L"_") + L"_" + iterator->second.TranslatedFileName;
 		}
@@ -1994,11 +1998,11 @@ void UnityL10nToolCpp::CopyResourcesManualPairsForPatcher()
 		CopyResourcesManualPairItr != CopyResourcesManualPairsGlobal.end(); CopyResourcesManualPairItr++) {
 		if (CopyResourcesManualPairItr->ResourcesFileFromProjectFolder != L"" && CopyResourcesManualPairItr->ResourcesFileTargetRelativePath != L"") {
 			if (FileExist(CopyResourcesManualPairItr->ResourcesFileFromProjectFolder)) {
-				if (FileExist(UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath)) {
-					DeleteFileW((UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
+				if (FileExist(UnityL10nToolProjectInfoGlobal.GameRootPath() + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath)) {
+					DeleteFileW((UnityL10nToolProjectInfoGlobal.GameRootPath() + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
 				}
 				copyFileCustom((CopyResourcesManualPairItr->ResourcesFileFromProjectFolder).c_str(),
-					(UnityL10nToolProjectInfoGlobal.GamePath + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
+					(UnityL10nToolProjectInfoGlobal.GameRootPath() + CopyResourcesManualPairItr->ResourcesFileTargetRelativePath).c_str());
 			}
 		}
 	}

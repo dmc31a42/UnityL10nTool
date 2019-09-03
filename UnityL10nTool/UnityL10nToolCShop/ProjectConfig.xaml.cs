@@ -744,16 +744,19 @@ namespace UnityL10nToolCShop
                 {
                     KeyValuePair<string, LanguagePairDicCLI> prevPair = (KeyValuePair<string, LanguagePairDicCLI>)e.RemovedItems[0];
                     TextAssetMapCLI textAssetMapCLI = textAssetTabControlContext.InteractWithTextAsset.SelectedItem;
-                    if (textAssetMapCLI.languagePairDics.Count != 0)
+                    if(textAssetMapCLI != null)
                     {
-                        KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
-                        if (found.Key != null && found.Value != null)
+                        if (textAssetMapCLI.languagePairDics.Count != 0)
                         {
-                            comboBox.SelectedItem = found;
-                        }
-                        else
-                        {
-                            comboBox.SelectedItem = textAssetMapCLI.languagePairDics.First();
+                            KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
+                            if (found.Key != null && found.Value != null)
+                            {
+                                comboBox.SelectedItem = found;
+                            }
+                            else
+                            {
+                                comboBox.SelectedItem = textAssetMapCLI.languagePairDics.First();
+                            }
                         }
                     }
                 }
@@ -963,18 +966,22 @@ namespace UnityL10nToolCShop
                 {
                     KeyValuePair<string, LanguagePairDicCLI> prevPair = (KeyValuePair<string, LanguagePairDicCLI>)e.RemovedItems[0];
                     TextAssetMapCLI textAssetMapCLI = textAssetTabControlContext.InteractWithFileText.SelectedItem;
-                    if (textAssetMapCLI.languagePairDics.Count != 0)
+                    if(textAssetMapCLI != null)
                     {
-                        KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
-                        if (found.Key != null && found.Value != null)
+                        if (textAssetMapCLI.languagePairDics.Count != 0)
                         {
-                            comboBox.SelectedItem = found;
-                        }
-                        else
-                        {
-                            comboBox.SelectedItem = textAssetMapCLI.languagePairDics.First();
+                            KeyValuePair<string, LanguagePairDicCLI> found = textAssetMapCLI.languagePairDics.FirstOrDefault(x => x.Key == prevPair.Key);
+                            if (found.Key != null && found.Value != null)
+                            {
+                                comboBox.SelectedItem = found;
+                            }
+                            else
+                            {
+                                comboBox.SelectedItem = textAssetMapCLI.languagePairDics.First();
+                            }
                         }
                     }
+                    
                 }
             }
         }

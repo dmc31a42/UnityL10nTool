@@ -7,7 +7,6 @@
             "0 int mBase": 38,
             "0 int mWidth": 2048,
             "0 int mHeight": 2048,
-            "1 string mSpriteName": "NanumGothicExtraBold",
             "0 Array mSaved": [
                 {"0 BMGlyph data": 
                 {

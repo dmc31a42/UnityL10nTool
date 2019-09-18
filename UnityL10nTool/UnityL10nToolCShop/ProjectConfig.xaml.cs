@@ -429,15 +429,13 @@ namespace UnityL10nToolCShop
             Grid grid2 = (Grid)grid.Parent;
             // 카피해서 넣어야함.
             FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid2.DataContext;
-            try
+            FontAssetMapCLI found = fontAssetMapsCLI.Saveds.SingleOrDefault(x => x.LooseEquals(fontAssetMapCLI));
+            if (found != null)
             {
-                FontAssetMapCLI found = fontAssetMapsCLI.Saveds.Single(x =>
-                    x.LooseEquals(fontAssetMapCLI));
                 fontAssetMapsCLI.Saveds.Remove(found);
                 FontAssetMapCLI clone = fontAssetMapCLI.Clone();
                 fontAssetMapsCLI.Saveds.Add(clone);
-
-            } catch (InvalidOperationException invalidOperationException)
+            } else
             {
                 FontAssetMapCLI clone = fontAssetMapCLI.Clone();
                 fontAssetMapsCLI.Saveds.Add(clone);
@@ -454,6 +452,7 @@ namespace UnityL10nToolCShop
             FontAssetMapsCLI fontAssetMapsCLI = (FontAssetMapsCLI)grid.DataContext;
             Grid templateRootGrid = (Grid)grid.Parent;
             DataGrid fontAssetMapDataGrid = (DataGrid)templateRootGrid.FindName("FontAssetMapDataGrid");
+
             try
             {
                 FontAssetMapCLI found = fontAssetMapsCLI.News.Single(x =>
@@ -548,6 +547,10 @@ namespace UnityL10nToolCShop
                 else
                 {
                     binaryName = unityL10NToolProjectInfo.GameName + " Patcher";
+                }
+                if (System.IO.File.Exists(projectFolderName + "Build\\" + binaryName + ".exe"))
+                {
+                    System.IO.File.Delete(projectFolderName + "Build\\" + binaryName + ".exe");
                 }
                 System.IO.File.Move(
                     projectFolderName + "Build\\UnityL10nToolPatcherCShop.exe",

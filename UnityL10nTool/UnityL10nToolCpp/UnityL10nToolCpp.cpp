@@ -199,6 +199,7 @@ bool UnityL10nToolCpp::LoadAssetsFile(std::string assetsFileName) {
 	if (iterator == FindAssetsFilesFromAssetsName.end()) {
 		string assetsFilePath = assetsFileName;
 		ReplaceAll(assetsFilePath, "library/", "resources/");
+		ReplaceAll(assetsFilePath, "Library/", "resources/");
 		IAssetsReader* assetsReader = Create_AssetsReaderFromFile((GameFolderPath + WideMultiStringConverter->from_bytes(assetsFilePath)).c_str(), true, RWOpenFlags_None);
 		AssetsFile* assetsFile = new AssetsFile(assetsReader);
 		AssetsFileTable* assetsFileTable = new AssetsFileTable(assetsFile);

@@ -63,7 +63,7 @@
                                 <Grid DataContext="{Binding Value}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <Grid Grid.Row="0">
                                         <Grid.ColumnDefinitions>

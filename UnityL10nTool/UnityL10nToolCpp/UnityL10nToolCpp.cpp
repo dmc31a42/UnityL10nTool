@@ -1290,6 +1290,23 @@ bool UnityL10nToolCpp::MakeModifiedAssetsFile() {
 		vector<AssetsReplacer*> assetsReplacers = iterator->second;
 		AssetsFileTable* assetsFileTable = FindAssetsFileTablesFromAssetsName[key];
 		if (assetsReplacers.size() > 0) {
+			bool bAbove_2019_3 = false;
+			{
+				string version = assetsFileTable->getAssetsFile()->typeTree.unityVersion;
+				int firstDot = version.find('.');
+				if (firstDot != string::npos) {
+					string major = version.substr(0, firstDot);
+					int secondDot = version.find('.', firstDot + 1);
+					if (secondDot != string::npos) {
+						string minor = version.substr(firstDot + 1, secondDot - (firstDot + 1));
+						int majorNum = atoi(major.c_str());
+						int minorNum = atoi(minor.c_str());
+						if (majorNum * 1000 + minorNum >= 2019 * 1000 + 3) {
+							bAbove_2019_3 = true;
+						}
+					}
+				}
+			}
 			wstring fullPath = GameFolderPath + WideMultiStringConverter->from_bytes(key);
 			IAssetsWriter* assetsWriter = Create_AssetsWriterToFile((fullPath + L".mod").c_str(), true, true, RWOpenFlags_None);
 			assetsFileTable->getAssetsFile()->Write(assetsWriter, 0, assetsReplacers.data(), assetsReplacers.size(), 0);
@@ -1301,6 +1318,22 @@ bool UnityL10nToolCpp::MakeModifiedAssetsFile() {
 				throw new exception("Please Close Game and steam.");
 			}
 			int renameResult = _wrename((fullPath + L".mod").c_str(), fullPath.c_str());
+			if (bAbove_2019_3) {
+				fstream file = fstream(fullPath);
+				uint32_t val;
+				unsigned char bytes[4];
+				file.seekg(0);
+				file.read((char*)bytes, 4);
+				val = bytes[3] | (bytes[2] << 8) | (bytes[1] << 16) | (bytes[0] << 24);
+				val += 4;
+				bytes[0] = val >> 24;
+				bytes[1] = val >> 16;
+				bytes[2] = val >> 8;
+				bytes[3] = val >> 0;
+				file.seekg(0);
+				file.write((char*)bytes, 4);
+				file.close();
+			}
 		}
 	}
 	return true;
